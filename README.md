@@ -26,12 +26,14 @@ Here is a complete list of commands available in MoleculeArchive Suite submenu w
 * MSDCalculatorCommand
 * Interpolate Missing Points (x,y)
 * Merge Archives
+
 #### Table Utils
 * Open ResultsTable
 * Drag & Drop Window
 * Results Sorter
 * Results Filter
 * Histogram Builder
+
 #### Image Processing
 * Peak Finder
 * Peak Tracker
@@ -39,12 +41,14 @@ Here is a complete list of commands available in MoleculeArchive Suite submenu w
 * Integrate Molecules
 * Discoidal Averaging Filter
 * Gradient Calculator
+
 #### ROI Tools
 * Open ROIs
 * Save ROIs
 * Transformation Parameter Calculator
 * Transform ROIs
 * Build ROIs from MoleculeArchive
+
 #### KCP
 * Change Point Finder
 * Segment Distribution Builder
