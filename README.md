@@ -55,8 +55,9 @@ Here is a complete list of commands available in MoleculeArchive Suite submenu w
 * Sigma Calculator
 
 ### API
+The core API of MARS is based around scijava results tables and MoleculeArchives housing Molecule records. So the follow classes make-up the core API:
 * MARSResultsTable
 * MoleculeArchive
 * Molecule
    
-are among come of the classes that makeup the core API of MARS.
+
