@@ -16,38 +16,30 @@ Once you have installed MARS in your Fiji using the update site, the submenu "Mo
 Here is a complete list of commands available in the MoleculeArchive Suite submenu (further documentation coming soon...):
 
 #### Molecule Utils
-* Open MoleculeArchive
-* Build Archive From Table
+* Import archive
+* Build archive from table
 * Region Difference Calculator
-* Generate bps
-* Add Time
+* Add time
 * Drift Calculator
 * Drift Corrector
-* MSDCalculatorCommand
-* Interpolate Missing Points (x,y)
+* Mean Squared Displacement Calculator
 * Merge Archives
+* Merge Virtual Stores
 
 #### Table Utils
-* Open ResultsTable
-* Drag & Drop Window
-* Results Sorter
-* Results Filter
-* Histogram Builder
+* Import table
+* Sort
+* Filter
+* Build histogram
 
 #### Image Processing
 * Peak Finder
 * Peak Tracker
 * Beam Profile Corrector
-* Integrate Molecules
+* Molecule Integrator
 * Discoidal Averaging Filter
 * Gradient Calculator
-
-#### ROI Tools
-* Open ROIs
-* Save ROIs
-* Transformation Parameter Calculator
-* Transform ROIs
-* Build ROIs from MoleculeArchive
+* Overlay Channels
 
 #### KCP
 * Change Point Finder
@@ -55,9 +47,9 @@ Here is a complete list of commands available in the MoleculeArchive Suite subme
 * Sigma Calculator
 
 ### API
-The core API of MARS is based around scijava results tables and MoleculeArchives housing Molecule records. So the follow classes make-up the core API:
-* MARSResultsTable
-* MoleculeArchive
-* Molecule
-   
-
+The core API of MARS is based around Scijava results tables and MoleculeArchives that contain collections of Molecule records. The following packages contain the core API:
+#### de.mpg.biochem.mars.molecule - most useful methods are located in:
+* AbstractMoleculeArchive
+* AbstractMolecule
+#### de.mpg.biochem.mars.table - main class:
+* MarsTable
