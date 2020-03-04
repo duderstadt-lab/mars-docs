@@ -1,7 +1,7 @@
-/.classpath
-/.project
-.settings
-/target/
+.sass-cache
+.jeyyll-metadata
 /doc/
+/build
+/_site
 Gemfile.lock
 .DS_Store

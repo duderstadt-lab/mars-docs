@@ -15,33 +15,33 @@ Script writers and java developers can get started using the **Mars** developmen
 
 | :----------------------------- | :----------- |
 | [Import archive](./Molecule/ImportArchive) | Use this command to open an archive.|
-| [Build archive from table](BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
-| [Region Difference Calculator](RegionDifferenceCalculator) | Add parameter for difference between two regions. |
-| [Add time](AddTime) | Retrieve and add time information from metadata. |
-| [Drift Calculator](DriftCalculator) | Calculate drift in position. |
-| [Drift Corrector](DriftCorrector) | Remove drift from the molecule positions. |
-| [MSD Calculator](MSDCalculator) | Add mean squared displacement parameter for molecules. |
-| [Merge Archives](MergeArchives) | Merges a set of MoleculeArchives. |
-| [Merge Virtual Stores](MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
+| [Build archive from table](./Molecule/BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
+| [Region Difference Calculator](./Molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
+| [Add time](./Molecule/AddTime) | Retrieve and add time information from metadata. |
+| [Drift Calculator](./Molecule/DriftCalculator) | Calculate drift in position. |
+| [Drift Corrector](./Molecule/DriftCorrector) | Remove drift from the molecule positions. |
+| [MSD Calculator](./Molecule/MSDCalculator) | Add mean squared displacement parameter for molecules. |
+| [Merge Archives](./Molecule/MergeArchives) | Merges a set of MoleculeArchives. |
+| [Merge Virtual Stores](./Molecule/MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
 
 ### Table
 
 | :----------------------------- | :----------- |
-| [Import table](ImportTable) | Load csv or yamt format tables. |
-| [Sort](Sort) | Sort table rows by column values. |
-| [Filter](Filter) | Filter table rows. |
-| [Build histogram](BuildHistogram) | Bin observations to generate a histogram table |
+| [Import table](./Table/ImportTable) | Load csv or yamt format tables. |
+| [Sort](./Table/Sort) | Sort table rows by column values. |
+| [Filter](./Table/Filter) | Filter table rows. |
+| [Build histogram](./Table/BuildHistogram) | Bin observations to generate a histogram table |
 
 ### Image processing
 
 | :----------------------------- | :----------- |
 | [Peak Finder](./ImageProcessing/PeakFinder) | Counting and subpixel localization of molecules. |
-| [Peak Tracker](PeakTracker) | Find, subpixel localize, and track molecules. |
-| [Beam Profile Corrector](BeamProfileCorrector) | Correct images for non-uniform beam profile. |
-| [Molecule Integrator](MoleculeIntegrator) | Integrate the fluorescence of molecules. |
-| [Discoidal Averaging Filter](DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
-| [Gradient Calculator](GradientCalculator) | Calculate the vertical gradient for images. |
-| [Overlay Channels](OverlayChannels) | Combine different colors into one image set. |
+| [Peak Tracker](./ImageProcessing/PeakTracker) | Find, subpixel localize, and track molecules. |
+| [Beam Profile Corrector](./ImageProcessing/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
+| [Molecule Integrator](./ImageProcessing/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
+| [Discoidal Averaging Filter](./ImageProcessing/DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
+| [Gradient Calculator](./ImageProcessing/GradientCalculator) | Calculate the vertical gradient for images. |
+| [Overlay Channels](./ImageProcessing/OverlayChannels) | Combine different colors into one image set. |
 
 ### KCP
 
