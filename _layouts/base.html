@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/syntax.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+    <script src="{{ site.baseurl }}/assets/promise.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/symbol.min.js"></script>
+    {% seo %}
+  </head>
+  <body>
+    <div class="fill">
+      <header>
+        <nav class="page-centered">
+          <a class="vega-title" href="{{site.baseurl}}/">{{site.title}}</a>
+          <div class="vega-links">
+            <div class="primary-links">
+              <a href="{{ site.baseurl }}/examples/" {% if page.menu == 'examples' or layout.menu == 'examples' %}class="active"{% endif %}>Examples</a>
+              <a href="{{ site.baseurl }}/tutorials/" {% if page.menu == 'tutorials' or layout.menu == 'tutorials' %}class="active"{% endif %}>Tutorials</a>
+              <a href="{{ site.baseurl }}/docs/" {% if page.menu == 'docs' or layout.menu == 'docs' %}class="active"{% endif %}>Documentation</a>
+              <a href="{{ site.baseurl }}/usage/" {% if page.menu == 'usage' or layout.menu == 'usage' %}class="active"{% endif %}>Usage</a>
+              <a href="{{ site.baseurl }}/about/" {% if page.menu == 'about' or layout.menu == 'about' %}class="active"{% endif %}>About</a>
+            </div>
+            <div class="secondary-links">
+              <a href="https://github.com/duderstadt-lab">GitHub</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <section>
+        {{ content }}
+      </section>
+    </div>
+
+    <footer>
+      <div class="page-centered">
+        <span class="edit-page">
+          <a href="https://github.com/duderstadt-lab/mars-docs/edit/master/docs/{{page.path}}">Edit this Page</a>
+        </span>
+        <span class="fill"></span>
+        <a href="http://duderstadtlab.org/" title="Duderstadt Lab" class="logo">
+          <img src="{{ site.baseurl }}/assets/mars-logo.png"/>
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="/mars-docs/assets/syntax.css">
+    <link rel="stylesheet" href="/mars-docs/assets/main.css">
+    <script src="/mars-docs/assets/promise.min.js"></script>
+    <script src="/mars-docs/assets/symbol.min.js"></script>
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Let’s Learn Advanced Groovy Scripting Tutorial | Mars</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Let’s Learn Advanced Groovy Scripting Tutorial" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Mars - JJJJJ" />
+<meta property="og:description" content="Mars - JJJJJ" />
+<link rel="canonical" href="http://localhost:4000/mars-docs/tutorials/advanced-groovy-scripting/" />
+<meta property="og:url" content="http://localhost:4000/mars-docs/tutorials/advanced-groovy-scripting/" />
+<meta property="og:site_name" content="Mars" />
+<script type="application/ld+json">
+{"description":"Mars - JJJJJ","@type":"WebPage","url":"http://localhost:4000/mars-docs/tutorials/advanced-groovy-scripting/","headline":"Let’s Learn Advanced Groovy Scripting Tutorial","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    <div class="fill">
+      <header>
+        <nav class="page-centered">
+          <a class="vega-title" href="/mars-docs/">Mars</a>
+          <div class="vega-links">
+            <div class="primary-links">
+              <a href="/mars-docs/examples/" >Examples</a>
+              <a href="/mars-docs/tutorials/" class="active">Tutorials</a>
+              <a href="/mars-docs/docs/" >Documentation</a>
+              <a href="/mars-docs/usage/" >Usage</a>
+              <a href="/mars-docs/about/" >About</a>
+            </div>
+            <div class="secondary-links">
+              <a href="https://github.com/duderstadt-lab">GitHub</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <section>
+        
+<div class="page-centered page-main">
+  
+  <section class="page-content">
+    <h1>Let's Learn Advanced Groovy Scripting Tutorial</h1>
+    <p>Advanced Groovy Scripting!!</p>
+
+<p>Groovy One liners:</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">archive</span><span class="o">.</span><span class="na">getMoleculeUIDs</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">UID</span> <span class="o">-&gt;</span> <span class="n">archive</span><span class="o">.</span><span class="na">moleculeHasTag</span><span class="o">(</span><span class="n">UID</span><span class="o">,</span> <span class="n">tag</span><span class="o">)</span> <span class="o">).</span><span class="na">maptoDouble</span><span class="o">{</span> <span class="n">UID</span> <span class="o">-&gt;</span> <span class="n">molecule</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s2">"MSD"</span><span class="o">)}.</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">())</span>
+</code></pre></div></div>
+
+<p>And example widget for making a histogram from a parameter</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">MoleculeArchive</span><span class="o">(</span><span class="n">required</span><span class="o">=</span><span class="kc">false</span><span class="o">)</span> <span class="n">archive</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">String</span> <span class="n">xlabel</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">String</span> <span class="n">ylabel</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">String</span> <span class="n">title</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">Integer</span> <span class="n">bins</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">Double</span> <span class="n">xmin</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">Double</span> <span class="n">xmax</span>
+
+<span class="c1">//Set global outputs</span>
+<span class="n">xlabel</span> <span class="o">=</span> <span class="s2">"MSD"</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s2">"Frequency"</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s2">"x_MSD"</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+<span class="c1">//Series 1 Outputs</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">Double</span><span class="o">[]</span> <span class="n">series1_values</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">String</span> <span class="n">series1_strokeColor</span>
+<span class="err">#</span><span class="nd">@OUTPUT</span> <span class="n">Integer</span> <span class="n">series1_strokeWidth</span>
+
+<span class="n">series1_strokeColor</span> <span class="o">=</span> <span class="s2">"rgb("</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">255</span><span class="o">)</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">255</span><span class="o">)</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">255</span><span class="o">)</span> <span class="o">+</span> <span class="s2">")"</span><span class="o">;</span>
+<span class="n">series1_strokeWidth</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">series1_values</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="na">getMoleculeUIDs</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToDouble</span><span class="o">{</span><span class="n">UID</span> <span class="o">-&gt;</span> <span class="n">archive</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">UID</span><span class="o">).</span><span class="na">getParameter</span><span class="o">(</span><span class="s2">"column_MSD_x"</span><span class="o">)}.</span><span class="na">toArray</span><span class="o">()</span>
+</code></pre></div></div>
+
+<p>Much more to come…</p>
+
+  </section>
+</div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="page-centered">
+        <span class="edit-page">
+          <a href="https://github.com/duderstadt-lab/mars-docs/edit/master/docs/tutorials/advanced-groovy-scripting/index.md">Edit this Page</a>
+        </span>
+        <span class="fill"></span>
+        <a href="http://duderstadtlab.org/" title="Duderstadt Lab" class="logo">
+          <img src="/mars-docs/assets/mars-logo.png"/>
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
