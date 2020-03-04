@@ -3,4 +3,5 @@
 .settings
 /target/
 /doc/
+Gemfile.lock
 .DS_Store
