@@ -21,6 +21,7 @@ The command is intended to be used together with the [[DriftCorrector]]. First, 
 #### Output
    * The MoleculeArchive provided as Input is modified. The drift information is added to the ImageMetaData table since it applies globally to all molecules within the given dataset.
 ### How to run this Command from a groovy script
+
 ```groovy
 #@ MoleculeArchive archive
 #@ ImageJ ij

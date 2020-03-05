@@ -17,6 +17,7 @@ Sorting with grouping. The table displays the result.
 #### Output
    * This command sorts the table given as input, so there isn't any output except a change in the row order of the table given.
 ### How to sort tables in a groovy script
+
 ```groovy
 #@ MarsTable table
 

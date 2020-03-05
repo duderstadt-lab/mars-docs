@@ -10,6 +10,7 @@ permalink: /docs/Molecule/BuildArchiveFromTable/index.html
 #### Output
    * A MoleculeArchive in which each molecule entry corresponds to a unique molecule number in the input table.
 ### How to run this Command from a groovy script
+
 ```groovy
 #@ MarsTable table
 #@ ImageJ ij

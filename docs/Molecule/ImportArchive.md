@@ -37,6 +37,6 @@ archiveOpener.run();
 //Retrieve output from the command
 archive = archiveOpener.getArchive();
 ```
-   * Depending on the environment you are using - Headless or Jupiter Notebook etc. - this might not be the preferred way to open an archive. One alternative is to just initialise a new MoleculeArchive object using one of the constructors for which you can pass the file path as seen in the javadoc. One option of the following constructor:
-   * MoleculeArchive(String name, File file, MoleculeArchiveService moleculeArchiveService, boolean virtual)
-   * In this case you would need to get the MoleculeArchiveService as an input and pass it to the archive...
+ * Depending on the environment you are using - Headless or Jupiter Notebook etc. - this might not be the preferred way to open an archive. One alternative is to just initialise a new MoleculeArchive object using one of the constructors for which you can pass the file path as seen in the javadoc. One option of the following constructor:
+ * MoleculeArchive(String name, File file, MoleculeArchiveService moleculeArchiveService, boolean virtual)
+ * In this case you would need to get the MoleculeArchiveService as an input and pass it to the archive...
