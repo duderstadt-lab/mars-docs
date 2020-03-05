@@ -15,7 +15,7 @@ Since a mapping is used, missed slices are not a problem. Also, if multiple data
 
 #### Inputs
    * *MoleculeArchive* - MoleculeArchive for which to add a Time (s) column to all molecule records.
-#### <img align='center' src='{{site.baseurl}}/docs/Molecule/img/Add Time.png' width='250' />
+<img align='center' src='{{site.baseurl}}/docs/Molecule/img/Add Time.png' width='250' />
 #### Output
    * The MoleculeArchive provided as Input is modified.
 ### How to run this Command from a groovy script
