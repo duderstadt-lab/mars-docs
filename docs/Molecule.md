@@ -4,15 +4,13 @@ title: Molecule
 permalink: /docs/Molecule/index.html
 ---
 
-### Molecule
-
 | :----------------------------- | :----------- |
-| [Import archive](./Molecule/ImportArchive) | Use this command to open an archive.|
-| [Build archive from table](./Molecule/BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
-| [Region Difference Calculator](./Molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
-| [Add time](./Molecule/AddTime) | Retrieve and add time information from metadata. |
-| [Drift Calculator](./Molecule/DriftCalculator) | Calculate drift in position. |
-| [Drift Corrector](./Molecule/DriftCorrector) | Remove drift from the molecule positions. |
-| [MSD Calculator](./Molecule/MSDCalculator) | Add mean squared displacement parameter for molecules. |
-| [Merge Archives](./Molecule/MergeArchives) | Merges a set of MoleculeArchives. |
-| [Merge Virtual Stores](./Molecule/MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
+| [Import archive](ImportArchive) | Use this command to open an archive.|
+| [Build archive from table](BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
+| [Region Difference Calculator](RegionDifferenceCalculator) | Add parameter for difference between two regions. |
+| [Add time](AddTime) | Retrieve and add time information from metadata. |
+| [Drift Calculator](DriftCalculator) | Calculate drift in position. |
+| [Drift Corrector](DriftCorrector) | Remove drift from the molecule positions. |
+| [MSD Calculator](MSDCalculator) | Add mean squared displacement parameter for molecules. |
+| [Merge Archives](MergeArchives) | Merges a set of MoleculeArchives. |
+| [Merge Virtual Stores](MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |

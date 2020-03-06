@@ -4,10 +4,8 @@ title: Table
 permalink: /docs/Table/index.html
 ---
 
-### Table
-
 | :----------------------------- | :----------- |
-| [Import table](./Table/ImportTable) | Load csv or yamt format tables. |
-| [Sort](./Table/Sort) | Sort table rows by column values. |
-| [Filter](./Table/Filter) | Filter table rows. |
-| [Build histogram](./Table/BuildHistogram) | Bin observations to generate a histogram table |
+| [Import table](ImportTable) | Load csv or yamt format tables. |
+| [Sort](Sort) | Sort table rows by column values. |
+| [Filter](Filter) | Filter table rows. |
+| [Build histogram](BuildHistogram) | Bin observations to generate a histogram table |
