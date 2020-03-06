@@ -11,6 +11,7 @@ To start learning how to use Mars, we recommend first working through the introd
 Script writers and java developers can get started using the **Mars** development tutorial. Complete javadoc for the mars-core API can be found [here](http://duderstadt-lab.github.io/mars-core/javadoc/).
 
 ## <a name="commands"></a>Command Reference
+
 ### Molecule
 
 | :----------------------------- | :----------- |
@@ -35,20 +36,20 @@ Script writers and java developers can get started using the **Mars** developmen
 ### Image processing
 
 | :----------------------------- | :----------- |
-| [Peak Finder](./ImageProcessing/PeakFinder) | Counting and subpixel localization of molecules. |
-| [Peak Tracker](./ImageProcessing/PeakTracker) | Find, subpixel localize, and track molecules. |
-| [Beam Profile Corrector](./ImageProcessing/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
-| [Molecule Integrator](./ImageProcessing/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
-| [Discoidal Averaging Filter](./ImageProcessing/DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
-| [Gradient Calculator](./ImageProcessing/GradientCalculator) | Calculate the vertical gradient for images. |
-| [Overlay Channels](./ImageProcessing/OverlayChannels) | Combine different colors into one image set. |
+| [Peak Finder](./Image/PeakFinder) | Counting and subpixel localization of molecules. |
+| [Peak Tracker](./Image/PeakTracker) | Find, subpixel localize, and track molecules. |
+| [Beam Profile Corrector](./Image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
+| [Molecule Integrator](./Image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
+| [Discoidal Averaging Filter](./Image/DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
+| [Gradient Calculator](./Image/GradientCalculator) | Calculate the vertical gradient for images. |
+| [Overlay Channels](./Image/OverlayChannels) | Combine different colors into one image set. |
 
 ### KCP
 
 | :----------------------------- | :----------- |
-| [Change Point Finder](ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
-| [Single Change Point Finder](SingleChangePointFinder) | Find single change point positions. |
-| [Segment Distribution Builder](SegmentDistributionBuilder) | Build distributions using change point segments. |
-| [Sigma Calculator](SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
+| [Change Point Finder](./KCP/ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
+| [Single Change Point Finder](./KCP/SingleChangePointFinder) | Find single change point positions. |
+| [Segment Distribution Builder](./KCP/SegmentDistributionBuilder) | Build distributions using change point segments. |
+| [Sigma Calculator](./KCP/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
 
 ## <a name="gui"></a>Molecule Explorer Reference

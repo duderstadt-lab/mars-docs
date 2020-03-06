@@ -15,7 +15,7 @@ base: /
       <ul class="sub-menu-nav">{% for sub in layout.submenu %}
         {% assign link = layout.base | append:layout.parent | append:'/' | append:sub.page | downcase | append:'/' | replace:'//','/' %}
         <li class="sidebar-nav-item sub-item">
-          <a {% if link == url %}class="active"{% endif %} href="{{ site.baseurl }}{{ link }}">{{ sub.page }}</a>
+          <a {% if link == url %}class="active"{% endif %} href="{{ site.baseurl }}{{ link }}">{% if sub.text %}{{ sub.text }}{% else %}{{ sub.page }}{% endif %}</a>
         </li>{% endfor %}
       </ul>
       {% endif %}{% endfor %}

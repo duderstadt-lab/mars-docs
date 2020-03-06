@@ -3,7 +3,9 @@ layout: molecule
 title: Region difference calculator
 permalink: /docs/Molecule/RegionDifferenceCalculator/index.html
 ---
+
 #### Inputs
+
    * *MoleculeArchive* - MoleculeArchive input to use for the difference calculation. This command will calculate the difference between the regions specified for all molecules in the archive and add the values for each molecule as the parameter specified below.
    * *X Column* - X column for the purposes of specifying the reversal regions.
    * *Y Column* - Y column used for calculating the difference.
@@ -12,13 +14,20 @@ permalink: /docs/Molecule/RegionDifferenceCalculator/index.html
    * *Region 2 start* - Beginning of the second region.
    * *Region 2 end* - End of the second region.
    * *Parameter Name* - Name of the Parameter added to each molecule entry in the archive with the calculated difference.
-#### <img align='center' src='{{site.baseurl}}/docs/Molecule/img/Region Difference Calculator.png' width='600' />
+<img align='center' src='{{site.baseurl}}/docs/Molecule/img/Region Difference Calculator.png' width='600' />
+
 #### Output
+
    * The MoleculeArchive provided as Input is modified.
+
 #### Example Molecule for inputs above
-#### <img align='center' src='{{site.baseurl}}/docs/Molecule/img/regionDifferencePlot.png' width='400' />
+
+<img align='center' src='{{site.baseurl}}/docs/Molecule/img/regionDifferencePlot.png' width='400' />
+
 Running the command on an archive with this molecule results in the Parameter "first_reversal" with value 4.43... being added for this molecule.
-#### <img align='center' src='{{site.baseurl}}/docs/Molecule/img/Added Parameter.png' width='400' />
+
+<img align='center' src='{{site.baseurl}}/docs/Molecule/img/Added Parameter.png' width='400' />
+
 ### How to run this Command from a groovy script
 
 ```groovy

@@ -1,10 +1,8 @@
 ---
-layout: docs
-title: Documentation
-permalink: /docs/ImageProcessing/index.html
+layout: Image
+title: Image
+permalink: /docs/Image/index.html
 ---
-
-### Image processing
 
 | :----------------------------- | :----------- |
 | [Peak Finder](PeakFinder) | Counting and subpixel localization of molecules. |
