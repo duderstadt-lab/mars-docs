@@ -1,13 +1,13 @@
 ---
 layout: image
+mathjax: true
 title: Beam Profile Corrector
 permalink: /docs/image/BeamProfileCorrector/index.html
 ---
 This command corrects for the beam profile in images collected on the fluorescence microscope. The expanded laser beams focused through the objective onto the sample are most intense in the middle and the intensity is much weaker at the edges. This causes several problems. First, the background is uneven across the image. Second, and related, integrating peaks of equal intensity in the middle vs on the side will result in unequal counts. To partially resolve these issues and make integration more comparable across the image, we correct for the beam profile using a background image with only the global profile and no peaks. The raw image is divided by the background image to essentially upweight the edges and balance out the beam profile. The actual formula used is
 
-<latex align='center' width="700">
-\frac{\textrm{Image}(x,y) - \textrm{Electronic offset}}{\textrm{Background}(x,y)  - \textrm{Electronic offset}}\times \frac{1}{\textrm{Max Pixel Background} - \textrm{Electronic offset}}
-</latex>
+$$ \frac{\textrm{Image}(x,y) - \textrm{Electronic offset}}{\textrm{Background}(x,y)  - \textrm{Electronic offset}}\times \frac{1}{\textrm{Max Pixel Background} - \textrm{Electronic offset}}
+$$
 
 Here the thermal noise of the camera sensor (Electronic offset) is subtracted from both the image and background image. Then the image is divided by the background image. The result is then divided by the max pixel value of the background image, which is also corrected for the thermal noise of the camera. This final step basically normalizes the background image, so the "corrected" intensity is preserved in the original image, but just reweighed. So in the middle you are basically multiplying by 1, which causes no change and at the edges you are multiplying by more than 1...
 
