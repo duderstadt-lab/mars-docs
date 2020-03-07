@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Add Time
-permalink: /docs/Molecule/AddTime/index.html
+permalink: /docs/molecule/AddTime/index.html
 ---
 This command makes a map between the slice and Time columns in all ImageMetaData records and uses that map to add a Time column to all molecule DataTables.
 

@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Molecule
-permalink: /docs/Molecule/index.html
+permalink: /docs/molecule/index.html
 ---
 
 | :----------------------------- | :----------- |

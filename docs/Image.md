@@ -1,7 +1,7 @@
 ---
 layout: Image
 title: Image
-permalink: /docs/Image/index.html
+permalink: /docs/image/index.html
 ---
 
 | :----------------------------- | :----------- |

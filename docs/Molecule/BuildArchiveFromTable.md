@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Build archive from table
-permalink: /docs/Molecule/BuildArchiveFromTable/index.html
+permalink: /docs/molecule/BuildArchiveFromTable/index.html
 ---
 
 #### Inputs
@@ -13,7 +13,7 @@ permalink: /docs/Molecule/BuildArchiveFromTable/index.html
 #### Output
 
    * A MoleculeArchive in which each molecule entry corresponds to a unique molecule number in the input table.
-   
+
 ### How to run this Command from a groovy script
 
 ```groovy

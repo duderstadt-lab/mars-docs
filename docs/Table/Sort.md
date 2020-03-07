@@ -1,7 +1,7 @@
 ---
 layout: table
 title: Sort
-permalink: /docs/Table/Sort/index.html
+permalink: /docs/table/Sort/index.html
 ---
 This command sorts MarsTables based on the values in the specified column. Default sort order is descending.
 

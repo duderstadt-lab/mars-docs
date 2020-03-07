@@ -1,7 +1,7 @@
 ---
 layout: Image
 title: Peak Tracker
-permalink: /docs/Image/PeakTracker/index.html
+permalink: /docs/image/PeakTracker/index.html
 ---
 This command is used to find, fit and track peaks in images. Typically these are polystyrene beads or single fluorescent dyes or groups of dyes attached to biomolecules. This command is nearly the same as the [[PeakFinder]] command but with the addition of tracking and fewer output options. So a lot of the input documentation is the same between the two commands.
 

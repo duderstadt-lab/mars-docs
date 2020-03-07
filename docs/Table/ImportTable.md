@@ -1,7 +1,7 @@
 ---
 layout: table
 title: Import Table
-permalink: /docs/Table/ImportTable/index.html
+permalink: /docs/table/ImportTable/index.html
 ---
 This command opens a file dialog in which you can select the comma or tab delimited ResultsTable you would like to open. This can be a ResultsTable saved previously using Mars or a table generated elsewhere. In either case, all columns need headers and only comma and tab delimited table files are supported.
 
@@ -11,7 +11,7 @@ This command opens a file dialog in which you can select the comma or tab delimi
 #### Output
 
    * A MarsTable will be opened in a new window. For general information about how to work with this table window and links to there useful docs see xxx.
-   
+
 #### How to open tables in a groovy script
 
 ```groovy

@@ -1,7 +1,7 @@
 ---
 layout: kcp
 title: Kinetic Change Point
-permalink: /docs/KCP/index.html
+permalink: /docs/kcp/index.html
 ---
 
 | :----------------------------- | :----------- |

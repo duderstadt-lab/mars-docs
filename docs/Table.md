@@ -1,7 +1,7 @@
 ---
 layout: table
 title: Table
-permalink: /docs/Table/index.html
+permalink: /docs/table/index.html
 ---
 
 | :----------------------------- | :----------- |

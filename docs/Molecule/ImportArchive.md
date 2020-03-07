@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Import Archive
-permalink: /docs/Molecule/ImportArchive/index.html
+permalink: /docs/molecule/ImportArchive/index.html
 ---
 
 #### Inputs

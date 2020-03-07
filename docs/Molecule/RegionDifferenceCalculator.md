@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Region difference calculator
-permalink: /docs/Molecule/RegionDifferenceCalculator/index.html
+permalink: /docs/molecule/RegionDifferenceCalculator/index.html
 ---
 
 #### Inputs

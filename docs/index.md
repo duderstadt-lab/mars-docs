@@ -15,41 +15,41 @@ Script writers and java developers can get started using the **Mars** developmen
 ### Molecule
 
 | :----------------------------- | :----------- |
-| [Import archive](./Molecule/ImportArchive) | Use this command to open an archive.|
-| [Build archive from table](./Molecule/BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
-| [Region Difference Calculator](./Molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
-| [Add time](./Molecule/AddTime) | Retrieve and add time information from metadata. |
-| [Drift Calculator](./Molecule/DriftCalculator) | Calculate drift in position. |
-| [Drift Corrector](./Molecule/DriftCorrector) | Remove drift from the molecule positions. |
-| [MSD Calculator](./Molecule/MSDCalculator) | Add mean squared displacement parameter for molecules. |
-| [Merge Archives](./Molecule/MergeArchives) | Merges a set of MoleculeArchives. |
-| [Merge Virtual Stores](./Molecule/MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
+| [Import archive](./molecule/ImportArchive) | Use this command to open an archive.|
+| [Build archive from table](./molecule/BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
+| [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
+| [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
+| [Drift Calculator](./molecule/DriftCalculator) | Calculate drift in position. |
+| [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
+| [MSD Calculator](./molecule/MSDCalculator) | Add mean squared displacement parameter for molecules. |
+| [Merge Archives](./molecule/MergeArchives) | Merges a set of MoleculeArchives. |
+| [Merge Virtual Stores](./molecule/MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
 
 ### Table
 
 | :----------------------------- | :----------- |
-| [Import table](./Table/ImportTable) | Load csv or yamt format tables. |
-| [Sort](./Table/Sort) | Sort table rows by column values. |
-| [Filter](./Table/Filter) | Filter table rows. |
-| [Build histogram](./Table/BuildHistogram) | Bin observations to generate a histogram table |
+| [Import table](./table/ImportTable) | Load csv or yamt format tables. |
+| [Sort](./table/Sort) | Sort table rows by column values. |
+| [Filter](./table/Filter) | Filter table rows. |
+| [Build histogram](./table/BuildHistogram) | Bin observations to generate a histogram table |
 
 ### Image processing
 
 | :----------------------------- | :----------- |
-| [Peak Finder](./Image/PeakFinder) | Counting and subpixel localization of molecules. |
-| [Peak Tracker](./Image/PeakTracker) | Find, subpixel localize, and track molecules. |
-| [Beam Profile Corrector](./Image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
-| [Molecule Integrator](./Image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
-| [Discoidal Averaging Filter](./Image/DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
-| [Gradient Calculator](./Image/GradientCalculator) | Calculate the vertical gradient for images. |
-| [Overlay Channels](./Image/OverlayChannels) | Combine different colors into one image set. |
+| [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
+| [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
+| [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
+| [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
+| [Discoidal Averaging Filter](./image/DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
+| [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
+| [Overlay Channels](./image/OverlayChannels) | Combine different colors into one image set. |
 
 ### KCP
 
 | :----------------------------- | :----------- |
-| [Change Point Finder](./KCP/ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
-| [Single Change Point Finder](./KCP/SingleChangePointFinder) | Find single change point positions. |
-| [Segment Distribution Builder](./KCP/SegmentDistributionBuilder) | Build distributions using change point segments. |
-| [Sigma Calculator](./KCP/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
+| [Change Point Finder](./kcp/ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
+| [Single Change Point Finder](./kcp/SingleChangePointFinder) | Find single change point positions. |
+| [Segment Distribution Builder](./kcp/SegmentDistributionBuilder) | Build distributions using change point segments. |
+| [Sigma Calculator](./kcp/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
 
 ## <a name="gui"></a>Molecule Explorer Reference

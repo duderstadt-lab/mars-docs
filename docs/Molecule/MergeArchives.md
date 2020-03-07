@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Merge Archives
-permalink: /docs/Molecule/MergeArchives/index.html
+permalink: /docs/molecule/MergeArchives/index.html
 ---
 This command merges multiple MoleculeArchives (yama files) into one. To ensure efficient memory usage, and allow for arbitrarily large archives to be combined, this command works in streaming mode. Given a directory, all the MoleculeArchiveProperties and ImageMetaData information is read into memory from all files. Then these records are checked to ensure no duplicate datasets exist. If duplicates exist the merge is aborted. Assuming all datasets are unique a new merged.yama file is created with new MoleculeArchiveProperties and all ImageMetaData items. Then molecules are read in and written out one by one to ensure only a single molecule record is held in memory any given time. It is assumed that all molecule UIDs are unique based on the uniqueness of the ImageMetaData UIDs.
 

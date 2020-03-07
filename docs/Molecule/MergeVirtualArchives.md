@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Merge Virtual Archives
-permalink: /docs/Molecule/MergeVirtualArchives/index.html
+permalink: /docs/molecule/MergeVirtualArchives/index.html
 ---
 This command merges multiple virtual MoleculeArchives (.yama.store directories) into one. Records are checked to ensure no duplicate datasets exist. If duplicates exist the merge is aborted. Assuming all datasets are unique a new merged.yama.store directory is created with new MoleculeArchiveProperties and all ImageMetaData items. It is assumed that all molecule UIDs are unique based on the uniqueness of the ImageMetaData UIDs.
 

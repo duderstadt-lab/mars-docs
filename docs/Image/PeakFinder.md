@@ -1,7 +1,7 @@
 ---
 layout: Image
 title: Peak Finder
-permalink: /docs/Image/PeakFinder/index.html
+permalink: /docs/image/PeakFinder/index.html
 ---
 This command is used to find higher intensity spots or peaks in images. Typically these are single polystyrene beads or single fluorescent dyes or groups of dyes. After locating the peaks, this command can also perform 2D Gaussian fitting to determine the sub pixel position of the peaks. There are a lot of possible input options to allow for maximum customizability so the same tool can easily be used with multiple image and peak types.
 
