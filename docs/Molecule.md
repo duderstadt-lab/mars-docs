@@ -13,4 +13,4 @@ permalink: /docs/molecule/index.html
 | [Drift Corrector](DriftCorrector) | Remove drift from the molecule positions. |
 | [MSD Calculator](MSDCalculator) | Add mean squared displacement parameter for molecules. |
 | [Merge Archives](MergeArchives) | Merges a set of MoleculeArchives. |
-| [Merge Virtual Stores](MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
+| [Merge Virtual Archives](MergeVirtualArchives) | Merges a set of virtual MoleculeArchives. |
