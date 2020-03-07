@@ -1,5 +1,5 @@
 ---
-layout: Image
+layout: image
 title: Image
 permalink: /docs/image/index.html
 ---

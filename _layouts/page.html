@@ -7,13 +7,13 @@ base: /
   {% if layout.sidebar %}
   <aside class="page-sidebar">
     <ul class="sidebar-nav">{% for entry in layout.sidebar %}
-      {% assign link = layout.base | append:entry.page | downcase | replace:' ','-' | append:'/' | replace:'//','/' %}
+      {% assign link = layout.base | append:entry.page | replace:' ','-' | append:'/' | replace:'//','/' %}
       <li class="sidebar-nav-item">
         <a {% if link == url %}class="active"{% endif %} href="{{ site.baseurl }}{{ link }}">{% if entry.text %}{{ entry.text }}{% else %}{{ entry.page }}{% endif %}</a>
       </li>
       {% if layout.parent == entry.page %}
       <ul class="sub-menu-nav">{% for sub in layout.submenu %}
-        {% assign link = layout.base | append:layout.parent | append:'/' | append:sub.page | downcase | append:'/' | replace:'//','/' %}
+        {% assign link = layout.base | append:layout.parent | append:'/' | append:sub.page | append:'/' | replace:'//','/' %}
         <li class="sidebar-nav-item sub-item">
           <a {% if link == url %}class="active"{% endif %} href="{{ site.baseurl }}{{ link }}">{% if sub.text %}{{ sub.text }}{% else %}{{ sub.page }}{% endif %}</a>
         </li>{% endfor %}
