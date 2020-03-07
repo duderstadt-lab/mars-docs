@@ -4,7 +4,6 @@ title: Image
 permalink: /docs/image/index.html
 ---
 
-
 | :----------------------------- | :----------- |
 | [Peak Finder](PeakFinder) | Counting and subpixel localization of molecules. |
 | [Peak Tracker](PeakTracker) | Find, subpixel localize, and track molecules. |
