@@ -15,7 +15,7 @@ Once the pixel positions of the peaks have been determined you can directly outp
 
 OMG that is a lot of inputs, but don't panic, they are all pretty simple to understand. Also, lot of inputs are included for completeness to give fine control of fitting, however, in most normal cases this fine control is not required and the defaults will work well.
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/PeakFinder.png' width='450' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/PeakFinder.png' width='450' />
 
  * *Image* - The active image selected will be used by the Peak Finder. So this is a required input but doesn't show up in the dialog.
  * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
@@ -26,10 +26,10 @@ OMG that is a lot of inputs, but don't panic, they are all pretty simple to unde
  * *Use Discoidal Averaging Filter* - If checked the imaging will be processes with a discoidal averaging filter using the Inner radius and Outer radius prior to peak finding. If unchecked the raw image will be used the the Inner and Outer radius settings will be ignored.
  * *Inner Radius* - Inner Radius beyond a single pixel used for discoidal processing. This should be enough to include your peak.
  * *Outer Radius* - Outer Radius that determine the radius of the ring used for calculating the background for discoidal averaging. This need to be large enough so peak signal is exlcuded.
- <img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/DS filter.png' width='600' />
+ <img align='center' src='{{site.baseurl}}/docs/image/img/DS filter.png' width='600' />
  * *Detection threshold (mean + N * STD)* - This is how many standard deviations above the mean the peak detection threshold should we set as. So the input here is N in the expression. mean is the mean value of pixels in the image and STD is the standard deviation in the pixel values. Usually, between 2 and 4 is good for low signals and 5-8 is good for higher signals. This should be determined using the Preview button that will show the detected peaks for the given settings.
  * *Minimum distance between peaks (in pixels)* - This is the minimum allowed distance between peaks, This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other peaks above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.
- <img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/Minimum Distance.png' width='500' />
+ <img align='center' src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500' />
  * *Find Negative Peaks* - If checked this inverts the image for the purposes of peak detection, so that only peaks with negative values are detected. This is used in gradient images, where a negative gradient can results in a negative peak. This is useful for detecting the edges of long DNA molecules.
  * *Generate peak count table* - If checked a table will appear in which each row has the number of detected peaks for each slice. This is useful to look at bead loss as a function of time in the bead assays and bleaching for a given intensity in smTIRF data.
  * *Generate peak table* - If checked a table will be generated listing the positions of all detected peaks.
@@ -39,7 +39,7 @@ OMG that is a lot of inputs, but don't panic, they are all pretty simple to unde
 
 The remaining settings are only important if you want to fit the peaks to determine their subpixel positions.
  * *Fit peaks* - If checked all peaks will be fit with 2D Gaussians to determine the sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. Fitting is done with the following 2D Gaussian equation:
- <img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/2D Gaussian.png' width='500' />
+ <img align='center' src='{{site.baseurl}}/docs/image/img/2D Gaussian.png' width='500' />
 Where x0 and y0 are the subpixel positions of the peak, Height, Baseline and Sigma match the settings below and f(x,y) gives the intensity as a function of pixel position for a given set of parameters.
  * *Fit Radius* - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.
  * *Initial Baseline* - The initial guess for the mean background pixel value.
