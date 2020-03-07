@@ -17,7 +17,7 @@ The [[ColorCodedTrackOverlay]] groovy script provides and excellent method for o
 
 OMG that is a lot of inputs, but don't panic, they are all pretty simple to understand and overlap with the [[PeakFinder]] options. A lot of inputs are included for completeness to give fine control but are not needed in most normal cases.
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/Peak Tracker.png' width='450' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/Peak Tracker.png' width='450' />
 
 * *Image* - The active image selected will be used by the Peak Tracker. So this is a required input but doesn't show up in the dialog.
 * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox and add the region settings.
@@ -29,17 +29,17 @@ OMG that is a lot of inputs, but don't panic, they are all pretty simple to unde
 * *Inner Radius* - Inner Radius beyond a single pixel used for discoidal processing. This should be enough to include your peak.
 * *Outer Radius* - Outer Radius determines the size of the ring used for calculating the background for discoidal averaging. This needs to be large enough so peak signal is exlcuded.
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/DS filter.png' width='600' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DS filter.png' width='600' />
 
 * *Detection threshold (mean + N * STD)* - This is how many standard deviations above the mean the peak detection threshold should be set at. So the input here is N in the expression. mean is the mean value of pixels in the image and STD is the standard deviation in the pixel values. Usually, between 2 and 4 is good for low signals and 5-8 is good for higher signals.
 * *Minimum distance between peaks (in pixels)* - This is the minimum allowed distance between peaks, This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other peaks above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/Minimum Distance.png' width='500' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500' />
 
 * *Find Negative Peaks* - If checked this inverts the image for the purposes of peak detection, so that only peaks with negative values are detected. This is used in gradient images, where a negative gradient can results in a negative peak. This is useful for detecting the edges of long DNA molecules.
 * *Fit peaks* - If checked all peaks will be fit with 2D Gaussians to determine the sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. Fitting is done with the following 2D Gaussian equation:
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/2D Gaussian.png' width='500' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/2D Gaussian.png' width='500' />
 
 Where x0 and y0 are the subpixel positions of the peak, Height, Baseline and Sigma match the settings below and f(x,y) gives the intensity as a function of pixel position for a given set of parameters.
 * *Fit Radius* - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.
@@ -60,7 +60,7 @@ The following are the max allowed error in each parameter. If the error from fit
 * *Verbose table fit output* - If checked all columns from fitting will be included in the table generated (baseline, error_baseline, height, error_height, x, error_x, y, error_y, sigma, error_sigma). If unchecked only the position columns will be included in the table generated (x, y). Very useful for optimising the parameters, or for other applications using various peak properties.
 The following are the setting for tracking absent in the [[PeakFinder]] command. Once all peaks have been found and fit, the program still doesn't know which peaks correspond to which molecules between slices. To connect all the peaks, the Peak Tracker does a nearest-neighbor search between frames. So the closest peak in the next frame to the current peak position is considered the same molecule.
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/Tracking Peak Stack.png' width='400' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/Tracking Peak Stack.png' width='400' />
 
 * *Check Max Difference Baseline* - If checked the Max Difference Baseline setting will be used as a threshold to determine if the baseline difference for two peaks is too large for them to be linked. If left unchecked this setting is ignored. (Maybe this shouldn't set an included setting since usually the baseline is always the same and is just the image background level...)
 * *Max Difference Baseline* - The threshold baseline difference between peaks below which they are still allowed to be linked.
@@ -72,7 +72,7 @@ The following settings define the boundaries of nearest neighbors that are allow
 * *Check Max Difference Sigma* - If checked the Max Difference Sigma setting will be used as a threshold to determine if the Sigma difference for two peaks is too large for them to be linked. If left unchecked this setting is ignored. Again this can be useful in preventing links between bright and dim molecules, since the bright molecules typically have a larger sigma or width.
 * *Max Difference Sigma* - The threshold difference between the Sigma values of two peaks below which they are still allowed to be linked.
 
-<img align='center' src='{{site.baseurl}}/docs/ImageProcessing/img/Peak Difference Settings.png' width='400' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/Peak Difference Settings.png' width='400' />
 
 * *Max Difference Slice* - The number of frames into the future to search for a possible link. This parameter is very important to ensure tracking is robust against single frames where peaks are not detected. Blinking events could cause a molecule to go dark for a couple frames. This setting ensures the track is still linked once the molecule is bright again. Alternatively, a molecule could go out of focus, again causing it to go below the detection threshold. If this setting is larger than the number of frames during which the peak wasn't detected, then the track will be picked up when the molecule is detected again. If this value is too large, it will take a long time to track and bad links will start to be formed. Usually 3-5 is a good range depending on your dataset.
 * *Min trajectory length* - All tracks with fewer than this number of slices will be rejected and removed from the MoleculeArchive. There are always a lot of very show tracks resulting from a molecule appearing for only a couple frames then going away, or if the peak detection threshold is very low, nearby false detections in consecutive frames can be linked to make short tracks. This removes all these events. For bead data this is almost always in the 50-200 or more range. However, it really depends on your experiment how this should be set, so you don't exclude good events.
