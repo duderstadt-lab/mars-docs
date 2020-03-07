@@ -1,5 +1,5 @@
 ---
-layout: Image
+layout: image
 title: Peak Tracker
 permalink: /docs/image/PeakTracker/index.html
 ---

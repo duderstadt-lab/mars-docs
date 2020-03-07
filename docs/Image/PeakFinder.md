@@ -1,5 +1,5 @@
 ---
-layout: Image
+layout: image
 title: Peak Finder
 permalink: /docs/image/PeakFinder/index.html
 ---
