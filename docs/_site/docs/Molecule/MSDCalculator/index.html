@@ -1,0 +1,38 @@
+<h4 id="inputs">Inputs</h4>
+
+<ul>
+  <li>MoleculeArchive to operate on.</li>
+  <li>Column of each molecule datatable to calculate the Mean Squared Displacement (MSD) for.</li>
+  <li>The name of the Parameter that will be added to each molecule record.</li>
+</ul>
+
+<p><img align="center" src="/docs/Molecule/img/MSD window.png" width="400" /></p>
+
+<h4 id="output">Output</h4>
+
+<ul>
+  <li>Just operates on the MoleculeArchive given. So that input is also the output.</li>
+</ul>
+
+<h3 id="how-to-run-this-command-from-a-groovy-script">How to run this Command from a groovy script</h3>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">MoleculeArchive</span> <span class="n">archive</span>
+<span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.molecule.*</span><span class="o">;</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">MSDCalculatorCommand</span> <span class="n">msdCalc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MSDCalculatorCommand</span><span class="o">();</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">msdCalc</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">());</span>
+
+<span class="c1">//Set all the input parameters</span>
+<span class="n">msdCalc</span><span class="o">.</span><span class="na">setArchive</span><span class="o">(</span><span class="n">archive</span><span class="o">);</span>
+<span class="n">msdCalc</span><span class="o">.</span><span class="na">setColumn</span><span class="o">(</span><span class="s2">"x"</span><span class="o">);</span>
+<span class="n">msdCalc</span><span class="o">.</span><span class="na">setParameterName</span><span class="o">(</span><span class="s2">"MSD_x"</span><span class="o">);</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">msdCalc</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+</code></pre></div></div>
