@@ -1,0 +1,50 @@
+<p>This command makes a map between the slice and Time columns in all ImageMetaData records and uses that map to add a Time column to all molecule DataTables.</p>
+
+<p>The ImageMetaData record from a Bead experiment collected using the Norpix software look like:</p>
+
+<p><img align="center" src="/docs/Molecule/img/ImageMetaData table.png" width="750" /></p>
+
+<p>Once a map between slice and Time (s) is established using the table above, it is used to add a Time (s) column below for each molecule record:</p>
+
+<p><img align="center" src="/docs/Molecule/img/Molecule Time column-01.png" width="750" /></p>
+
+<p>Since a mapping is used, missed slices are not a problem. Also, if multiple dataset are combined in the archive. The slice and Time will only be applied based on the corresponding ImageDataRecord for each molecule. This ensures that molecules from different datasets get the correct time information, and that this information can be completely different between molecule sets and ImageMetaData records inside the same merged archive.</p>
+
+<h4 id="inputs">Inputs</h4>
+
+<ul>
+  <li><em>MoleculeArchive</em> - MoleculeArchive for which to add a Time (s) column to all molecule records.
+<img align="center" src="/docs/Molecule/img/Add Time.png" width="250" /></li>
+</ul>
+
+<h4 id="output">Output</h4>
+
+<ul>
+  <li>The MoleculeArchive provided as Input is modified.</li>
+</ul>
+
+<h3 id="how-to-run-this-command-from-a-groovy-script">How to run this Command from a groovy script</h3>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">MoleculeArchive</span> <span class="n">archive</span>
+<span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.molecule.*</span><span class="o">;</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">AddTimeCommand</span> <span class="n">addTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AddTimeCommand</span><span class="o">();</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">addTime</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">());</span>
+
+<span class="c1">//Set all the input parameters</span>
+<span class="n">addTime</span><span class="o">.</span><span class="na">setArchive</span><span class="o">(</span><span class="n">archive</span><span class="o">);</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">addTime</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+
+<span class="c1">//Retrieve output from the command</span>
+<span class="c1">//In this case, the archive is just modified</span>
+<span class="c1">//so no output is needed and the line below is not needed</span>
+<span class="c1">//archive = regionDifference.getArchive();</span>
+</code></pre></div></div>

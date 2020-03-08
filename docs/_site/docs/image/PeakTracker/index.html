@@ -1,0 +1,160 @@
+<p>This command is used to find, fit and track peaks in images. Typically these are polystyrene beads or single fluorescent dyes or groups of dyes attached to biomolecules. This command is nearly the same as the [[PeakFinder]] command but with the addition of tracking and fewer output options. So a lot of the input documentation is the same between the two commands.</p>
+
+<p>To determine the optimal setting for peak finder, first the [[PeakFinder]] command can be used with the Preview button. Once the best settings have been determined - that find all peaks with minimal background - the settings can be used here. This will generate the best tracks because the accuracy of tracking depends entirely on the quality of the peak fits in individual frames.</p>
+
+<p>This command outputs a MoleculeArchive in which individual molecule records have DataTables with the x and y positions and slice. If verbose is checked, then all fit parameters are add to the DataTable. The MoleculeArchive will also contain metadata information from the image that can be used to convert from slice to Time and do a number of other useful operations provided by the other commands in the MoleculeArchive submenu.</p>
+
+<p>The [[ColorCodedTrackOverlay]] groovy script provides and excellent method for overlapping the tracking results with UIDs onto the image using the MoleculeArchive records. By running the movie forward frame by frame it is possible to see when tracking goes wrong and how to further optimise the tracking settings.</p>
+
+<p><em>Note</em> - Currently the status bar only runs during the peak finding and fitting steps. But tracking can also take some time. So be patient and your archive will appear. You can always check the console to see if a problem has occurred under Window-&gt;Console. Here you will also find the time it took for each step of the process and all the settings. The setting will also be placed in the log of the ImageMetaData record created and placed into the outputted MoleculeArchive.</p>
+
+<h4 id="inputs">Inputs</h4>
+
+<p>OMG that is a lot of inputs, but don’t panic, they are all pretty simple to understand and overlap with the [[PeakFinder]] options. A lot of inputs are included for completeness to give fine control but are not needed in most normal cases.</p>
+
+<p><img align="center" src="/docs/ImageProcessing/img/Peak Tracker.png" width="450" /></p>
+
+<ul>
+  <li><em>Image</em> - The active image selected will be used by the Peak Tracker. So this is a required input but doesn’t show up in the dialog.</li>
+  <li><em>use ROI</em> - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox and add the region settings.</li>
+  <li><em>ROI x0</em> - Upper left corner x0 position of ROI.</li>
+  <li><em>ROI y0</em> - Upper right corner y0 position of ROI.</li>
+  <li><em>ROI width</em> - width of the ROI.</li>
+  <li><em>ROI height</em> - height of the ROI.</li>
+  <li><em>Use Discoidal Averaging Filter</em> - If checked the image will be processed with a discoidal averaging filter using the Inner radius and Outer radius prior to peak finding. If unchecked the raw image will be used and the Inner and Outer radius settings will be ignored.</li>
+  <li><em>Inner Radius</em> - Inner Radius beyond a single pixel used for discoidal processing. This should be enough to include your peak.</li>
+  <li><em>Outer Radius</em> - Outer Radius determines the size of the ring used for calculating the background for discoidal averaging. This needs to be large enough so peak signal is exlcuded.</li>
+</ul>
+
+<p><img align="center" src="/docs/ImageProcessing/img/DS filter.png" width="600" /></p>
+
+<ul>
+  <li><em>Detection threshold (mean + N * STD)</em> - This is how many standard deviations above the mean the peak detection threshold should be set at. So the input here is N in the expression. mean is the mean value of pixels in the image and STD is the standard deviation in the pixel values. Usually, between 2 and 4 is good for low signals and 5-8 is good for higher signals.</li>
+  <li><em>Minimum distance between peaks (in pixels)</em> - This is the minimum allowed distance between peaks, This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other peaks above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.</li>
+</ul>
+
+<p><img align="center" src="/docs/ImageProcessing/img/Minimum Distance.png" width="500" /></p>
+
+<ul>
+  <li><em>Find Negative Peaks</em> - If checked this inverts the image for the purposes of peak detection, so that only peaks with negative values are detected. This is used in gradient images, where a negative gradient can results in a negative peak. This is useful for detecting the edges of long DNA molecules.</li>
+  <li><em>Fit peaks</em> - If checked all peaks will be fit with 2D Gaussians to determine the sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. Fitting is done with the following 2D Gaussian equation:</li>
+</ul>
+
+<p><img align="center" src="/docs/ImageProcessing/img/2D Gaussian.png" width="500" /></p>
+
+<p>Where x0 and y0 are the subpixel positions of the peak, Height, Baseline and Sigma match the settings below and f(x,y) gives the intensity as a function of pixel position for a given set of parameters.</p>
+<ul>
+  <li><em>Fit Radius</em> - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.</li>
+  <li><em>Initial Baseline</em> - The initial guess for the mean background pixel value.</li>
+  <li><em>Initial Height</em> - The initial guess for the difference between the mean background pixel at the value of the pixel at the top of the peak.</li>
+  <li><em>Initial Sigma</em> - The initial guess for the sigma of the 2D Gaussian. Approx. 68% of the peak intensity should lie within one sigma (within one standard deviation from the center).</li>
+  <li><em>Vary Baseline</em> - If checked the baseline will be refined to obtain the best fit. If left unchecked the initial baseline will be used as a constant during fitting.</li>
+  <li><em>Vary Height</em> - If checked the height will be refined to obtain the best fit. If left unchecked the initial height will be used as a constant during fitting.</li>
+  <li><em>Vary Sigma</em> - If checked the sigma will be refined to obtain the best fit. If left unchecked the initial sigma will be used as a constant during fitting.</li>
+</ul>
+
+<p>The following are the max allowed error in each parameter. If the error from fitting is larger than these estimates, then the fit will be rejected and the peak will be thrown-out. For optimal filtering these parameters should be empirically optimized by looking at the Verbose table fit output with Filter by Max Error checked. Then check Filter by Max Error with acceptable settings so only good fits are included.</p>
+<ul>
+  <li><em>Filter by Max Error</em> - If checked all peaks fits will be checked again the Max Error thresholds below. If the error is beyond the threshold then the peak will be rejected and not included in the output. If unchecked all peak fit will be reported even very bad fits that might contain NaN values. If you have to use a low threshold to detect your peaks and you pick up some background (you should be able to see this using the preview button)</li>
+  <li><em>Max Error Baseline</em> - The maximum allowed error in the baseline during fitting.</li>
+  <li><em>Max Error Height</em> - The maximum allowed error in the height during fitting.</li>
+  <li><em>Max Error X</em> - The maximum allowed error in the x coordinate during fitting.</li>
+  <li><em>Max Error Y</em> - The maximum allowed error in the y coordinate during fitting.</li>
+  <li><em>Max Error Sigma</em> - The maximum allowed error in Sigma during fitting.</li>
+  <li><em>Verbose table fit output</em> - If checked all columns from fitting will be included in the table generated (baseline, error_baseline, height, error_height, x, error_x, y, error_y, sigma, error_sigma). If unchecked only the position columns will be included in the table generated (x, y). Very useful for optimising the parameters, or for other applications using various peak properties.
+The following are the setting for tracking absent in the [[PeakFinder]] command. Once all peaks have been found and fit, the program still doesn’t know which peaks correspond to which molecules between slices. To connect all the peaks, the Peak Tracker does a nearest-neighbor search between frames. So the closest peak in the next frame to the current peak position is considered the same molecule.</li>
+</ul>
+
+<p><img align="center" src="/docs/ImageProcessing/img/Tracking Peak Stack.png" width="400" /></p>
+
+<ul>
+  <li><em>Check Max Difference Baseline</em> - If checked the Max Difference Baseline setting will be used as a threshold to determine if the baseline difference for two peaks is too large for them to be linked. If left unchecked this setting is ignored. (Maybe this shouldn’t set an included setting since usually the baseline is always the same and is just the image background level…)</li>
+  <li><em>Max Difference Baseline</em> - The threshold baseline difference between peaks below which they are still allowed to be linked.</li>
+  <li><em>Check Max Difference Height</em> - If checked the Max Difference Height setting will be used as a threshold to determine if the height difference for two peaks is too large for them to be linked. If left unchecked this setting is ignored. This can exclude linking of a very bright and very dim peak. For example, a single bead and a clump, or a single dye vs a cluster.</li>
+  <li><em>Max Difference Height</em> - The threshold height difference between peaks below which they are still allowed to be linked. This is probably best determine using the [[PeakFinder]] in verbose mode and then looking at the differences between dim and bright peaks.
+The following settings define the boundaries of nearest neighbors that are allowed to be linked. These are very useful at ensuring only real links are made. Also, if you know your molecule only moves along once dimension you can restrict the other to further prevent incorrect links from occurring.</li>
+  <li><em>Max Difference X</em> - The threshold difference between the X position of two peaks below which they are still allowed to be linked.</li>
+  <li><em>Max Difference Y</em> - The threshold difference between the Y position of two peaks below which they are still allowed to be linked.</li>
+  <li><em>Check Max Difference Sigma</em> - If checked the Max Difference Sigma setting will be used as a threshold to determine if the Sigma difference for two peaks is too large for them to be linked. If left unchecked this setting is ignored. Again this can be useful in preventing links between bright and dim molecules, since the bright molecules typically have a larger sigma or width.</li>
+  <li><em>Max Difference Sigma</em> - The threshold difference between the Sigma values of two peaks below which they are still allowed to be linked.</li>
+</ul>
+
+<p><img align="center" src="/docs/ImageProcessing/img/Peak Difference Settings.png" width="400" /></p>
+
+<ul>
+  <li><em>Max Difference Slice</em> - The number of frames into the future to search for a possible link. This parameter is very important to ensure tracking is robust against single frames where peaks are not detected. Blinking events could cause a molecule to go dark for a couple frames. This setting ensures the track is still linked once the molecule is bright again. Alternatively, a molecule could go out of focus, again causing it to go below the detection threshold. If this setting is larger than the number of frames during which the peak wasn’t detected, then the track will be picked up when the molecule is detected again. If this value is too large, it will take a long time to track and bad links will start to be formed. Usually 3-5 is a good range depending on your dataset.</li>
+  <li><em>Min trajectory length</em> - All tracks with fewer than this number of slices will be rejected and removed from the MoleculeArchive. There are always a lot of very show tracks resulting from a molecule appearing for only a couple frames then going away, or if the peak detection threshold is very low, nearby false detections in consecutive frames can be linked to make short tracks. This removes all these events. For bead data this is almost always in the 50-200 or more range. However, it really depends on your experiment how this should be set, so you don’t exclude good events.</li>
+  <li><em>Microscope</em> - The name of the microscope used to collect this data. This name is included in the ImageMetaData record.</li>
+  <li><em>Format</em> - This is the software used to collect the Image data. Based on this setting, the command will attempt to parse all the ImageMetaData information included in each tif frame header. This information will then be included in the DataTable and properties of the ImageMetaData. This information is very useful to automatically convert slice to time using the raw frame timestamp information and detecting the lasers and filters used on the fluorescence microscopes.</li>
+</ul>
+
+<h3 id="output">Output</h3>
+
+<ul>
+  <li><em>MoleculeArchive</em> - A MoleculeArchive with individual records for all tracked molecules as well as ImageMetaData information.</li>
+</ul>
+
+<h3 id="how-to-run-this-command-from-a-groovy-script">How to run this Command from a groovy script</h3>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">ImagePlus</span> <span class="n">image</span>
+<span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.molecule.*</span>
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.ImageProcessing.*</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">FinderFitterTrackerCommand</span> <span class="n">peakTracker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FinderFitterTrackerCommand</span><span class="o">();</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">())</span>
+
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setImage</span><span class="o">(</span><span class="n">image</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setUseROI</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setX0</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setY0</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setHeight</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setUseDiscoidalAveragingFilter</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setInnerRadius</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setOuterRadius</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setThreshold</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMinimumDistance</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setFindNegativePeaks</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setFitRadius</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setInitialBaseline</span><span class="o">(</span><span class="mi">40</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setInitialHeight</span><span class="o">(</span><span class="mi">150</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setInitialSigma</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setVaryBaseline</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setVaryHeight</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setVarySigma</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxErrorFilter</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxErrorBaseline</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxErrorHeight</span><span class="o">(</span><span class="mi">30</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxErrorX</span><span class="o">(</span><span class="mf">0.2</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxErrorY</span><span class="o">(</span><span class="mf">0.2</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxErrorSigma</span><span class="o">(</span><span class="mf">0.2</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setVerboseFitOutput</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setCheckMaxDifferenceBaseline</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>    
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxDifferenceBaseline</span><span class="o">(</span><span class="mi">500</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setCheckMaxDifferenceHeight</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxDifferenceHeight</span><span class="o">(</span><span class="mi">500</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxDifferenceX</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxDifferenceY</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setCheckMaxDifferenceSigma</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxDifferenceSigma</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMaxDifferenceSlice</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMinTrajectoryLength</span><span class="o">(</span><span class="mi">50</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setMicroscope</span><span class="o">(</span><span class="s2">"Odin"</span><span class="o">)</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">setImageFormat</span><span class="o">(</span><span class="s2">"NorPix"</span><span class="o">)</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">peakTracker</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+
+<span class="c1">//Retrieve output from the command</span>
+<span class="n">MoleculeArchive</span> <span class="n">archive</span> <span class="o">=</span> <span class="n">peakTracker</span><span class="o">.</span><span class="na">getArchive</span><span class="o">()</span>
+
+<span class="c1">//If run in Fiji the archive will appear,</span>
+<span class="c1">//but you can continue to use it for further processing</span>
+<span class="c1">//Using the retrieval command above.</span>
+</code></pre></div></div>

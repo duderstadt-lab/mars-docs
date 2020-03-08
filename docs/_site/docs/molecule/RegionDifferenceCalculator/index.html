@@ -1,0 +1,61 @@
+<h4 id="inputs">Inputs</h4>
+
+<ul>
+  <li><em>MoleculeArchive</em> - MoleculeArchive input to use for the difference calculation. This command will calculate the difference between the regions specified for all molecules in the archive and add the values for each molecule as the parameter specified below.</li>
+  <li><em>X Column</em> - X column for the purposes of specifying the reversal regions.</li>
+  <li><em>Y Column</em> - Y column used for calculating the difference.</li>
+  <li><em>Region 1 start</em> - Beginning of the first region.</li>
+  <li><em>Region 1 end</em> - End of the first region.</li>
+  <li><em>Region 2 start</em> - Beginning of the second region.</li>
+  <li><em>Region 2 end</em> - End of the second region.</li>
+  <li><em>Parameter Name</em> - Name of the Parameter added to each molecule entry in the archive with the calculated difference.
+<img align="center" src="/docs/Molecule/img/Region Difference Calculator.png" width="600" /></li>
+</ul>
+
+<h4 id="output">Output</h4>
+
+<ul>
+  <li>The MoleculeArchive provided as Input is modified.</li>
+</ul>
+
+<h4 id="example-molecule-for-inputs-above">Example Molecule for inputs above</h4>
+
+<p><img align="center" src="/docs/Molecule/img/regionDifferencePlot.png" width="400" /></p>
+
+<p>Running the command on an archive with this molecule results in the Parameter “first_reversal” with value 4.43… being added for this molecule.</p>
+
+<p><img align="center" src="/docs/Molecule/img/Added Parameter.png" width="400" /></p>
+
+<h3 id="how-to-run-this-command-from-a-groovy-script">How to run this Command from a groovy script</h3>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">MoleculeArchive</span> <span class="n">archive</span>
+<span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.molecule.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.table.*</span><span class="o">;</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">RegionDifferenceCalculatorCommand</span> <span class="n">regionDifference</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RegionDifferenceCalculatorCommand</span><span class="o">();</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">());</span>
+
+<span class="c1">//Set all the input parameters</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setArchive</span><span class="o">(</span><span class="n">archive</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setXcolumn</span><span class="o">(</span><span class="s2">"slice"</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setYcolumn</span><span class="o">(</span><span class="s2">"x"</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setRegion1Start</span><span class="o">(</span><span class="mi">40</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setRegion1End</span><span class="o">(</span><span class="mi">60</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setRegion2Start</span><span class="o">(</span><span class="mi">80</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setRegion2End</span><span class="o">(</span><span class="mi">120</span><span class="o">);</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">setParameterName</span><span class="o">(</span><span class="s2">"first_reversal"</span><span class="o">);</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">regionDifference</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+
+<span class="c1">//Retrieve output from the command</span>
+<span class="c1">//In this case, the archive is just modified</span>
+<span class="c1">//so no output is needed and the line below is not needed</span>
+<span class="c1">//archive = regionDifference.getArchive();</span>
+</code></pre></div></div>
