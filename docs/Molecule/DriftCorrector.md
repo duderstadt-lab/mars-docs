@@ -21,13 +21,13 @@ The input and output columns can be changed to apply multiple corrections in seq
 * *Output X (x_drift_corr)* - The new output x column added to the DataTable with the background corrected trace. Usually this is x_drift_corr.
 * *Output Y (y_drift_corr)* - The new output y column added to the DataTable with the background corrected trace. Usually this is y_drift_corr.
 
-<img align='center' src='{{site.baseurl}}/docs/Molecule/img/Drift Corrector.png' width='450' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/Drift Corrector.png' width='450' />
 
 #### Output
 
 * The MoleculeArchive provided as Input is modified. The drift is subtracted from the x and y columns to generate x_drift_corr and y_drift_corr. Column names will vary depending on settings...
 
-<img align='center' src='{{site.baseurl}}/docs/Molecule/img/MoleculeArchive molecule drift columns.png' width='800' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/MoleculeArchive molecule drift columns.png' width='800' />
 
 ### How to run this Command from a groovy script
 
