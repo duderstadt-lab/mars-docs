@@ -1,6 +1,6 @@
 ---
 layout: molecule
-title: Drift calculator
+title: Drift Calculator
 permalink: /docs/molecule/DriftCalculator/index.html
 ---
 This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. Then calculates the mean x and y position for each slice from those immobile molecules and places the results into each ImageMetaData record's datatable with the column headings x_drift and y_drift:
