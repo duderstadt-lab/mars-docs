@@ -5,6 +5,7 @@ permalink: /docs/table/BuildHistogram/index.html
 ---
 This command allows for fast generation of simple histograms. The purpose is to allow for rapid examination of the results of filtering/processing. Rate/Duration distributions can be generated using the [Segment Distribution Builder](../../kcp/SegmentDistributionBuilder) given a MoleculeArchive containing KCP segments. This simple histogram builder doesn't allow you to specify the starting and ending values. Therefore, if you have large outliers that don't cluster with the other values, these may throw off the histogram binning, putting most of the values in to a single bin. You can get around this issue by prefiltering the table by the desired start and end values using the [Filter](../Filter).
 
+
 #### Inputs
 
 <img align='center' src='{{site.baseurl}}/docs/table/img/HistogramBuilderDialog.png' width='450' />
