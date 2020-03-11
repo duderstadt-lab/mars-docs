@@ -52,4 +52,9 @@ Script writers and java developers can get started using the **Mars** developmen
 | [Segment Distribution Builder](./kcp/SegmentDistributionBuilder) | Build distributions using change point segments. |
 | [Sigma Calculator](./kcp/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
 
+### ROI Tools
+
+| :----------------------------- | :----------- |
+| [Transform ROIs](./roi/TransformROIs) | Transform PointRois using an Affine2D transform. |
+
 ## <a name="gui"></a>Molecule Explorer Reference
