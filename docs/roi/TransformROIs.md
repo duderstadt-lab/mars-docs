@@ -1,5 +1,5 @@
 ---
-layout: table
+layout: roi
 title: Transform ROIs
 permalink: /docs/roi/TransformROIs/index.html
 ---
