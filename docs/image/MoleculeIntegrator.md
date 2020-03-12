@@ -17,7 +17,7 @@ If you have single color data, you can integrate only peaks at one wavelength by
 
 *What does Long and Short Wavelength actually mean?*                                                                                                      
 
-On Dobby, the Long wavelength on the top and in all experiments to date has been red at 637 nm. The short wavelength is on the bottom and could be 405, 488, 532, or possibly 561. Usually, we are using green at 532 nm.
+The dualview splits the signal by wavelength and one side will have the Long wavelengths and the other the short wavelengths. These are then split into regions. A standard dichroic would split around 630 nm so that red and above is on one half and the rest of the colors are on the other half. For example, red might be on the top half of the image and on the bottom could be 405, 488, 532, or possibly 561. Short and long will obviously mean different things depending on the dichroic and laser lines used.
 
 #### Inputs
 
