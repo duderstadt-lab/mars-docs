@@ -26,4 +26,4 @@ Here you can only use Sigma 1 and Threshold. Sigma 2 is for 3D data.
 
 This is the magic! It does interpolation to achieve a really nice looking subpixel alignment!
 
-The console outputs the coordinates that you will need to input in the Molecule Explorer when using the BigData Viewer or when using the [Transform ROIs](../roi/TransformROIs) command.
+The console outputs the coordinates that you will need to input in the Molecule Explorer when using the BigData Viewer or when using the [Transform ROIs](../docs/roi/TransformROIs) command.
