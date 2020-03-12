@@ -8,21 +8,21 @@ The Descriptor-based registration (2d/3d) in Fiji provide robust tools for deter
 
 Use the Fiji search bar to locate the plugin. Put in registration and select the plugin from the list:
 
-<img height='363' src='{{site.baseurl}}/docs/roi/img/search.png' width='708' />
+<img height='363' src='{{site.baseurl}}/tutorials/roi/img/search.png' width='708' />
 
 Then go through the dialogs as they come up and use the setting you see below. For our data we have been doing an 2D affine transform and you definitely need a guassian mask for subpixel alignment.
 
-<img height='373' src='{{site.baseurl}}/docs/roi/img/dialog1.png' width='705' />
+<img height='373' src='{{site.baseurl}}/tutorials/roi/img/dialog1.png' width='705' />
 
-<img height='434' src='{{site.baseurl}}/docs/roi/img/dialog2.png' width='702' />
+<img height='434' src='{{site.baseurl}}/tutorials/roi/img/dialog2.png' width='702' />
 
-<img height='565' src='{{site.baseurl}}/docs/roi/img/dialog3.png' width='702' />
+<img height='565' src='{{site.baseurl}}/tutorials/roi/img/dialog3.png' width='702' />
 
 Here you can only use Sigma 1 and Threshold. Sigma 2 is for 3D data.
 
-<img height='395' src='{{site.baseurl}}/docs/roi/img/dialog4.png' width='702' />
+<img height='395' src='{{site.baseurl}}/tutorials/roi/img/dialog4.png' width='702' />
 
-<img height='766' src='{{site.baseurl}}/docs/roi/img/dialog5.png' width='946' />
+<img height='766' src='{{site.baseurl}}/tutorials/roi/img/dialog5.png' width='946' />
 
 This is the magic! It does interpolation to achieve a really nice looking subpixel alignment!
 
