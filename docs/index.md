@@ -56,5 +56,8 @@ Script writers and java developers can get started using the **Mars** developmen
 
 | :----------------------------- | :----------- |
 | [Transform ROIs](./roi/TransformROIs) | Transform PointRois using an Affine2D transform. |
+| [Open ROIs](./roi/OpenROIs) | Open a grid of small video for manually sorting. |
+| [Save ROIs](./roi/SaveROIs) | Efficiently save all ROIs currently in the RoiManager to individual videos. |
+| [Build ROIs from MoleculeArchive](./roi/BuildROIsFromMoleculeArchive) | Create box ROIs using coordinates from molecules in the archive. |
 
 ## <a name="gui"></a>Molecule Explorer Reference

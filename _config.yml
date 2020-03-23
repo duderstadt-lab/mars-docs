@@ -1,6 +1,6 @@
 # Jekyll Site Settings
 title: Mars
-description: Mars - JJJJJ
+description: Mars
 baseurl: "/mars-docs" # the subpath of your site, e.g. /blog
 url: "https://duderstadt-lab.github.io" # the base hostname & protocol for your site
 
