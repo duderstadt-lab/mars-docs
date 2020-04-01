@@ -6,15 +6,19 @@ permalink: /tutorials/index.html
 
 Tutorials for learning how to use Mars.
 
-### [How to create a MoleculeArchive](create-MoleculeArchive/)
+### [How to create a MoleculeArchive](create-a-Molecule-Archive)
 
 _Skill level: Beginner._ Learn the basic elements of Mars by creating and working with a MoleculeArchive.
+
+### [How to open a MoleculeArchive in python](open-a-Molecule-Archive-in-Python)
+
+_Skill level: Intermediate._  Learn how to load and work with MoleculeArchives in Jupyter notebooks running Python 3 and work with mars together with all the wonderful packages available in the python environment.
 
 ### [Introduction to groovy scripting](introduction-to-groovy-scripting)
 
 _Skill level: Intermediate._ Learn how to access and perform basic operations with MoleculeArchives.
 
-### [Advanced groovy scripting](advanced-groovy-scripting/)
+### [Advanced groovy scripting](advanced-groovy-scripting)
 
 _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of MoleculeArchive records.
 
