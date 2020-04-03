@@ -1,7 +1,7 @@
 ---
 layout: image
 title: DoG Filter Properties
-permalink: /docs/image/DogFilterProperties/index.html
+permalink: /docs/image/DoGFilterProperties/index.html
 ---
 
 The [Difference of Gaussians (DoG)](https://en.wikipedia.org/wiki/Difference_of_Gaussians) filter enhances peaks by applying [Gaussian convolutions (blur)](https://en.wikipedia.org/wiki/Gaussian_blur) with different sigmas to two image copies. The final filtered image is calculated by taking the difference between the two Gaussian convolutions. Hence the name difference of gaussian. This algorithm works especially well for enhancing single fluorescent molecules imaged in TIRF experiments as seen in the images below. Additionally, if the image is very noisy, a median filter can be applied prior to applying a DoG filter. However, this does not appear to make a significant difference in the example image evaluated below.
