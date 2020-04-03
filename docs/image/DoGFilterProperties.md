@@ -22,6 +22,10 @@ To access the peak enhancement as a function of DoG radius, three peaks with dif
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeak3.png' width='750' />
 
+<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterRawPeakComparison.png' width='750' />
+
+In all cases the DoG Filter with radius 2.0 increases the detection threshold. More importantly, the background is suppressed. This is particularly clear for peak 1 where two pixel with high values are on either side of the peak. The detection threshold for these individual background pixels is dramatically reduced after DoG filtering.
+
 #### Peak detection
 
 Finally comparison of ground truth for a video vs. located peaks for different threshold values for one dog radius. First raw peaks count plot vs. ground truth.
