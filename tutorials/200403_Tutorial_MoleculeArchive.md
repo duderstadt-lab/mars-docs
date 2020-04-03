@@ -43,13 +43,15 @@ The next step is to find the peaks in each frame. Open the peak finder of MARS
 as indicated below. This will open a new window in which settings and
 selection criteria have to be provided.
 
-[img3][img7][img8]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img3.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img7.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img8.png' width='450' />
 
 Now set the parameters to the values indicated in the image. Make sure to tick
 the box 'preview' and have a look at how the peaks that are found change when
 changing some of the settings. This should look like this:
 
-[img9]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img9.png' width='450' />
 
 The results do not have to be saved.
 
@@ -63,7 +65,9 @@ Explanation of settings to set:
 - ROI: instead of analysing the whole frame, one can select a region of interest
 (ROI) instead. Set this manually in this window, or select a region on the image
 by clicking and dragging the mouse to form a square, before starting the plugin.
-[img5]
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img5.png' width='450' />
+
 - Discoidal Averaging Filter: enhances peaks in a noisy image by applying the
 following rule to the intensity value of each pixel: new intensity = old
 intensity pixel - sum of intensity in surrounding pixels.
@@ -112,12 +116,15 @@ Apart from initial fitting parameters, one can set the error allowances.
 Now, open the peak tracker plugin and supply all settings found in step 2. This
 makes sure that the tracker can find the peaks correctly.
 
-[img9][img10][img11]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img9.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img10.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img11.png' width='450' />
+
 
 Press OK to run the tracking plugin and proceed to the MARS GUI.
 The following window will open:
 
-[img12]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img12.png' width='450' />
 
 __Background Information:__
 On top of the peak tracking parameters, also tracker and peak integration
@@ -147,7 +154,9 @@ The GUI automatically opens on the desktop page. In this overview page you can
 see information on your dataset, and get some statistical data. More statistical
 data will become available when we have analysed the data in the next steps.
 
-[img14]
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img14.png' width='450' />
+
 
 By using the tabs on the left, we can access the data.
 Click on the microscope icon to reveal more information about the video
@@ -156,7 +165,7 @@ frame shows from which experiment number the data in this set originates.
 The DataTable tab shows the slice numbers and the corresponding relative time
 when the slide was recorded.
 
-[img15]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img15.png' width='450' />
 
 Next, open the molecule tab. This tab reveals a table with all molecules found.
 Each molecule is assigned an unique identifier (UID) by which the molecule can
@@ -164,7 +173,7 @@ be easily traced back after analysis. Click on an UID to see the corresponding
 data in the adjacent DataTable. This table shows the coordinates and intensity
 corresponding to the tracked peak over different slides.
 
-[img16]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img16.png' width='450' />
 
 #### 5. Plotting traces
 Switch to the Plot tab in order to plot this data.
@@ -174,7 +183,9 @@ the following settings can be provided. This makes a line plot of the y position
 versus the slide number. In this dataset that corresponds with the direction of
 transcription over the DNA. Press the refresh button to show the graph.
 
-[img17][img18]
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img17.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img18.png' width='450' />
 
 Move through the UIDs on the left to show the plot for every molecule. As you
 will see some molecules show a trace in which the y position almost
@@ -182,7 +193,7 @@ linearly changes with the slice number. These are the molecules that are
 relevant for this dataset since they correspond to a T7 polymerase that
 transcribes the DNA with a uniform speed.
 
-[img19]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img19.png' width='450' />
 
 #### 6. Tagging data
 
@@ -191,10 +202,10 @@ for later reference.
 Write 'Active' in the Tag window on the right and press enter. Move through
 all UIDs and select all molecules fulfilling the criteria in this way.
 
-[img20]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img20.png' width='450' />
 
 #### 7. Saving the MoleculeArchive
 
 The archive can be safed as a .yama file by selecting the save option.
 
-[img21]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img21.png' width='450' />
