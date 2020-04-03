@@ -4,6 +4,7 @@ title: Usage
 menu: usage
 permalink: /usage/index.html
 ---
+Once you have installed Mars in your Fiji using the update site (see below for instructions), the submenu "MoleculeArchive Suite" will show up under the Plugins containing the Mars [commands](../docs). Usually in the bottom section. In this submenu are a series of commands for general processing of single-molecule data. There are tools for both the analysis of fluorescence data as well as particle finding, fitting, and tracking. From there a range of further Commands allow for fitting, filtering, sorting, classifying with
 
 ### How to install this project in your local Fiji
 An imagej update site has been created to help with maintanance and distribution of MARS and all necessary dependencies. Follow the directions below to install MARS in your local copy of Fiji:
@@ -13,5 +14,5 @@ An imagej update site has been created to help with maintanance and distribution
 1. If the plugins have been installed correctly, the submenu "MoleculeArchive Suite" should show up under Plugins.
 1. From now on all you need to do is run the updater to ensure you have the current version of MARS installed. Please update frequently to ensure you benefit from the most recent bug fixes.
 
-
-[Back to reference](#reference)
+### Commands
+Once you have installed Mars in your Fiji using the update site, the submenu "MoleculeArchive Suite" will show up under the Plugins menu. Usually in the bottom section. In this submenu are a series of commands for general processing of single-molecule data. There are tools for both the analysis of fluorescence data as well as particle finding, fitting, and tracking. From there a range of other commands allow for filtering, sorting, and manual classification as outlined in the documentation section.

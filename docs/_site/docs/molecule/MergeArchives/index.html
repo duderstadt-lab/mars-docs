@@ -1,0 +1,39 @@
+<p>This command merges multiple MoleculeArchives (yama files) into one. To ensure efficient memory usage, and allow for arbitrarily large archives to be combined, this command works in streaming mode. Given a directory, all the MoleculeArchiveProperties and ImageMetaData information is read into memory from all files. Then these records are checked to ensure no duplicate datasets exist. If duplicates exist the merge is aborted. Assuming all datasets are unique a new merged.yama file is created with new MoleculeArchiveProperties and all ImageMetaData items. Then molecules are read in and written out one by one to ensure only a single molecule record is held in memory any given time. It is assumed that all molecule UIDs are unique based on the uniqueness of the ImageMetaData UIDs.</p>
+
+<h4 id="inputs">Inputs</h4>
+
+<ul>
+  <li><em>Directory</em> - A directory containing multiple .yama files you would like to merge (They can be either txt or smile encoded or a combination of the two). Can be as many as you like but they must all contain unique datasets (unique ImageMetaData UIDs). If two archives have ImageMetaData items with the same UIDs the merge process will be aborted until the conflict is resolved.</li>
+  <li><em>Use smile encoding</em> - The encoding of the output yama file. Usually smile encoding is preferred because it will results in smaller file sizes. However, if export to another software is required plain txt JSON is preferred.</li>
+</ul>
+
+<p><img align="center" src="/docs/Molecule/img/Merge Archives.png" height="250" /></p>
+
+<h4 id="output">Output</h4>
+
+<ul>
+  <li>A merged.yama file will be created in the given directory containing all the ImageMataData and molecules from all .yama files in the directory.</li>
+</ul>
+
+<h3 id="how-to-run-this-command-from-a-groovy-script">How to run this Command from a groovy script</h3>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.molecule.*</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">MergeCommand</span> <span class="n">merger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MergeCommand</span><span class="o">()</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">merger</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">())</span>
+
+<span class="c1">//Set all the input parameters</span>
+<span class="n">merger</span><span class="o">.</span><span class="na">setDirectory</span><span class="o">(</span><span class="s2">"/Users/me/data"</span><span class="o">)</span>
+<span class="n">merger</span><span class="o">.</span><span class="na">setSmileEncoding</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">merger</span><span class="o">.</span><span class="na">run</span><span class="o">()</span>
+
+<span class="c1">//Output is a merged.yama file in the directory given</span>
+</code></pre></div></div>

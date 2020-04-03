@@ -1,0 +1,45 @@
+<p>This command opens a file dialog in which you can select the comma or tab delimited ResultsTable you would like to open. This can be a ResultsTable saved previously using Mars or a table generated elsewhere. In either case, all columns need headers and only comma and tab delimited table files are supported.</p>
+
+<h4 id="inputs">Inputs</h4>
+
+<ul>
+  <li>“File to open” - The file with the table data you would like to open.
+    <h4 id="output">Output</h4>
+  </li>
+  <li>A MarsTable will be opened in a new window. For general information about how to work with this table window and links to there useful docs see xxx.</li>
+</ul>
+
+<h4 id="how-to-open-tables-in-a-groovy-script">How to open tables in a groovy script</h4>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">File</span> <span class="n">file</span>
+<span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+<span class="err">#</span><span class="nd">@output</span> <span class="n">MarsTable</span> <span class="n">table</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.table.*</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">ResultsTableOpenerCommand</span> <span class="n">tableOpener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ResultsTableOpenerCommand</span><span class="o">()</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">tableOpener</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">())</span>
+
+<span class="c1">//Set all the input parameters</span>
+<span class="n">tableOpener</span><span class="o">.</span><span class="na">setFile</span><span class="o">(</span><span class="n">file</span><span class="o">)</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">tableOpener</span><span class="o">.</span><span class="na">run</span><span class="o">()</span>
+
+<span class="c1">//Retrieve output from the command</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">tableOpener</span><span class="o">.</span><span class="na">getTable</span><span class="o">()</span>
+</code></pre></div></div>
+<p>OR if you have a json table file you can use below.</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">File</span> <span class="n">file</span>
+<span class="err">#</span><span class="nd">@output</span> <span class="n">MarsTable</span> <span class="n">table</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.table.*</span>
+
+<span class="c1">//Expects a json formatted file.</span>
+<span class="n">table</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MarsTable</span><span class="o">(</span><span class="n">file</span><span class="o">)</span>
+
+</code></pre></div></div>

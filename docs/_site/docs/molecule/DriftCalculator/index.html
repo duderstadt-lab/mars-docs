@@ -1,0 +1,57 @@
+<p>This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. Then calculates the mean x and y position for each slice from those immobile molecules and places the results into each ImageMetaData record’s datatable with the column headings x_drift and y_drift:
+<img align="center" src="/docs/Molecule/img/ImageMetaData Drift.png" width="750" /></p>
+
+<p>This command can also be used to calculate other kinds of background besides drift. For example, if you have changes in flow, you could add that in a second set of columns to the ImageMetaData table and correct for it.</p>
+
+<p>The command is intended to be used together with the [[DriftCorrector]]. First, you calculate the drift with this command and then you correct for it using the [[DriftCorrector]].</p>
+
+<h4 id="inputs">Inputs</h4>
+
+<ul>
+  <li><em>MoleculeArchive</em> - MoleculeArchive to calculate drift for.</li>
+  <li><em>Background Tag</em> - The tag added to all molecules that should be used to calculate background. For a bead experiment, this tag can be added to all beads that don’t reverse beyond a certain point and have an MSD below a certain threshold. Typically for bead experiments the tags are added using custom groovy scripts.</li>
+  <li><em>Input X (x)</em> - The input x column to use the build the background trace. Usually this should just be x.</li>
+  <li><em>Input Y (y)</em> - The input y column to use the build the background trace. Usually this should just be y.</li>
+  <li><em>Output X (x_drift)</em> - The output column name used when the x background is added to the ImageMetaData table. Usually this should just be x_drift.</li>
+  <li><em>Output Y (y_drift)</em> - The output column name used when the y background is added to the ImageMetaData table. Usually this should just be y_drift.</li>
+  <li><em>Use incomplete traces</em> - Uses all traces for the drift calculation including those that do not have all slices, which sometimes happens when peak fitting fails for a certain frame. If there are no observations for a certain slice, then NaN is used.
+<img align="center" src="/docs/Molecule/img/Drift Calculator.png" width="400" /></li>
+</ul>
+
+<h4 id="output">Output</h4>
+
+<ul>
+  <li>The MoleculeArchive provided as Input is modified. The drift information is added to the ImageMetaData table since it applies globally to all molecules within the given dataset.</li>
+</ul>
+
+<h3 id="how-to-run-this-command-from-a-groovy-script">How to run this Command from a groovy script</h3>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#@</span> <span class="n">MoleculeArchive</span> <span class="n">archive</span>
+<span class="err">#@</span> <span class="n">ImageJ</span> <span class="n">ij</span>
+
+<span class="kn">import</span> <span class="nn">de.mpg.biochem.mars.molecule.*</span><span class="o">;</span>
+
+<span class="c1">//Make an instance of the Command you want to run...</span>
+<span class="kd">final</span> <span class="n">DriftCalculatorCommand</span> <span class="n">driftCalc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DriftCalculatorCommand</span><span class="o">();</span>
+
+<span class="c1">//Populates @Parameters Services etc.. using the current context</span>
+<span class="c1">//which we get from the ImageJ input...</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">ij</span><span class="o">.</span><span class="na">getContext</span><span class="o">());</span>
+
+<span class="c1">//Set all the input parameters</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setArchive</span><span class="o">(</span><span class="n">archive</span><span class="o">);</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setBackgroundTag</span><span class="o">(</span><span class="s2">"background"</span><span class="o">);</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setInputX</span><span class="o">(</span><span class="s2">"x"</span><span class="o">);</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setInputY</span><span class="o">(</span><span class="s2">"y"</span><span class="o">);</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setOutputX</span><span class="o">(</span><span class="s2">"x_drift"</span><span class="o">);</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setOutputY</span><span class="o">(</span><span class="s2">"y_drift"</span><span class="o">);</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">setUseIncompleteTraces</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+<span class="c1">//Run the Command</span>
+<span class="n">driftCalc</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+
+<span class="c1">//Retrieve output from the command</span>
+<span class="c1">//In this case, the archive is just modified</span>
+<span class="c1">//so no output is needed and the line below is not needed</span>
+<span class="c1">//archive = driftCalc.getArchive();</span>
+</code></pre></div></div>

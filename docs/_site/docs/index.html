@@ -1,0 +1,133 @@
+<p>The <strong>Mars</strong> platform provides a collection of ImageJ2 commands for performing a wide variety of common image processing and secondary analysis tasks. This page provides documentation of the <a href="#commands">ImageJ2 commands</a> and the graphical user interface for molecule classification.</p>
+
+<p>To start learning how to use Mars, we recommend first working through the introductory <strong><a href="../tutorials/create-MoleculeArchive">Let’s Create a MoleculeArchive</a></strong> and exploring the <a href="../examples">examples</a>, then dig further into the documentation.</p>
+
+<p>Script writers and java developers can get started using the <strong>Mars</strong> development tutorial. Complete javadoc for the mars-core API can be found <a href="http://duderstadt-lab.github.io/mars-core/javadoc/">here</a>.</p>
+
+<h2 id="command-reference"><a name="commands"></a>Command Reference</h2>
+
+<h3 id="molecule">Molecule</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="./molecule/ImportArchive">Import archive</a></td>
+      <td>Use this command to open an archive.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/BuildArchiveFromTable">Build archive from table</a></td>
+      <td>Generate a MoleculeArchive using a table with a molecule index column.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/RegionDifferenceCalculator">Region Difference Calculator</a></td>
+      <td>Add parameter for difference between two regions.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/AddTime">Add time</a></td>
+      <td>Retrieve and add time information from metadata.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/DriftCalculator">Drift Calculator</a></td>
+      <td>Calculate drift in position.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/DriftCorrector">Drift Corrector</a></td>
+      <td>Remove drift from the molecule positions.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/MSDCalculator">MSD Calculator</a></td>
+      <td>Add mean squared displacement parameter for molecules.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/MergeArchives">Merge Archives</a></td>
+      <td>Merges a set of MoleculeArchives.</td>
+    </tr>
+    <tr>
+      <td><a href="./molecule/MergeVirtualStore">Merge Virtual Stores</a></td>
+      <td>Merges a set of virtual MoleculeArchives.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="table">Table</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="./table/ImportTable">Import table</a></td>
+      <td>Load csv or yamt format tables.</td>
+    </tr>
+    <tr>
+      <td><a href="./table/Sort">Sort</a></td>
+      <td>Sort table rows by column values.</td>
+    </tr>
+    <tr>
+      <td><a href="./table/Filter">Filter</a></td>
+      <td>Filter table rows.</td>
+    </tr>
+    <tr>
+      <td><a href="./table/BuildHistogram">Build histogram</a></td>
+      <td>Bin observations to generate a histogram table</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="image-processing">Image processing</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="./image/PeakFinder">Peak Finder</a></td>
+      <td>Counting and subpixel localization of molecules.</td>
+    </tr>
+    <tr>
+      <td><a href="./image/PeakTracker">Peak Tracker</a></td>
+      <td>Find, subpixel localize, and track molecules.</td>
+    </tr>
+    <tr>
+      <td><a href="./image/BeamProfileCorrector">Beam Profile Corrector</a></td>
+      <td>Correct images for non-uniform beam profile.</td>
+    </tr>
+    <tr>
+      <td><a href="./image/MoleculeIntegrator">Molecule Integrator</a></td>
+      <td>Integrate the fluorescence of molecules.</td>
+    </tr>
+    <tr>
+      <td><a href="./image/DiscoidalAveragingFilter">Discoidal Averaging Filter</a></td>
+      <td>Filter images to sharpen peaks.</td>
+    </tr>
+    <tr>
+      <td><a href="./image/GradientCalculator">Gradient Calculator</a></td>
+      <td>Calculate the vertical gradient for images.</td>
+    </tr>
+    <tr>
+      <td><a href="./image/OverlayChannels">Overlay Channels</a></td>
+      <td>Combine different colors into one image set.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="kcp">KCP</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="./kcp/ChangePointFinder">Change Point Finder</a></td>
+      <td>Find kinetic changes points for a MoleculeArchive.</td>
+    </tr>
+    <tr>
+      <td><a href="./kcp/SingleChangePointFinder">Single Change Point Finder</a></td>
+      <td>Find single change point positions.</td>
+    </tr>
+    <tr>
+      <td><a href="./kcp/SegmentDistributionBuilder">Segment Distribution Builder</a></td>
+      <td>Build distributions using change point segments.</td>
+    </tr>
+    <tr>
+      <td><a href="./kcp/SigmaCalculator">Sigma Calculator</a></td>
+      <td>Estimate background sigma level during optimization of change point detection.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="molecule-explorer-reference"><a name="gui"></a>Molecule Explorer Reference</h2>
