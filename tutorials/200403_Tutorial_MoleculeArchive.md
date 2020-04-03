@@ -21,7 +21,9 @@ MARS and the most important plugins.
 Open the example dataset 'TestVideo.tif'. This will open the video in a new
 screen.
 
-[img1][img2]
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450' />
+
 
 __Background Information:__
 
