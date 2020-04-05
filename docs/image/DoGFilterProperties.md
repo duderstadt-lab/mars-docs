@@ -14,7 +14,7 @@ This filter is conveniently available as an image op in ImageJ2. Several example
 
 To access the peak enhancement as a function of DoG radius, three peaks with different intensities were systematically evaluated for a range of radii. The resulting images as displayed together with their x position profiles. The profiles are displayed in terms of detection threshold (N) where N is the number of standard deviations above the mean (mean + N * stdDev). For convenience the mean is set to zero in the profiles and multiples of the standard deviation are displayed on the y axis. Here mean and standard deviation were calculated for the entire example image above for each radius. Clearly a radius of 2.0 is the winner in terms of overall enhancement.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeakProfileComparison.png' width='750' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeakProfileComparison.png' width='400' />
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeak1.png' width='750' />
 
@@ -22,13 +22,11 @@ To access the peak enhancement as a function of DoG radius, three peaks with dif
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeak3.png' width='750' />
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterRawPeakComparison.png' width='750' />
-
-In all cases the DoG Filter with radius 2.0 increases the detection threshold. More importantly, the background is suppressed. This is particularly clear for peak 1 where two pixel with high values are on either side of the peak. The detection threshold for these individual background pixels is dramatically reduced after DoG filtering.
+In all cases the DoG Filter improves detection. More importantly, the background is suppressed. This is particularly clear for peak 1 where two pixels with high values are on either side of the peak. The detection threshold for these individual background pixels is dramatically reduced after DoG filtering.
 
 #### Peak detection
 
-Finally comparison of ground truth for a video vs. located peaks for different threshold values for one dog radius. First raw peaks count plot vs. ground truth.
+Now that we have established that a DoG radius of 2.0 is the best for our example image, we can test different threshold values and determine which is best for peak detection. We will do this using a ground truth peak count for the video from which our example image was taken. Then we will score each threshold based on the average number of false positives and negatives for each frame.
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/xxx.png' width='450' />
 
