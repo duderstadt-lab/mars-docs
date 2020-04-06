@@ -14,7 +14,7 @@ This filter is conveniently available as an image op in ImageJ2. Several example
 
 To assess the peak enhancement as a function of DoG radius, three peaks with different intensities were systematically evaluated for a range of radii. The resulting images as displayed together with their x position profiles. Clearly a radius of 1.8 is the winner in terms of overall enhancement. The y-axis values provide a rough estimates of the threshold to use to ensure peak detection and reduce background.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeakProfileComparison.png' width='400' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterProfileComparison.png' width='400' />
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeak1.png' width='750' />
 
@@ -28,7 +28,7 @@ In all cases the DoG Filter improves detection. More importantly, the background
 
 Having established the optimal DoG radius of 1.8, we can test different threshold values and determine which is best for peak detection. To do this we have determined the ground truth peak count for the video from which our example image was taken by manually counting. Displayed on the top are the peak counts per frame for different thresholds compared to ground truth. On the bottom is the mean number of false positives (green) and negatives (red) in each frame as a function of threshold value in raw numbers and percent of total peaks.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPerformance.png' width='750' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPerformance.png' width='850' />
 
 #### Groovy scripts
 
