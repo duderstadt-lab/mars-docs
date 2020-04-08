@@ -18,7 +18,7 @@ First, open the archive using the molecule tool. The GUI should show up.
 ### 2. Run the Mean Square Displacement DriftCalculator
 Now go back to the main Fiji environment and select the Mean Square Displacement Calculator from the MARS plugins.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img2.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img2.jpg' width='450' />
 
 This should open a window in which you can put in settings.
 
