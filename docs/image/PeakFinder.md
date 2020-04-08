@@ -55,7 +55,7 @@ Several different kinds of output are possible depending on the settings used.
 
 ```groovy
 #@ ImagePlus image
-#@OUTPUT MarsTable peakCountTable
+#@OUTPUT MarsTable peakTable
 #@ ImageJ ij
 
 import de.mpg.biochem.mars.table.*
@@ -79,24 +79,25 @@ peakFinder.setDogFilterRadius(1.8d)
 peakFinder.setThreshold(50)
 peakFinder.setMinimumDistance(4)
 peakFinder.setFindNegativePeaks(false)
-peakFinder.setGeneratePeakCountTable(true)
-peakFinder.setGeneratePeakTable(false)
+peakFinder.setGeneratePeakCountTable(false)
+peakFinder.setGeneratePeakTable(true)
 peakFinder.setAddToRoiManager(false)
 peakFinder.setProcessAllSlices(true)
 peakFinder.setFitPeaks(true)
 peakFinder.setFitRadius(4)
 peakFinder.setMinimumRsquared(0.01d)
-peakFinder.setVerboseFitOutput(true)
+peakFinder.setIntegrate(true)
+peakFinder.setIntegrationInnerRadius(1)
+peakFinder.setIntegrationOuterRadius(3)
+peakFinder.setVerboseOutput(true)
 
 //Run the Command
 peakFinder.run();
 
 //Retrieve output from the command
-peakCountTable = peakFinder.getPeakCountTable()
+//peakCountTable = peakFinder.getPeakCountTable()
 
-//peakFinder.getPeakTable()
-
-//MarsTable peakCountTable = peakFinder.getPeakCountTable()
+peakTable = peakFinder.getPeakTable()
 
 //The other possible output is adding the peaks to the RoiManager
 //in which the RoiManager can then be use for further steps.
