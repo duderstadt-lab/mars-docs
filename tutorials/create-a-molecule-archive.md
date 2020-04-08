@@ -43,7 +43,7 @@ photobleached over time.
 The next step is to find the peaks in each frame. Open the peak finder of MARS
 as indicated below.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img3.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img3.jpg' width='450' />
 
 This will open a new window in which settings and
 selection criteria have to be provided.
@@ -108,7 +108,7 @@ Now, open the peak tracker plugin and supply all settings found in step 2. This
 makes sure that the tracker can find the peaks correctly. As you notice, the peak tracker wizard looks similar to the peak finder window.
 
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img10.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img10.jpg' width='450' />
 
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img11.png' width='250' />  
