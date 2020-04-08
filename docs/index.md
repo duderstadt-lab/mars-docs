@@ -40,7 +40,6 @@ Script writers and java developers can get started using the **Mars** developmen
 | [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
 | [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
-| [Discoidal Averaging Filter](./image/DiscoidalAveragingFilter) | Filter images to sharpen peaks. |
 | [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
 | [Overlay Channels](./image/OverlayChannels) | Combine different colors into one image set. |
 
