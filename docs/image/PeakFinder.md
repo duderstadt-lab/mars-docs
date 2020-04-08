@@ -3,7 +3,7 @@ layout: image
 title: Peak Finder
 permalink: /docs/image/PeakFinder/index.html
 ---
-This command is used to find high intensity spots or peaks in images. Typically these are single polystyrene beads or single fluorescent dyes or groups of dyes. After locating the peaks, this command can perform 2D Gaussian fitting to determine the sub-pixel position of the peaks. This command can be integrated in many workflows where general purpose peak detection is required. For example, this is used to find molecules in single-molecule FRET experiments that are integrated using the [MoleculeIntegrator](../MoleculeIntegrator) to generate MoleculeArchives for smFRET analysis. 
+This command is used to find high intensity spots or peaks in images. Typically these are single polystyrene beads or single fluorescent dyes or groups of dyes. After locating the peaks, this command can perform 2D Gaussian fitting to determine the sub-pixel position of the peaks. This command can be integrated in many workflows where general purpose peak detection is required. For example, this is used to find molecules in single-molecule FRET experiments that are integrated using the [MoleculeIntegrator](../MoleculeIntegrator) to generate MoleculeArchives for smFRET analysis.
 
 #### Inputs
 
@@ -36,8 +36,10 @@ This command is used to find high intensity spots or peaks in images. Typically 
  * *Preview* - When checked crosshairs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
  * *Preview slice* - Scrollbar to select the frame to preview with live update.
  * *Fit peaks* - If checked all peaks will be fit with 2D Gaussians to determine the sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. Fitting is done with the following 2D Gaussian equation:
+
  <img align='center' src='{{site.baseurl}}/docs/image/img/2D Gaussian.png' width='500' />
-Where x0 and y0 are the subpixel positions of the peak, Height, Baseline and Sigma match the settings below and f(x,y) gives the intensity as a function of pixel position for a given set of parameters.
+
+Where x0 and y0 are the subpixel positions of a peak with a given height, baseline and sigma. f(x,y) then gives the intensity as a function of pixel position.
 * *Fit Radius* - The radius of pixels used for peak fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 3 or 4 is a good estimate depending for typical single-molecule observations. Optimal fitting is done using a region with background pixels at the edges.
 * *Minimum R-squared* - This is the minimum allowed value for peak fits. R-squared is defined as 1 - SSres / SStot to match the definition used in [Prism](
 https://www.graphpad.com/guides/prism/7/curve-fitting/reg_intepretingnonlinr2.htm) as defined [here](https://en.wikipedia.org/wiki/Coefficient_of_determination) with 1.0 for perfect fits and 0.0 for fits no better than a straight line. Typical single-molecule images are noisy leading to large variation in R-squared values so this threshold should only be used as an additional step if further peak rejection is required. If set to 0, the R-square value will not be calculated. Values of 0.05 to 0.15 are reasonable for noisy images.
