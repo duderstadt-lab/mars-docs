@@ -10,6 +10,10 @@ Tutorials for learning how to use Mars.
 
 _Skill level: Beginner._ Learn the basic elements of Mars by creating and working with a MoleculeArchive.
 
+### [How to calculate the Mean Square Displacement](calculate-msd)
+_Skill level: Intermediate._  Learn how to calculate the mean square displacement from the traces in the molecule archive.
+Note: it is advised to do the [How to create a MoleculeArchive](create-a-Molecule-Archive) before doing this tutorial.
+
 ### [How to open a MoleculeArchive in python](open-a-Molecule-Archive-in-Python)
 
 _Skill level: Intermediate._  Learn how to load and work with MoleculeArchives in Jupyter notebooks running Python 3 and work with mars together with all the wonderful packages available in the python environment.
