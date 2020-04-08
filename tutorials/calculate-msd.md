@@ -32,6 +32,6 @@ After the calculator has run go back to the MARS GUI and open any of the molecul
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img4.png' width='450' />
 
 When you now go through the different molecule UIDs you can clearly see that, as expected, for active molecules (molecules that we marked with the tag 'Active' in the 'Let's create a MoleculeArchive' tutorial) the MSD value is way higher than for traces representing non-Active molecules.
-Now safe the archive again to retain the calculated values.
+Now save the archive again to retain the calculated values.
 
 If you want to analyze these values further f.e. by means of plotting, have a look at the [How to open a MoleculeArchive in python](open-a-Molecule-Archive-in-Python) tutorial.
