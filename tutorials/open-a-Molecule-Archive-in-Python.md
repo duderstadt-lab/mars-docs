@@ -35,7 +35,7 @@ Now everything is ready to go with a yama repository.
 
 ### Load Fiji/ImageJ and the Python Packages
 Before starting one needs to load Fiji and all the necessary Python packages.
-```Python
+```python
 import imagej
 # One needs to add the path to the Fiji application on the computer
 ij = imagej.init('/Applications/Fiji.app')
@@ -55,7 +55,7 @@ from matplotlib import pyplot as plt
 
 ### Define necessary Functions
 The functions which are defined next make it possible to load the archive as a pandas dataframe. Pandas is a great package for Python which makes handling of big data sets smooth and easy and offers a lot of possibilities to excess and manipulate your data.
-```Python
+```python
 File = autoclass('java.io.File')
 SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
 # Define important functions for loading the archive
@@ -93,7 +93,7 @@ def pandas_to_table(df):
 File = autoclass('java.io.File')
 ```
 ### Load the archive
-```Python
+```python
 # Here the archive is loaded. Add your file path here
 yamaFile = File('/Users/your_archive.yama')
 archive = SingleMoleculeArchive(yamaFile)
@@ -101,13 +101,13 @@ archive = SingleMoleculeArchive(yamaFile)
 ### Get started with simple Operations
 #### Get the Number of Molecules
 Now everything is ready to go. As a start, the number of molecules in the archive is read out.
-```Python
+```python
 archive.getNumberOfMolecules()
 ```
 The notebook will print out the total number of molecules.
 #### Get the UIDs
 If one wants to know all the UIDs from all your molecules the following line can be used.
-```Python
+```python
 for UID in archive.getMoleculeUIDs():
     molecule = archive.get(UID)
     print(molecule.getUID())
@@ -116,7 +116,7 @@ The notebook will display all the UIDs.
 
 #### Get single Molecule Entries from the Archive
 There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
-```Python
+```python
 #get the DataTable for the molecule at index 0 as a pandas dataframe
 tableByIndex = table_to_pandas(archive.get(0).getDataTable())
 tableByIndex
@@ -124,24 +124,24 @@ tableByIndex
 One can also use the UIDs to excess certain molecules. Just
 copy and paste on of them into the following line of code.
 
-```Python
+```python
 #get the DataTable for molecule UID as a pandas dataframe
 tableByUID = table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
 tableByUID
 ```
 #### More elegant Way to excess Molecules: Mapping
 Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in a easy fashion the map function can be used.
-```Python
+```python
 molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
 ```
 Now it is possible to loop through the molecules and print their corresponding UIDs.
-```Python
+```python
 for molecule in molecules:
     print(molecule.getUID())    
 ```
 Mapping makes it possible to excess the tags of the molecule. This for-loop will print all the molecules tagged with "reaction".
 
-```Python
+```python
 molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
 for molecule in molecules:
     if molecule.hasTag('reaction'):
@@ -151,11 +151,11 @@ Side note: The map function has to be in the same cell if it is not transformed 
 
 #### Getting Parameters from the Data
 In the tutorial before the mean squared difference of the y data was calculated. The following line saves the MSD values in a list which makes it possible to excess the parameters.
-```Python
+```python
 MSDs = list(map(lambda UID: archive.get(UID).getParameter('msd'), archive.getMoleculeUIDs()))
 ```
 Finally, one can plot the distribution of the MSD in a histogram using the matplotlib package.
-```Python
+```python
 bins = np.arange(-100, 100, 5)
 plt.xlim([min(MSDs)-5, max(MSDs)+5])
 plt.hist(MSDs, bins=bins, alpha=0.5)
