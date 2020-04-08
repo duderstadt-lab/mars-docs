@@ -12,9 +12,9 @@ This filter is conveniently available as an image op in ImageJ2. Several example
 
 #### Peak enhancement
 
-To access the peak enhancement as a function of DoG radius, three peaks with different intensities were systematically evaluated for a range of radii. The resulting images as displayed together with their x position profiles. The profiles are displayed in terms of detection threshold (N) where N is the number of standard deviations above the mean (mean + N * stdDev). For convenience the mean is set to zero in the profiles and multiples of the standard deviation are displayed on the y axis. Here mean and standard deviation were calculated for the entire example image above for each radius. Clearly a radius of 2.0 is the winner in terms of overall enhancement.
+To assess the peak enhancement as a function of DoG radius, three peaks with different intensities were systematically evaluated for a range of radii. The resulting images as displayed together with their x position profiles. Clearly a radius of 1.8 is the winner in terms of overall enhancement. The y-axis values provide a rough estimates of the threshold to use to ensure peak detection and reduce background.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeakProfileComparison.png' width='750' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterProfileComparison.png' width='400' />
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeak1.png' width='750' />
 
@@ -22,15 +22,13 @@ To access the peak enhancement as a function of DoG radius, three peaks with dif
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPeak3.png' width='750' />
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterRawPeakComparison.png' width='750' />
-
-In all cases the DoG Filter with radius 2.0 increases the detection threshold. More importantly, the background is suppressed. This is particularly clear for peak 1 where two pixel with high values are on either side of the peak. The detection threshold for these individual background pixels is dramatically reduced after DoG filtering.
+In all cases the DoG Filter improves detection. More importantly, the background is suppressed. This is particularly clear for peak 1 which has two pixels with high values are on either side of the peak. The detection threshold for these individual background pixels is dramatically reduced after DoG filtering. The optimal DoG radius for the example image tested is around 1.8, but the radius that gives the best enhancement is different for peaks of different sizes as expected (1.8 for peak 1, 1.8 for peak 2, and 1.6 for peak 3).
 
 #### Peak detection
 
-Finally comparison of ground truth for a video vs. located peaks for different threshold values for one dog radius. First raw peaks count plot vs. ground truth.
+Having established the optimal DoG radius of 1.8, we can test different threshold values and determine which is best for peak detection. To do this we have determined the ground truth peak count for the video from which our example image was taken by manually counting. Displayed on the top are the peak counts per frame for different thresholds compared to ground truth. On the bottom is the mean number of false positives (green) and negatives (red) in each frame as a function of threshold value in raw numbers and percent of total peaks.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/xxx.png' width='450' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DogFilterPerformance.png' width='850' />
 
 #### Groovy scripts
 
@@ -65,14 +63,6 @@ table = new MarsTable("Dog Profiles")
 
 def posCol = new DoubleColumn("Position")
 def colRaw = new DoubleColumn("Raw")
-def colRawThreshold = new DoubleColumn("Raw Threshold")
-
-double RawMean = ij.op().stats().mean(image).getRealDouble()
-double RawStdDev = ij.op().stats().stdDev(image).getRealDouble()
-
-println("Raw ")
-println("Mean: " + RawMean)
-println("StdDev: " + RawStdDev)
 
 rawra = image.randomAccess()
 //Position , Dimension
@@ -87,12 +77,10 @@ for (def x=Xstart; x<=Xend; x++) {
 	rawra.setPosition(x,0)
 
 	colRaw.add(rawra.get().getRealDouble())
-	colRawThreshold.add((rawra.get().getRealDouble() - RawMean) / RawStdDev)
 }
 
 table.add(posCol)
 table.add(colRaw)
-table.add(colRawThreshold)
 
 //Now let's calculate it for different dog images...
 //for (double radius = 1.0d; radius < 10.0d; radius++) {
@@ -105,25 +93,15 @@ for (double radius = 1.2d; radius < 3.0d; radius+= 0.2d) {
 	def dogra = dog.randomAccess()
 	dogra.setPosition(Y,1)
 
-	//def colDog = new DoubleColumn("Dog " + radius)
-	def colThreshold = new DoubleColumn("" + radius)
-
-	double mean = ij.op().stats().mean(dog).getRealDouble()
-	double stdDev = ij.op().stats().stdDev(dog).getRealDouble()
-
-	println("Dog " + radius)
-	println("Mean: " + mean)
-	println("StdDev: " + stdDev)
+	def colDog = new DoubleColumn("Dog " + radius)
 
 	for (def x=Xstart; x<=Xend; x++) {
 		//Position , Dimension
 		//x
 		dogra.setPosition(x,0)		
-		//colDog.add(dogra.get().getRealDouble())
-		colThreshold.add((dogra.get().getRealDouble() - mean) / stdDev)
+		colDog.add(dogra.get().getRealDouble())
 	}
-	//table.add(colDog)
-	table.add(colThreshold)
+	table.add(colDog)
 }
 ```
 
@@ -175,4 +153,127 @@ for (double radius = 1.2d; radius < 3.0d; radius+= 0.2d) {
 	}
 	X0 += w
 }
+```
+
+Generate peak count output for a range of different thresholds and put them into a single output table.
+
+```groovy
+#@ ImagePlus image
+#@OUTPUT MarsTable peaksVsThreshold
+#@ ImageJ ij
+
+import de.mpg.biochem.mars.table.*
+import de.mpg.biochem.mars.ImageProcessing.commands.*
+
+peaksVsThreshold = new MarsTable("Peak Count vs Threshold")
+
+boolean sliceColAdded = false
+
+for (double threshold = 20.0d; threshold < 100.0d; threshold++) {
+     println("Running threshold " + threshold)
+	//Make an instance of the Command you want to run...
+	PeakFinderCommand peakFinder = new PeakFinderCommand();
+
+	//Populates @Parameters Services etc.. using the current context
+	//which we get from the ImageJ input...
+	peakFinder.setContext(ij.getContext())
+
+	peakFinder.setImage(image)
+	peakFinder.setUseROI(false)
+	peakFinder.setX0(0)
+	peakFinder.setY0(0)
+	peakFinder.setWidth(1024)
+	peakFinder.setHeight(1024)
+	peakFinder.setUseDogFiler(true)
+	peakFinder.setDogFilterRadius(2.0d)
+	peakFinder.setThreshold(threshold)
+	peakFinder.setMinimumDistance(4)
+	peakFinder.setGeneratePeakCountTable(true)
+	peakFinder.setGeneratePeakTable(false)
+	peakFinder.setAddToRoiManager(false)
+	peakFinder.setProcessAllSlices(true)
+	peakFinder.setFitPeaks(false)
+	peakFinder.setFitRadius(4)
+	peakFinder.setMaxErrorFilter(true)
+	peakFinder.setMaxErrorBaseline(5000)
+	peakFinder.setMaxErrorHeight(5000)
+	peakFinder.setMaxErrorX(1)
+	peakFinder.setMaxErrorY(1)
+	peakFinder.setMaxErrorSigma(1)
+	peakFinder.setVerboseFitOutput(false)
+
+	//Run the Command
+	peakFinder.run();
+
+	//Retrieve output from the command
+	def peakCount = peakFinder.getPeakCountTable()
+
+	if (!sliceColAdded) {
+		def sliceCol = peakCount.get("slice")
+		sliceCol.setHeader("slice")
+		peaksVsThreshold.add(sliceCol)
+		sliceColAdded = true
+	}
+
+	def col = peakCount.get("peaks")
+	col.setHeader("" + threshold)
+	peaksVsThreshold.add(col)
+}
+```
+
+Given one input table with a ground truth "Peaks" column and the output for all thresholds from the script above, this script generates the mean false detection rate and percent false detections.
+
+```groovy
+#@ MarsTable groundTruth
+#@ MarsTable peaksVsThreshold
+#@OUTPUT MarsTable outputTable
+
+import de.mpg.biochem.mars.table.*
+import org.scijava.table.*
+
+outputTable = new MarsTable("Performance")
+
+DoubleColumn threshold = new DoubleColumn("threshold")
+DoubleColumn positives = new DoubleColumn("positives")
+DoubleColumn negatives = new DoubleColumn("negatives")
+DoubleColumn positivesPercent = new DoubleColumn("positives percent")
+DoubleColumn negativesPercent = new DoubleColumn("negatives percent")
+
+def columnCount = peaksVsThreshold.getColumnCount() - 1
+def rowCount = groundTruth.getRowCount()
+def thresholdValue = 20.0d
+for (int col = 1; col < columnCount; col++) {
+	double posSum = 0.0d
+	double negSum = 0.0d
+
+	double posPerSum = 0.0d
+	double negPerSum = 0.0d
+
+	for (int row = 0; row < rowCount; row++) {
+		double diff = peaksVsThreshold.getValue(col, row) - groundTruth.get("Peaks", row)
+		if (diff > 0) {
+			posSum += diff
+			posPerSum += diff / groundTruth.get("Peaks", row)
+		}
+		if (diff < 0) {
+			negSum += Math.abs(diff)
+			negPerSum += Math.abs(diff) / groundTruth.get("Peaks", row)
+		}
+	}
+
+	threshold.add(thresholdValue)
+	positives.add(posSum / (double)rowCount)
+	negatives.add(negSum / (double)rowCount)
+
+	positivesPercent.add(posPerSum / (double)rowCount)
+	negativesPercent.add(negPerSum / (double)rowCount)
+
+	thresholdValue += 1.0d
+}
+
+outputTable.add(threshold)
+outputTable.add(positives)
+outputTable.add(positivesPercent)
+outputTable.add(negatives)
+outputTable.add(negativesPercent)
 ```
