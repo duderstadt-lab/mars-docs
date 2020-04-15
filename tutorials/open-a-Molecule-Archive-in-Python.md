@@ -1,4 +1,4 @@
----
+ ---
 layout: tutorials
 title: Open a MoleculeArchive in Python
 permalink: /tutorials/open-a-Molecule-Archive-in-Python/index.html
@@ -7,31 +7,45 @@ permalink: /tutorials/open-a-Molecule-Archive-in-Python/index.html
 Here is a wonderful set of instructions on how to work with MoleculeArchives in Python notebooks by Thomas Retzer and Nadia Huisjes. All potential problems encountered when configuring the conda environment are full addressed here.
 
 ### Create the Environment
-First, an environment has to be created which makes it possible to use ImageJ together with Python. The next lines will explain how to create and activate this environment.
-1. Install Anaconda. Alternatively, one can also install Miniconda.
+First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub. One has to follow the steps on the page with one tiny addition. The steps will be also written out on this page.  
 
-2. Clone the tutorial repository.
+1. Install **[Anaconda](https://www.anaconda.com/distribution/)**. Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**.
 
-3. Open a terminal window and navigate to the repository folder:
+2. Clone the tutorial repository. One can either download the repository or use the following command line (if git is installed).
 ```terminal
-cd name_repository
+git clone https://github.com/imagej/tutorials.git
+```
+3. This step is different to the instructions on the website. In order to prevent problems we discovered that the environment has to be adjusted. Open the environment.yml
+file with a text editor (e.g. **[Atom](https://atom.io)**). There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
+```terminal
+  - pyjnius=1.2.0
+  - seaborn
+```
+Save the file and continue with the steps described here or on the GitHub page.
+
+4. Open a terminal window and navigate to the repository folder using cd:
+```terminal
+cd tutorials
 ```
 
-4. Create the environment:
+5. Create the environment:
 ```terminal
 conda env create -f environment.yml
 ```
 
-5. Activate the environment in the terminal:
+6. Activate the environment in the terminal:
 ```terminal
-conda activate pyscijava2
+conda activate scijava
 ```
 
-6. Launch Jupyter notebook. Your browser will open the directory:
+7. Launch Jupyter notebook. Your browser will open the directory:
 ```terminal
 jupyter notebook
 ```
-Now everything is ready to go with a yama repository.
+Now everything is ready to go with a yama repository. Before starting the tutorial one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned
+a folder called "notebooks" was copied. Inside one can find different examples which can be tried out.
+
+For the next section create a new notebook (File -> New Notebook -> Python 3). The code can be copied in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option + Enter" the cell will be executed and a new cell is created).
 
 ### Load Fiji/ImageJ and the Python Packages
 Before starting one needs to load Fiji and all the necessary Python packages.
