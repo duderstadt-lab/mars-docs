@@ -1,4 +1,4 @@
- ---
+---
 layout: tutorials
 title: Open a MoleculeArchive in Python
 permalink: /tutorials/open-a-Molecule-Archive-in-Python/index.html
