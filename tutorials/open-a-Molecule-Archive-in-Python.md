@@ -42,6 +42,7 @@ conda activate scijava
 ```terminal
 jupyter notebook
 ```
+
 Now everything is ready to go with a yama repository. Before starting the tutorial one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned
 a folder called "notebooks" was copied. Inside one can find different examples which can be tried out.
 
