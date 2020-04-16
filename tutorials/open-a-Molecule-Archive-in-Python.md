@@ -180,3 +180,14 @@ plt.ylabel('count')
 
 plt.show()
 ```
+
+This is the end of the tutorial. The environment can be deactivated with the following
+command:
+```terminal
+conda deactivate
+```
+
+Or simply close the notebook and the terminal window.
+
+
+### Great Job!
