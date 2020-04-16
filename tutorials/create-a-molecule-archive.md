@@ -9,10 +9,7 @@ _level: beginner, duration: 5-10 min_
 In this tutorial we will go through the basics of loading a video, finding
 and tracking peaks, navigating through the MARS GUI, looking at the traces
 corresponding to the tracked peaks, tagging them and saving the result as a
-MoleculeArchive (.yama) file.
-
-This tutorial is based on an example dataset called 'TestVideo.tif'. In this video,
-the transcription movement of fluorescently labeled T7 polymerase
+MoleculeArchive (.yama) file. In this video, the transcription movement of fluorescently labeled polymerase
 over DNA is investigated by means of TIRF microscopy. The DNA itself is not labeled
 and therefore is not visible in the video. This
 single-molecule dataset provides an excellent way to familiarise yourself with
@@ -172,14 +169,14 @@ a line plot of the y position versus the slide number. In this dataset that corr
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img17.png' width='450' />
 
-Now a plot is obtained showing the vertical displacement of the peak versus the slice number of the experiment: it shows the position of this single T7 polymerase on the DNA molecule.
+Now a plot is obtained showing the vertical displacement of the peak versus the slice number of the experiment: it shows the position of this single polymerase on the DNA molecule.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img18.png' width='250' />
 
 Move through the UIDs on the left to show the plot for every molecule. As you
 will see some molecules show a trace in which the y position almost
 linearly changes with the slice number. These are the molecules that are
-relevant for this dataset since they correspond to a T7 polymerase that
+relevant for this dataset since they correspond to a polymerase that
 transcribes the DNA with a uniform speed. Below is an example of such a molecule.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img19.png' width='250' />
@@ -187,7 +184,7 @@ transcribes the DNA with a uniform speed. Below is an example of such a molecule
 ### 6. Tagging data
 
 When interesting molecules in the data have been found, one can easily Tag them
-for later reference. For now we will use the tag name 'Active' since we want to filter for molecules that show active T7 polymerase activity.
+for later reference. For now we will use the tag name 'Active' since we want to filter for molecules that show active polymerase activity.
 Write 'Active' in the Tag window on the right and press enter. If you did this correctly, a grey marked tag will show up as shown in the screenshot below. Move through
 all UIDs and select all molecules fulfilling the criteria in this way.
 
