@@ -66,6 +66,10 @@ import re
 from matplotlib.colors import ListedColormap
 from jnius import autoclass
 from matplotlib import pyplot as plt
+
+#instantiate required classes to load archives
+File = autoclass('java.io.File')
+SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
 ```
 
 ### Load the archive
