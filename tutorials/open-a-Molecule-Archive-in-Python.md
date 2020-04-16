@@ -9,7 +9,7 @@ Here is a wonderful set of instructions on how to work with MoleculeArchives in 
 ### Create the Environment
 First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub. One has to follow the steps on the page with one tiny addition. The steps will be also written out on this page.  
 
-1. Install **[Anaconda](https://www.anaconda.com/distribution/)**. Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**.
+1. Install **[Anaconda](https://www.anaconda.com/distribution/)**(Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already install on the computer the download is not needed. Anaconda/Miniconda is a basic Python distribution.
 
 2. Clone the tutorial repository. One can either download the repository or use the following command line (if git is installed).
 ```terminal
@@ -68,45 +68,6 @@ from jnius import autoclass
 from matplotlib import pyplot as plt
 ```
 
-### Define necessary Functions
-The functions which are defined next make it possible to load the archive as a pandas dataframe. Pandas is a great package for Python which makes handling of big data sets smooth and easy and offers a lot of possibilities to excess and manipulate your data.
-```python
-File = autoclass('java.io.File')
-SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
-# Define important functions for loading the archive
-def table_to_pandas(table):
-    data = []
-    headers = []
-    for i, column in enumerate(table.toArray()):
-        data.append(column.toArray())
-        headers.append(table.getColumnHeader(i))
-    df = pd.DataFrame(data).T
-    df.columns = headers
-    return df
-def pandas_to_table(df):
-    if len(df.dtypes.unique()) > 1:
-        TableClass = jnius.autoclass('org.scijava.table.DefaultGenericTable')
-    else:
-        table_type = df.dtypes.unique()[0]
-        if table_type.name.startswith('float'):
-            TableClass = jnius.autoclass('org.scijava.table.DefaultFloatTable')
-        elif table_type.name.startswith('int'):
-            TableClass = jnius.autoclass('org.scijava.table.DefaultIntTable')
-        elif table_type.name.startswith('bool'):
-            TableClass = jnius.autoclass('org.scijava.table.DefaultBoolTable')
-        else:
-            msg = "The type '{}' is not supported.".format(table_type.name)
-            raise Exception(msg)
-    table = TableClass(*df.shape[::-1])
-    for c, column_name in enumerate(df.columns):
-        table.setColumnHeader(c, column_name)
-    for i, (index, row) in enumerate(df.iterrows()):
-        for c, value in enumerate(row):
-            header = df.columns[c]
-            table.set(header, i, scyjava.to_java(value))
-    return table
-File = autoclass('java.io.File')
-```
 ### Load the archive
 ```python
 # Here the archive is loaded. Add your file path here
@@ -130,18 +91,17 @@ for UID in archive.getMoleculeUIDs():
 The notebook will display all the UIDs.
 
 #### Get single Molecule Entries from the Archive
-There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
+There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0). The build-in function "to_python(data)" from scijava (imported as sc at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "to_java(data)" which does the opposite (which is not needed for the rest of the tutorial).
 ```python
 #get the DataTable for the molecule at index 0 as a pandas dataframe
-tableByIndex = table_to_pandas(archive.get(0).getDataTable())
+tableByIndex = sc.to_python(archive.get(0).getDataTable())
 tableByIndex
 ```
-One can also use the UIDs to excess certain molecules. Just
-copy and paste on of them into the following line of code.
+One can also use the UIDs to excess certain molecules. Just copy and paste on of them into the following line of code.
 
 ```python
 #get the DataTable for molecule UID as a pandas dataframe
-tableByUID = table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
+tableByUID = sc.to_python(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
 tableByUID
 ```
 #### More elegant Way to excess Molecules: Mapping
@@ -182,7 +142,7 @@ plt.show()
 ```
 
 This is the end of the tutorial. The environment can be deactivated with the following
-command:
+command in the terminal:
 ```terminal
 conda deactivate
 ```
