@@ -7,16 +7,17 @@ permalink: /tutorials/open-a-Molecule-Archive-in-Python/index.html
 Here is a wonderful set of instructions on how to work with MoleculeArchives in Python notebooks by Thomas Retzer and Nadia Huisjes. All potential problems encountered when configuring the conda environment are full addressed here.
 
 ### Create the Environment
+The next part will use basic commands from Git. To get familiar with **[Git](https://git-scm.com)** and its function we recommend the **[Git-it workshop](https://github.com/jlord/git-it-electron/releases)**. The workshop consist of different challenges which explain how to use Git. So if you want to understand the commands in more detail you can work through the challenges.
+
 First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub. One has to follow the steps on the page with one tiny addition. The steps will be also written out on this page.  
 
 1. Install **[Anaconda](https://www.anaconda.com/distribution/)**(Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already install on the computer the download is not needed. Anaconda/Miniconda is a basic Python distribution.
 
-2. Clone the tutorial repository. One can either download the repository or use the following command line (if git is installed).
+2. Clone the tutorial repository. One can either download the repository or use the following command line (if git is installed). Cloning means in this context to get a local copy of the repository on a computer.
 ```terminal
 git clone https://github.com/imagej/tutorials.git
 ```
-3. This step is different to the instructions on the website. In order to prevent problems we discovered that the environment has to be adjusted. Open the environment.yml
-file with a text editor (e.g. **[Atom](https://atom.io)**). There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
+3. This step is different to the instructions on the website. In order to prevent problems we discovered that the environment has to be adjusted. Open the environment.yml file with a text editor (e.g. **[Atom](https://atom.io)**). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
 ```terminal
   - pyjnius=1.2.0
   - seaborn
@@ -27,6 +28,10 @@ Save the file and continue with the steps described here or on the GitHub page.
 ```terminal
 cd tutorials
 ```
+For people who are not familiar with the cd command an example is given. Lets say the folder of interest is located inside the folder
+called git (The file path would look something like this /Users/your_name/git/tutorials). When a terminal window is open one starts
+the working directory is the users name ("your_name"). Now one has to navigate first in the git directory with "cd git". To go one layer deeper
+one has to type "cd tutorials". Basically the cd command goes one layer deeper in the file path. With "cd .." one can go one layer out.
 
 5. Create the environment:
 ```terminal
@@ -43,8 +48,7 @@ conda activate scijava
 jupyter notebook
 ```
 
-Now everything is ready to go with a yama repository. Before starting the tutorial one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned
-a folder called "notebooks" was copied. Inside one can find different examples which can be tried out.
+Now everything is ready to go with a yama repository. Before starting the tutorial one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned a folder called "notebooks" was copied. Inside one can find different examples which can be tried out.
 
 For the next section create a new notebook (File -> New Notebook -> Python 3). The code can be copied in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option + Enter" the cell will be executed and a new cell is created).
 
@@ -62,15 +66,14 @@ import jnius
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import re
-from matplotlib.colors import ListedColormap
 from jnius import autoclass
-from matplotlib import pyplot as plt
+import seaborn as sns
 
 #instantiate required classes to load archives
 File = autoclass('java.io.File')
 SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
 ```
+Scijava is needed to transform java class objects into python objects. The **[jnius package](https://github.com/kivy/pyjnius)** also helps to access Java classes. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** is a 2D plotting library.  
 
 ### Load the archive
 ```python
@@ -135,15 +138,21 @@ MSDs = list(map(lambda UID: archive.get(UID).getParameter('msd'), archive.getMol
 ```
 Finally, one can plot the distribution of the MSD in a histogram using the matplotlib package.
 ```python
-bins = np.arange(-100, 100, 5)
 plt.xlim([min(MSDs)-5, max(MSDs)+5])
-plt.hist(MSDs, bins=bins, alpha=0.5)
+plt.hist(MSDs, bins=24, alpha=0.5)
 plt.title('Mean Squared Displacement')
 plt.xlabel('MSD')
 plt.ylabel('count')
 
 plt.show()
 ```
+The seaborn package from python is really good for statistical plots and is based on the matplotlib package.
+When using seaborn the histogram can be plotted with one simple line. Kernel density estimation (kde) is turned off ("False").
+Bins specifies the number of bins.
+```python
+sns.distplot(MSDs,kde =False, bins =24)
+```
+
 
 This is the end of the tutorial. The environment can be deactivated with the following
 command in the terminal:
@@ -151,7 +160,9 @@ command in the terminal:
 conda deactivate
 ```
 
-Or simply close the notebook and the terminal window.
+Or simply by closing the notebook and the terminal window.
 
+Now you can make a bridge between the archive and python and use the great packages from python to create awesome plots.
+This connections offers unlimited possibilities to work with the data created in Mars.
 
 ### Great Job!
