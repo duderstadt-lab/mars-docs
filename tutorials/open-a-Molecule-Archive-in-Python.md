@@ -94,16 +94,16 @@ Now one has to add the location of the yama archive which will be used for analy
 right click on the file and "Get Info" and there the file path will be written out.
 
 ### Get started with simple Operations
-After loading on the necessary packages for python and loading the file one can finally can work with the archive. 
+After loading on the necessary packages for python and loading the file one can finally can work with the archive. The archive is specified as a "SingleMoleculeArchive". The methods which can be called can be found **[here](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/SingleMoleculeArchive.html)**.
 
 #### Get the Number of Molecules
-Now everything is ready to go. As a start, the number of molecules in the archive is read out.
+As a start, the number of molecules in the archive is read out. The method which will be used for that is called "getNumberOfMolecules()".
 ```python
 archive.getNumberOfMolecules()
 ```
-The notebook will print out the total number of molecules.
+The notebook will print out the total number of molecules. So here a function from java is used inside of a python script.
 #### Get the UIDs
-If one wants to know all the UIDs from all your molecules the following line can be used.
+If one wants to know all the UIDs from all your molecules the following line can be used. The method is called "getMoleculeUIDs()".
 ```python
 for UID in archive.getMoleculeUIDs():
     molecule = archive.get(UID)
@@ -112,7 +112,7 @@ for UID in archive.getMoleculeUIDs():
 The notebook will display all the UIDs.
 
 #### Get single Molecule Entries from the Archive
-There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0). The build-in function "to_python(data)" from scijava (imported as sc at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "to_java(data)" which does the opposite (which is not needed for the rest of the tutorial).
+There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0). The build-in function "to_python(data)" from scijava (imported as sc at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "to_java(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getDataTable()".
 ```python
 #get the DataTable for the molecule at index 0 as a pandas dataframe
 tableByIndex = sc.to_python(archive.get(0).getDataTable())
@@ -126,7 +126,7 @@ tableByUID = sc.to_python(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
 tableByUID
 ```
 #### More elegant Way to excess Molecules: Mapping
-Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in a easy fashion the map function can be used.
+Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.
 ```python
 molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
 ```
