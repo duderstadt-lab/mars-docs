@@ -4,56 +4,61 @@ title: Open a MoleculeArchive in Python
 permalink: /tutorials/open-a-Molecule-Archive-in-Python/index.html
 ---
 
-Here is a wonderful set of instructions on how to work with MoleculeArchives in Python notebooks by Thomas Retzer and Nadia Huisjes. All potential problems encountered when configuring the conda environment are full addressed here.
+Here is a wonderful set of instructions on how to work with MoleculeArchives in Python notebooks by Thomas Retzer and Nadia Huisjes. All potential problems encountered when configuring the conda environment are fully addressed here.
 
 ### Create the Environment
-The next part will use basic commands from Git. To get familiar with **[Git](https://git-scm.com)** and its function we recommend the **[Git-it workshop](https://github.com/jlord/git-it-electron/releases)**. The workshop consist of different challenges which explain how to use Git. So if you want to understand the commands in more detail you can work through the challenges.
+The next part will use basic commands from Git. To get familiar with **[Git](https://git-scm.com)** and its function we recommend the **[Git-it workshop](https://github.com/jlord/git-it-electron/releases)**. The workshop consist of different challenges which explain how to use Git. So if you want to understand the commands in more detail you can work through the challenges but this is not needed for working through the tutorial.
 
-First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub. One has to follow the steps on the page with one tiny addition. The steps will be also written out on this page.  
+First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub (it is basically a storage place). It contains all the necessary packages needed to build a bridge between java and python and also makes sure that the correct version of the package is used. The next steps will explain how to create the environment step by step.
 
-1. Install **[Anaconda](https://www.anaconda.com/distribution/)**(Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already install on the computer the download is not needed. Anaconda/Miniconda is a basic Python distribution.
+1. Install **[Anaconda](https://www.anaconda.com/distribution/)**(Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already install on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.
 
-2. Clone the tutorial repository. One can either download the repository or use the following command line (if git is installed). Cloning means in this context to get a local copy of the repository on a computer.
+2. One can download or clone (for those who are familiar with Git) the tutorial repository. To download the repository just go to the website and press download. To clone the repository use the following command.
 ```terminal
 git clone https://github.com/imagej/tutorials.git
 ```
-3. This step is different to the instructions on the website. In order to prevent problems we discovered that the environment has to be adjusted. Open the environment.yml file with a text editor (e.g. **[Atom](https://atom.io)**). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
+3. In order to prevent problems we discovered that the environment has to be adjusted. Open the environment.yml file with a text editor (e.g. **[Atom](https://atom.io)**). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
 ```terminal
   - pyjnius=1.2.0
   - seaborn
 ```
-Save the file and continue with the steps described here or on the GitHub page.
+Save the file in the same location and with the same name.
 
 4. Open a terminal window and navigate to the repository folder using cd:
 ```terminal
 cd tutorials
 ```
 For people who are not familiar with the cd command an example is given. Lets say the folder of interest is located inside the folder
-called git (The file path would look something like this /Users/your_name/git/tutorials). When a terminal window is open one starts
-the working directory is the users name ("your_name"). Now one has to navigate first in the git directory with "cd git". To go one layer deeper
-one has to type "cd tutorials". Basically the cd command goes one layer deeper in the file path. With "cd .." one can go one layer out.
+called my_documents (The file path would look something like this /Users/your_name/my_documents/tutorials). When a terminal window is opened the working directory is the users name ("your_name"). Now one has to navigate first in the my_documents directory with "cd my_documents". To go one layer deeper
+one has to type "cd tutorials". Basically the cd command navigates to the specified layer which lays deeper in the file path. With "cd .." one can go one layer out.
 
 5. Create the environment:
 ```terminal
 conda env create -f environment.yml
 ```
 
+It uses now the modified environment.yml file to create a python environment using the specified packages (like pyjnius version 1.2.0) which are specified inside.
+
 6. Activate the environment in the terminal:
 ```terminal
 conda activate scijava
 ```
 
-7. Launch Jupyter notebook. Your browser will open the directory:
+7. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
 ```terminal
 jupyter notebook
 ```
 
-Now everything is ready to go with a yama repository. Before starting the tutorial one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned a folder called "notebooks" was copied. Inside one can find different examples which can be tried out.
+Now the environment is created and activated and everything is ready to go with a yama repository.
 
-For the next section create a new notebook (File -> New Notebook -> Python 3). The code can be copied in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option + Enter" the cell will be executed and a new cell is created).
+For the next section create a new notebook (New -> Python 3). The code below can be copied and pasted in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option/Alt + Enter" the cell will be executed and a new cell is created).
+
+#####Before starting the tutorial one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned a folder called "notebooks" was copied. Inside one can find different examples which can be tried out.
 
 ### Load Fiji/ImageJ and the Python Packages
-Before starting one needs to load Fiji and all the necessary Python packages.
+Before starting one needs to load Fiji and all the necessary Python packages. It will use the Fiji on the local computer so it must be equipped with Mars. Here
+one can find the **[instructions](https://duderstadt-lab.github.io/mars-docs/usage/)**.
+
 ```python
 import imagej
 # One needs to add the path to the Fiji application on the computer
@@ -73,7 +78,11 @@ import seaborn as sns
 File = autoclass('java.io.File')
 SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
 ```
-Scijava is needed to transform java class objects into python objects. The **[jnius package](https://github.com/kivy/pyjnius)** also helps to access Java classes. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** is a 2D plotting library.  
+
+One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to
+check the location.
+
+**[Scijava](https://github.com/scijava/scyjava)** is needed to transform java class objects into python objects. The **[jnius package](https://github.com/kivy/pyjnius)** also helps to access Java classes. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** is a 2D plotting library.  
 
 ### Load the archive
 ```python
@@ -81,7 +90,12 @@ Scijava is needed to transform java class objects into python objects. The **[jn
 yamaFile = File('/Users/your_archive.yama')
 archive = SingleMoleculeArchive(yamaFile)
 ```
+Now one has to add the location of the yama archive which will be used for analysis. The file path has to be added in the code line. Just
+right click on the file and "Get Info" and there the file path will be written out.
+
 ### Get started with simple Operations
+After loading on the necessary packages for python and loading the file one can finally can work with the archive. 
+
 #### Get the Number of Molecules
 Now everything is ready to go. As a start, the number of molecules in the archive is read out.
 ```python
