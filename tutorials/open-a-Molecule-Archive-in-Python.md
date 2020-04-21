@@ -167,6 +167,7 @@ Bins specifies the number of bins.
 sns.distplot(MSDs,kde =False, bins =24)
 ```
 
+Now the file can be saved under File -> Save as.
 
 This is the end of the tutorial. The environment can be deactivated with the following
 command in the terminal:
@@ -178,5 +179,20 @@ Or simply by closing the notebook and the terminal window.
 
 Now you can make a bridge between the archive and python and use the great packages from python to create awesome plots.
 This connections offers unlimited possibilities to work with the data created in Mars.
+
+### Restart the enviornment and reopen Jupyter notebook
+
+Now it will be explained how to start up the environment and load Jupyter notebook for the another session.
+
+1. Open a terminal window and navigate to the repository folder where the jupyter notebooks are stored:
+```terminal
+cd notebooks
+```
+
+2. Activate the environment in the terminal:
+```terminal
+conda activate scijava
+```
+Now a list of notebooks should appear where one can be selected. 
 
 ### Great Job!
