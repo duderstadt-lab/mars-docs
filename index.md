@@ -13,5 +13,5 @@ This site is currently undergoing major changes and has many broken links. Check
 
 To get started with Mars, take a look at the [tutorials](tutorials), [example gallery](examples), and [usage guide](usage), or read [about the project's goals](about). Comprehensive reference material can be found in the [documentation](docs) section.
 
-<img align='center'>
-  <src='{{site.baseurl}}/assets/200417_status_full.gif' width='450' />
+<center>
+<img src='{{site.baseurl}}/assets/200417_status_full.gif' /></center>
