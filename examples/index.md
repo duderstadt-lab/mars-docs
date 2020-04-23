@@ -2,5 +2,7 @@
 layout: page
 title: Example Gallery
 permalink: /examples/index.html
-menu: examples
 ---
+#### [Flow Magnetic Tweezers](flow-Magnetic-Tweezers)
+
+Flow Magnetic Tweezers
