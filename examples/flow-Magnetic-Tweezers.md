@@ -4,8 +4,161 @@ title: Flow Magnetic Tweezers Pipeline
 permalink: /examples/flow-Magnetic-Tweezers/index.html
 ---
 
-stuff
+Following is a example guide to load a FMT video, finding the optimal parameters for the tracking with the DoG filter, generating an archive store, analysing the data by adding different regions and thus enabling final analysis with FMT pipeline. Once the archive is tagged and parameterised, a final `.csv` file can be generated with necessary data to make plots for an example  Flow Magnetic Tweezers experiment to study *E.coli* DNA gyrase. Have fun Tweezing.
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image.png' width='200' />
+### 1. Importing the video in FIJI
+Drag and drop the file `Example_Video.tif` or the folder `Example_Video` containing the video  in FIJI and open them as virtual stack. This is a segment of the total field of view from a gyrase experiment.
 
-[DoG link](../../docs/image/DogFilterProperties)
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image001.png' width='950' />
+
+### 2. Opening tracker from MARS plugin: option -> MoleculeArchive Suite -> Image Processing -> Peak Tracker
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image002.png' width='950' />
+
+### 3. Choosing boundaries and parameters for the peak finder and subsequent tracking
+
+The program uses Difference of Gaussian filter ([DoG filter](../../docs/image/DogFilterProperties)) to find peak position with sub pixel precision. Once peaks are found, the program tracks them through the stacks making a trajectory of the bead movement in xy-plane.
+
+After choosing appropriate settings for the DoG filter radius, Detection threshold and minimum distance between peaks, Preview checkbox displays the tracked peaks per frame. The Preview slice slider can we use to check the tracking of subsequent frames.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image003.png' width='950' />
+
+Once appropriate setting are chosen, the tracking can be started. Console here displays the steps and times, status bar the progress of peak fitting and tracking.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image004.png' width='950' />
+
+### 4. MARS GUI and archive
+
+Once the tracking is done, an archive is made in memory. Console here displays the time taken. Here it took 23 minutes. It can vary depending on the system and the memory allotted to ImageJ.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image005.png' width='950' />
+
+This file can also be saved as a store where all molecules are saved as separate files and loaded on as-needed basis. This format is very memory efficient and still compatible with multi-threading. All molecules here have unique IDs. The x and y tracking information is given by default. At this point **`Step1_Add_Regions.groovy`** can be executed.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image006.png' width='950' />
+
+### 5. Adding regions of different activites to the archive
+
+The groovy script adds different regions as displayed. Like reversals, Region of gyrase activity, slope of supercoiling steps etc.
+
+The Regions are used by the **`Step2_FMT_Pipeline_truncated.groovy`** to calculate different parameters and tag molecules
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image007.png' width='950' />
+
+### 6. Running analysis Pipeline: Selecting parameter boundaries and tags
+
+For the analysis pipeline stated previously, following figures explain the steps to characterize molecules in the archive.
+
+Following is a singly-tethered molecule showing a gyrase reaction. Notice that the trace is “flipped”, The coordinates for projected length here are given in microns.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image013.png' width='950' />
+
+Notice all the parameters and values, these were calculated with the analysis pipeline. Only prerequisite is that the regions should be added. The regions shown here are labelled as such with the add regions file. Additional to the Parameters, molecules are also classified using tags.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image014.png' width='950' />
+
+So how does the program know that the molecule shown above is a singly-tethered, coilable and what force the molecule experiences. The inputs are shown here.
+
+>These Parameters will be explained in parts trough the guide
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image015.png' width='600' />
+
+Different aspects of the molecules are analyzed. Shown below is the whole trace. With parameters on the right-hand side.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image016.png' width='950' />
+
+The zoom is set to initial part of the trace called reversal (starting from left side: beginning of the trace). The first 238 frames here show a flow reversal. The regions are named first reversal RF (reverse flow) and first reversal FF (forward flow). An Inbuilt function called region difference calculator is used. As the name suggest, it calculates the difference between the stated region. Here the parameter was rev_begin_x (reversal at the beginning for x coordinate).
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image017.png' width='950' />
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image019.png' width='600' />
+
+The reversal threshold separate mobile beads from stuck beads. Also, some multiply-tethered beads can be classified using reversals.
+
+Following the reversal, magnets are rotated at 2rot/sec and high flow rate (20 &mu;l/min - ca. 2pN) for 1200 frames to distinguish singly-tethered molecules. Two different parameters are calculated here.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image020.png' width='950' />
+
+Here the magnets were rotated 150 turns in both positive and negative directions. Magrot20f is the region where the magnets are rotated. coil20 Negative Peak and coil20 Positive Peak are respective regions where sigma for DNA is highest for respective coilings. A single peak is observed here as DNA separates locally when negatively coiled, dissipating the torsion. This is not the case for bead that is tethered via multiple DNA molecules. To separate these molecules further, an additional region Slope_Neg_20 is calculated.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image021.png' width='950' />
+
+The Slope_Neg_20 parameter is the slope of the region shown. Following thresholds are empirically chosen.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image022.png' width='600' />
+
+The tags here are doubleCoiling and coilable20 respectively.
+
+Bead fluctuations lateral to flow direction are used to numerically ascertain force and length of the DNA molecule. As only the projected length is known, DNA is assumed to have Worm-like chain behavior.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image025.png' width='600' />
+
+The <var>&delta;</var><var>y</var><sup>2</sup> is the the mean squared displacement of the bead excursions in the y direction. They are taken from the Force2p5 region.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image024.png' width='950' />
+
+Other parameters such as temperature, persistanceLength, contourLength are given in the pipeline.
+
+The other two values for slidingForceWindow and stdSlidingForce are used to check if the bead, in the chosen, get transiently stuck. It the bead gets stuck, it registers as higher force. The sliding windows iteratively calculates mean and standard deviation of each window. If a particular window deviates more than threshold MSD, the bead is tagged as stuckForce. This also makes sense as MSD of these fluctuations are supposed to be constant throughout the region.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image026.png' width='600' />
+
+Before the gyrase reaction, the molecule is supercoiled at reaction flow rate. This part of the trace shows the molecule being coiled negatively at first and then positively. Ultimately, the tether is left at +60 turns for the gyrase reaction.
+
+Similar to the coilable20 tag, coilable2p5 is a region difference calculation. It helps further refine finding optimal traces. The regions used for this tag are coil2p5 Peak and coil2p5 Background.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image028.png' width='950' />
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image033.png' width='600' />
+
+Positive Coiling Slope and Negative Coiling Slope regions are used as coordinate conversion tool from pixels to cycles/sec. Here the magnet rotation is 1 rot/sec and frame acquisition rate is 4 frames per second. Hence turns_per_slice is 1 rot/4 frames = 0.25. turns_per_cycle is one cycle of gyrase as it is a type II topoisomerase.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image034.png' width='600' />
+
+Final part of the trace after all the checkpoints is the gyrase reaction.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image031.png' width='950' />
+
+In the gyrase reaction region, there are Before Enzyme and After Enzyme regions. As gyrase reactions are force dependent, for any force above ca. 0.5 pN, only positive coils are resolved (chi reaction). For lower forces, both positive coils are resolved and negative coils are introduced (alpha reactions). Following thresholds tag molecules either alpha or chimol. Also, the parameter activity_score is calculated in the Gyrase Reaction region.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image035.png' width='600' />
+
+**Additional Thresholds shown here:**
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image036.png' width='600' />
+
+dirftZeroRegion is the number of frames during drift correction where coordinates are set to 0 for this reference region.
+conversionPixeltoMicron is the pixels size in microns.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image037.png' width='600' />
+
+stuckRevThreshold uses the reversal parameters rev_begin_x and rev_begin_y to tag immobile beads. There should be no motion during flow reversal in either x or y coordinate. These are tagged stuckRev.
+
+stuckMSDThresholdx and stuckMSDThresholdy parameters are calculated MSD for the whole trace for x and y respectively. Molecules within the threshold are tagged stuckMSD. There are than usd to calculate and correct drift.
+
+minLength tags molecules shortTrajectory. This filters out all the the trajectories which have less frames than the threshold provided here by excluding this tag.
+
+Once appropriate boundaries are chosen, the program can be run. Values for this particular example are set by default in the script.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image008.png' width='950' />
+
+Once the program runs, the activity can be traced. Here it took 7 minutes to analyse.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image009.png' width='950' />
+
+### 7. Final Data
+
+The data shown is now drift corrected, different parameters calculated on the right are unique to this particular molecules. The molecules are tagged and the categories can be displayed by searching for the tag (top left) which also shows count of the tags. Calculated columns are shown at the bottom.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image010.png' width='950' />
+
+At this point, **`Step3_generate_csv.groovy`**  can be executed. It extracts the coordinate, force and rate information form the analyzed data. Once the analysis pipeline is through, the tags singleTether (include: coilable20, exclude: doubleCoiling and shortTrajectory) and coilable2p5 are analysed with a sliding window which finds the maximum inclination for both positive and negative coiling from the poscycles and negcycles columns respectively.
+
+Once the Step 3 groovy is done, a csv file is generated in the directory of the archive named **`Gyrase_Scatter.csv`**.
+
+### 8. Plotting the dataset
+
+For plotting, the csv can either be placed in the same folder as the python script Step4_scatter_plot.py or a path for this csv can be provided to any given IDE. Here Spyder is used.
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image011.png' width='950' />
+
+<img align='center' src='{{site.baseurl}}/examples/img/fmt/image012.png' width='800' />
