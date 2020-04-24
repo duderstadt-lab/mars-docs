@@ -6,7 +6,7 @@ permalink: /docs/index.html
 
 The **Mars** platform provides a collection of ImageJ2 commands for performing a wide variety of common image processing and secondary analysis tasks. This page provides documentation of the [ImageJ2 commands](#commands) and the graphical user interface for molecule classification.  
 
-To start learning how to use Mars, we recommend first working through the introductory **[Let's Create a MoleculeArchive](../tutorials/create-a-Molecule-Archive)** and exploring the [examples](../examples), then dig further into the documentation.
+To start learning how to use Mars, we recommend first working through the introductory **[Let's Make a MoleculeArchive](../tutorials/create-a-Molecule-Archive)** and exploring the [examples](../examples), then dig further into the documentation.
 
 Script writers and java developers can get started using the **Mars** development tutorial. Complete javadoc for the mars-core API can be found [here](http://duderstadt-lab.github.io/mars-core/javadoc/).
 
@@ -59,4 +59,16 @@ Script writers and java developers can get started using the **Mars** developmen
 | [Save ROIs](./roi/SaveROIs) | Efficiently save all ROIs currently in the RoiManager to individual videos. |
 | [Build ROIs from MoleculeArchive](./roi/BuildROIsFromMoleculeArchive) | Create box ROIs using coordinates from molecules in the archive. |
 
-## <a name="gui"></a>Molecule Explorer Reference
+## <a name="gui"></a>Mars Rover
+
+Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interface helps to analyse, process, and filter the data in a streamlined and reproducible manner. To familiarise yourself with the most commonly used features explore the [Let's Make a MoleculeArchive tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/).
+For in-depth information describing all features explore this documentation.
+
+Toolbar Tabs
+|:--------------| :------------- |
+| [Toolbar] (./MarsRover/Toolbar) | Save, edit and delete.    |
+| [Rover desktop] (./MarsRover/RoverDesktop)  | Main features of the dataset and scriptable widgets.       |
+| [Experiments] (./MarsRover/Experiments)    | Metadata and data analysis log.      |
+| [Molecules] (./MarsRover/Molecules)     | UIDs with data tables and plot.       |
+| [Documentation] (./MarsRover/Documentation)  | Build-in text editor to annotate data sets.       |
+| [Molecule filter]       | |[insert info]       |
