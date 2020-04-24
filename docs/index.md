@@ -71,4 +71,4 @@ Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interfa
 | <img align='center' src='{{site.baseurl}}/docs/img/Icons/img2.png' width='50' />|[Experiments](./MarsRover/Experiments)    | Metadata and data analysis log. |
 | <img align='center' src='{{site.baseurl}}/docs/img/Icons/img3.png' width='50' />|[Molecules](./MarsRover/Molecules)     | UIDs with data tables and plot options. |
 | <img align='center' src='{{site.baseurl}}/docs/img/Icons/img4.png' width='50' />|[Documentation](./MarsRover/Documentation)  | Build-in text editor to annotate data sets. |
-| <img align='center' src='{{site.baseurl}}/docs/img/Icons/img5.png' width='50' />|[Settings]       | Archive specific settings. |
+| <img align='center' src='{{site.baseurl}}/docs/img/Icons/img5.png' width='50' />|[Settings](./MarsRover/Settings)      | Archive specific settings. |
