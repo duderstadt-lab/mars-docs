@@ -34,7 +34,7 @@ photobleached over time.
 
 
 ### 2. Use peak tracker to track peaks through frames
-Now, open the "Peak Tracker" tool from **Mars** as shown and enter all settings. Providing the correct settings makes sure that the tracker can find the peaks correctly. For more information about these parameters visit the [documentation page](./docs/image/PeakTracker).
+Now, open the "Peak Tracker" tool from **Mars** as shown and enter all settings. Providing the correct settings makes sure that the tracker can find the peaks correctly. For more information about these parameters visit the [documentation page](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakTracker/).
 
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img10.jpg' width='450' />
@@ -107,9 +107,9 @@ After going through the entire dataset, go back to the desktop page of **Mars Ro
 
 ### 6. Saving the MoleculeArchive
 
-The archive can be safed as a .yama file by selecting the save option. Now the data can be further analysed and plotted using Python. If you are interested in that, please continue with the [tutorial on MoleculeArchive data handling in Python](./tutorials/open-a-Molecule-Archive-in-Python)
+The archive can be safed as a .yama file by selecting the save option. Now the data can be further analysed and plotted using Python. If you are interested in that, please continue with the [tutorial on MoleculeArchive data handling in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/open-a-Molecule-Archive-in-Python/)
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img21.png' width='200' />
 
 
-For more detailed information about all functions in **Mars Rover** please visit the [documentation page.](./docs/MarsRover)
+For more detailed information about all functions in **Mars Rover** please visit the [documentation page.](https://duderstadt-lab.github.io/mars-docs/docs/)
