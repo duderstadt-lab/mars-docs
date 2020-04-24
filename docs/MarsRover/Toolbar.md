@@ -1,0 +1,30 @@
+---
+layout: docs
+title: Toolbar
+permalink: /docs/MarsRover/Toolbar/index.html
+---
+
+#### File
+
+| :------------- | :------------- |
+| Save       | Save the created Molecule Archive.      |
+| Save a Copy       | Save a copy of the created Molecule Archive.       |
+| Save a Virtual Store Copy       | Save the Molecule Archive in virtual storage       |
+| Close      | Close **Mars Rover**.|
+
+A Molecule Archive can be saved in two ways:
+1. Normal storage: saved in the .yama file format. Additionally a .yama.cfg file is saved containing additional information like settings and selections. A .cfg file can be renamed and reused for another archive to apply the settings defined for another Archive.
+2. Virtual storage: saves a .yama.store folder containing .json files for the indexes, properties, all molecule UIDs and experiment IDs separately. Choose this saving mode when dealing with large data sets.
+
+
+#### Tools
+
+| :------------- | :------------- |
+| Delete Molecules      | Delete molecules with a specific tag or all molecules without tag.     |
+| Delete Molecule Tag       | Delete a specified or all tag(s).       |
+| Delete Molecule Parameters       |  Delete a specified or all calculated parameter(s).      |
+| Delete Segment Tables       | Deletes segment tables that are generated for the kinetic change point analysis.       |
+| Merge Molecules       | Merges the data tables of multiple molecules. Use f.e. if a tracking result appears to be split into multiple smaller tracked segments.       |
+| Show Video      | Item Two       |
+| Export Video      | Item Two       |
+| Rebuild indexes      | Rebuid the index.json file when operating in virtual storage.        |

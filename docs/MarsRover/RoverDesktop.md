@@ -14,9 +14,7 @@ Widgets can be selected from the toolbar with a click. The scripting language ca
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img2.png' width='80' />
 
 The predefined widgets give a first glance at the data. As shown in the example, the
-information widget shows the name of the archive, ???, the amount of molecules in the archive,
-the amount of metadata files and which type of memory is used for storage ('Normal' or 'Virtual').
-The tag widget shows a bar plot of the amount of molecules that are categorised by a certain tag.
+information widget shows the name of the archive, the archive type, the amount of molecules in the archive, the amount of metadata files and which type of memory is used for storage ('Normal' or 'Virtual Mode'). The tag widget shows a bar plot of the amount of molecules that are categorised by a certain tag.
 Update the widgets after a change in the archive by pressing the refresh button.
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img4.png' width='450' />
