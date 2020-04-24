@@ -64,11 +64,12 @@ Script writers and java developers can get started using the **Mars** developmen
 Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interface helps to analyse, process, and filter the data in a streamlined and reproducible manner. To familiarise yourself with the most commonly used features explore the [Let's Make a MoleculeArchive tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/).
 For in-depth information describing all features explore this documentation.
 
-Toolbar Tabs
+Toolbar Tab
+
 | :-------------- | :------------- |
-| [Toolbar](./MarsRover/Toolbar) | Save, edit and delete.    |
-| [Rover desktop](./MarsRover/RoverDesktop)  | Main features of the dataset and scriptable widgets.       |
-| [Experiments](./MarsRover/Experiments)    | Metadata and data analysis log.      |
-| [Molecules](./MarsRover/Molecules)     | UIDs with data tables and plot.       |
-| [Documentation](./MarsRover/Documentation)  | Build-in text editor to annotate data sets.       |
-| [Molecule filter]       | |[insert info]       |
+| [Toolbar](./MarsRover/Toolbar) | Save, edit and delete. |
+| [Rover desktop](./MarsRover/RoverDesktop)  | Main features of the dataset and scriptable widgets. |
+| [Experiments](./MarsRover/Experiments)    | Metadata and data analysis log. |
+| [Molecules](./MarsRover/Molecules)     | UIDs with data tables and plot. |
+| [Documentation](./MarsRover/Documentation)  | Build-in text editor to annotate data sets. |
+| [Molecule filter]       | |[insert info] |
