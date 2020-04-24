@@ -3,12 +3,10 @@ layout: docs
 title: Molecules
 permalink: /docs/MarsRover/Molecules/index.html
 ---
+The Molecules tab has three main sections:
 
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img8.png' width='600' />
-
-
-The Molecules tab has three main sections:
 
 
 **1. List of molecules in the Archive.**
@@ -26,7 +24,7 @@ The Molecules tab has three main sections:
 | Plot | Plotting widget for easy in-GUI analysis of the data |
 | Scriptable Widgets      | Scriptable Widgets to visualise data per molecule.       |
 
-_Plotting:_
+**Plotting:**
 To make a plot press the 'Add Plot' button. A new window will appear at the bottom of the screen to provide title, axis labels, indicators, x-value, y-value, style, color and stroke.
 Add an additional line by pressing the + in the left corner, update the graph with the refresh button in the right corner.
 
