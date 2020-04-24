@@ -11,7 +11,7 @@ Widgets can be selected from the toolbar with a click. The scripting language ca
 
 
 #### Predefined widgets
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img2.png' width='50' />
+<img align='center' src='{{site.baseurl}}/docs/img/Rover/img2.png' width='80' />
 
 The predefined widgets give a first glance at the data. As shown in the example, the
 information widget shows the name of the archive, ???, the amount of molecules in the archive,
@@ -23,7 +23,7 @@ Update the widgets after a change in the archive by pressing the refresh button.
 
 
 #### Scriptable widgets
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img3.png' width='200' />
+<img align='center' src='{{site.baseurl}}/docs/img/Rover/img3.png' width='180' />
 
 Scriptable widgets can be customised fully to show parameters of interest.
 
@@ -31,4 +31,4 @@ There are four predefined scriptable widgets: a Category Chart, Histogram,
 XY chart, and Bubble chart. Click on the <> tab to change the script, click on the book icon to show the script log. To show examples of these plot types load the widgets and press the refresh button.
 
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='600' />
+<img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800' />
