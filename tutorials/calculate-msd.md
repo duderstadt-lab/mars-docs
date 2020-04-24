@@ -1,37 +1,39 @@
 ---
 layout: tutorials
-title: "Let's Calculate the Mean Square Displacement"
+title: "Let's Calculate the Mean Square Displacement - Tutorial"
 permalink: /tutorials/calculate-msd/index.html
 ---
 
 _level: intermediate, duration: 5-10 min_
 
-In this tutorial we will calculate the mean square displacement in the traces
-obtained after running the peak tracker. To do so, we need a MoleculeArchive .yama file with the data of the traces of interest. If you do not know yet how to create a MoleculeArchive from your data please go back to the tutorial **[Let's Create a MoleculeArchive](../tutorials/create-a-Molecule-Archive)**. In case you do not want to do that tutorial first go ahead and use tutorial file from our repository. (TestVideoarchive.yama)
-
+This tutorial focusses on the calculation of the mean square displacement in the traces obtained after running the "Peak Tracker" tool. To do so, a MoleculeArchive .yama file with the data of the traces of interest is needed. To create such an archive, look at the tutorial [Let's Create a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/). Alternatively, one can also use the tutorial file from the repository (Testvideoarchive.yama)
 
 ### 1. Open the MoleculeArchive (.yama)
-First, open the archive using the molecule tool. The MARS GUI should show up.
+First, open the archive using the "Molecule" tool. The **Mars Rover** GUI should show up.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img1.png' width='450' />
 
 ### 2. Run the Mean Square Displacement DriftCalculator
-Now go back to the main Fiji environment and select the Mean Square Displacement Calculator from the MARS plugins.
+Now go back to the main Fiji environment and select the "Mean Square Displacement Calculator" from the **Mars** plugins.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img2.jpg' width='450' />
 
-This should open a window in which you can put in settings.
+This should open a window in which settings can be provided.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img3.png' width='200' />
 
-In the case of this experiment we want to use the archive we just opened ('TestVideoarchive.yama') and calculate the MSD for the movement in the direction of the y-axis. You can put in a parameter name you like. Now press OK.
+In the case of this example data set, the MSD is calculated for the movement in the direction of the y-axis. Provide a parameter name and press OK.
+For more information about the experimental background of this example dataset go to the [Let's Create a MoleculeArchive Tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/)
 
-### 3. Show the results in the MARS GUI
-After the calculator has run go back to the MARS GUI and open any of the molecule UIDs to show the plot. Next to the plot window you find a window with more options (f.e. molecule tagging). Next to the information icon you find an icon to move to the parameters tab. Click this tab. This should show a list of obtained parameters - at this moment only showing the MSD parameter we just calculated. Since the MSD is a property of a trace one value is calculated per molecule (UID).
+
+
+### 3. Show the results in Mars Rover
+After the calculator has run go back to **Rover** and open any of the molecule UIDs to show the plot. Next to the plot window a window is found with more options is found (f.e. for molecule tagging). Click on the parameters tab (next to the information icon on the top). This should show a list of obtained parameters - at this moment only showing the MSD parameter just calculated. Since the MSD is a property of a trace one value is calculated per molecule (UID).
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img4.png' width='450' />
 
-When you now go through the different molecule UIDs you can clearly see that, as expected, for active molecules (molecules that we marked with the tag 'Active' in the 'Let's create a MoleculeArchive' tutorial) the MSD value is way higher than for traces representing non-Active molecules.
+When exploring different molecule UIDs two different populations are found: the population tagged "Active" with a high MSD & the untagged population with a low MSD value. This is to be expected since active polymerase molecules are expected to travel a longer distance on the DNA than the molecules that are not active.
+
 Now save the archive again to retain the calculated values.
 
-If you want to analyze these values further f.e. by means of plotting, have a look at the [How to open a MoleculeArchive in python](open-a-Molecule-Archive-in-Python) tutorial.
+To further analyse these results f.e. by means of plotting, have a look at the [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/open-a-Molecule-Archive-in-Python/) tutorial.
