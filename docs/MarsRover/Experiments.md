@@ -5,14 +5,14 @@ permalink: /docs/MarsRover/Experiments/index.html
 ---
 
 The Experiments tab has three main sections:
-# 1. List of experiments in the Archive.
+**1. List of experiments in the Archive.**
 
 | :------------- | :------------- |
 | Index       | Index of the experiment.       |
 | UID       | UID of the experiment.       |
 | Tags       | Tags given to the experiment.       |
 
-# 2. Data section.
+**2. Data section.**
 
 | :------------- | :------------- |
 | DataTable      | Global information about the experiment like time and slice number.      |
@@ -20,7 +20,7 @@ The Experiments tab has three main sections:
 | Scriptable Widgets      | Scriptable Widgets to visualize data per experiment.       |
 | Bdv Views       | BigDataViewer parameters to be used for video visualisations.       |
 
-# 3. Notes, parameters, and information valid for all molecules within the experiment.
+**3. Notes, parameters, and information valid for all molecules within the experiment.**
 
 | :------------- | :------------- |
 | Information       | UID, Tags and Notes.      |
