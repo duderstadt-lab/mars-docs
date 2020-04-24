@@ -5,6 +5,8 @@ permalink: /docs/MarsRover/Experiments/index.html
 ---
 
 The Experiments tab has three main sections:
+
+
 **1. List of experiments in the Archive.**
 
 | :------------- | :------------- |
@@ -23,11 +25,11 @@ The Experiments tab has three main sections:
 **3. Notes, parameters, and information valid for all molecules within the experiment.**
 
 | :------------- | :------------- |
-| Information       | UID, Tags and Notes.      |
+| Information       | UID (copy to clipboard with icon), Tags and Notes.      |
 | Parameters       | List of experiment-wide parameters.       |
 | Regions       | List of assigned regions (f.e. to denote the change of a parameter at a certain time point in the experiment).       |
 | Positions       | List of globally assigned positions.      |
 
 Regions and Positions are globally defined in the Experiments tab and if enabled will show up in all plots where relevant.
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img7.png' width='450' />
+<img align='center' src='{{site.baseurl}}/docs/img/Rover/img7.png' width='600' />
