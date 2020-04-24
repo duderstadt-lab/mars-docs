@@ -65,10 +65,10 @@ Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interfa
 For in-depth information describing all features explore this documentation.
 
 Toolbar Tabs
-|:--------------| :------------- |
-| [Toolbar] (./MarsRover/Toolbar) | Save, edit and delete.    |
-| [Rover desktop] (./MarsRover/RoverDesktop)  | Main features of the dataset and scriptable widgets.       |
-| [Experiments] (./MarsRover/Experiments)    | Metadata and data analysis log.      |
-| [Molecules] (./MarsRover/Molecules)     | UIDs with data tables and plot.       |
-| [Documentation] (./MarsRover/Documentation)  | Build-in text editor to annotate data sets.       |
+| :-------------- | :------------- |
+| [Toolbar](./MarsRover/Toolbar) | Save, edit and delete.    |
+| [Rover desktop](./MarsRover/RoverDesktop)  | Main features of the dataset and scriptable widgets.       |
+| [Experiments](./MarsRover/Experiments)    | Metadata and data analysis log.      |
+| [Molecules](./MarsRover/Molecules)     | UIDs with data tables and plot.       |
+| [Documentation](./MarsRover/Documentation)  | Build-in text editor to annotate data sets.       |
 | [Molecule filter]       | |[insert info]       |
