@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: marsrover
 title: Toolbar
 permalink: /docs/MarsRover/Toolbar/index.html
 ---

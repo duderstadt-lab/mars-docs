@@ -45,7 +45,7 @@ final double bigger = radius / Math.sqrt( 2 ) * 0.9
 
 output = ij.op().run("dog", image, smaller, bigger)
 ```
-Generate an output table of x profiles for a range of DoG radii given starting and ending x and y coordinates:
+Generate an output table of x profiles for a range of DoG radii given starting and ending x and y coordinates. For this to work properly please first convert your image to 32-bit using Image>Type>32-bit, save and reopen that image before performing this test:
 
 ```groovy
 #@ Img image

@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: marsrover
 title: Experiments
 permalink: /docs/MarsRover/Experiments/index.html
 ---

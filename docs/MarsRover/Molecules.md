@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: marsrover
 title: Molecules
 permalink: /docs/MarsRover/Molecules/index.html
 ---
