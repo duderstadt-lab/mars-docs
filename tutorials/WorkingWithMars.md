@@ -1,6 +1,6 @@
 ---
 layout: workingwithmars
-title: Working with Mars
+title: WorkingwithMars
 permalink: /tutorials/WorkingWithMars/index.html
 ---
 
