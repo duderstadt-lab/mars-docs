@@ -16,21 +16,21 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
   Note: it is advised to do the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) before doing this tutorial.
 
 #### Mars to [ ]
-* [How to open a MoleculeArchive in python](open-a-Molecule-Archive-in-Python)
+* [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
 
   _Skill level: Intermediate._  Learn how to load and work with MoleculeArchives in Jupyter notebooks running Python 3 and work with mars together with all the wonderful packages available in the python environment.
 
 #### Scripting
-* [Introduction to groovy scripting](introduction-to-groovy-scripting)
+* [Introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/)
 
   _Skill level: Intermediate._ Learn how to access and perform basic operations with MoleculeArchives.
-* [Advanced groovy scripting](advanced-groovy-scripting)
+* [Advanced groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/)
 
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of MoleculeArchive records.
 
 ----
 
 #### Affine2D Transformation
-* [How to calculate Affine2D transformation coordinates](HowToCalculateAffine2D)
+* [How to calculate Affine2D transformation coordinates](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
 
   _Skill level: Beginner._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji.
