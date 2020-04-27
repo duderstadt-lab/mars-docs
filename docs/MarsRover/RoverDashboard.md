@@ -1,10 +1,10 @@
 ---
 layout: marsrover
-title: Rover Desktop
-permalink: /docs/MarsRover/RoverDesktop/index.html
+title: Rover Dashboard
+permalink: /docs/MarsRover/RoverDashboard/index.html
 ---
 
-The Rover Desktop gives an overview of the data collected in the Molecule Archive.
+The Rover Dashboard gives an overview of the data collected in the Molecule Archive.
 Widgets can be selected from the toolbar with a click. The scripting language can be switched between Groovy or Python in the drop down menu and all widgets can either be cleared from the desktop (bomb icon), stopped loading (square) or refreshed (refresh button) simultaneously.
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img5.png' width='450' />
