@@ -1,5 +1,5 @@
 ---
-layout: WorkingWithMars
+layout: workingwithmars
 title: Working with Mars
 permalink: /tutorials/WorkingWithMars/index.html
 ---
