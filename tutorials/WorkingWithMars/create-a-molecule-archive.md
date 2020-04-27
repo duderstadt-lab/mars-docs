@@ -1,5 +1,5 @@
 ---
-layout: tutorials
+layout: workingwithmars
 title: "Let's Make A MoleculeArchive - Tutorial"
 permalink: /tutorials/WorkingWithMars/create-a-Molecule-Archive/index.html
 ---

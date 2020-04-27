@@ -1,5 +1,5 @@
 ---
-layout: tutorials
+layout: workingwithmars
 title: "Let's Calculate the Mean Square Displacement - Tutorial"
 permalink: /tutorials/WorkingWithMars/calculate-msd/index.html
 ---
