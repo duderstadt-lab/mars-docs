@@ -13,16 +13,4 @@ This site is currently undergoing major changes and has many broken links. Check
 
 To get started with Mars, take a look at the [tutorials](tutorials), [example gallery](examples), and [usage guide](usage), or read [about the project's goals](about). Comprehensive reference material can be found in the [documentation](docs) section.
 
-op3
-{:refdef: style="text-align: center;"}
-![my image]({{site.baseurl}}/assets/200417_status_full.gif)
-{: refdef}
-
-op4
 <div style="text-align: center"><img src='{{site.baseurl}}/assets/200417_status_full.gif' width="450"/></div>
-
-
-op6
-<p align='center'>
-  <img src='{{site.baseurl}}/assets/200417_status_full.gif' width='450' />
-</p>
