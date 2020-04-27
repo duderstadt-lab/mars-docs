@@ -30,7 +30,7 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
 
 ----
 
-#### Affine2D transformation
+#### Affine2D Transformation
 * [How to calculate Affine2D transformation coordinates](HowToCalculateAffine2D)
 
   _Skill level: Beginner._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji.
