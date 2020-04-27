@@ -16,7 +16,7 @@ single-molecule dataset provides an excellent way to familiarise yourself with
 ### 1. Import a video in Fiji
 Open the example dataset 'TestVideo.tif' in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='200' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='450' />
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450' />
 
 

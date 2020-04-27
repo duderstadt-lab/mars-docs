@@ -15,12 +15,16 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
   _Skill level: Intermediate._  Learn how to calculate the mean square displacement from the traces in the molecule archive.
   Note: it is advised to do the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) before doing this tutorial.
 
+* [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets)
+
+  _Skill level: Advanced._  Learn how to create customised widgets for fast initial data analysis on the **Rover Dashboard**.
+
 #### Mars to [ ]
 * [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
 
   _Skill level: Intermediate._  Learn how to load and work with MoleculeArchives in Jupyter notebooks running Python 3 and work with mars together with all the wonderful packages available in the python environment.
 
-* [Convert TrackMate Results to Mars](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/trackmate-to-mars)
+* [How to convert TrackMate Results to Mars](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/trackmate-to-mars)
 
   _Skill level: Intermediate._  Learn how to import tracking results from [TrackMate](https://imagej.net/TrackMate) to **Mars**.
 
