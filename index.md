@@ -18,4 +18,22 @@ op1
 <img align='center' src='{{site.baseurl}}/assets/200417_status_full.gif' width='450' />
 
 op2
-![description]({site.baseurl}}/assets/200417_status_full.gif){: .center-image}
+<img align='center_image' src='{{site.baseurl}}/assets/200417_status_full.gif' width='450' />
+
+op3
+{:refdef: style="text-align: center;"}
+![my image]({{site.baseurl}}/assets/200417_status_full.gif)
+{: refdef}
+
+op4
+<div style="text-align: center"><img src='{{site.baseurl}}/assets/200417_status_full.gif' width="450"/></div>
+
+op5
+<p align='center''>
+  <img src='{{site.baseurl}}/assets/200417_status_full.gif' width='450' />
+</p>
+
+op6
+<p align='center'>
+  <img src='{{site.baseurl}}/assets/200417_status_full.gif' width='450' />
+</p>
