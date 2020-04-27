@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: marsrover
 title: Rover Desktop
 permalink: /docs/MarsRover/RoverDesktop/index.html
 ---
