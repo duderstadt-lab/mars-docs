@@ -6,7 +6,7 @@ permalink: /tutorials/workingwithmars/calculate-msd/index.html
 
 _level: intermediate, duration: 5-10 min_
 
-This tutorial focuses on the calculation of the mean square displacement (MSD) in the traces obtained after running the "Peak Tracker" tool. To do so, a MoleculeArchive .yama file with the data of the traces of interest is needed. To create such an archive, look at the tutorial [Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/). Alternatively, one can also use the tutorial file from the repository (Testvideoarchive.yama)
+This tutorial focuses on the calculation of the mean square displacement (MSD) in the traces obtained after running the "Peak Tracker" tool. To do so, a MoleculeArchive .yama file with the data of the traces of interest is needed. To create such an archive, look at the tutorial [Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). Alternatively, one can also use the tutorial file from the repository (Testvideoarchive.yama)
 
 ### 1. Open the MoleculeArchive (.yama)
 First, open the archive using the "Molecule" tool. The **Mars Rover** GUI should show up.
@@ -23,7 +23,7 @@ The following window will show up. Provide the settings as shown.
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img3.png' width='200' />
 
 In the case of this example data set, the MSD is calculated for the movement in the direction of the y-axis. Provide a parameter name and press OK.
-For more information about the experimental background of this example dataset go to the [Let's Make a MoleculeArchive Tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/)
+For more information about the experimental background of this example dataset go to the [Let's Make a MoleculeArchive Tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)
 
 
 
@@ -36,4 +36,4 @@ When exploring the molecules two different populations are found: the population
 
 Now save the archive again to retain the calculated values.
 
-To further analyse these results f.e. by means of plotting, have a look at the [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/open-a-Molecule-Archive-in-Python/) tutorial.
+To further analyse these results f.e. by means of plotting, have a look at the [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.

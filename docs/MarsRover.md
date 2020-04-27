@@ -4,7 +4,7 @@ title: Mars Rover
 permalink: /docs/MarsRover/index.html
 ---
 
-Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interface helps to analyse, process, and filter the data in a streamlined and reproducible manner. To familiarise yourself with the most commonly used features explore the [Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/) tutorial.
+Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interface helps to analyse, process, and filter the data in a streamlined and reproducible manner. To familiarise yourself with the most commonly used features explore the [Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial.
 
 **Toolbar Tabs**
 

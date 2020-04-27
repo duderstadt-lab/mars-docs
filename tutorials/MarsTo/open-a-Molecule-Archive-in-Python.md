@@ -143,7 +143,7 @@ for molecule in molecules:
 Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the MSD values are stored in a list() that is way the line can be in a separate cell.
 
 #### Getting Parameters from the Data
-In this ***[tutorial before the mean squared displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/calculate-msd/)*** of the data along the y axis was calculated. The following line saves the MSD values in a list which makes it possible to excess the parameters. The parameter was called "msd" in the archive and has to be specified if this parameter has to be called with "getParameter()".
+In this ***[tutorial for the mean squared displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)*** of the data along the y axis was calculated. The following line saves the MSD values in a list which makes it possible to excess the parameters. The parameter was called "msd" in the archive and has to be specified if this parameter has to be called with "getParameter()".
 ```python
 MSDs = list(map(lambda UID: archive.get(UID).getParameter('msd'), archive.getMoleculeUIDs()))
 ```
