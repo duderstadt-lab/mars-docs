@@ -19,6 +19,10 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
 
   _Skill level: Advanced._  Learn how to create customised widgets for fast initial data analysis on the **Rover Dashboard**.
 
+* [Kinetic Changepoint Analysis](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/kcpa)
+
+  _Skill level: Intermediate._  Learn how to do a kinetic changepoint analysis.
+
 #### Mars to [ ]
 * [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
 
