@@ -27,6 +27,7 @@ Scriptable widgets can be customised fully to show parameters of interest.
 
 There are four predefined scriptable widgets: a Category Chart, Histogram,
 XY chart, and Bubble chart. Click on the <> tab to change the script, click on the book icon to show the script log. To show examples of these plot types load the widgets and press the refresh button.
+To learn more about customising the widgets please go to the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) page.
 
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800' />
