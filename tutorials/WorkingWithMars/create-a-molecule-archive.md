@@ -1,7 +1,7 @@
 ---
 layout: workingwithmars
 title: "Let's Make A MoleculeArchive - Tutorial"
-permalink: /tutorials/WorkingWithMars/create-a-Molecule-Archive/index.html
+permalink: /tutorials/workingwithmars/create-a-Molecule-Archive/index.html
 ---
 
 _level: beginner, duration: 5-10 min_
