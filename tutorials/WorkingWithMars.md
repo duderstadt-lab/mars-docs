@@ -1,5 +1,5 @@
 ---
-layout: workingwithmars
+layout: WorkingWithMars
 title: Working with Mars
 permalink: /tutorials/WorkingWithMars/index.html
 ---
@@ -13,4 +13,4 @@ permalink: /tutorials/WorkingWithMars/index.html
   _Skill level: Intermediate._  Learn how to calculate the mean square displacement from the traces in the molecule archive.
   Note: it is advised to do the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/create-a-Molecule-Archive/) before doing this tutorial.
 
-test
+test2
