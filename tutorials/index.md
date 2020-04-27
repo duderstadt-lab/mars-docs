@@ -4,7 +4,7 @@ title: Tutorials
 permalink: /tutorials/index.html
 ---
 
-Tutorials for learning how to use Mars.
+Tutorials for learning how to use Mars. For exploring the software and its most commonly used features please follow the [Let's make a MoleculeArchive](create-a-Molecule-Archive) tutorial first.
 
 #### Working with Mars
 * [Let's make a MoleculeArchive](create-a-Molecule-Archive)
@@ -25,7 +25,6 @@ Tutorials for learning how to use Mars.
 
   _Skill level: Intermediate._ Learn how to access and perform basic operations with MoleculeArchives.
 * [Advanced groovy scripting](advanced-groovy-scripting)
-
 
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of MoleculeArchive records.
 
