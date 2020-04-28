@@ -9,7 +9,7 @@ Fully integrated text editor to annotate the archive. Use to annotate with text 
 
 <img align='centre' src='{{site.baseurl}}/docs/img/Rover/img10.png' width='600' />
 
-Markdown rendering depends on extensions from [flexmark](https://github.com/vsch/flexmark-java) and [mermaid](https://mermaid-js.github.io/mermaid/#/README). This allows for easy documentation of tags, parameters, settings and the data analysis flow as a flowchart to be saved in the archive itself to improve reproducibility. Look at the respective web pages for more information on syntax. The example text shows an example of most of these features.
+Markdown rendering depends on extensions from [flexmark](https://github.com/vsch/flexmark-java) and [mermaid](https://mermaid-js.github.io/mermaid/#/README). This allows for easy documentation of tags, parameters, settings and the data analysis flow as a flowchart to be saved in the archive itself to improve reproducibility. Look at the respective web pages for more information on syntax. The example text shows an example of most of the incorporated features.
 
 <img align='centre' src='{{site.baseurl}}/docs/img/Rover/img13.png' width='600' />
 
