@@ -15,7 +15,7 @@ permalink: /tutorials/workingwithmars/index.html
 
 * [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets)
 
-  _Skill level: Advanced._  Learn how to create customised widgets for fast initial data analysis on the **Rover Dashboard**.
+  _Skill level: Advanced._  Learn how to create customised widgets for fast initial data analysis on the **Rover** Dashboard.
 
 * [Kinetic Changepoint Analysis](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/kcpa)
 

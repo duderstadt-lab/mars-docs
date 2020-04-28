@@ -26,6 +26,6 @@ A Molecule Archive can be saved in two ways:
 | Delete Molecule Parameters       |  Delete a specified or all calculated parameter(s).      |
 | Delete Segment Tables       | Deletes segment tables that are generated for the kinetic change point analysis.       |
 | Merge Molecules       | Merges the data tables of multiple molecules. Use f.e. if a tracking result appears to be split into multiple smaller tracked segments.       |
-| Show Video      | Item Two       |
-| Export Video      | Item Two       |
-| Rebuild indexes      | Rebuid the index.json file when operating in virtual storage.        |
+| Show Video      | Shows the video at a specific position corresponding to a tracked molecule. See also the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/) on finding tracked molecules in the video.      |
+| Export Video      | Exports the video at a specific position corresponding to a tracked molecule. See also the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/) on finding tracked molecules in the video, step 5.        |
+| Rebuild indexes      | Rebuild the index.json file when operating in virtual storage.        |
