@@ -4,7 +4,7 @@ title: Flow Magnetic Tweezers Pipeline
 permalink: /examples/flow-Magnetic-Tweezers/index.html
 ---
 
-Following is a example guide to load a FMT video, finding the optimal parameters for the tracking with the DoG filter, generating an archive store, analysing the data by adding different regions and thus enabling final analysis with FMT pipeline. Once the archive is tagged and parameterised, a final `.csv` file can be generated with necessary data to make plots for an example  Flow Magnetic Tweezers experiment to study *E.coli* DNA gyrase. Have fun Tweezing. <br>
+The following is an example of how to process a Flow Magnetic Tweezers experiment. Starting with finding the optimal parameters for the tracking with the DoG filter, generating an archive store, analysing the data by adding different regions and thus enabling final analysis with FMT pipeline. Once the archive is tagged and parameterised, a final `.csv` file can be generated with necessary data to make plots for an example  Flow Magnetic Tweezers experiment to study *E.coli* DNA gyrase. Have fun Tweezing. <br>
 
 Gyrase is a bacterial enzyme that maintains DNA topology of the chromosomes and facilitates important processes like DNA replication and transcription. It does so by opening the G-segemnt (gate) and passing the T-segment (transfer) through it and religating the DNA G-segment. In doing so it change the linking number by -2. In a cell, it resolves positive supercoils using ATP but also introduces negative supercoils as shown in the figure. <br><br>
 
