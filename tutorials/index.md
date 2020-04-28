@@ -23,6 +23,10 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
 
   _Skill level: Intermediate._  Learn how to do a kinetic changepoint analysis.
 
+* [How to Find Tracked Molecules in the Video](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/)
+
+  _Skill level: Advanced._  Learn how to find tracked molecules in the video.
+
 #### Mars to [ ]
 * [How to open a MoleculeArchive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
 

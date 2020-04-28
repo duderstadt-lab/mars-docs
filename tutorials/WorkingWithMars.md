@@ -20,3 +20,7 @@ permalink: /tutorials/workingwithmars/index.html
 * [Kinetic Changepoint Analysis](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/kcpa)
 
   _Skill level: Intermediate._  Learn how to do a kinetic changepoint analysis.
+
+* [How to Find Tracked Molecules in the Video](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/)
+
+  _Skill level: Advanced._  Learn how to find tracked molecules in the video.
