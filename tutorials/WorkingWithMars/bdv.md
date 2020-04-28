@@ -4,7 +4,7 @@ title: "How to Find Tracked Molecules in the Video"
 permalink: /tutorials/workingwithmars/bdv/index.html
 ---
 
-_level: advanced, duration: 5-10 min_
+_level: advanced, duration: 10 min_
 
 This tutorial explores the **Rover** option to show a tracked molecule in the original video. This eminently useful function can be used for visual examination of the molecule after analysis for validation of the observed behavior. This would rule out flaws in tracking having a major impact on the drawn conclusion from the data.
 
@@ -70,4 +70,4 @@ To save the video showing the molecule of interest use the 'Export Video' tool i
 
 A new Fiji window will open with the exported video. Use the main Fiji functions to adjust f.e. the brightness of the video and save.
 
-<img src='{{site.baseurl}}/tutorials/img/bdv/img13.png' width='200' />
+<img src='{{site.baseurl}}/tutorials/img/bdv/img13.png' width='400' />
