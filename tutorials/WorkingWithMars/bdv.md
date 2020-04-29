@@ -10,7 +10,7 @@ This tutorial explores the **Rover** option to show a tracked molecule in the or
 
 The video viewer is based on [BigDataViewer](https://imagej.net/BigDataViewer#Description) and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5. To do so the [instructions](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer) supplied in their documentation is used.
 
-Steps 1-3 are required to set up the connection between the MoleculeArchive and the XML video. These only have to be executed once per MoleculeArchive and can then be saved to the MoleculeArchive. If the connection has been established and saved step 4 and 5 can be executed independently.
+Steps 1-3 are required to set up the connection between the MoleculeArchive and the XML video. These only have to be executed once per MoleculeArchive and can then be saved to the MoleculeArchive. If the connection has been established and saved, step 4 and 5 can be executed independently.
 
 ### 1. Converting the Video to XML/H5 Format
 First open the video of interest in Fiji as a stack. Next select the BigDataViewer plugin and select the function "Export Current Image as XML/HDF5". This will open a dialogue in which the export path has to be set. Press ok and wait until the export process has finished. Find the exported video at the specified file path.

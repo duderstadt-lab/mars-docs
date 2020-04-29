@@ -45,9 +45,8 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
 
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of MoleculeArchive records.
 
-----
 
 #### Affine2D Transformation
 * [How to calculate Affine2D transformation coordinates](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
 
-  _Skill level: Beginner._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji.
+  _Skill level: Beginner._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji. Use this transformation to align multiple videos concerning the same field of view.
