@@ -63,6 +63,7 @@ import imagej
 ij = imagej.init('/Applications/Fiji.app')
 # Python packages
 import scyjava as sc
+from scyjava.convert import _pandas
 import jnius
 import numpy as np
 import pandas as pd
@@ -111,17 +112,17 @@ The notebook will display all the UIDs.
 There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
 ```python
 #get the DataTable for the molecule at index 0 as a pandas dataframe
-tableByIndex = sc.to_python(archive.get(0).getDataTable())
+tableByIndex = _pandas.table_to_pandas(archive.get(0).getDataTable())
 tableByIndex
 ```
 One can also use the UIDs to excess certain molecules. Just copy and paste on of them into the following line of code.
 
 ```python
 #get the DataTable for molecule UID as a pandas dataframe
-tableByUID = sc.to_python(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
+tableByUID = _pandas.table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
 tableByUID
 ```
-The build-in function "to_python(data)" from scijava (imported as sc at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "to_java(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getDataTable()".
+The build-in function "table_to_pandas(data)" from **"_pandas"** (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getDataTable()".
 #### More elegant Way to excess Molecules: Mapping
 Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.
 ```python
@@ -190,7 +191,6 @@ cd notebooks
 ```terminal
 conda activate scijava
 ```
-Select the notebook of interest from the list and open it.
 
 3. Select the notebook of interest from the list and open it.
 ```terminal
