@@ -1,7 +1,7 @@
 ---
-layout: tutorials
+layout: affine2D
 title: How to calculate an Affine2D matrix
-permalink: /tutorials/HowToCalculateAffine2D/index.html
+permalink: /tutorials/affine2D/HowToCalculateAffine2D/index.html
 ---
 
 The Descriptor-based registration (2d/3d) in Fiji provide robust tools for determination of coordinate transformations. Transformation coordinates are needed to align the two channels of a dualview when analyzing single-molecule TIRF data. These coordinates are used for analysis of FRET datasets and also for direct viewing using the BigData Viewer.

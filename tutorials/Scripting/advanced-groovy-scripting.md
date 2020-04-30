@@ -1,7 +1,7 @@
 ---
-layout: tutorials
+layout: scripting
 title: "Let's Learn Advanced Groovy Scripting Tutorial"
-permalink: /tutorials/advanced-groovy-scripting/index.html
+permalink: /tutorials/scripting/advanced-groovy-scripting/index.html
 ---
 Advanced Groovy Scripting!!
 
