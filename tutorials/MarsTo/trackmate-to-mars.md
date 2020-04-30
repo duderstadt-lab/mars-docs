@@ -36,7 +36,7 @@ To filter for longer tracks containing a higher number of detected spots set two
 
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img10.png' width='250' />
 
-### 3. Exporting the traces to **Mars**
+### 3. Exporting the Traces to **Mars**
 To export the traces to **Mars** select 'Go to Mars' in the drop-down menu and press the 'Execute' button. This will open **Mars Rover** with the MoleculeArchive containing the traces. Save the Archive using File>Save.
 
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img11.png' width='250' />
