@@ -16,7 +16,7 @@ Gyrase is a bacterial enzyme that maintains the topology of chromosomes and faci
 
 The single-molecule assay used here tethers DNA molecules to a slide surface and a super-paramagnetic bead. There is a constant flow resulting in a drag force on the molecule and also topological control of the DNA molecule as the bead is trapped in the magnetic field of the antiparallely mounted block magnets.<br>
 
-During the assay, there are several checkpoints which characterize the bead and discussed in [Running analysis Pipeline: Selecting parameter boundaries and tags](#6. Running analysis Pipeline: Selecting parameter boundaries and tags). Following these steps, the DNA is left positively coiled and gyrase is introduced: <br><br>
+During the assay, there are several checkpoints which characterize the bead and discussed in [Running analysis Pipeline: Selecting parameter boundaries and tags](#6-running-analysis-pipeline-selecting-parameter-boundaries-and-tags). Following these steps, the DNA is left positively coiled and gyrase is introduced: <br><br>
 
 <a style='text-decoration: none; color: orange;'>
   <img src='{{site.baseurl}}/examples/img/fmt/sm_assay.png' style='width: 950px'>
