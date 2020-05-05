@@ -4,11 +4,11 @@ title: Flow Magnetic Tweezers Pipeline
 permalink: /examples/flow-Magnetic-Tweezers/index.html
 ---
 
-This example demonstrates a complete workflow for tracking and processing the motion of beads tethered to individual DNA molecules. The example video provided was collected using a novel force spectroscopy technique called Flow Magnetic Teezers (Agarwal et al., unpublished). The technique enables multidimensional force manipulation of individual molecules. Here individual DNAs are stretched by a combination of lateral and vertical forces from flow and magnetic tweezers, respectively. During the experiment, DNA molecules are probed by changing the flow and supercoiled through the application of torque using magnet rotation. Finally, *E.coli* DNA gyrase is introduced into the flowcell. Gyrase relaxes postive supercoils in the DNA and introduces negative supercoils (ref - as footnote). These transformations lead to lengthening and shorting of the DNA observed as changes in the bead position as a function of time.
+This example demonstrates a complete workflow for tracking and processing the motion of beads tethered to individual DNA molecules. The example video provided was collected using a novel force spectroscopy technique called Flow Magnetic Tweezers (Agarwal et al., unpublished). The technique enables multidimensional force manipulation of individual molecules. Here individual DNAs are stretched by a combination of lateral and vertical forces from flow and magnetic tweezers, respectively. During the experiment, DNA molecules are probed by changing the flow and supercoiled through the application of torque using magnet rotation. Finally, *E.coli* DNA gyrase is introduced into the flowcell. Gyrase relaxes positive supercoils in the DNA and introduces negative supercoils (Nöllmann *et al.*, 2007). These transformations lead to lengthening and shorting of the DNA observed as changes in the bead position as a function of time.
 
 The first step in the workflow is tracking the beads as a function of time using the Mars [Peak Tracker](../../docs/image/PeakTracker). Once optimal peak finding and tracking settings have been found this command generates a MoleculeArchive containing the tracking results. The remainder of the example relies on a script that automates the process of feature recognition by calculating a series of single value parameters for the slopes and differences within and between regions of interest. In one step this script also tags molecules based on thresholds for each feature. In Mars tags allow for rapid and efficient reslicing of data. Subsets of molecules that exhibit unique combinations of behaviors can be rapidly called up and processed. Once the archive is tagged and parameterised, a final `.csv` file is generated with necessary data to make plots showing the velocity of coiling by DNA Gyrase vs the start time of events. Have fun Tweezing. <br>
 
-Gyrase is a bacterial enzyme that maintains the topology of chromosomes and facilitates important processes like DNA replication and transcription. It does so by opening the G-segemnt (gate) and passing the T-segment (transfer) through it and religating the DNA G-segment. This results in a -2 change in linking number. In the cell, gyrase using energy from ATP to resolve positive supercoils and introduce negative supercoils as shown in the figure. <br><br>
+Gyrase is a bacterial enzyme that maintains the topology of chromosomes and facilitates important processes like DNA replication and transcription. It does so by opening the G-segment (gate) and passing the T-segment (transfer) through it and religating the DNA G-segment. This results in a -2 change in linking number. In the cell, gyrase using energy from ATP to resolve positive supercoils and introduce negative supercoils as shown in the figure. <br><br>
 
 <a style='text-decoration: none; color: orange;'>
   <img src='{{site.baseurl}}/examples/img/fmt/gyrase_cycle.png' style='width: 950px'>
@@ -16,7 +16,7 @@ Gyrase is a bacterial enzyme that maintains the topology of chromosomes and faci
 
 The single-molecule assay used here tethers DNA molecules to a slide surface and a super-paramagnetic bead. There is a constant flow resulting in a drag force on the molecule and also topological control of the DNA molecule as the bead is trapped in the magnetic field of the antiparallely mounted block magnets.<br>
 
-During the assay, there are several checkpoints which characterize the bead and discussed in [Running analysis Pipeline: Selecting parameter boundaries and tags](#select_parameter_tag). Following these steps, the DNA is left positively coiled and gyrase is introduced: <br><br>
+During the assay, there are several checkpoints which characterize the bead and discussed in [Running analysis Pipeline: Selecting parameter boundaries and tags](#6. Running analysis Pipeline: Selecting parameter boundaries and tags). Following these steps, the DNA is left positively coiled and gyrase is introduced: <br><br>
 
 <a style='text-decoration: none; color: orange;'>
   <img src='{{site.baseurl}}/examples/img/fmt/sm_assay.png' style='width: 950px'>
@@ -25,7 +25,7 @@ During the assay, there are several checkpoints which characterize the bead and 
 
 ### 1. Importing the video in FIJI
 
-Drag and drop the file `FMT_Example_Video.tif` or the folder `FMT_Example_Video` containing the video in FIJI and open it as virtual stack (HOW DO YOU DO THIS EXACTLY - WHICH MENU ETC..). This is a segment of the total field of view from a gyrase experiment. <br>
+Drag and drop the file `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442) in FIJI. Alternatively, you can select File -> Open.. -> and then choose the `FMT_Example_Video.tif`. This is a segment of the total field of view from a gyrase experiment. <br>
 
 <img align='center' src='{{site.baseurl}}/examples/img/fmt/image001.png' width='950' />
 
@@ -51,7 +51,10 @@ Once the tracking is done, an archive is made in memory. Console here displays t
 
 <img align='center' src='{{site.baseurl}}/examples/img/fmt/image005.png' width='950' />
 
-This file can also be saved as a store where all molecules are saved as separate files and loaded on as-needed basis. This format is very memory efficient and still compatible with multi-threading. All molecules here have unique IDs. The x and y tracking information is given by default. At this point **`Step1_Add_Regions.groovy`** can be executed. <br>
+This file can also be saved as a store where all molecules are saved as separate files and loaded on as-needed basis. This format is very memory efficient and still compatible with multi-threading. All molecules here have unique IDs. The x and y tracking information is given by default. At this point **`Step1_Add_Regions.groovy`**
+<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy?slice=0:15">
+</script>
+can be executed. <br>
 
 <img align='center' src='{{site.baseurl}}/examples/img/fmt/image006.png' width='950' />
 
@@ -70,7 +73,10 @@ metadata.putRegion(new MarsRegion("Gyrase Reaction", "slice", 4600, 6990, "#42A5
 
 ```
 
-The Regions are used by the **`Step2_FMT_Pipeline_truncated.groovy`** to calculate different parameters and tag molecules. <br>
+The Regions are used by the **`Step2_FMT_Pipeline.groovy`**
+<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step2_FMT_Pipeline.groovy?slice=0:15">
+</script>
+to calculate different parameters and tag molecules. <br>
 
 <img align='center' src='{{site.baseurl}}/examples/img/fmt/image007.png' width='950' />
 
@@ -435,13 +441,19 @@ The data shown is now drift corrected, different parameters calculated on the ri
 
 <img align='center' src='{{site.baseurl}}/examples/img/fmt/image010.png' width='950' />
 
-At this point, **`Step3_generate_csv.groovy`**  can be executed. It extracts the coordinate, force and rate information form the analyzed data. Once the analysis pipeline is through, the tags singleTether (include: coilable20, exclude: doubleCoiling and shortTrajectory) and coilable2p5 are analysed with a sliding window which finds the maximum inclination for both positive and negative coiling from the poscycles and negcycles columns respectively.
+At this point, **`Step3_generate_csv.groovy`**  
+<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy?slice=0:20">
+</script>
+can be executed. It extracts the coordinate, force and rate information form the analyzed data. Once the analysis pipeline is through, the tags singleTether (include: coilable20, exclude: doubleCoiling and shortTrajectory) and coilable2p5 are analysed with a sliding window which finds the maximum inclination for both positive and negative coiling from the poscycles and negcycles columns respectively.
 
 Once the Step 3 groovy is done, a csv file is generated in the directory of the archive named **`Gyrase_Scatter.csv`**.
 
 ### 8. Plotting the dataset
 
-For plotting, the csv can either be placed in the same folder as the python script Step4_scatter_plot.py or a path for this csv can be provided to any given IDE. Here Spyder is used.
+For plotting, the csv can either be placed in the same folder as the python script  **`Step4_scatter_plot.py`**
+<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step4_scatter_plot.py?slice=0:20">
+</script>
+or a path for this csv can be provided to any given IDE. Here Spyder is used.
 
 <img align='center' src='{{site.baseurl}}/examples/img/fmt/image011.png' width='950' />
 
