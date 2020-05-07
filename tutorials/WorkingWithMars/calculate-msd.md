@@ -46,7 +46,7 @@ To begin, click on the histogram icon in the widget dashboard toolbar. This will
 In the next step, alter the example code to match the code below. In this way it will display the frequency of calculated MSD values. For convenience, the window dimensions can be changed to a bigger field for easier scripting. Make sure to adapt the script below to match the correct parameter name (in this example: 'column_MSD') and the desired xmin, xmax, ymin, ymax values to display the axes. As a starting point, one can always use the xmin and xmax values of the series1_values array. This is left as an exercise for the reader to complete.
 
 
-'''
+```python
 #@ MoleculeArchive archive
 #@OUTPUT String xlabel
 #@OUTPUT String ylabel
@@ -77,7 +77,7 @@ series1_values = []
 
 for molecule in archive.molecules().iterator():
     series1_values.append(molecule.getParameter("column_MSD"))
-'''
+```
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
 
@@ -90,7 +90,7 @@ To open the bubble plot widget press the icon in the **Rover** dashboard toolbar
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
 
-'''
+```python
 #@ MoleculeArchive archive
 #@OUTPUT String xlabel
 #@OUTPUT String ylabel
@@ -132,15 +132,10 @@ for molecule in archive.molecules().iterator():
 	series1_size.append(4.0)
 	series1_color.append("blue")
 	series1_label.append(molecule.getUID())
-'''
+```
 
 Now press the refresh button and display the bubble chart.
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
-
-
-
-
-
 
 
 
