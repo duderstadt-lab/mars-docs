@@ -135,6 +135,7 @@ for molecule in archive.molecules().iterator():
 ```
 
 Now press the refresh button and display the bubble chart.
+
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
 
 
