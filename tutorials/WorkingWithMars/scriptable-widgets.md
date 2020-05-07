@@ -4,6 +4,9 @@ title: "How to use Scriptable Widgets"
 permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 ---
 
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/script/img1.png' width='450' />
+
 Examples and tutorials on scriptable widgets can be found as a part of the other tutorials.
 
 | Scriptable Widget    | Example/tutorial to be found at     |
