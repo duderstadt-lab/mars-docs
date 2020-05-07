@@ -33,9 +33,13 @@ Select the correct MoleculeArchive. Select the x and y. The "X Column" is the ti
 
 #### How to: Plot the result of the kinetic change point analysis
 The result from the analysis can be plotted. Go to the menu of the plot and select "Segments". After refreshing the plot straight lines which connect the kinetic change points will appear (the color can be adjusted by changing the "Segment color").
+
+
 <img src='{{site.baseurl}}/tutorials/img/kcpa/img3.png' width='250' />
 
 #### How to: Read the results of the kinetic change point analysis
 After visualising the results one can also check the actual values of the analysis.
+
 <img src='{{site.baseurl}}/tutorials/img/kcpa/img4.png' width='250' />
-Open "y vs slice". A tabel with different columns will appear. "x1" gives the start time and "x2" the end time point of a region where the trace is piece-wise linear. "y1" and "y2" give the corresponding position start and end points. The linear fit between these to points can be described with a line equation (y = Bx + A). The "B" value is the slope of the line which also corresponds to the rate. "A" represents the intercept with the y axis. 
+
+Open "y vs slice". A tabel with different columns will appear. "x1" gives the start time and "x2" the end time point of a region where the trace is piece-wise linear. "y1" and "y2" give the corresponding position start and end points. The linear fit between these to points can be described with a line equation (y = Bx + A). The "B" value is the slope of the line which also corresponds to the rate. "A" represents the intercept with the y axis.
