@@ -14,8 +14,8 @@ Examples and tutorials on scriptable widgets can be found as a part of the other
 | Category Chart       | Item Two       |
 | Histogram       | [Let's calculate the Mean Square Displacement tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)      |
 | XY Chart       | Item Two       |
-| Bubble Plot       | [Let's calculate the Mean Square Displacement tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)        |
+| Bubble Chart       | [Let's calculate the Mean Square Displacement tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)        |
 | Beaker       | Item Two       |
 
 
-For extended documentation on the widgets please visit the [documentation section.]()
+For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/)

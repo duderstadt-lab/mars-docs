@@ -37,7 +37,7 @@ When exploring the molecules two different populations are found: the population
 Now save the archive again to retain the calculated values.
 
 ### 4. (Optional) Plot the MSD in a Dashboard Scriptable Widget Histogram
-For more background information about scriptable widgets please go to the [scriptable widgets documentation]().
+For more background information about scriptable widgets please go to the [scriptable widgets documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/).
 
 To begin, click on the histogram icon in the widget dashboard toolbar. This will add a histogram widget to the dashboard pane. Next click the script tab <> to reveal the example script generating an example histogram with random number generators instead of MoleculeArchive data. To display this histogram, click the refresh icon in the far right.
 
@@ -85,7 +85,7 @@ Now click the refresh button again to display the histogram.
 
 ### 5. (Optional) Plot the MSD vs Track Length in a Dashboard Scriptable Widget Bubble Plot
 Next, to plot one feature of a molecule against another feature the bubble plot can be used. In this example the MSD value is plotted against the track length. This could answer the question "Are longer tracks associated with higher MSD values?".
-To open the bubble plot widget press the icon in the **Rover** dashboard toolbar. Open the script tab (<>) and adjust the example script to match the correct parameter name (in this example: "column_MSD") and x-axis and y-axis minima and maxima. This script makes an array of x-coordinates containing the length of the traces (length of the data table with the number of slices per track in it), an array of y-coordinates containing the MSD values per molecule, and next to that, also labels the data points with the molecule UID when the mouse is placed on the data point. This feature can be used to find the molecule in the Archive. Extended background information about scriptable widgets can be found in the [scriptable widgets documentation]().
+To open the bubble plot widget press the icon in the **Rover** dashboard toolbar. Open the script tab (<>) and adjust the example script to match the correct parameter name (in this example: "column_MSD") and x-axis and y-axis minima and maxima. This script makes an array of x-coordinates containing the length of the traces (length of the data table with the number of slices per track in it), an array of y-coordinates containing the MSD values per molecule, and next to that, also labels the data points with the molecule UID when the mouse is placed on the data point. This feature can be used to find the molecule in the Archive. Extended background information about scriptable widgets can be found in the [scriptable widgets documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/).
 
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
