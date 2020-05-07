@@ -35,3 +35,5 @@ To learn more about customising these widgets please go to the [How to use Scrip
 
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800' />
+
+To implement a fully independently written widget use the 'beaker' scriptable widget. This undefined widget space gives the user unlimited possibilities to design widgets of choice.
