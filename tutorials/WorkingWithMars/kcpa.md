@@ -24,10 +24,11 @@ The trace should be piece-wise linear between the kinetic change points. It is a
 
 #### How to: Run the kinetic change point
 1. To run the kinetic change point analysis go under "Plugins-> MoleculeArchive Suite-> KCP-> Change Point Finder" (also shown in the image).
-<img src='{{site.baseurl}}/tutorials/img/kcpa/img1.png' width='300' />
+
+<img src='{{site.baseurl}}/tutorials/img/kcpa/img1.png' width='350' />
 
 2. The window shown in the image will open.
-<img src='{{site.baseurl}}/tutorials/img/kcpa/img2.png' width='250' />
+<img src='{{site.baseurl}}/tutorials/img/kcpa/img2.png' width='450' />
 
 Select the correct MoleculeArchive. Select the x and y. The "X Column" is the time in this case it is called slice. The "Y Column" is the position data which will be analysed. The "Confidence value" bascially means that a false positive rate of 1 percent is accepted. The "Global Sigma" will be used if no "Background region" is selected. The "Background region" can be used to specify a region in the trace which will be used to determine the background. In this case it is not used. The whole trace is analysed so "Analyze region" is not ticked. Only the molecules with the tag "Active" are analysed ("Tagged with" is ticked).
 
@@ -35,11 +36,11 @@ Select the correct MoleculeArchive. Select the x and y. The "X Column" is the ti
 The result from the analysis can be plotted. Go to the menu of the plot and select "Segments". After refreshing the plot straight lines which connect the kinetic change points will appear (the color can be adjusted by changing the "Segment color").
 
 
-<img src='{{site.baseurl}}/tutorials/img/kcpa/img3.png' width='250' />
+<img src='{{site.baseurl}}/tutorials/img/kcpa/img3.png' width='450' />
 
 #### How to: Read the results of the kinetic change point analysis
 After visualising the results one can also check the actual values of the analysis.
 
-<img src='{{site.baseurl}}/tutorials/img/kcpa/img4.png' width='250' />
+<img src='{{site.baseurl}}/tutorials/img/kcpa/img4.png' width='450' />
 
 Open "y vs slice". A tabel with different columns will appear. "x1" gives the start time and "x2" the end time point of a region where the trace is piece-wise linear. "y1" and "y2" give the corresponding position start and end points. The linear fit between these to points can be described with a line equation (y = Bx + A). The "B" value is the slope of the line which also corresponds to the rate. "A" represents the intercept with the y axis.
