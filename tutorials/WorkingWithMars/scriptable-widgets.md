@@ -10,9 +10,9 @@ permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 On this page examples and tutorials on the different scriptable widgets are highlighted. The tutorials are based on other tutorials as listed in the table below. Please go through the respective tutorial first to understand the dataset and the structure of the MoleculeArchive. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/)
 
 
-| Scriptable Widget    | Example/tutorial to be found at     |
+| |Scriptable Widget    | Example/tutorial to be found at     |
 | :------------- | :------------- |:---|
-| 1 |Category Chart       | Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)      |
+| 1 |Category Chart       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)      |
 | 2 |Histogram       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)      |
 | 3 |XY Chart       |        |
 | 4 |Bubble Chart       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)        |
@@ -58,7 +58,7 @@ yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)]
 
 ```
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/script/img3.png' width='350' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/script/img3.png' width='450' />
 
 
 
