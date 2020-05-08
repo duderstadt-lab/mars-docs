@@ -43,6 +43,8 @@ color = "#add8e6"
 title = "Category Chart"
 xlabel = "Categories"
 ylabel = "Mean MSD value"
+ymin = 0.0
+ymax = 60.0
 
 xvalues = ['Active','NotActive']
 list1 = []
