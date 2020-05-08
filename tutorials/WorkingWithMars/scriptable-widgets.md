@@ -294,7 +294,7 @@ for i in list1_y[9]:
 series0_error = [0]*len(series0_yvalues)
 
 ```
-Press the refresh button to render the plot.
+Press the refresh button to render the plot. This plot shows that all traces have a similar slope but vary in their tracked length.
 
 <img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='650' />
 
