@@ -78,6 +78,8 @@ In the next step, alter the example code to match the code below. In this way it
 #@OUTPUT Integer bins
 #@OUTPUT Double xmin
 #@OUTPUT Double xmax
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
 
 # Set global outputs
 xlabel = "MSD-value"
