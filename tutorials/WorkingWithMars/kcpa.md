@@ -74,11 +74,11 @@ Open the "Change Point Finder". Copy the settings from the window displayed belo
 After running the analysis one can plot the segments again by checking the box and refreshing the settings. It will now display the different segments in the selected color (in this case red).
 
 <p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img7.png' width='450' />
+ <img src='{{site.baseurl}}/tutorials/img/kcpa/img7.png' width='600' />
 </p>
 
-The actual values can be found under "nuleotides vs time - Region". This is automatically named after the settings. Eight lines with the slope and the intersect are displayed.
+The actual values can be found under "nucleotides vs time - Region". This is automatically named after the settings. Eight lines with the slope and the intersect are displayed.
 
 <p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img8.png' width='450' />
+ <img src='{{site.baseurl}}/tutorials/img/kcpa/img8.png' width='600' />
 </p>
