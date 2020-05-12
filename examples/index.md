@@ -9,6 +9,7 @@ permalink: /examples/index.html
   <img align='center' src='{{site.baseurl}}/examples/img/index/img1.png' width='250' />
 </kbd>
 
-Flow Magnetic Tweezers
+Complete workflow for tracking and processing the motion of magnetic beads tethered to individual DNA molecules under flow. (Agarwal _et al._, unpublished)
+
 
 ---
