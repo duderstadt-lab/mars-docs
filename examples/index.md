@@ -1,56 +1,11 @@
 ---
-layout: examples
+layout: page
 title: Example Gallery
 permalink: /examples/index.html
 ---
 
-<ol class='container-lg clearfix'>
-  <ol class='col-4 float-left border p-4'>
-    My column
-  </ol>
-  <ol class='col-4 float-left border p-4'>
-    My column 2
-  </ol>
-</ol>
-
-<ol>
-  <ol>
-    My column 3
-  </ol>
-  <ol>
-    My column 4
-  </ol>
-</ol>
-
-
-<ol class="container">
-  <ol class="row">
-    <ol class="col-sm">
-      One of three columns
-    </ol>
-    <ol class="col-sm">
-      One of three columns
-    </ol>
-    <ol class="col-sm">
-      One of three columns
-    </ol>
-  </ol>
-</ol>
-
-<ol class="container">
-  <ol class="col-sm">
-    <ol class="row">
-      One of three columns
-    </ol>
-    <ol class="row">
-      One of three columns
-    </ol>
-    <ol class="row">
-      One of three columns
-    </ol>
-  </ol>
-</ol>
-
+| :------------- | :------------- | :------------ |
+| #### [Flow Magnetic Tweezers](https://duderstadt-lab.github.io/mars-docs/examples/flow-Magnetic-Tweezers/)      | Item Two       |
 
 
 #### [Flow Magnetic Tweezers](flow-Magnetic-Tweezers)
