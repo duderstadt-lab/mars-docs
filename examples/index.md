@@ -4,18 +4,21 @@ title: Example Gallery
 permalink: /examples/index.html
 ---
 
-<tab class='container-lg clearfix'>
-  <tab class='col-4 float-left border p-4'>
+<ol class='container-lg clearfix'>
+  <ol class='col-4 float-left border p-4'>
     My column
-  </tab>
-  <tab class='col-4 float-left border p-4'>
+  </ol>
+  <ol class='col-4 float-left border p-4'>
     My column 2
-  </tab>
-</tab>
+  </ol>
+</ol>
 
 <ol>
   <ol>
     My column 3
+  </ol>
+  <ol>
+    My column 4
   </ol>
 </ol>
 
