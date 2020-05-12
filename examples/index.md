@@ -3,6 +3,18 @@ layout: page
 title: Example Gallery
 permalink: /examples/index.html
 ---
+
+<div class='container-lg clearfix'>
+  <div class='col-4 float-left border p-4'>
+    My column
+  </div>
+  <div class='col-4 float-left border p-4'>
+    My column 2
+  </div>
+</div>
+
+
+
 #### [Flow Magnetic Tweezers](flow-Magnetic-Tweezers)
 
 <kbd>
