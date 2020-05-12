@@ -5,7 +5,9 @@ permalink: /examples/index.html
 ---
 #### [Flow Magnetic Tweezers](flow-Magnetic-Tweezers)
 
-<img align='center' src='{{site.baseurl}}/examples/img/index/img1.png' width='250' />
+<kbd>
+  <img align='center' src='{{site.baseurl}}/examples/img/index/img1.png' width='250' />
+</kbd>
 
 Flow Magnetic Tweezers
 
