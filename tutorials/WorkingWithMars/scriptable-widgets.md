@@ -91,7 +91,7 @@ bins = 10
 xmin = 0.0
 xmax = 150.0
 ymin = 0.0
-ymax = 40.0
+ymax = 60.0
 
 # Series 1 Outputs
 #@OUTPUT Double[] series1_values
