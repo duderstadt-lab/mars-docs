@@ -43,4 +43,4 @@ To export the traces to **Mars** select 'Go to Mars' in the drop-down menu and p
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img12.png' width='450' />
 
 
-<sup>1</sup> 
+<sup>1</sup> Tinevez, JY.; Perry, N. & Schindelin, J. et al. (2017), "Trackmate: An open and extensible platform for single-particle tracking.", Methods **115**: 80-90, PMID 27713081
