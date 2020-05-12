@@ -37,19 +37,20 @@ permalink: /examples/index.html
   </ol>
 </ol>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns2
-    </div>
-    <div class="col-sm">
-      One of three columns2
-    </div>
-    <div class="col-sm">
-      One of three columns2
-    </div>
-  </div>
-</div>
+<ol class="container">
+  <ol class="col-sm">
+    <ol class="row">
+      One of three columns
+    </ol>
+    <ol class="row">
+      One of three columns
+    </ol>
+    <ol class="row">
+      One of three columns
+    </ol>
+  </ol>
+</ol>
+
 
 
 #### [Flow Magnetic Tweezers](flow-Magnetic-Tweezers)
