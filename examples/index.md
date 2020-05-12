@@ -13,11 +13,11 @@ permalink: /examples/index.html
   </tab>
 </tab>
 
-<tab>
-  <tab>
+<ol>
+  <ol>
     My column 3
-  </tab>
-</tab>
+  </ol>
+</ol>
 
 
 
