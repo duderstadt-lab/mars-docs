@@ -13,10 +13,13 @@ Please not that the fifth scriptable widget 'Beaker' is not addressed in this tu
 
 
 ### 1. Category Chart - Plot the Mean MSD Value vs. Tag
+**Introduction**
+
 To gain insight in the relationship between the mean square displacement (MSD) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean MSD value of both groups as a bar plot.  This gives a first glance at the relation between MSD value and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
 
 To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the MSD values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues. Note that this can be extended easily if more categories are to be considered.
 
+**How to**
 First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'column_MSD'). Press the refresh button to load the plot. Switch back to the plot tab.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='450' />
