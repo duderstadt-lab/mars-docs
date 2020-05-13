@@ -4,20 +4,12 @@ title: "How to use Scriptable Widgets"
 permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 ---
 
+This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the Mean Square Displacement (MSD)](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'MSD.yama' MoleculeArchive from the repository.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/script/img1.png' width='450' />
+In the upcoming sections all four scriptable widgets are described with an example. These sections are not depending on each other and can be completed independent of each other.
+Please not that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/)
 
-On this page examples and tutorials on the different scriptable widgets are highlighted. The tutorials are based on other tutorials as listed in the table below. Please go through the respective tutorial first to understand the dataset and the structure of the MoleculeArchive. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/)
-
-
-| |Scriptable Widget    | Example/tutorial to be found at     |
-| :------------- | :------------- |:---|
-| 1 |Category Chart       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)      |
-| 2 |Histogram       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)      |
-| 3 |XY Chart       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)       |
-| 4 |Bubble Chart       | [Let's calculate the Mean Square Displacement (MSD) tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)        |
-| 5 |Beaker       |        |
-
+<img src='{{site.baseurl}}/tutorials/img/script/img1.png' width='450' />
 
 ### 1. Category Chart - Plot the Mean MSD Value with Respect to Tag
 To gain insight in the relationship between the mean square displacement (MSD) and the assigned tag ('Active' or not) this script first makes two categories: 'Active'-tagged molecules and molecules that are not tagged. Next, the MSD values of all molecules in these categories are collected and the mean per category is calculated. This gives a first glance at the relation between MSD value and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial. In Python this plot can be recreated using a very similar script as used for this widget, also plotting standard deviation.
