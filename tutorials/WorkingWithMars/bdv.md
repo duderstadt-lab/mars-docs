@@ -1,6 +1,6 @@
 ---
 layout: workingwithmars
-title: "How to Find Tracked Molecules in the Video"
+title: "How to Find an Archive Entry back in the Video"
 permalink: /tutorials/workingwithmars/bdv/index.html
 ---
 

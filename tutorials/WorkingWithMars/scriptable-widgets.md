@@ -109,7 +109,7 @@ for molecule in archive.molecules().iterator():
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
 
-Now click the refresh button again to display the histogram.
+Now click the refresh button again to display the histogram. In the case of this dataset, it is clear that most tracked molecules have a MSD-value below ~15.
 
 ### 3. XY Chart - Plot all 'Active' Traces in one Figure
 As an example to show the applicability of the XY Chart widget, a plot is made containing all traces marked in the MoleculeArchive as 'Active'. In the archive made in the [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorial there were 10 molecules tagged 'Active'. The traces (y vs slice) of all molecules will be plotted in one figure to inspect whether their overall shape and rate are similar.
