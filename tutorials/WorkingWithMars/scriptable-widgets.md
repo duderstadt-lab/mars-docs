@@ -30,10 +30,8 @@ First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch
 #@OUTPUT String title
 #@OUTPUT String[] xvalues
 #@OUTPUT Double[] yvalues
-#@OUTPUT Double[] list1
-#@OUTPUT Double[] list2
-#@OUTPUT Double[] ymin
-#@OUTPUT Double[] ymax
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
 
 color = "#add8e6"
 title = "Category Chart"
@@ -42,17 +40,16 @@ ylabel = "Mean MSD value"
 ymin = 0.0
 ymax = 60.0
 
-xvalues = ['Active','NotActive'] # Name the categories to be displayed
+xvalues = ['Active','NotActive'] #Name the categories to be displayed
 list1 = []
 list2 = []
 
 for UID in archive.getMoleculeUIDs():
-    if archive.get(UID).hasTag('Active'): # Check if the entry is tagged 'Active'
-        list1.append(archive.get(UID).getParameter('column_MSD')) # Make a list of MSD values for the 'Active'-tagged molecules
+    if archive.get(UID).hasTag('Active'): #Check if an entry is tagged 'Active'
+        list1.append(archive.get(UID).getParameter('column_MSD')) #Make a list of MSD values
     else:
-        list2.append(archive.get(UID).getParameter('column_MSD')) # Make a list of MSD values for the other molecules
-
-yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] # Define the yvalues as the mean of both lists
+        list2.append(archive.get(UID).getParameter('column_MSD')) #Make a list of MSD values for untagged molecules
+yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] #Define the yvalues as the means of both lists
 
 ```
 
