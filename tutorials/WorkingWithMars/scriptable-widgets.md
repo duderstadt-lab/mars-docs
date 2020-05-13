@@ -12,12 +12,15 @@ Please not that the fifth scriptable widget 'Beaker' is not addressed in this tu
 <div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="550"/></div>
 
 
-### 1. Category Chart - Plot the Mean MSD Value with Respect to Tag
-To gain insight in the relationship between the mean square displacement (MSD) and the assigned tag ('Active' or not) this script first makes two categories: 'Active'-tagged molecules and molecules that are not tagged. Next, the MSD values of all molecules in these categories are collected and the mean per category is calculated. This gives a first glance at the relation between MSD value and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial. In Python this plot can be recreated using a very similar script as used for this widget, also plotting standard deviation.
+### 1. Category Chart - Plot the Mean MSD Value vs. Tag
+To gain insight in the relationship between the mean square displacement (MSD) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean MSD value of both groups as a bar plot.  This gives a first glance at the relation between MSD value and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
+
+To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the MSD values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues. Note that this can be extended easily if more categories are to be considered.
+
+First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'column_MSD'). Press the refresh button to load the plot. Switch back to the plot tab.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='450' />
 
-First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'column_MSD'). Press the refresh button to load the plot. Switch back to the plot tab.
 
 ```python
 #@ MoleculeArchive archive
@@ -39,22 +42,23 @@ ylabel = "Mean MSD value"
 ymin = 0.0
 ymax = 60.0
 
-xvalues = ['Active','NotActive']
+xvalues = ['Active','NotActive'] # Name the categories to be displayed
 list1 = []
 list2 = []
 
 for UID in archive.getMoleculeUIDs():
-    if archive.get(UID).hasTag('Active'):
-        list1.append(archive.get(UID).getParameter('column_MSD'))
+    if archive.get(UID).hasTag('Active'): # Check if the entry is tagged 'Active'
+        list1.append(archive.get(UID).getParameter('column_MSD')) # Make a list of MSD values for the 'Active'-tagged molecules
     else:
-        list2.append(archive.get(UID).getParameter('column_MSD'))
+        list2.append(archive.get(UID).getParameter('column_MSD')) # Make a list of MSD values for the other molecules
 
-yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)]
+yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] # Define the yvalues as the mean of both lists
 
 ```
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/script/img3.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/script/img3.png' width='450' />
 
+There seems to be a clear difference in the MSD values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger MSD value, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal MSD value.
 
 
 ### 2. Histogram - Plot the MSD in the Rover Dashboard
