@@ -9,6 +9,8 @@ This tutorial focusses on working with the scriptable widgets. It highlights the
 In the upcoming sections all four scriptable widgets are described with an example. These sections are not depending on each other and can be completed independent of each other.
 Please not that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/)
 
+<div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="450"/></div>
+
 <img src='{{site.baseurl}}/tutorials/img/script/img1.png' width='450' />
 
 ### 1. Category Chart - Plot the Mean MSD Value with Respect to Tag
