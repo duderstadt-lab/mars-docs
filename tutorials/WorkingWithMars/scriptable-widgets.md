@@ -62,7 +62,7 @@ yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] #Define the yvalues as the
 There seems to be a clear difference in the MSD values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger MSD value, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal MSD value.
 
 
-### 2. Histogram - Plot the MSD in the Rover Dashboard
+### 2. Histogram - Plot a Histogram of MSD values
 **Introduction**
 
 A histogram is a good way to familiarise with the spread in the MSD values in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.
@@ -323,18 +323,14 @@ The plot shows that all traces have a similar slope but vary in their tracked le
 <img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='650' />
 
 
-### 4. Bubble Chart - Plot the MSD vs Track Length in the Rover Dashboard
+### 4. Bubble Chart - Plot the MSD value vs. Track Length
 **Introduction**
-
+To answer the question 'Are longer tracks associated with higher MSD values?' the MSD values of each molecule are plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the MSD values as yvalues of the series. As an extra feature the molecule UIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UID is shown.
 
 **How to**
+Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to the script tab (<>). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: 'column_MSD'). Press the refresh icon to render the plot.
 
-
-Next, to plot one feature of a molecule against another feature the bubble plot can be used. In this example the MSD value is plotted against the track length. This could answer the question "Are longer tracks associated with higher MSD values?".
-To open the bubble plot widget press the icon in the **Rover** dashboard toolbar. Open the script tab (<>) and adjust the example script to match the correct parameter name (in this example: "column_MSD") and x-axis and y-axis minima and maxima. This script makes an array of x-coordinates containing the length of the traces (length of the data table with the number of slices per track in it), an array of y-coordinates containing the MSD values per molecule, and next to that, also labels the data points with the molecule UID when the mouse is placed on the data point. This feature can be used to find the molecule in the Archive.
-
-
-<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
 
 ```python
 #@ MoleculeArchive archive
@@ -373,13 +369,11 @@ series1_color = []
 series1_label = []
 
 for molecule in archive.molecules().iterator():
-	series1_xvalues.append(molecule.getDataTable().getRowCount())
-	series1_yvalues.append(molecule.getParameter("column_MSD"))
+	series1_xvalues.append(molecule.getDataTable().getRowCount()) #Make a list of track lengths
+	series1_yvalues.append(molecule.getParameter("column_MSD")) #Make a list of MSD values
 	series1_size.append(4.0)
 	series1_color.append("blue")
-	series1_label.append(molecule.getUID())
+	series1_label.append(molecule.getUID()) #Make a list of the UIDs
 ```
-
-Now press the refresh button and display the bubble chart.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
