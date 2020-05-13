@@ -20,6 +20,7 @@ To gain insight in the relationship between the mean square displacement (MSD) a
 To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the MSD values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues. Note that this can be extended easily if more categories are to be considered.
 
 **How to**
+
 First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'column_MSD'). Press the refresh button to load the plot. Switch back to the plot tab.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='450' />
@@ -62,11 +63,18 @@ There seems to be a clear difference in the MSD values in both categories. This 
 
 
 ### 2. Histogram - Plot the MSD in the Rover Dashboard
-To begin, click on the histogram icon in the widget dashboard toolbar. This will add a histogram widget to the dashboard pane. Next click the script tab <> to reveal the example script generating an example histogram with random number generators instead of MoleculeArchive data. To display this histogram, click the refresh icon in the far right.
+**Introduction**
+
+A histogram is a good way to familiarise with the spread in the MSD values in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.
+
+The script for this histogram is fairly simple. After setting the global outputs the series1_values list is appended with the MSD values of each molecule. This data is used to calculate the frequency of values internally to create the histogram.
+The data included in the figure can be selected by setting values for xmin and xmax. This enables the user to either include all data points by using xmin=min(MSD_values) and xmax=max(MSD_values) or selecting a smaller region of interest.
+
+**How to**
+
+Open the histogram widget in **Rover** dashboard by clicking on the icon in the toolbar. Move to the script tab (<>) and replace the example script with the script below. Make sure to adapt the script below to match the correct parameter name (in this example: 'column_MSD') and the desired xmin, xmax, ymin, ymax values. To display this histogram, click the refresh icon in the far right.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img5.png' width='450' />
-
-In the next step, alter the example code to match the code below. In this way it will display the frequency of calculated MSD values. For convenience, the window dimensions can be changed to a bigger field for easier scripting. Make sure to adapt the script below to match the correct parameter name (in this example: 'column_MSD') and the desired xmin, xmax, ymin, ymax values to display the axes. As a starting point, one can always use the xmin and xmax values of the series1_values array. This is left as an exercise for the reader to complete.
 
 
 ```python
@@ -104,9 +112,11 @@ for molecule in archive.molecules().iterator():
     series1_values.append(molecule.getParameter("column_MSD"))
 ```
 
+In the example dataset most tracked molecules have an MSD value below ~15. To explore the subset of the data with an MSD value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise. 
+
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
 
-Now click the refresh button again to display the histogram. In the case of this dataset, it is clear that most tracked molecules have a MSD-value below ~15.
+
 
 ### 3. XY Chart - Plot all 'Active' Traces in one Figure
 As an example to show the applicability of the XY Chart widget, a plot is made containing all traces marked in the MoleculeArchive as 'Active'. In the archive made in the [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorial there were 10 molecules tagged 'Active'. The traces (y vs slice) of all molecules will be plotted in one figure to inspect whether their overall shape and rate are similar.
