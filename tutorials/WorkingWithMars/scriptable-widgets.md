@@ -325,9 +325,11 @@ The plot shows that all traces have a similar slope but vary in their tracked le
 
 ### 4. Bubble Chart - Plot the MSD value vs. Track Length
 **Introduction**
+
 To answer the question 'Are longer tracks associated with higher MSD values?' the MSD values of each molecule are plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the MSD values as yvalues of the series. As an extra feature the molecule UIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UID is shown.
 
 **How to**
+
 Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to the script tab (<>). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: 'column_MSD'). Press the refresh icon to render the plot.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
