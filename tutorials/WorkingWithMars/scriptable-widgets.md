@@ -112,26 +112,32 @@ for molecule in archive.molecules().iterator():
     series1_values.append(molecule.getParameter("column_MSD"))
 ```
 
-In the example dataset most tracked molecules have an MSD value below ~15. To explore the subset of the data with an MSD value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise. 
+In the example dataset most tracked molecules have an MSD value below ~15. To explore the subset of the data with an MSD value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
 
 
 
 ### 3. XY Chart - Plot all 'Active' Traces in one Figure
-As an example to show the applicability of the XY Chart widget, a plot is made containing all traces marked in the MoleculeArchive as 'Active'. In the archive made in the [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorial there were 10 molecules tagged 'Active'. The traces (y vs slice) of all molecules will be plotted in one figure to inspect whether their overall shape and rate are similar.
+**Introduction**
+To inspect whether all 'Active'-tagged molecules behave similarly they are plotted in the same figure (y vs. slice) using the 'XY Chart' widget. As found in the [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorial there were 10 molecules tagged 'Active'.
+
+The extended script consists of multiple parts:
+* Input/Output section: since the scriptable widgets are based on the [script parameters](https://imagej.net/Script_Parameters) harvesting mechanism all specified inputs (the MoleculeArchive) and outputs (all plot coordinates, plot metadata like colors and titles) have to be explicitly specified.
+* Global outputs section: sets the plot metadata like labels, title and min and max coordinates.
+* Make two lists with x and y coordinates: makes two lists containing all x and y coordinates of all traces tagged 'Active'. Since these traces can start wherever on the field of view and do not all start at the same time (slice) these coordinates have to be adjusted to all start at y=0 and slice=0. This enables direct comparison between the traces.
+* Define colours of the stroke, the fill, and strokewidth.
+* Correct the x and y coordinates for each trace: correct by subtracting the min(slice) and min(y) respectively. This makes sure all traces start at slice=0 and y=0 in the plot. Note that since all output parameters need to be assigned explicitly their values also need to be assigned explicitly. In this scripting environment it is impossible to use a script that assigns these values automatically using matrices.
+
+**How to**
+
+Open the 'XY Chart' widget and switch to the scripting tab (<>). Replace the example script by the script below. Press the refresh icon to render the plot. Note that in this example all error values are set to 0 since no error information is available.
 
 <img src='{{site.baseurl}}/tutorials/img/script/img4.png' width='450' />
 
-Open the XY Chart widget and switch to the scripting tab <> and remove the example script. The next step is to write a script that retrieves and prepares the data for plotting. Data preparation is important since not all traces start at the same y-coordinate and slice number. Therefore, their values have to be corrected to show the traces in such a way they all start at y=0 and slice=0 to enable a good comparison between all of them. To do so, the start y-coordinate (minimum of y coordinates) and start slice number (minimum of slice numbers) is subtracted of every y-coordinate and slice number respectively.
 
-Below, a script that retrieves the y-coordinates and slice numbers, does the described corrections and plots the 10 'Active'-tagged traces can be found. Copy this into the scripting tab.
-Please note that since all output parameters needs to be explicitly assigned their values also need to be explicitly assigned. In this scripting environment it is impossible to use a script that assigns these values automatically using matrices.
-In this example all error values are set to 0 since no error information is available.
-
-
-```Python
-### @ MoleculeArchive archive
+```python
+#@ MoleculeArchive archive
 #@OUTPUT String xlabel
 #@OUTPUT String ylabel
 #@OUTPUT String title
@@ -142,24 +148,34 @@ In this example all error values are set to 0 since no error information is avai
 
 #@OUTPUT Double[] series1_xvalues
 #@OUTPUT Double[] series1_yvalues
+#@OUTPUT Double[] series1_error
 #@OUTPUT Double[] series2_xvalues
 #@OUTPUT Double[] series2_yvalues
+#@OUTPUT Double[] series2_error
 #@OUTPUT Double[] series3_xvalues
 #@OUTPUT Double[] series3_yvalues
+#@OUTPUT Double[] series3_error
 #@OUTPUT Double[] series4_xvalues
 #@OUTPUT Double[] series4_yvalues
+#@OUTPUT Double[] series4_error
 #@OUTPUT Double[] series5_xvalues
 #@OUTPUT Double[] series5_yvalues
+#@OUTPUT Double[] series5_error
 #@OUTPUT Double[] series6_xvalues
 #@OUTPUT Double[] series6_yvalues
+#@OUTPUT Double[] series6_error
 #@OUTPUT Double[] series7_xvalues
 #@OUTPUT Double[] series7_yvalues
+#@OUTPUT Double[] series7_error
 #@OUTPUT Double[] series8_xvalues
 #@OUTPUT Double[] series8_yvalues
+#@OUTPUT Double[] series8_error
 #@OUTPUT Double[] series9_xvalues
 #@OUTPUT Double[] series9_yvalues
-#@OUTPUT Double[] series0_xvalues
-#@OUTPUT Double[] series0_yvalues
+#@OUTPUT Double[] series9_error
+#@OUTPUT Double[] series10_xvalues
+#@OUTPUT Double[] series10_yvalues
+#@OUTPUT Double[] series10_error
 
 #@OUTPUT String series1_fillColor
 #@OUTPUT String series1_strokeColor
@@ -188,9 +204,9 @@ In this example all error values are set to 0 since no error information is avai
 #@OUTPUT String series9_fillColor
 #@OUTPUT String series9_strokeColor
 #@OUTPUT Integer series9_strokeWidth
-#@OUTPUT String series0_fillColor
-#@OUTPUT String series0_strokeColor
-#@OUTPUT Integer series0_strokeWidth
+#@OUTPUT String series10_fillColor
+#@OUTPUT String series10_strokeColor
+#@OUTPUT Integer series10_strokeWidth
 
 # Set global outputs
 xlabel = "Slice"
@@ -229,19 +245,16 @@ series8_xvalues = []
 series8_yvalues = []
 series9_xvalues = []
 series9_yvalues = []
-series0_xvalues = []
-series0_yvalues = []
+series10_xvalues = []
+series10_yvalues = []
 
-# Define the colors of the stroke and fill and strokewidth
-[series1_strokeColor,series2_strokeColor,series3_strokeColor,series4_strokeColor,series5_strokeColor,
- series6_strokeColor,series7_strokeColor,series8_strokeColor,series9_strokeColor,series0_strokeColor]=["black","blue","red","green","yellow","cyan","orange","violet","pink","gray"]
+# Define the colors of the stroke, the fill, and strokewidth
+[series1_strokeColor,series2_strokeColor,series3_strokeColor,series4_strokeColor,series5_strokeColor, series6_strokeColor,series7_strokeColor,series8_strokeColor,series9_strokeColor,series10_strokeColor]=["black","blue","red","green","yellow","cyan","orange","violet","pink","gray"]
 
 [series1_fillColor,series2_fillColor,series3_fillColor,series4_fillColor,series5_fillColor,series6_fillColor,
-series7_fillColor,series8_fillColor,series9_fillColor,series0_fillColor]= [series1_strokeColor,series2_strokeColor,series3_strokeColor,series4_strokeColor,series5_strokeColor,
- series6_strokeColor,series7_strokeColor,series8_strokeColor,series9_strokeColor,series0_strokeColor]
+series7_fillColor,series8_fillColor,series9_fillColor,series10_fillColor]= [series1_strokeColor,series2_strokeColor,series3_strokeColor,series4_strokeColor,series5_strokeColor, series6_strokeColor,series7_strokeColor,series8_strokeColor,series9_strokeColor,series10_strokeColor]
 
-[series1_strokeWidth,series2_strokeWidth,series3_strokeWidth,series4_strokeWidth,series5_strokeWidth,series6_strokeWidth,
-series7_strokeWidth,series8_strokeWidth,series9_strokeWidth,series0_strokeWidth]=[1,1,1,1,1,1,1,1,1,1]
+[series1_strokeWidth,series2_strokeWidth,series3_strokeWidth,series4_strokeWidth,series5_strokeWidth,series6_strokeWidth, series7_strokeWidth,series8_strokeWidth,series9_strokeWidth,series10_strokeWidth]=[1,1,1,1,1,1,1,1,1,1]
 
 # Assign the x and y values for each trace
 for i in list1_x[0]:
@@ -299,18 +312,24 @@ for i in list1_y[8]:
 series9_error = [0]*len(series9_yvalues)
 
 for i in list1_x[9]:
-    series0_xvalues.append(i-min(list1_x[9]))
+    series10_xvalues.append(i-min(list1_x[9]))
 for i in list1_y[9]:
-    series0_yvalues.append(i-min(list1_y[9]))
-series0_error = [0]*len(series0_yvalues)
-
+    series10_yvalues.append(i-min(list1_y[9]))
+series10_error = [0]*len(series10_yvalues)
 ```
-Press the refresh button to render the plot. This plot shows that all traces have a similar slope but vary in their tracked length.
+
+The plot shows that all traces have a similar slope but vary in their tracked length.
 
 <img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='650' />
 
 
 ### 4. Bubble Chart - Plot the MSD vs Track Length in the Rover Dashboard
+**Introduction**
+
+
+**How to**
+
+
 Next, to plot one feature of a molecule against another feature the bubble plot can be used. In this example the MSD value is plotted against the track length. This could answer the question "Are longer tracks associated with higher MSD values?".
 To open the bubble plot widget press the icon in the **Rover** dashboard toolbar. Open the script tab (<>) and adjust the example script to match the correct parameter name (in this example: "column_MSD") and x-axis and y-axis minima and maxima. This script makes an array of x-coordinates containing the length of the traces (length of the data table with the number of slices per track in it), an array of y-coordinates containing the MSD values per molecule, and next to that, also labels the data points with the molecule UID when the mouse is placed on the data point. This feature can be used to find the molecule in the Archive.
 
