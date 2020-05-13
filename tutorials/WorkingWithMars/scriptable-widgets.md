@@ -9,9 +9,8 @@ This tutorial focusses on working with the scriptable widgets. It highlights the
 In the upcoming sections all four scriptable widgets are described with an example. These sections are not depending on each other and can be completed independent of each other.
 Please not that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/)
 
-<div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="450"/></div>
+<div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="550"/></div>
 
-<img src='{{site.baseurl}}/tutorials/img/script/img1.png' width='450' />
 
 ### 1. Category Chart - Plot the Mean MSD Value with Respect to Tag
 To gain insight in the relationship between the mean square displacement (MSD) and the assigned tag ('Active' or not) this script first makes two categories: 'Active'-tagged molecules and molecules that are not tagged. Next, the MSD values of all molecules in these categories are collected and the mean per category is calculated. This gives a first glance at the relation between MSD value and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial. In Python this plot can be recreated using a very similar script as used for this widget, also plotting standard deviation.
