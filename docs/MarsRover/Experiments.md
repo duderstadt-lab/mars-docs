@@ -19,7 +19,7 @@ The Experiments tab has three main sections:
 | :------------- | :------------- |
 | DataTable      | Global information about the experiment like time and slice number.      |
 | Log       | Log of parameters set in image processing and tracking.       |
-| Scriptable Widgets      | [Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/) to visualise data per experiment.       |
+| Scriptable Widgets      | [Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per experiment.       |
 | Bdv Views       | BigDataViewer parameters to be used for video visualisations.       |
 
 **3. Notes, parameters, and information valid for all molecules within the experiment.**

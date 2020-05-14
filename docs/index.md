@@ -72,3 +72,5 @@ Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interfa
 | <img align='center' src='{{site.baseurl}}/docs/img/Icons/img3.png' width='50' />|[Molecules](./MarsRover/Molecules)     | UIDs with data tables and plot options. |
 | <img align='center' src='{{site.baseurl}}/docs/img/Icons/img4.png' width='50' />|[Comments](./MarsRover/Comments)  | Build-in text editor to annotate data sets. |
 | <img align='center' src='{{site.baseurl}}/docs/img/Icons/img5.png' width='50' />|[Settings](./MarsRover/Settings)      | Archive specific settings. |
+
+For an extensive overview of the scriptable widgets visit the [scriptable widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) page.
