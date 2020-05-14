@@ -57,7 +57,7 @@ Groovy is a Java-based language that builds upon the strenghts of Java but has a
 ### Widget-specific information
 For example scripts visit the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial page.
 
-##### Category Chart
+##### 1. Category Chart
 **Expected Outputs**
 
 | :------------- | :------------- |
@@ -72,11 +72,12 @@ For example scripts visit the [How to use Scriptable Widgets](https://duderstadt
 
 
 **Adding Categories**
+
 To add additional categories to the plot add another category name to 'xvalues' and another value to 'yvalues'. In case the number of xvalues does not correlate with the number of yvalues an error will be displayed in the script log.
 
-<img src='{{site.baseurl}}/docs/img/Rover/img16.png' width='450' />
+<img src='{{site.baseurl}}/docs/img/Rover/img16.png' width='350' />
 
-##### Histogram
+##### 2. Histogram
 **Expected Outputs**
 
 | :------------- | :------------- |
@@ -93,22 +94,68 @@ To add additional categories to the plot add another category name to 'xvalues' 
 | series1_strokeWidth       | Stroke width of the histogram       |
 
 **Adding Series**
+
 To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
-<img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='350' />
 
 
-##### XY Chart
+##### 3. XY Chart
 
-- Expected outputs
-  - Errors
-- Adding series
+**Expected Outputs**
 
-##### Bubble Chart
+| :------------- | :------------- |
+| xlabel       | Label for the x axis       |
+| ylabel       | Label for the y axis       |
+| title        | Plot title       |
+| ymin       | Y-axis minimum       |
+| ymax       | Y-axis maximum       |
+| xmin       | X-axis minimum       |
+| xmax       | X-axis maximum       |
+| series1_xvalues       | X values of the plotted series       |
+| series1_yvalues        | Y values of the plotted series       |
+| series1_error       | Errors on the data points in the plotted series. If not declared by default the error is set to 0.       |
+| series1_fillColor       | Color of the data points in series 1       |
+| series1_strokeColor       | Color of the stroke for series 1       |
+| series1_strokeWidth      | Strokewidth for series 1      |
 
-- Expected outputs
-- Adding series
+
+**Adding Series**
+
+To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_error, series#_fillColor, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
 
-##### Beaker
+<img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='450' />
+
+
+
+##### 4. Bubble Chart
+**Expected Outputs**
+
+| :------------- | :------------- |
+| xlabel       | Label for the x axis       |
+| ylabel       | Label for the y axis       |
+| title        | Plot title       |
+| ymin       | Y-axis minimum       |
+| ymax       | Y-axis maximum       |
+| xmin       | X-axis minimum       |
+| xmax       | X-axis maximum       |
+| series1_xvalues       | X values of the plotted series       |
+| series1_yvalues        | Y values of the plotted series       |
+| series1_size       | Size of the bubble       |
+| series1_label      | Label of the bubble when the mouse is moved to a specific data point       |
+| series1_color       | Color of the bubble       |
+| series1_markerColor       | Color of the label when the mouse is moved to a specific data point       |
+
+Note that the _series#_size_, _series#_color_, and _series#_label_ have to be provided as list with the same length as the amount of data points. In this way it is possible to set a different size, color and label for each of the plotted bubbles. In case the same size and color should be used for all bubbles define these parameters within the iterating loop as shown in example 4 of the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
+
+
+**Adding Series**
+
+To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
+
+
+##### 5. Beaker
 To implement a fully independently written widget use the 'beaker' scriptable widget. This undefined widget space gives the user unlimited possibilities to design widgets of choice.
