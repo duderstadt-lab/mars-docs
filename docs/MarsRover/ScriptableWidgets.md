@@ -40,9 +40,10 @@ Note that the parameters always have to be declared first, but the order of the 
 
 <img src='{{site.baseurl}}/docs/img/Rover/img15.png' width='800' />
 
+To learn more about customising the scripts of the widgets please go to the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
 
 ##### Language details
-The scripting environment is based on the environment provided by ImageJ. Language specific features can be found in the [ImageJ documentation](https://imagej.net/Scripting#Supported_languages).
+The scripting environment is based on the environment provided by ImageJ. Language specific features can be found in the [ImageJ documentation](https://imagej.net/Scripting#Supported_languages). **Mars** supports scripting in Python and Groovy.
 
 **Python**
 
@@ -53,11 +54,33 @@ The Python version used within ImageJ, and therefore within **Mars**, is [Jython
 Groovy is a Java-based language that builds upon the strenghts of Java but has additional features inspired by languages like Python, Ruby and Smalltalk. For more information about scripting in Groovy visit the [Groovy Quick Start guide](http://groovy-lang.org/documentation.html#gettingstarted).
 
 
-
-To learn more about customising the scripts of the widgets please go to the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
-
-
 ### Widget-specific information
+
+##### Category Chart
+
+- Expected Outputs
+- Adding categories
+
+##### Histogram
+
+- Expected Outputs
+- Function of Xmin and Xmax
+- Adding series
+
+##### XY Chart
+
+- Expected outputs
+  - Errors
+- Adding series
+
+##### Bubble Chart
+
+- Expected outputs
+- Adding series 
+
+
+
+
 
 - Category Chart
 - Histogram
