@@ -23,7 +23,18 @@ In all cases, the widget can be opened by clicking the corresponding icon. The s
 
 #### Scripting
 
-The entire scripting framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ. This way of parameter handling ensures that multiple languages can be interpreted (in the case of **Mars**: Python & Groovy) and makes the scripts easily interchangeable between script running environments.
+The entire scripting framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ. This way of parameter handling ensures that multiple languages can be interpreted (in the case of **Mars**: Python & Groovy) and makes the scripts easily interchangeable between script running environments. An example script is discussed to highlight the main script features. More information on this specific example can be found at the histogram example in the ['How to use Scriptable Widgets'](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial
+
+In general, a script contains the following sections:
+* Global parameter declaration section: declare the input and outputs of the script using the [script parameter](https://imagej.net/Script_Parameters) syntax: #@INPUT/OUTPUT [Parameter type] [Parameter name].
+By default the script selects 'INPUT' if no INPUT/OUTPUT information is provided.
+* Global output settings: global settings like labels, title and axis information. Make sure that the data type provided corresponds with the expected data type in the parameter declaration.
+* Series specific parameter declaration: in this script each line in the plot is defined as a series# (where # is replaced by a number). Depending on the number of series shown, more or less parameters have to be declared. In this example only one line is plotted so only series1 parameters have to be declared.
+* Series specific output settings: set series specific information such as color and strokewidth.
+* Scripting region: script that retrieves the data of interest from the archive (in this case the value of the 'column_msd' parameter for each molecule) and converts it into the list of values (series1_values) that are plotted in the chart.
+
+
+Note that the parameters always have to be declared first, but the order of the other components of the script is up to the preferences of the user.
 
 
 
