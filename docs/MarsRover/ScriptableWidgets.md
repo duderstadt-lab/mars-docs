@@ -43,15 +43,13 @@ Note that the parameters always have to be declared first, but the order of the 
 
 
 ##### Language details
-**Python**
+The scripting environment is based on the environment provided by ImageJ. Language specific features can be found in the [ImageJ documentation](https://imagej.net/Scripting#Supported_languages).
 
+**Python**
+The Python version used within ImageJ, and therefore within **Mars**, is [Jython](https://www.jython.org). Jython forms a seamless interaction between Python and Java and allows the user to mix both languages during development. The Java implementation of Python is limited to the standard library of Python 2. It is not possible to use external python modules (f.e. Numpy, Pandas), however, any Java class in the Fiji installation can be used.
 
 **Groovy**
-
-
-
-
-
+Groovy is a Java-based language that builds upon the strenghts of Java but has additional features inspired by languages like Python, Ruby and Smalltalk. For more information about scripting in Groovy visit the [Groovy Quick Start guide](http://groovy-lang.org/documentation.html#gettingstarted).
 
 
 
