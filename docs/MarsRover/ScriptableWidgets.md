@@ -11,14 +11,31 @@ The scriptable widgets are available on **Rover** Dashboard and also in the 'Exp
 
 At the highest level, the global dashboard receives a reference to the entire [MoleculeArchive](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/MoleculeArchive.html) as an input. This provides complete access to all molecules, metadata, and properties, so global relationships can be rapidly evaluated. Dashboards are also provided within the 'Experiments' and 'Molecules' tabs. These receive [MarsMetadata](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/MarsMetadata.html) and [Molecule](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/Molecule.html) references for detailed inspection of individual records. Once a suitable collection of widgets has been setup, simply reloading after selecting different molecule and metadata records will update all charts in reference to the current record.
 
-
-
-
 ### General setup of all Widgets
-Each type of chart widgets expect a different set of outputs. Example scripts are provided for all chart types on creation to illustrate the outputs required and how they can be used. The entire framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ.
+There are five types of widgets available in **Mars**:
+* Category Chart
+* Histogram
+* XY Chart
+* Bubble Chart
+* Beaker
 
-There are four predefined scriptable widgets: a Category Chart, Histogram,
-XY chart, and Bubble chart. Click on the <> tab to change the script, click on the book icon to show the script log. To show examples of these plot types load the widgets and press the refresh button.
+In all cases, the widget can be opened by clicking the corresponding icon. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button.
+
+**Scripting**
+The entire scripting framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ. This way of parameter handling ensures that multiple languages can be interpreted (in the case of **Mars**: Python & Groovy) and makes the scripts easily interchangeable between script running environments.
+
+
+
+
+- Python specific details
+- Groovy specific detals
+
+
+
+
+
+
+
 To learn more about customising these widgets please go to the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) page.
 
 
