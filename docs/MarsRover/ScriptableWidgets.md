@@ -159,3 +159,5 @@ To add additional series to the plot, any other series can be defined following 
 
 ##### 5. Beaker
 To implement a fully independently written widget use the 'beaker' scriptable widget. This undefined widget space gives the user unlimited possibilities to design widgets of choice.
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img17.png' width='350' />
