@@ -55,17 +55,48 @@ Groovy is a Java-based language that builds upon the strenghts of Java but has a
 
 
 ### Widget-specific information
+For example scripts visit the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial page.
 
 ##### Category Chart
+**Expected Outputs**
 
-- Expected Outputs
-- Adding categories
+| :------------- | :------------- |
+| xlabel       | Label for the x axis       |
+| ylabel       | Label for the y axis       |
+| color       | Color of the bars       |
+| title        | Plot title       |
+| xvalues       | Category names       |
+| yvalues       | Y values per category       |
+| ymin       | Y-axis minimum       |
+| ymax       | Y-axis maximum       |
+
+
+**Adding Categories**
+To add additional categories to the plot add another category name to 'xvalues' and another value to 'yvalues'. In case the number of xvalues does not correlate with the number of yvalues an error will be displayed in the script log.
+
+<img src='{{site.baseurl}}/docs/img/Rover/img16.png' width='450' />
 
 ##### Histogram
+**Expected Outputs**
 
-- Expected Outputs
-- Function of Xmin and Xmax
-- Adding series
+| :------------- | :------------- |
+| xlabel       | Label for the x axis       |
+| ylabel       | Label for the y axis       |
+| title        | Plot title       |
+| bins         | Amount of bins to use in the histogram |
+| xmin       | X-axis minimum, at the same time the selection for the data range to incorporate       |
+| xmax       | X-axis maximum, at the same time the selection for the data range to incorporate       |
+| ymin       | Y-axis minimum       |
+| ymax       | Y-axis maximum       |
+| series1_values       | Values on which the histogram output is based       |
+| series1_strokeColor       | Stroke color of the histogram      |
+| series1_strokeWidth       | Stroke width of the histogram       |
+
+**Adding Series**
+To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
+
+<img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
+
 
 ##### XY Chart
 
@@ -76,17 +107,8 @@ Groovy is a Java-based language that builds upon the strenghts of Java but has a
 ##### Bubble Chart
 
 - Expected outputs
-- Adding series 
+- Adding series
 
 
-
-
-
-- Category Chart
-- Histogram
-- XY Chart
-- Bubble Chart
-- Beaker
-
-
+##### Beaker
 To implement a fully independently written widget use the 'beaker' scriptable widget. This undefined widget space gives the user unlimited possibilities to design widgets of choice.
