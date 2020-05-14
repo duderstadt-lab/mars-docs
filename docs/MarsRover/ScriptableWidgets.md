@@ -19,12 +19,15 @@ There are five types of widgets available in **Mars**:
 * Bubble Chart
 * Beaker
 
-In all cases, the widget can be opened by clicking the corresponding icon. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button.
+In all cases, the widget can be opened by clicking the corresponding icon. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button. Widget-specific details are discussed in the next section.
 
-**Scripting**
+#### Scripting
+
 The entire scripting framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ. This way of parameter handling ensures that multiple languages can be interpreted (in the case of **Mars**: Python & Groovy) and makes the scripts easily interchangeable between script running environments.
 
 
+
+<img align='center' src='{{site.baseurl}}/docs/img/Rover/img15.png' width='800' />
 
 
 - Python specific details
@@ -39,7 +42,7 @@ The entire scripting framework relies on the [script parameter](https://imagej.n
 To learn more about customising these widgets please go to the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) page.
 
 
-### Widget specific information
+### Widget-specific information
 
 - Category Chart
 - Histogram
