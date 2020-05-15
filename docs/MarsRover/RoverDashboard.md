@@ -13,9 +13,8 @@ Widgets can be selected from the toolbar with a click. The scripting language ca
 #### Predefined widgets
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img2.png' width='80' />
 
-The predefined widgets give a first glance at the data. As shown in the example, the
-information widget shows the name of the archive, the archive type, the amount of molecules in the archive, the amount of metadata files and which type of memory is used for storage ('Normal' or 'Virtual Mode'). The tag widget shows a bar plot of the amount of molecules that are categorised by a certain tag.
-Update the widgets after a change in the archive by pressing the refresh button.
+The predefined widgets give a first glance at the data. The
+information widget shows the name of the archive, the archive type, the number of molecules in the archive, the number of metadata files and which type of memory is used for storage ('Normal' or 'Virtual Mode'). The tag widget shows a bar plot of the number of molecules that are categorised by a certain tag. Update the widgets after a change in the archive by pressing the refresh button.
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img4.png' width='450' />
 
@@ -25,7 +24,7 @@ Update the widgets after a change in the archive by pressing the refresh button.
 
 The scriptable widgets are available on **Rover** Dashboard and also in the 'Experiments' and 'Molecules' tabs. They allow for a rapid evaluation of the archive, metadata, and molecule features. All scriptable widgets ('Category Chart', 'Histogram', 'XY Chart', 'Bubble Chart', and 'Beaker') leverage the scripting capabilities of ImageJ to provide limitless customisability. Scripts can be written in Python or Groovy.
 
-Extended [documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) on the scripable widgets is provided as well as a tutorial with examples on [how to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/).
+Extended [documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) on the scripable widgets is provided as well as a tutorial with examples on [the scriptable widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/).
 
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800' />
