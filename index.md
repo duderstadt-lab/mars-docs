@@ -15,6 +15,7 @@ To get started with Mars, take a look at the [tutorials](tutorials), [example ga
 
 <div style="text-align: center"><img src='{{site.baseurl}}/assets/200417_status_full.gif' width="450"/></div>
 
+;
 &nbsp;
 
 &nbsp;
