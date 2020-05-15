@@ -20,8 +20,7 @@ Open the example dataset 'TestVideo.tif' in Fiji. This will open the video in a 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450' />
 
 
-__Background Information:__
-
+__Background Information:__  
 When playing the movie, it is clear that molecules with different behaviour
 are observed. The different types are listed here:
 1. Fast moving molecules only present in a few subsequent frames: these are

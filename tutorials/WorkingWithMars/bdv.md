@@ -8,7 +8,7 @@ _level: advanced, duration: 10 min_
 
 This tutorial explores the **Rover** option to show a tracked molecule in the original video. This eminently useful function can be used for visual examination of the molecule after analysis for validation of the observed behavior. This would rule out flaws in tracking having a major impact on the drawn conclusion from the data.
 
-The video viewer is based on [BigDataViewer](https://imagej.net/BigDataViewer#Description) and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5. To do so the [instructions](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer) supplied in their documentation is used.
+The video viewer is based on [BigDataViewer](https://imagej.net/BigDataViewer#Description)<sup>1</sup> and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5. To do so the [instructions](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer) supplied in their documentation is used.
 
 Steps 1-3 are required to set up the connection between the MoleculeArchive and the XML video. These only have to be executed once per MoleculeArchive and can then be saved to the MoleculeArchive. If the connection has been established and saved, step 4 and 5 can be executed independently.
 
@@ -71,3 +71,6 @@ To save the video showing the molecule of interest use the 'Export Video' tool i
 A new Fiji window will open with the exported video. Use the main Fiji functions to adjust f.e. the brightness of the video and save.
 
 <img src='{{site.baseurl}}/tutorials/img/bdv/img13.png' width='400' />
+
+
+<sup>1</sup> Pietzsch, T.; Saalfeld, S. & Preibisch, S. et al. (2015), "BigDataViewer: visualization and processing for large image data sets", _Nature Methods_ **12(6)**: 481-483, PMID 26020499

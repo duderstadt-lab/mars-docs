@@ -120,6 +120,7 @@ In the example dataset most tracked molecules have an MSD value below ~15. To ex
 
 ### 3. XY Chart - Plot all 'Active' Traces in one Figure
 **Introduction**
+
 To inspect whether all 'Active'-tagged molecules behave similarly they are plotted in the same figure (y vs. slice) using the 'XY Chart' widget. As found in the [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorial there were 10 molecules tagged 'Active'.
 
 The extended script consists of multiple parts:
