@@ -23,7 +23,7 @@ Script writers and java developers can get started using the **Mars** developmen
 | [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
 | [MSD Calculator](./molecule/MSDCalculator) | Add mean squared displacement parameter for molecules. |
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of MoleculeArchives. |
-| [Merge Virtual Stores](./molecule/MergeVirtualStore) | Merges a set of virtual MoleculeArchives. |
+| [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual MoleculeArchives. |
 
 ### Table
 
