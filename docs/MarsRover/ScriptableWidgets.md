@@ -36,7 +36,7 @@ In general, a script contains the following sections:
 * Scripting region: script that retrieves the data of interest from the archive and converts it to the parameter used for plotting. In the case of this example the parameter 'column_MSD' is retrieved for each molecule and added to the list of series1_values. This list is plotted in the chart.
 
 
-Note that the parameters always have to be declared first, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script (f.e. make a list of parameter values, then calculate the mean of that list and provide it to the output parameter).
+Note that the parameters always have to be declared first, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script.
 
 <img src='{{site.baseurl}}/docs/img/Rover/img15.png' width='800' />
 
@@ -47,7 +47,7 @@ The scripting environment is based on the environment provided by ImageJ. Langua
 
 **Python**
 
-The Python version used within ImageJ, and therefore within **Mars**, is [Jython](https://www.jython.org). Jython forms a seamless interaction between Python and Java and allows the user to mix both languages during development. The Java implementation of Python is limited to the standard library of Python 2. It is not possible to use external python modules (f.e. Numpy, Pandas), however, any Java class in the Fiji installation can be used.
+The Python version used within ImageJ, and therefore within **Mars**, is [Jython](https://www.jython.org). Jython forms a seamless interaction between Python and Java and allows the user to mix both languages during development. The Java implementation of Python is limited to the standard library of Python 2. It is not possible to use external python modules (f.e. Numpy, Pandas or Matplotlib), however, any Java class in the Fiji installation can be used.
 
 **Groovy**
 
@@ -55,7 +55,7 @@ Groovy is a Java-based language that builds upon the strenghts of Java but has a
 
 
 ### Widget-specific information
-For example scripts visit the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial page.
+For an example script for each plot type visit the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial page.
 
 ##### 1. Category Chart
 **Expected Outputs**
@@ -73,7 +73,7 @@ For example scripts visit the [How to use Scriptable Widgets](https://duderstadt
 
 **Adding Categories**
 
-To add additional categories to the plot add another category name to 'xvalues' and another value to 'yvalues'. In case the number of xvalues does not correlate with the number of yvalues an error will be displayed in the script log.
+To add additional categories to the plot add another category name to 'xvalues' and another value to 'yvalues'. In case the number of xvalues does not correlate with the number of yvalues an error is returned in the script log.
 
 <img src='{{site.baseurl}}/docs/img/Rover/img16.png' width='350' />
 
@@ -84,7 +84,7 @@ To add additional categories to the plot add another category name to 'xvalues' 
 | xlabel       | Label for the x axis       |
 | ylabel       | Label for the y axis       |
 | title        | Plot title       |
-| bins         | Amount of bins to use in the histogram |
+| bins         | Number of bins to use in the histogram |
 | xmin       | X-axis minimum, at the same time the selection for the data range to incorporate       |
 | xmax       | X-axis maximum, at the same time the selection for the data range to incorporate       |
 | ymin       | Y-axis minimum       |
@@ -92,6 +92,14 @@ To add additional categories to the plot add another category name to 'xvalues' 
 | series1_values       | Values on which the histogram output is based       |
 | series1_strokeColor       | Stroke color of the histogram      |
 | series1_strokeWidth       | Stroke width of the histogram       |
+
+Note that by selecting xmin and xmax the range of data points to include in the histogram is set as well. This enables the selection of a region of interest. To make sure the full data range is covered use:
+
+```Python
+xmin = min(series1_values)
+xmax = max(series1_values
+
+```
 
 **Adding Series**
 
