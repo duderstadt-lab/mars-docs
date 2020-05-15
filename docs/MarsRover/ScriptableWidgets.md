@@ -45,12 +45,10 @@ To learn more about customising the scripts of the widgets please go to the [How
 ##### Language details
 The scripting environment is based on the environment provided by ImageJ. Language specific features can be found in the [ImageJ documentation](https://imagej.net/Scripting#Supported_languages). **Mars** supports scripting in Python and Groovy.
 
-**Python**
-
+**Python**  
 The Python version used within ImageJ, and therefore within **Mars**, is [Jython](https://www.jython.org). Jython forms a seamless interaction between Python and Java and allows the user to mix both languages during development. The Java implementation of Python is limited to the standard library of Python 2. It is not possible to use external python modules (f.e. Numpy, Pandas or Matplotlib), however, any Java class in the Fiji installation can be used.
 
-**Groovy**
-
+**Groovy**  
 Groovy is a Java-based language that builds upon the strenghts of Java but has additional features inspired by languages like Python, Ruby and Smalltalk. For more information about scripting in Groovy visit the [Groovy Quick Start guide](http://groovy-lang.org/documentation.html#gettingstarted).
 
 
@@ -71,8 +69,7 @@ For an example script for each plot type visit the [How to use Scriptable Widget
 | ymax       | Y-axis maximum       |
 
 
-**Adding Categories**
-
+**Adding Categories**  
 To add additional categories to the plot add another category name to 'xvalues' and another value to 'yvalues'. In case the number of xvalues does not correlate with the number of yvalues an error is returned in the script log.
 
 <img src='{{site.baseurl}}/docs/img/Rover/img16.png' width='350' />
@@ -103,7 +100,7 @@ xmax = max(series1_values
 ```
 
 
-**Adding Series**
+**Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='350' />
@@ -129,8 +126,7 @@ To add an additional series to the plot define a new set of series-specfic param
 | series1_strokeWidth      | Strokewidth for series 1      |
 
 
-**Adding Series**
-
+**Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_error, series#_fillColor, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
 
@@ -159,8 +155,7 @@ To add an additional series to the plot define a new set of series-specfic param
 Note that the _series#_size_, _series#_color_, and _series#_label_ have to be provided as list with the same length as the amount of data points. In this way it is possible to set a different size, color and label for each of the plotted bubbles. In case the same size and color should be used for all bubbles define these parameters within the iterating loop as shown in example 4 of the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
 
 
-**Adding Series**
-
+**Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
