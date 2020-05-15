@@ -1,10 +1,12 @@
 ---
 layout: about
-title: About the Mars Project
-permalink: /about/Acknowledgements.html
+title: Acknowledgements
+permalink: /about/Acknowledgements/index.html
 ---
 
 ### Software
+
+The **Mars** software utilises features from other software packages as referenced in the respective documentation pages and tutorials.
 
 **Trackmate**  
 Tinevez, JY.; Perry, N. & Schindelin, J. et al. (2017), "Trackmate: An open and extensible platform for single-particle tracking.", _Methods_ **115**: 80-90, PMID 27713081
