@@ -3,11 +3,10 @@ layout: marsrover
 title: Molecules
 permalink: /docs/MarsRover/Molecules/index.html
 ---
-The Molecules tab has three main sections:
-
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img8.png' width='600' />
 
+The Molecules tab has three main sections:
 
 **1. List of molecules in the Archive.**
 
@@ -21,8 +20,8 @@ The Molecules tab has three main sections:
 
 | :------------- | :------------- |
 | DataTable      | Molecule specific position information (x, y, intensity, slice).      |
-| Plot | Plotting widget for easy in-GUI analysis of the data |
-| Scriptable Widgets      | [Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per molecule.       |
+| Plot | Plotting widget for easy in-GUI analysis of the data. |
+| Scriptable widgets      | [Scriptable widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per molecule.       |
 
 
 

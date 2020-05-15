@@ -19,8 +19,8 @@ The Experiments tab has three main sections:
 | :------------- | :------------- |
 | DataTable      | Global information about the experiment like time and slice number.      |
 | Log       | Log of parameters set in image processing and tracking.       |
-| Scriptable Widgets      | [Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per experiment.       |
-| Bdv Views       | BigDataViewer parameters to be used for video visualisations.       |
+| Scriptable widgets      | [Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per experiment.       |
+| Bdv Views       | BigDataViewer parameters to be used for video visualisations. See [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/).       |
 
 **3. Notes, parameters, and information valid for all molecules within the experiment.**
 
@@ -30,6 +30,6 @@ The Experiments tab has three main sections:
 | Regions       | List of assigned regions (f.e. to denote the change of a parameter at a certain time point in the experiment).       |
 | Positions       | List of globally assigned positions.      |
 
-Regions and Positions are globally defined in the Experiments tab and if enabled will show up in all plots where relevant.
+Regions and Positions are globally defined in the Experiments tab and if enabled will show up in the plots made under the 'molecules' tab where relevant.
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img7.png' width='600' />
