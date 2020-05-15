@@ -15,6 +15,10 @@ To get started with Mars, take a look at the [tutorials](tutorials), [example ga
 
 <div style="text-align: center"><img src='{{site.baseurl}}/assets/200417_status_full.gif' width="450"/></div>
 
+&nbsp;
 
+&nbsp;
 
-<sup>1</sup> Template of the docs based on [Vega](https://vega.github.io/vega/about/research/) by J. Heer, A. Satyanarayan, _et al._
+&nbsp;
+
+<sup>1</sup> The template of this documentation site is based on [Vega](https://vega.github.io/vega/about/research/)
