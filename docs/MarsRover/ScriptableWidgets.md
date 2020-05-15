@@ -19,7 +19,7 @@ There are five types of widgets available in **Mars**:
 * Bubble Chart
 * Beaker
 
-In all cases, the widget can be opened by clicking the corresponding icon. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button. Widget-specific details are discussed in the next section.
+In all cases, the widget can be opened by clicking the corresponding icon. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This log holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button. Widget-specific details are discussed in the next section.
 
 ##### Scripting
 The entire scripting framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ. This way of parameter handling ensures that multiple languages can be interpreted (in the case of **Mars**: Python & Groovy) and makes the scripts easily interchangeable between script running environments. An example Python script is discussed to highlight the main script features. More information on this specific example can be found at the histogram example in the ['How to use Scriptable Widgets'](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial
@@ -30,10 +30,10 @@ In general, a script contains the following sections:
   * #@ Type variableName declares an input
   * #@OUTPUT Type variableName declares an output
 
-* Global output settings: global settings like labels, title and axis information. Make sure that the data type provided corresponds with the expected data type in the parameter declaration.
+* Global output settings: global settings like labels, title and axis information. Make sure that the data type provided corresponds with the expected data type set in the parameter declaration.
 * Series specific parameter declaration: in this script each line in the plot is defined as a series# (where # is replaced by a number). Depending on the number of series shown, more or less parameters have to be declared. In this example only one line is plotted so only series1 parameters have to be declared.
-* Series specific output settings: set series specific information such as color and strokewidth.
-* Scripting region: script that retrieves the data of interest from the archive (in this case the value of the 'column_msd' parameter for each molecule) and converts it into the list of values (series1_values) that are plotted in the chart.
+* Series specific output settings: set series specific information such as in this case: color and strokewidth.
+* Scripting region: script that retrieves the data of interest from the archive and converts it to the parameter used for plotting. In the case of this example the parameter 'column_MSD' is retrieved for each molecule and added to the list of series1_values. This list is plotted in the chart.
 
 
 Note that the parameters always have to be declared first, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script (f.e. make a list of parameter values, then calculate the mean of that list and provide it to the output parameter).
