@@ -7,7 +7,7 @@ permalink: /tutorials/index.html
 Tutorials for learning how to use Mars. For exploring the software and its most commonly used features please follow the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial first.
 
 #### Working with Mars
-* [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)\
+* [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)  
   _Skill level: Beginner._ Learn the basic elements of **Mars** by creating and working with a MoleculeArchive.
 * [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)
 
