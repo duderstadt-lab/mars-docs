@@ -104,8 +104,7 @@ xmax = max(series1_values
 
 
 **Adding Series**
-
-To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
+To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='350' />
 
@@ -124,7 +123,7 @@ To add additional series to the plot, any other series can be defined following 
 | xmax       | X-axis maximum       |
 | series1_xvalues       | X values of the plotted series       |
 | series1_yvalues        | Y values of the plotted series       |
-| series1_error       | Errors on the data points in the plotted series. If not declared by default the error is set to 0.       |
+| series1_error       | Errors on the data points in the plotted series. If not declared, by default the error is set to 0       |
 | series1_fillColor       | Color of the data points in series 1       |
 | series1_strokeColor       | Color of the stroke for series 1       |
 | series1_strokeWidth      | Strokewidth for series 1      |
@@ -132,7 +131,7 @@ To add additional series to the plot, any other series can be defined following 
 
 **Adding Series**
 
-To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_error, series#_fillColor, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
+To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_error, series#_fillColor, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
 
 <img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='450' />
@@ -162,7 +161,7 @@ Note that the _series#_size_, _series#_color_, and _series#_label_ have to be pr
 
 **Adding Series**
 
-To add additional series to the plot, any other series can be defined following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
+To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
 
