@@ -95,11 +95,13 @@ To add additional categories to the plot add another category name to 'xvalues' 
 
 Note that by selecting xmin and xmax the range of data points to include in the histogram is set as well. This enables the selection of a region of interest. To make sure the full data range is covered use:
 
-```Python
+``` pytho
+
 xmin = min(series1_values)
 xmax = max(series1_values
 
 ```
+
 
 **Adding Series**
 
