@@ -15,7 +15,7 @@ This command brings up a GUI for quickly filtering through lots of small ROI vid
 
 #### ROI Manual Filter ROI
 
-<img align='center' src='{{site.baseurl}}/docs/roi/Open ROIs Tiled Window.png' width='700' />
+<img align='center' src='{{site.baseurl}}/docs/roi/img/Open ROIs Tiled Window.png' width='700' />
 
 The individual videos are tiled for manual sorting. By default all are rejected. To accept a video just click and the box will turn green. Once you have finished with the current set press the Next Button to see the next set, if you need to go back and check your choices use the Previous Button. Once you are sure about your selections you can use the Process button to move all sorted files into either an accepted or rejected subdirectory (This will Process all past ROI sets and the currently open one). Process can be used at any time as you progress through the ROIs, but once you hit Process button you will no longer be able to go back and change your selections, because the ROI video will have been moved into the subdirectories.
 
