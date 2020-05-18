@@ -19,7 +19,7 @@ There are five types of widgets available in **Mars**:
 * Bubble Chart
 * Beaker
 
-In all cases, the widget can be opened by clicking the corresponding icon. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This log holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button. Widget-specific details are discussed in the next section.
+In all cases, the widget can be opened by clicking the corresponding icon. Click the icon multiple times to open multiple copies of the widget at the same time. The script can be altered in the scripting tab (<>) and the chart can be rendered by pressing the refresh icon. The script log can be accessed by pressing the book icon. This log holds all information about running the script (f.e. error types). By default, all widgets come with example code that render an example plot when pressing the refresh button. Widget-specific details are discussed in the next section.
 
 ##### Scripting
 The entire scripting framework relies on the [script parameter](https://imagej.net/Script_Parameters) harvesting mechanism provided with ImageJ. This way of parameter handling ensures that multiple languages can be interpreted (in the case of **Mars**: Python & Groovy) and makes the scripts easily interchangeable between script running environments. An example Python script is discussed to highlight the main script features. More information on this specific example can be found at the histogram example in the ['How to use Scriptable Widgets'](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial
@@ -36,7 +36,7 @@ In general, a script contains the following sections:
 * Scripting region: script that retrieves the data of interest from the archive and converts it to the parameter used for plotting. In the case of this example the parameter 'column_MSD' is retrieved for each molecule and added to the list of series1_values. This list is plotted in the chart.
 
 
-Note that the parameters always have to be declared first, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script.
+Note that the parameters always have to be declared before assigning them, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script.
 
 <img src='{{site.baseurl}}/docs/img/Rover/img15.png' width='800' />
 
@@ -95,7 +95,7 @@ Note that by selecting xmin and xmax the range of data points to include in the 
 ``` pytho
 
 xmin = min(series1_values)
-xmax = max(series1_values
+xmax = max(series1_values)
 
 ```
 
@@ -152,7 +152,7 @@ To add an additional series to the plot define a new set of series-specfic param
 | series1_color       | Color of the bubble       |
 | series1_markerColor       | Color of the label when the mouse is moved to a specific data point       |
 
-Note that the _series#_size_, _series#_color_, and _series#_label_ have to be provided as list with the same length as the amount of data points. In this way it is possible to set a different size, color and label for each of the plotted bubbles. In case the same size and color should be used for all bubbles define these parameters within the iterating loop as shown in example 4 of the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
+Note that the _series#_size_, _series#_color_, and _series#_label_ have to be provided as a list with the same length as the number of data points. In this way it is possible to set a different size, color and label for each of the plotted bubbles. In case the same size and color should be used for all bubbles define these parameters within the iterating loop as shown in example 4 of the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
 
 
 **Adding Series**  
