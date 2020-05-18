@@ -10,7 +10,7 @@ This command merges multiple MoleculeArchives (yama files) into one. To ensure e
 * *Directory* - A directory containing multiple .yama files you would like to merge (They can be either txt or smile encoded or a combination of the two). Can be as many as you like but they must all contain unique datasets (unique ImageMetaData UIDs). If two archives have ImageMetaData items with the same UIDs the merge process will be aborted until the conflict is resolved.
 * *Use smile encoding* - The encoding of the output yama file. Usually smile encoding is preferred because it will results in smaller file sizes. However, if export to another software is required plain txt JSON is preferred.
 
-<img align='center' src='{{site.baseurl}}/docs/Molecule/img/Merge Archives.png' width='250'/>
+<img src='{{site.baseurl}}/docs/molecule/img/Merge_Archives.png' width='250' />
 
 #### Output
 
