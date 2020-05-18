@@ -11,6 +11,6 @@ permalink: /docs/molecule/index.html
 | [Add time](AddTime) | Retrieve and add time information from metadata. |
 | [Drift Calculator](DriftCalculator) | Calculate drift in position. |
 | [Drift Corrector](DriftCorrector) | Remove drift from the molecule positions. |
-| [MSD Calculator](MSDCalculator) | Add mean squared displacement parameter for molecules. |
+| [Var Calculator](MSDCalculator) | Add variance parameter for molecules. |
 | [Merge Archives](MergeArchives) | Merges a set of MoleculeArchives. |
 | [Merge Virtual Archives](MergeVirtualArchives) | Merges a set of virtual MoleculeArchives. |
