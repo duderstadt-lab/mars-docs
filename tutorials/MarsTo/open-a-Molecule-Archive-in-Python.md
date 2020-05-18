@@ -144,14 +144,14 @@ for molecule in molecules:
 Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the MSD values are stored in a list() that is way the line can be in a separate cell.
 
 #### Getting Parameters from the Data
-In this ***[tutorial for the mean squared displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)*** of the data along the y axis was calculated. The following line saves the MSD values in a list which makes it possible to excess the parameters. The parameter was called "msd" in the archive and has to be specified if this parameter has to be called with "getParameter()".
+In this ***[tutorial for calculating variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)*** of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to excess the parameters. The parameter was called "var" in the archive and has to be specified if this parameter has to be called with "getParameter()".
 ```python
-MSDs = list(map(lambda UID: archive.get(UID).getParameter('msd'), archive.getMoleculeUIDs()))
+VARs = list(map(lambda UID: archive.get(UID).getParameter('var'), archive.getMoleculeUIDs()))
 ```
-Finally, one can plot the distribution of the MSD in a histogram using the matplotlib package.
+Finally, one can plot the distribution of the variance in a histogram using the matplotlib package.
 ```python
-plt.xlim([min(MSDs)-5, max(MSDs)+5])
-plt.hist(MSDs, bins=24, alpha=0.5)
+plt.xlim([min(VARs)-5, max(VARs)+5])
+plt.hist(VARs, bins=24, alpha=0.5)
 plt.title('Mean Squared Displacement')
 plt.xlabel('MSD')
 plt.ylabel('count')
@@ -162,7 +162,7 @@ The seaborn package from python is really good for statistical plots and is base
 When using seaborn the histogram can be plotted with one simple line. Kernel density estimation (kde) is turned off ("False").
 Bins specifies the number of bins.
 ```python
-sns.distplot(MSDs,kde =False, bins =24)
+sns.distplot(VARs,kde =False, bins =24)
 ```
 
 Now the file can be saved under File -> Save as.
