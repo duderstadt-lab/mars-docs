@@ -4,6 +4,11 @@ title: Acknowledgements
 permalink: /about/Acknowledgements/index.html
 ---
 
+### The Duderstadt Lab
+In the Duderstadt lab we study molecular machines that reshape and remake chromosomes using structural, biochemical, and single-molecule approaches. The major part of our research relies on microscopy techniques. To analyse the generated data in a reliable and reproducible manner we developed the 'Molecule ARchive Suite' (**Mars**). More information about the research projects and the team can be found on our [homepage](https://duderstadtlab.org).
+
+<img align='center' src='{{site.baseurl}}/about/img/img1.png' width='450' />
+
 ### Software
 
 The **Mars** software utilises features from other software packages as referenced in the respective documentation pages and tutorials.

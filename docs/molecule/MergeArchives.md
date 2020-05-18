@@ -12,9 +12,6 @@ This command merges multiple MoleculeArchives (yama files) into one. To ensure e
 
 <img align='center' src='{{site.baseurl}}/docs/molecule/img/merge.png' width='250' />
 
-<img src='{{site.baseurl}}/docs/molecule/img/merge.png'  width='250' />
-
-
 #### Output
 
 * A merged.yama file will be created in the given directory containing all the ImageMataData and molecules from all .yama files in the directory.
