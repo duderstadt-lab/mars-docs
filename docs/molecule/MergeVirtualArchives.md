@@ -10,11 +10,11 @@ This command merges multiple virtual MoleculeArchives (.yama.store directories) 
 * *Directory* - A directory containing multiple .yama.store directories you would like to merge (They can be either json or smile encoded or a combination of the two). Can be as many as you like but they must all contain unique datasets (unique ImageMetaData UIDs). If two archives have ImageMetaData items with the same UIDs the merge process will be aborted until the conflict is resolved.
 * *Use smile encoding* - The encoding of the output yama file. Usually smile encoding is preferred because it will results in smaller file sizes. However, if export to another software is required plain txt JSON is preferred.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/' height='250'/>
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/merge.png' height='250'/>
 
 #### Output
 
-* A merged.yama.store directory will be created containing all the ImageMataData and molecules from all .yama.store directories.
+* A merged.yama.store directory will be created containing all the MarsMetadata and Molecule records from all .yama.store directories.
 
 ### How to run this Command from a groovy script
 
