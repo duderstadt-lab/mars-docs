@@ -16,7 +16,7 @@ First, open the archive using the "Molecule" tool. The **Mars Rover** GUI should
 ### 2. Run the Variance Calculator
 Now go back to the main Fiji environment and select the "Mean Square Displacement Calculator" from the **Mars** plugins.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img2.jpg' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img2.png' width='450' />
 
 The following window will show up. Provide the settings as shown.
 
