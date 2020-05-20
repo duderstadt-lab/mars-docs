@@ -7,7 +7,7 @@ permalink: /docs/kcp/ChangePointFinder/index.html
 #### Introduction on the Kinetic Change Point Algorithm
 Single-molecule imaging approaches provide datasets that reveal the kinetic behavior of individual molecules within the dataset. Detailed characterisation of rate changes and pausing is possible yielding valuable information on the kinetics of processes such as transcription, translation, and motor protein precession on an immobilized target. Due to the stochastic nature of these processes the obtained trace can usually be described best by a piece-wise linear motion.
 
-<img src='{{site.baseurl}}/docs/kcp/img/img1.png' width='450' />  
+<div style="text-align: center"><img src='{{site.baseurl}}/docs/kcp/img/img1.png' width="450"/></div>  
 _Figure 1: Theoretical trace with identified change points (blue dots) and fitted linear regression lines (blue dashed lines)._
 
 The kinetic change point (KCP) algorithm<sup>1</sup> used in the KCP analysis tools in **Mars** was specifically designed to detect these different linear regions in single-molecule traces effectively. In short, the algorithm detects the change points in the trace (fig. 1, blue dots) and fits a linear regression line between the points to yield the rates for every segment (fig. 1, blue regression lines). The algorithm was especially developed for motion of processive single molecules having Gaussian noise and assumes piece-wise linear motion. For a detailed mathematical explanation of the model and the decision strategy the reader is referred to the paper by Hill _et al._<sup>1</sup>.
