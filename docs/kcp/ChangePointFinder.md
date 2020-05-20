@@ -4,25 +4,25 @@ title: Change Point Finder
 permalink: /docs/kcp/ChangePointFinder/index.html
 ---
 
-### Introduction on the Kinetic Change Point Algorithm
+#### Introduction on the Kinetic Change Point Algorithm
 Single-molecule imaging approaches provide datasets that reveal the kinetic behavior of individual molecules within the dataset. Detailed characterisation of rate changes and pausing is possible yielding valuable information on the kinetics of processes such as transcription, translation, and motor protein precession on an immobilized target. Due to the stochastic nature of these processes the obtained trace can usually be described best by a piece-wise linear motion.
 
-<img src='{{site.baseurl}}/docs/kcp/img/img1.png' width='350' />
+<img src='{{site.baseurl}}/docs/kcp/img/img1.png' width='450' />  
 _Figure 1: Theoretical trace with identified change points (blue dots) and fitted linear regression lines (blue dashed lines)._
 
 The kinetic change point (KCP) algorithm<sup>1</sup> used in the KCP analysis tools in **Mars** was specifically designed to detect these different linear regions in single-molecule traces effectively. In short, the algorithm detects the change points in the trace (fig. 1, blue dots) and fits a linear regression line between the points to yield the rates for every segment (fig. 1, blue regression lines). The algorithm was especially developed for motion of processive single molecules having Gaussian noise and assumes piece-wise linear motion. For a detailed mathematical explanation of the model and the decision strategy the reader is referred to the paper by Hill _et al._<sup>1</sup>.
 
-### Implementation of the Algorithm
+#### Implementation of the Algorithm
 The recursive binary search strategy for multiple change points identification algorithm (fig. 2) can be visualized in three distinct steps:
 1. Initial sweep: Initially, the boundaries of the recorded trace are used to limit the change point search region. As soon as the first change point is identified, it is recorded and the search region is reduced accordingly. This process is repeated until the end of the trajectory is reached. This yields a first list of change points in the trajectory.
 2. Refinement: The positions of the identified change points are optimized locally by re-finding the change point in a smaller region around its identified location.
 3. Fitting: Fit a linear regression line between all change points found. As an output the coordinates of the change points as well as the regression fits (slope and intercept) are obtained.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img2.png' width='350' />
+<img src='{{site.baseurl}}/docs/kcp/img/img2.png' width='650' />  
 _Figure 2: Visualization of the algorithm to find multiple change points._
 
-### Inputs
+#### Inputs
 * _MoleculeArchive_ - MoleculeArchive to find the kinetic change points for.
 * _X Column_ - X column input (f.e. time).
 * _Y Column_ - Y column input (axis along which displacement takes place).
@@ -39,7 +39,7 @@ _Figure 2: Visualization of the algorithm to find multiple change points._
 
 <img src='{{site.baseurl}}/docs/kcp/img/img4.png' width='350' />
 
-### Output
+#### Output
 * The output of the KCP analysis is the synthesis of a segments table as additional tab in the data section of the 'Molecules' tab in **Rover**. This table contains:
   * x1: X-coordinate of the change point, start point segment.
   * y1: Y-coordinate of the change point, start point segment.
@@ -51,9 +51,9 @@ _Figure 2: Visualization of the algorithm to find multiple change points._
   * simga_B: Error on the intercept calculation.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img5.png' width='500' />
+<img src='{{site.baseurl}}/docs/kcp/img/img5.png' width='650' />
 
-### How to run this Command from a groovy script
+#### How to run this Command from a groovy script
 
 ```groovy
 #@ MoleculeArchive archive

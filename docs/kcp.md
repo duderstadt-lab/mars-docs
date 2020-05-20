@@ -1,6 +1,6 @@
 ---
 layout: kcp
-title: Kinetic Change Point
+title: Kinetic Change Point Analysis
 permalink: /docs/kcp/index.html
 ---
 

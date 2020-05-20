@@ -43,7 +43,7 @@ Script writers and java developers can get started using the **Mars** developmen
 | [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
 | [Overlay Channels](./image/OverlayChannels) | Combine different colors into one image set. |
 
-### KCP
+### Kinetic Change Point Analysis (KCP)
 
 | :----------------------------- | :----------- |
 | [Change Point Finder](./kcp/ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
