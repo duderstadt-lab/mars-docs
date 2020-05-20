@@ -1,7 +1,7 @@
 ---
 layout: workingwithmars
-title: "Let's Calculate the Mean Square Displacement - Tutorial"
-permalink: /tutorials/workingwithmars/calculate-msd/index.html
+title: "Let's Calculate the Variance - Tutorial"
+permalink: /tutorials/workingwithmars/calculate-var/index.html
 ---
 
 _level: intermediate, duration: 5-10 min_
