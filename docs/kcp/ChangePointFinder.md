@@ -19,7 +19,7 @@ The recursive binary search strategy for multiple change points identification a
 3. Fitting: Fit a linear regression line between all change points found. As an output the coordinates of the change points as well as the regression fits (slope and intercept) are obtained.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img2.png' width='650' />  
+<div style="text-align: center"><img src='{{site.baseurl}}/docs/kcp/img/img2.png' width="650"/></div>  
 _Figure 2: Visualization of the algorithm to find multiple change points._
 
 #### Inputs
