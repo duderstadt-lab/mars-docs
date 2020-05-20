@@ -6,15 +6,16 @@ permalink: /docs/molecule/MSDCalculator/index.html
 
 #### Inputs
 
- * MoleculeArchive to operate on.
- * Column of each molecule datatable to calculate the variance(var) for.
- * The name of the Parameter that will be added to each molecule record.
+ * _MoleculeArchive_ - MoleculeArchive to operate on.
+ * _Column_ - Column of each molecule datatable to calculate the variance(var) for.
+ * _Parameter Name_ - The name of the Parameter that will be added to each molecule record.
 
 <img align='center' src='{{site.baseurl}}/docs/molecule/img/img1.png' width='400' />
 
 #### Output
 
-* Just operates on the MoleculeArchive given. So that input is also the output.
+* The calculated value is added as parameter to each molecule record in the MoleculeArchive.
+
 
 ### How to run this Command from a groovy script
 
