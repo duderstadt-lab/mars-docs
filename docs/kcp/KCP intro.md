@@ -1,8 +1,5 @@
----
-layout: kcp
-title: Change Point Finder
-permalink: /docs/kcp/ChangePointFinder/index.html
----
+Change Point Finder
+
 
 ### Introduction on the Kinetic Change Point Algorithm
 Single-molecule imaging approaches provide datasets that reveal the kinetic behavior of individual molecules within the dataset. Detailed characterisation of rate changes and pausing is possible yielding valuable information on the kinetics of processes such as transcription, translation, and motor protein precession on an immobilized target. Due to the stochastic nature of these processes the obtained trace can usually be described best by a piece-wise linear motion.
