@@ -24,7 +24,7 @@ information widget shows the name of the archive, the archive type, the number o
 
 The scriptable widgets are available on **Rover** Dashboard and also in the 'Experiments' and 'Molecules' tabs. They allow for a rapid evaluation of the archive, metadata, and molecule features. All scriptable widgets ('Category Chart', 'Histogram', 'XY Chart', 'Bubble Chart', and 'Beaker') leverage the scripting capabilities of ImageJ to provide limitless customisability. Scripts can be written in Python or Groovy.
 
-Extended [documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) on the scripable widgets is provided as well as a tutorial with examples on [the scriptable widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/).
+[Extended documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) on the scripable widgets is provided as well as a tutorial with examples on [the scriptable widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/).
 
 
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800' />

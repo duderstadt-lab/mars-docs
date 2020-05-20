@@ -1,7 +1,7 @@
 ---
 layout: molecule
 title: Variance Calculator
-permalink: /docs/molecule/MSDCalculator/index.html
+permalink: /docs/molecule/varCalculator/index.html
 ---
 
 #### Inputs

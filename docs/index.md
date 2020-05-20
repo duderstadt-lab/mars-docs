@@ -21,7 +21,7 @@ Script writers and java developers can get started using the **Mars** developmen
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Calculator](./molecule/DriftCalculator) | Calculate drift in position. |
 | [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
-| [Var Calculator](./molecule/MSDCalculator) | Add variance parameter for molecules. |
+| [Var Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of MoleculeArchives. |
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual MoleculeArchives. |
 
