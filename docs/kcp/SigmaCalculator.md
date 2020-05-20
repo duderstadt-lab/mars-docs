@@ -11,7 +11,7 @@ The 'Sigma Calculator' tool calculates the error value in a specific region of a
 * _MoleculeArchive_ - Select the MoleculeArchive to apply the Sigma Calculator to.
 * _X Column_ - X-coordinates (f.e. time or slice).
 * _Y Column_ - Y-coordinates (axis of movement).
-* _Region_ - Select which region of the trace to use in the calculation: all slices, defined below, defined in Molecules or defined in Metadata.
+* _Region_ - Select which region of the trace to use in the calculation: all slices, defined below, defined in Molecules or defined in Metadata.  
 When selecting the option 'Defined below':
   * _from_ - Start slice number.
   * _to_ - End slice number.
@@ -25,7 +25,7 @@ When selecting the option 'Defined below':
 * _y_sigma_ - The value of the calculated error at the specified settings as a parameter to each Molecule entry.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img8.png' width='350' />
+<img src='{{site.baseurl}}/docs/kcp/img/img8.png' width='250' />
 
 
 #### How to run this Command from a groovy script
