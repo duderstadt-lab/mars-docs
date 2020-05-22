@@ -19,7 +19,7 @@ First open the video of interest in Fiji as a stack. Next select the BigDataView
 <img src='{{site.baseurl}}/tutorials/img/bdv/img2.png' width='350' />
 
 
-For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer).
+For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the tutorial repository.
 
 ### 2. Coupling the XML File to the MoleculeArchive
 The next step is to couple the generated XML file to the corresponding MoleculeArchive. Open the MoleculeArchive (Plugins>MoleculeArchive Suite>Molecule>Import Archive) and go to the 'Experiments' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. (see green circles on the image) Provide the desired name tag and press the + button.
@@ -29,6 +29,8 @@ The next step is to couple the generated XML file to the corresponding MoleculeA
 This will add the link to the XML file to the MoleculeArchive. A row should appear in the 'Bdv Views' tab showing the provided name tag, some parameter columns and the file path to the XML file.
 
 <img src='{{site.baseurl}}/tutorials/img/bdv/img4.png' width='600' />
+
+Note that during this coupling step the path to the file is specified. When changing the location of the video on the computer, a new coupling to the new location of the file has to be set up.
 
 ### 3. Setting roi Parameters for each Tracked Molecule
 The next step is to assign roi parameters (roi_x and roi_y) that refer to the average position of the tracked molecule (in case of a linear movement this is equal to the middle of the trace). These roi parameters are later provided to the video viewer to find the molecule of interest in the video. To retrieve these parameters for each molecules run the following script.
