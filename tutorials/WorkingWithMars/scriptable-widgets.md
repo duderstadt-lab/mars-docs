@@ -4,24 +4,24 @@ title: "How to use Scriptable Widgets"
 permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 ---
 
-This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the Mean Square Displacement (MSD)](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'MSD.yama' MoleculeArchive from the repository.
+This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'TestVideo_archive_var.yama' MoleculeArchive from the repository.
 
-In the upcoming sections all four scriptable widgets are described with an example. These sections are not depending on each other and can be completed independent of each other.
+In the upcoming sections all four scriptable widgets are described with an example. These sections are not dependent on each other and can be completed independent of each other.
 Please not that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/)
 
 <div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="550"/></div>
 
 
-### 1. Category Chart - Plot the Mean MSD Value vs. Tag
+### 1. Category Chart - Plot the Mean Variance Value vs. Tag
 **Introduction**
 
-To gain insight in the relationship between the mean square displacement (MSD) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean MSD value of both groups as a bar plot.  This gives a first glance at the relation between MSD value and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
+To gain insight in the relationship between the variance (var) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean variance value of both groups as a bar plot.  This gives a first glance at the relation between variance and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
 
-To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the MSD values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues. Note that this can be extended easily if more categories are to be considered.
+To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the var values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues.
 
 **How to**
 
-First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'column_MSD'). Press the refresh button to load the plot. Switch back to the plot tab.
+First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'var'). Press the refresh button to load the plot. Switch back to the plot tab.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='450' />
 
@@ -40,7 +40,7 @@ First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch
 color = "#add8e6"
 title = "Category Chart"
 xlabel = "Categories"
-ylabel = "Mean MSD value"
+ylabel = "Mean var value"
 ymin = 0.0
 ymax = 60.0
 
@@ -50,16 +50,16 @@ list2 = []
 
 for UID in archive.getMoleculeUIDs():
     if archive.get(UID).hasTag('Active'): #Check if an entry is tagged 'Active'
-        list1.append(archive.get(UID).getParameter('column_MSD')) #Make a list of MSD values
+        list1.append(archive.get(UID).getParameter('var')) #Make a list of var values
     else:
-        list2.append(archive.get(UID).getParameter('column_MSD')) #Make a list of MSD values for untagged molecules
+        list2.append(archive.get(UID).getParameter('var')) #Make a list of var values for untagged molecules
 yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] #Define the yvalues as the means of both lists
 
 ```
 
 <img src='{{site.baseurl}}/tutorials/img/script/img3.png' width='450' />
 
-There seems to be a clear difference in the MSD values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger MSD value, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal MSD value.
+There seems to be a clear difference in the variance values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger variance, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal variance.
 
 
 ### 2. Histogram - Plot a Histogram of MSD values

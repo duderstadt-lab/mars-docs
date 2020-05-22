@@ -23,7 +23,7 @@ The following window will show up. Provide the settings as shown.
 <img align='center' src='{{site.baseurl}}/tutorials/img/Tvar/img3.png' width='450' />
 
 In the case of this example data set, the variance is calculated for the movement in the direction of the y-axis. Provide a parameter name and press OK.
-For more information about the experimental background of this example dataset go to the [Let's Make a MoleculeArchive Tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)
+For more information about the experimental background of this example dataset go to the [Let's Make a MoleculeArchive Tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/).
 
 
 
