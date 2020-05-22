@@ -74,7 +74,7 @@ The data included in the figure can be selected by setting values for xmin and x
 
 Open the histogram widget in **Rover** dashboard by clicking on the icon in the toolbar. Move to the script tab (<>) and replace the example script with the script below. Make sure to adapt the script below to match the correct parameter name (in this example: 'var') and the desired xmin, xmax, ymin, ymax values. To display this histogram, click the refresh icon in the far right.
 
-<img src='{{site.baseurl}}/tutorials/img/TMSD/img5.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/Tvar/img5.png' width='450' />
 
 
 ```python
@@ -114,7 +114,7 @@ for molecule in archive.molecules().iterator():
 
 In the example dataset most tracked molecules have a variance below ~15. To explore the subset of the data with value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise.
 
-<img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/Tvar/img6.png' width='450' />
 
 
 
@@ -333,7 +333,7 @@ To answer the question 'Are longer tracks associated with higher variances?' the
 
 Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to the script tab (<>). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: 'var'). Press the refresh icon to render the plot.
 
-<img src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/Tvar/img7.png' width='450' />
 
 ```python
 #@ MoleculeArchive archive
@@ -379,4 +379,4 @@ for molecule in archive.molecules().iterator():
 	series1_label.append(molecule.getUID()) #Make a list of the UIDs
 ```
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/Tvar/img8.png' width='350' />
