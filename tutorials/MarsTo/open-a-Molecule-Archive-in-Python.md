@@ -153,8 +153,8 @@ Finally, one can plot the distribution of the variance in a histogram using the 
 ```python
 plt.xlim([min(VARs)-5, max(VARs)+5])
 plt.hist(VARs, bins=24, alpha=0.5)
-plt.title('Mean Squared Displacement')
-plt.xlabel('MSD')
+plt.title('Variance')
+plt.xlabel('var')
 plt.ylabel('count')
 
 plt.show()
