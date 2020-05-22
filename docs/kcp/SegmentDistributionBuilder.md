@@ -6,6 +6,7 @@ permalink: /docs/kcp/SegmentDistributionBuilder/index.html
 
 Coming soon.
 - Input: update based on changes in the software.
+
 ---
 
 The segment distribution builder is a tool to generate XY tables from the obtained segments tables after change point analyses to allow for the easy plotting of distributions. On top of that, it gives access to a bootstrapping tool determining the error on the obtained distributions.
