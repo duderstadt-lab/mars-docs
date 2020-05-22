@@ -103,7 +103,7 @@ xmax = max(series1_values)
 **Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
-<img src='{{site.baseurl}}/tutorials/img/Tvar/img6.png' width='350' />
+<img src='{{site.baseurl}}/docs/img/Rover/img18.png' width='350' />
 
 
 ##### 3. XY Chart
@@ -158,7 +158,7 @@ Note that the _series#_size_, _series#_color_, and _series#_label_ have to be pr
 **Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/Tvar/img8.png' width='350' />
+<img align='center' src='{{site.baseurl}}/docs/img/Rover/img19.png' width='350' />
 
 
 ##### 5. Beaker
