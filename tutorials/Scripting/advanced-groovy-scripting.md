@@ -21,9 +21,9 @@ And example widget for making a histogram from a parameter
 #@OUTPUT Double xmax
 
 //Set global outputs
-xlabel = "MSD"
+xlabel = "var"
 ylabel = "Frequency"
-title = "x_MSD"
+title = "Variance"
 bins = 100
 xmin = -10.0
 xmax = 10.0
@@ -36,7 +36,7 @@ xmax = 10.0
 series1_strokeColor = "rgb(" + r.nextInt(255) + "," + r.nextInt(255) + "," + r.nextInt(255) + ")";
 series1_strokeWidth = 2
 
-series1_values = archive.getMoleculeUIDs().stream().mapToDouble{UID -> archive.get(UID).getParameter("column_MSD_x")}.toArray()
+series1_values = archive.getMoleculeUIDs().stream().mapToDouble{UID -> archive.get(UID).getParameter("var")}.toArray()
 ```
 
 Much more to come...

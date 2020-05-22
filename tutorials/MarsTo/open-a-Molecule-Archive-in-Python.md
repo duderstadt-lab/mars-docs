@@ -123,6 +123,7 @@ tableByUID = _pandas.table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getDa
 tableByUID
 ```
 The build-in function "table_to_pandas(data)" from **"_pandas"** (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getDataTable()".
+
 #### More elegant Way to excess Molecules: Mapping
 Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.
 ```python
@@ -141,7 +142,7 @@ for molecule in molecules:
     if molecule.hasTag('reaction'):
         print(molecule.getUID())
 ```
-Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the MSD values are stored in a list() that is way the line can be in a separate cell.
+Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the calculated variance values are stored in a list() that is way the line can be in a separate cell.
 
 #### Getting Parameters from the Data
 In this ***[tutorial for calculating variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)*** of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to excess the parameters. The parameter was called "var" in the archive and has to be specified if this parameter has to be called with "getParameter()".
