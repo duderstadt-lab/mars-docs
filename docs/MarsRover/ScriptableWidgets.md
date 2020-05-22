@@ -33,7 +33,7 @@ In general, a script contains the following sections:
 * Global output settings: global settings like labels, title and axis information. Make sure that the data type provided corresponds with the expected data type set in the parameter declaration.
 * Series specific parameter declaration: in this script each line in the plot is defined as a series# (where # is replaced by a number). Depending on the number of series shown, more or less parameters have to be declared. In this example only one line is plotted so only series1 parameters have to be declared.
 * Series specific output settings: set series specific information such as in this case: color and strokewidth.
-* Scripting region: script that retrieves the data of interest from the archive and converts it to the parameter used for plotting. In the case of this example the parameter 'column_MSD' is retrieved for each molecule and added to the list of series1_values. This list is plotted in the chart.
+* Scripting region: script that retrieves the data of interest from the archive and converts it to the parameter used for plotting. In the case of this example the parameter 'var' is retrieved for each molecule and added to the list of series1_values. This list is plotted in the chart.
 
 
 Note that the parameters always have to be declared before assigning them, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script.
@@ -103,7 +103,7 @@ xmax = max(series1_values)
 **Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
-<img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='350' />
+<img src='{{site.baseurl}}/tutorials/img/Tvar/img6.png' width='350' />
 
 
 ##### 3. XY Chart
@@ -158,7 +158,7 @@ Note that the _series#_size_, _series#_color_, and _series#_label_ have to be pr
 **Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/TMSD/img8.png' width='350' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/Tvar/img8.png' width='350' />
 
 
 ##### 5. Beaker
