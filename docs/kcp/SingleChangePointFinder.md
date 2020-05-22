@@ -6,9 +6,12 @@ permalink: /docs/kcp/SingleChangePointFinder/index.html
 
 Coming soon.
 - Introduction what the function does
-- Position name Input
-- Outputs
+- Position name Input; And other updates to the inputs window
+- Outputs; Update after new version
 
+The single change point finder tool allows for the identification of one change point in the trace in the MoleculeArchive. This can be of use when a bleaching step (a stepwise drop in the intensity vs. time plot indicating the bleaching of a fluorophore) has to be identified, or when the kinetics of the process studied only involve one transition.
+
+<div style="text-align: center"><img src='{{site.baseurl}}/docs/kcp/img/img3.png' width="450"/></div>  
 
 
 #### Inputs
