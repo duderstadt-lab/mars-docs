@@ -62,17 +62,17 @@ yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] #Define the yvalues as the
 There seems to be a clear difference in the variance values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger variance, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal variance.
 
 
-### 2. Histogram - Plot a Histogram of MSD values
+### 2. Histogram - Plot a Histogram of variance values
 **Introduction**
 
-A histogram is a good way to familiarise with the spread in the MSD values in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.
+A histogram is a good way to familiarise with the spread in the variance in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.
 
-The script for this histogram is fairly simple. After setting the global outputs the series1_values list is appended with the MSD values of each molecule. This data is used to calculate the frequency of values internally to create the histogram.
-The data included in the figure can be selected by setting values for xmin and xmax. This enables the user to either include all data points by using xmin=min(MSD_values) and xmax=max(MSD_values) or selecting a smaller region of interest.
+The script for this histogram is fairly simple. After setting the global outputs the series1_values list is appended with the calculated variance of each molecule. This data is used to calculate the frequency of values internally to create the histogram.
+The data included in the figure can be selected by setting values for xmin and xmax. This enables the user to either include all data points by using xmin=min(var_values) and xmax=max(var_values) or selecting a smaller region of interest.
 
 **How to**
 
-Open the histogram widget in **Rover** dashboard by clicking on the icon in the toolbar. Move to the script tab (<>) and replace the example script with the script below. Make sure to adapt the script below to match the correct parameter name (in this example: 'column_MSD') and the desired xmin, xmax, ymin, ymax values. To display this histogram, click the refresh icon in the far right.
+Open the histogram widget in **Rover** dashboard by clicking on the icon in the toolbar. Move to the script tab (<>) and replace the example script with the script below. Make sure to adapt the script below to match the correct parameter name (in this example: 'var') and the desired xmin, xmax, ymin, ymax values. To display this histogram, click the refresh icon in the far right.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img5.png' width='450' />
 
@@ -89,9 +89,9 @@ Open the histogram widget in **Rover** dashboard by clicking on the icon in the 
 #@OUTPUT Double ymax
 
 # Set global outputs
-xlabel = "MSD-value"
+xlabel = "Variance"
 ylabel = "Frequency"
-title = "MSD-value"
+title = "Variance"
 bins = 10
 xmin = 0.0
 xmax = 150.0
@@ -109,10 +109,10 @@ series1_strokeWidth = 2
 series1_values = []
 
 for molecule in archive.molecules().iterator():
-    series1_values.append(molecule.getParameter("column_MSD"))
+    series1_values.append(molecule.getParameter("var"))
 ```
 
-In the example dataset most tracked molecules have an MSD value below ~15. To explore the subset of the data with an MSD value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise.
+In the example dataset most tracked molecules have a variance below ~15. To explore the subset of the data with value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img6.png' width='450' />
 
@@ -324,14 +324,14 @@ The plot shows that all traces have a similar slope but vary in their tracked le
 <img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='650' />
 
 
-### 4. Bubble Chart - Plot the MSD value vs. Track Length
+### 4. Bubble Chart - Plot the variance vs. Track Length
 **Introduction**
 
-To answer the question 'Are longer tracks associated with higher MSD values?' the MSD values of each molecule are plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the MSD values as yvalues of the series. As an extra feature the molecule UIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UID is shown.
+To answer the question 'Are longer tracks associated with higher variances?' the variance of each molecule is plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the var values as yvalues of the series. As an extra feature the molecule UIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UID is shown.
 
 **How to**
 
-Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to the script tab (<>). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: 'column_MSD'). Press the refresh icon to render the plot.
+Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to the script tab (<>). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: 'var'). Press the refresh icon to render the plot.
 
 <img src='{{site.baseurl}}/tutorials/img/TMSD/img7.png' width='450' />
 
@@ -347,7 +347,7 @@ Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to th
 
 # Set global outputs
 xlabel = "Track length (slices)"
-ylabel = "MSD-value"
+ylabel = "Variance"
 title = "Bubble chart"
 
 xmin = 0.0
@@ -373,7 +373,7 @@ series1_label = []
 
 for molecule in archive.molecules().iterator():
 	series1_xvalues.append(molecule.getDataTable().getRowCount()) #Make a list of track lengths
-	series1_yvalues.append(molecule.getParameter("column_MSD")) #Make a list of MSD values
+	series1_yvalues.append(molecule.getParameter("var")) #Make a list of var values
 	series1_size.append(4.0)
 	series1_color.append("blue")
 	series1_label.append(molecule.getUID()) #Make a list of the UIDs
