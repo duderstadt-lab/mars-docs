@@ -23,7 +23,7 @@ To make the plot, the script first has to make two categories: 'Active'-tagged m
 
 First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'var'). Press the refresh button to load the plot. Switch back to the plot tab.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='450' />
+<img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='550' />
 
 
 ```python
@@ -57,7 +57,7 @@ yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] #Define the yvalues as the
 
 ```
 
-<img src='{{site.baseurl}}/tutorials/img/script/img3.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/script/img3.png' width='550' />
 
 There seems to be a clear difference in the variance values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger variance, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal variance.
 
@@ -134,7 +134,7 @@ The extended script consists of multiple parts:
 
 Open the 'XY Chart' widget and switch to the scripting tab (<>). Replace the example script by the script below. Press the refresh icon to render the plot. Note that in this example all error values are set to 0 since no error information is available.
 
-<img src='{{site.baseurl}}/tutorials/img/script/img4.png' width='450' />
+<img src='{{site.baseurl}}/tutorials/img/script/img4.png' width='550' />
 
 
 ```python
