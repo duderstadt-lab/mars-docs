@@ -84,16 +84,22 @@ table.add(col)
 archive.getTagList('UID') #Replace 'UID' by the actual UID of the molecule of interest.
 ```
 
-**4** Get the segment table for a molecule  
-```Groovy
-#@ MoleculeArchive archive
-archive.get('UID').getSegmentsTable("xcolumn_name","ycolumn_name")
-```
-
 **5** Get the value of a parameter. For example the 'var' parameter   calculated for each molecule entry in the MoleculeArchive.
 ```Groovy
 #@ MoleculeArchive archive
 archive.get('UID').getParameter('var')
+```
+
+**5** Get the data table for a molecule entry
+```Groovy
+#@ MoleculeArchive archive
+archive.get('UID').getDataTable()
+```
+
+**4** Get the segment table for a molecule  
+```Groovy
+#@ MoleculeArchive archive
+archive.get('UID').getSegmentsTable("xcolumn_name","ycolumn_name")
 ```
 
 ##### 4.2 'has' functions: functions used to check if an entry has something
@@ -136,11 +142,18 @@ archive.getStoreLocation()
 
 ##### 4.4 'set' functions: set certain values of the MoleculeArchive
 
+**8** Define a new parameter in the MoleculeArchive  
+```Groovy
+#@ MoleculeArchive archive
+archive.get('UID').setParameter('parameter_name',value)
+```
+
 **8** Set the name the archive should be saved to
 ```Groovy
 #@ MoleculeArchive archive
 archive.setName('name')
 ```
+
 
 
 #### 5. Examples for simple calculations
