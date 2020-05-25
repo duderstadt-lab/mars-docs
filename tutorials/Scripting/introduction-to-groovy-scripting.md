@@ -222,7 +222,7 @@ yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)]
 
 The chart shows that there is a clear difference in the travelled distance with respect to the y-axis between molecules tagged 'Active' compared to non-tagged molecules.
 
-<img src='{{site.baseurl}}/tutorials/img/intro-groovy/img9.png' width='350' />
+<img src='{{site.baseurl}}/tutorials/img/intro-groovy/img9.png' width='300' />
 
 The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
 
