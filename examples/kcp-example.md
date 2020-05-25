@@ -8,6 +8,10 @@ permalink: /examples/script-examples/kcp/index.html
 
 https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/KCP_widget_and_jupyter_plot.ipynb
 
+<script src="https://gist-it.appspot.com/github/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/KCP_widget_and_jupyter_plot.ipynb"></script>
+
 $user/$repository/raw/master/$path
+
+test
 
 <script src="https://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js"></script>
