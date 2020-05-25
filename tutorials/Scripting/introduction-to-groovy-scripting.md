@@ -22,20 +22,16 @@ Next, copy the short example script below and paste it into the scripting window
 
 ```Groovy
 #@ MoleculeArchive archive
-archive.lock()
+sleep(10000)
 ```
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img4.png' width='450' />
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img5.png' width='250' />
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img6.png' width='450' />
 
-The example script used in this tutorial is a rather illustrative one: it locks the archive (i.e. disables editing functions temporarily) and displays the rotating mars icon to show the user that the archive has been locked. To unlock the archive again replace the script in the script editor by the script below and run again.
+The example script used in this tutorial is a rather illustrative one: it locks the archive (i.e. disables editing functions temporarily) and displays the rotating mars icon to show the user that the archive has been locked. The archive unlocks automatically as soon as the sleep timer has ended.
 
-```groovy
-#@ MoleculeArchive archive
-archive.unlock()
-```
 
-#### 3. The general outline of a script 
+#### 3. The general outline of a script
 To learn how write useful scripts, first the general contents of a script are discussed. To make the platform as versatile as possible, Fiji (and therefore **Mars**) utilises [script parameter harvesting](https://imagej.net/Script_Parameters). This universal way of denoting input and output parameters allow for an easy interpretation of multiple languages in the software. On top of that, it makes the scripts interpretable in other platforms and script running environments. The syntax uses #@ to denote new parameters and explicitly specifies the parameter type (f.e. string, integer, double, MoleculeArchive) and the name of that parameter.
 
 **Script Parameter Syntax**  
@@ -44,6 +40,7 @@ To learn how write useful scripts, first the general contents of a script are di
 #@ OUTPUT Parametertype Name   #define an output parameter
 ```
 
+In the example script used before, the parameter 'archive' is defined as an input of parameter type 'MoleculeArchive'. In this way, it is clear to which object the script has to be applied. No output is declared: no output parameters are defined by the script.
 
 #### 4. Access data from the archive with a script
 
