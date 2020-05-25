@@ -46,7 +46,7 @@ In the example script used before, the parameter 'archive' is defined as an inpu
 #### 4. Access data from the archive with a script
 All functions that can be called on with accompanying documentation can be found in the [javadocs](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/MoleculeArchive.html). The expected arguments of each function are listed between the brackets of each defined function. Frequently used commands are discussed in this section of the tutorial.
 
-##### 'get' functions: get a parameter from the MoleculeArchive
+##### 4.1 'get' functions: get a parameter from the MoleculeArchive
 
 Get the number of molecules in the archive  
 ```Groovy
@@ -59,6 +59,24 @@ Get the list of molecule UIDs
 #@ MoleculeArchive archive
 println(archive.getMoleculeUIDs())
 ```
+This prints a comma separated list of the UIDs in the output window in the lower half of the scripting window. For a neater looking table display of the UIDs use a MarsTable.
+
+```Groovy
+#@ MoleculeArchive archive
+#@OUTPUT MarsTable table
+
+import de.mpg.biochem.mars.table.*
+import org.scijava.table.*
+
+table = new MarsTable("UIDs")
+GenericColumn col = new GenericColumn ("UID")
+archive.getMoleculeUIDs().forEach{UID -> col.add(UID)}
+
+table.add(col)
+```
+
+<img src='{{site.baseurl}}/tutorials/img/intro-groovy/img7.png' width='650' />
+
 
 Get the list of tags of a certain molecule
 ```Groovy
@@ -66,9 +84,7 @@ Get the list of tags of a certain molecule
 archive.getTagList('UID') #Replace 'UID' by the actual UID of the molecule of interest.
 ```
 
-
-
-##### 'has' functions: functions used to check if an entry has something
+##### 4.2 'has' functions: functions used to check if an entry has something
 
 ```Groovy
 #@ MoleculeArchive archive
@@ -77,7 +93,7 @@ archive.moleculeHasTag('UID','tag') #Replace 'UID' by the actual UID of the mole
 Returns a boolean indicating whether this molecule has this tag (True) or not (False). Provide only the 'UID' as input to find out if a molecule has any tag.
 
 
-##### general functions: save, store location
+##### 4.3 general functions: save, store location
 
 Save the archive  
 ```Groovy
@@ -98,7 +114,7 @@ Retrieve the archive storage location
 archive.getStoreLocation()
 ```
 
-##### 'set' functions: set certain values of the MoleculeArchive
+##### 4.4 'set' functions: set certain values of the MoleculeArchive
 
 Set the name the archive should be saved to
 ```Groovy
@@ -107,13 +123,9 @@ archive.setName('name')
 ```
 
 
-
-
-
-
-
-
 #### 5. Examples for simple calculations
 
 
-#### 6. Streams (one-line coding)
+
+
+#### 6. Streams (one-line coding) -> move to advanced tutorial?
