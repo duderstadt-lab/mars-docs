@@ -48,13 +48,13 @@ All functions that can be called on with accompanying documentation can be found
 
 ##### 4.1 'get' functions: get a parameter from the MoleculeArchive
 
-Get the number of molecules in the archive  
+**1** Get the number of molecules in the archive  
 ```Groovy
 #@ MoleculeArchive archive
 archive.getNumberOfMolecules()
 ```
 
-Get the list of molecule UIDs  
+**2** Get the list of molecule UIDs  
 ```Groovy
 #@ MoleculeArchive archive
 println(archive.getMoleculeUIDs())
@@ -78,37 +78,57 @@ table.add(col)
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img7.png' width='650' />
 
 
-Get the list of tags of a certain molecule
+**3** Get the list of tags of a certain molecule
 ```Groovy
 #@ MoleculeArchive archive
 archive.getTagList('UID') #Replace 'UID' by the actual UID of the molecule of interest.
 ```
 
+**4** Get the segment table for a molecule  
+```Groovy
+#@ MoleculeArchive archive
+archive.get('UID').getSegmentsTable("xcolumn_name","ycolumn_name")
+```
+
+**5** Get the value of a parameter. For example the 'var' parameter   calculated for each molecule entry in the MoleculeArchive.
+```Groovy
+#@ MoleculeArchive archive
+archive.get('UID').getParameter('var')
+```
+
 ##### 4.2 'has' functions: functions used to check if an entry has something
 
+**5** Find out if a molecule has a tag
 ```Groovy
 #@ MoleculeArchive archive
 archive.moleculeHasTag('UID','tag') #Replace 'UID' by the actual UID of the molecule of interest and 'tag' by the name of the tag.
 ```
 Returns a boolean indicating whether this molecule has this tag (True) or not (False). Provide only the 'UID' as input to find out if a molecule has any tag.
 
+**6** Find out if a molecule has a segments table
+```Groovy
+#@ MoleculeArchive archive
+archive.get('UID').hasSegmentsTable("xcolumn_name","ycolumn_name")
+```
+Returns a boolean indicating whether this molecule has a segments table (True) or not (False).
+
 
 ##### 4.3 general functions: save, store location
 
-Save the archive  
+**7** Save the archive  
 ```Groovy
 #@ MoleculeArchive archive
 archive.save()
 ```  
 Alternatively, use the saveAs() or saveAsVirtualStore() commands to save the archive with a different name or in virtual storage.
 
-Get the name of the archive  
+**8** Get the name of the archive  
 ```Groovy
 #@ MoleculeArchive archive
 archive.getName())
 ```
 
-Retrieve the archive storage location  
+**7** Retrieve the archive storage location  
 ```Groovy
 #@ MoleculeArchive archive
 archive.getStoreLocation()
@@ -116,7 +136,7 @@ archive.getStoreLocation()
 
 ##### 4.4 'set' functions: set certain values of the MoleculeArchive
 
-Set the name the archive should be saved to
+**8** Set the name the archive should be saved to
 ```Groovy
 #@ MoleculeArchive archive
 archive.setName('name')
