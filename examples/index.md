@@ -13,3 +13,7 @@ Complete workflow for tracking and processing the motion of magnetic beads tethe
 
 
 ---
+
+#### [Short Script Examples](script-examples)
+
+[Plot the Kinetic Change Point Rates with Python](./script-examples/kcp)
