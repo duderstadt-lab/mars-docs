@@ -48,17 +48,24 @@ All functions that can be called on with accompanying documentation can be found
 
 ##### 'get' functions: get a parameter from the MoleculeArchive
 
-**Get the number of molecules in the archive**  
+Get the number of molecules in the archive  
 ```Groovy
 #@ MoleculeArchive archive
 archive.getNumberOfMolecules()
 ```
 
-**Get the list of tags of a certain molecule**
+Get the list of molecule UIDs  
+```Groovy
+#@ MoleculeArchive archive
+println(archive.getMoleculeUIDs())
+```
+
+Get the list of tags of a certain molecule
 ```Groovy
 #@ MoleculeArchive archive
 archive.getTagList('UID') #Replace 'UID' by the actual UID of the molecule of interest.
 ```
+
 
 
 ##### 'has' functions: functions used to check if an entry has something
@@ -72,20 +79,20 @@ Returns a boolean indicating whether this molecule has this tag (True) or not (F
 
 ##### general functions: save, store location
 
-**Save the archive**  
+Save the archive  
 ```Groovy
 #@ MoleculeArchive archive
 archive.save()
 ```  
 Alternatively, use the saveAs() or saveAsVirtualStore() commands to save the archive with a different name or in virtual storage.
 
-**Get the name of the archive**  
+Get the name of the archive  
 ```Groovy
 #@ MoleculeArchive archive
 archive.getName())
 ```
 
-**Retrieve the archive storage location**  
+Retrieve the archive storage location  
 ```Groovy
 #@ MoleculeArchive archive
 archive.getStoreLocation()
@@ -93,7 +100,7 @@ archive.getStoreLocation()
 
 ##### 'set' functions: set certain values of the MoleculeArchive
 
-**Set the name the archive should be saved to**
+Set the name the archive should be saved to
 ```Groovy
 #@ MoleculeArchive archive
 archive.setName('name')
