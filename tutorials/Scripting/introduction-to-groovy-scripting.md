@@ -35,14 +35,73 @@ The example script used in this tutorial is a rather illustrative one: it locks 
 To learn how write useful scripts, first the general contents of a script are discussed. To make the platform as versatile as possible, Fiji (and therefore **Mars**) utilises [script parameter harvesting](https://imagej.net/Script_Parameters). This universal way of denoting input and output parameters allow for an easy interpretation of multiple languages in the software. On top of that, it makes the scripts interpretable in other platforms and script running environments. The syntax uses #@ to denote new parameters and explicitly specifies the parameter type (f.e. string, integer, double, MoleculeArchive) and the name of that parameter.
 
 **Script Parameter Syntax**  
-```groovy
+```Groovy
 #@ Parametertype Name          #define an input parameter
 #@ OUTPUT Parametertype Name   #define an output parameter
 ```
 
 In the example script used before, the parameter 'archive' is defined as an input of parameter type 'MoleculeArchive'. In this way, it is clear to which object the script has to be applied. No output is declared: no output parameters are defined by the script.
 
+
 #### 4. Access data from the archive with a script
+All functions that can be called on with accompanying documentation can be found in the [javadocs](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/MoleculeArchive.html). The expected arguments of each function are listed between the brackets of each defined function. Frequently used commands are discussed in this section of the tutorial.
+
+##### 'get' functions: get a parameter from the MoleculeArchive
+
+**Get the number of molecules in the archive**  
+```Groovy
+#@ MoleculeArchive archive
+archive.getNumberOfMolecules()
+```
+
+**Get the list of tags of a certain molecule**
+```Groovy
+#@ MoleculeArchive archive
+archive.getTagList('UID') #Replace 'UID' by the actual UID of the molecule of interest.
+```
+
+
+##### 'has' functions: functions used to check if an entry has something
+
+```Groovy
+#@ MoleculeArchive archive
+archive.moleculeHasTag('UID','tag') #Replace 'UID' by the actual UID of the molecule of interest and 'tag' by the name of the tag.
+```
+Returns a boolean indicating whether this molecule has this tag (True) or not (False). Provide only the 'UID' as input to find out if a molecule has any tag.
+
+
+##### general functions: save, store location
+
+**Save the archive**  
+```Groovy
+#@ MoleculeArchive archive
+archive.save()
+```  
+Alternatively, use the saveAs() or saveAsVirtualStore() commands to save the archive with a different name or in virtual storage.
+
+**Get the name of the archive**  
+```Groovy
+#@ MoleculeArchive archive
+archive.getName())
+```
+
+**Retrieve the archive storage location**  
+```Groovy
+#@ MoleculeArchive archive
+archive.getStoreLocation()
+```
+
+##### 'set' functions: set certain values of the MoleculeArchive
+
+**Set the name the archive should be saved to**
+```Groovy
+#@ MoleculeArchive archive
+archive.setName('name')
+```
+
+
+
+
 
 
 
