@@ -231,9 +231,9 @@ The sample variance can be calculated according to the following formula:
 
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img10.png' width='300' />
 
-X: data point value (in this case the value of dist_y)
-X bar: the mean (mean(dist_y))
-n: number of data points
+X: data point value (in this case the value of dist_y)  
+X bar: the mean (mean(dist_y))  
+n: number of data points  
 
 The components of the script to calculate and assign this parameter (dist_y_var) for each molecule in the MoleculeArchive is very similar to the previous script. First, the value of dist_y is calculated and assigned to each molecule entry. This step could be omitted in case the script written in section 5.1 already has been run.
 
