@@ -40,3 +40,8 @@ series1_values = archive.getMoleculeUIDs().stream().mapToDouble{UID -> archive.g
 ```
 
 Much more to come...
+
+
+
+
+### 6. Streams (one-line coding) -> move to advanced tutorial?

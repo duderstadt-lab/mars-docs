@@ -272,13 +272,10 @@ archive.getMoleculeUIDs().stream().forEach({UID ->
  })
 
 double dist_var = list2.sum()/(len-1)
-archive.setParameter("dist_y_var",dist_var)
+archive.getMetadata(0).setParameter("dist_y_var",dist_var)
 
 ```
 
+<img src='{{site.baseurl}}/tutorials/img/intro-groovy/img11.png' width='550' />
+
 As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is left to the reader as an exersize.
-
-
-
-
-### 6. Streams (one-line coding) -> move to advanced tutorial?
