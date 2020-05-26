@@ -48,7 +48,6 @@ Script writers and java developers can get started using the **Mars** developmen
 | :----------------------------- | :----------- |
 | [Change Point Finder](./kcp/ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
 | [Single Change Point Finder](./kcp/SingleChangePointFinder) | Find single change point positions. |
-| [Segment Distribution Builder](./kcp/SegmentDistributionBuilder) | Build distributions using change point segments. |
 | [Sigma Calculator](./kcp/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
 
 ### ROI Tools

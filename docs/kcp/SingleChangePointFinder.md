@@ -45,11 +45,12 @@ scpCalc.setContext(ij.getContext());
 
 //Set all the input parameters
 scpCalc.setArchive(archive);
+scpCalc.setXcolumn("y");
+scpCalc.setYcolumn("slice");
 scpCalc.setConfidenceLevel(0.99);
 scpCalc.setFitSteps(False);
 scpCalc.setGlobalSigma(1.0);
-scpCalc.setXcolumn("y");
-scpCalc.setYcolumn("slice");
+
 
 //Run the Command
 scpCalc.run();
