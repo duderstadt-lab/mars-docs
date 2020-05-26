@@ -220,15 +220,63 @@ for UID in archive.getMoleculeUIDs():
 yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)]
 ```
 
-The chart shows that there is a clear difference in the travelled distance with respect to the y-axis between molecules tagged 'Active' compared to non-tagged molecules.
+The chart shows that there is a clear difference in the travelled distance with respect to the y-axis between molecules tagged 'Active' compared to non-tagged molecules. In section 5.2 the variance on the dist_y parameter is calculated.
 
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img9.png' width='300' />
 
 The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
 
+#### 5.2 Calculate the variance on the travelled distance in the y direction (y_dist)
+The sample variance can be calculated according to the following formula:
 
+<img src='{{site.baseurl}}/tutorials/img/intro-groovy/img10.png' width='300' />
 
+X: data point value (in this case the value of dist_y)
+X bar: the mean (mean(dist_y))
+n: number of data points
 
+The components of the script to calculate and assign this parameter (dist_y_var) for each molecule in the MoleculeArchive is very similar to the previous script. First, the value of dist_y is calculated and assigned to each molecule entry. This step could be omitted in case the script written in section 5.1 already has been run.
+
+```Groovy
+#@ MoleculeArchive archive
+
+import de.mpg.biochem.mars.molecule.*
+import de.mpg.biochem.mars.table.*
+import de.mpg.biochem.mars.util.*
+import org.scijava.table.*
+
+def list = []
+def list2 = []
+
+archive.getMoleculeUIDs().stream().forEach({UID ->
+  Molecule molecule = archive.get(UID)
+  MarsTable table = molecule.getDataTable()
+  double ymin = table.min("y")
+  double ymax = table.max("y")
+  double dist = ymax - ymin
+  double[] distlist = []
+  list.add(dist)
+  molecule.setParameter("dist_y",dist)
+ })
+
+double sum = list.sum()
+double len = list.size()
+double mean = sum/len
+
+archive.getMoleculeUIDs().stream().forEach({UID ->
+  Molecule molecule = archive.get(UID)
+  double dist2 = molecule.getParameter("dist_y")
+  double diff = (dist2 - mean)
+  double diff2 = diff * diff
+  list2.add(diff2)
+ })
+
+double dist_var = list2.sum()/(len-1)
+archive.setParameter("dist_y_var",dist_var)
+
+```
+
+As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is left to the reader as an exersize.
 
 
 
