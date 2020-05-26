@@ -1,6 +1,6 @@
 ---
 layout: scripting
-title: "Let's Learn Advanced Groovy Scripting Tutorial"
+title: "Advanced Groovy Scripting Tutorial"
 permalink: /tutorials/scripting/advanced-groovy-scripting/index.html
 ---
 
