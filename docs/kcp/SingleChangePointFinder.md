@@ -32,7 +32,7 @@ The single change point finder tool allows for the identification of one change 
 
 
 #### How to run this Command from a groovy script
-```groovy
+```Groovy
 #@ MoleculeArchive archive
 #@ ImageJ ij
 

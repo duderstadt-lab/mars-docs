@@ -55,7 +55,7 @@ _Figure 2: Visualization of the algorithm to find multiple change points._
 
 #### How to run this Command from a groovy script
 
-```groovy
+```Groovy
 #@ MoleculeArchive archive
 #@ ImageJ ij
 

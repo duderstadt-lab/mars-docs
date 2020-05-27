@@ -29,7 +29,7 @@ When selecting the option 'Defined below':
 
 
 #### How to run this Command from a groovy script
-```groovy
+```Groovy
 #@ MoleculeArchive archive
 #@ ImageJ ij
 
