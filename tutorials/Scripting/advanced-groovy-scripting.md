@@ -269,7 +269,7 @@ This one liner loops through all molecule UIDs in the archive to find the value 
 #@ MoleculeArchive archive
 import de.mpg.biochem.mars.molecule.*
 
-variance_values = archive.getMoleculeUIDs().stream().mapToDouble{UID -> archive.get(UID).getParameter("dist_y")}.toArray()
+dist_y_values = archive.getMoleculeUIDs().stream().mapToDouble{UID -> archive.get(UID).getParameter("dist_y")}.toArray()
 ```
 
 **2** Find all molecules where dist_y < 10 and tag them as "background"  
@@ -281,8 +281,7 @@ In this script all values for the parameter "dist_y" are retrieved for molecules
 import de.mpg.biochem.mars.molecule.*
 import de.mpg.biochem.mars.table.*
 
-archive.stream().filter{ molecule -> molecule.getParameter("dist_y") < 10}.forEach{ molecule ->
+archive.molecules().filter{ molecule -> molecule.getParameter("dist_y") < 10}.forEach{ molecule ->
    molecule.addTag("background")
-   archive.put(molecule);
 }
 ```

@@ -281,3 +281,12 @@ archive.getMetadata(0).setParameter("dist_y_var",dist_var)
 As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is further described in the [advanced groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/).
 
 The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
+
+### 6. Scripting with a virtually stored archive
+Note that in case an archive is stored virtually each script has to be extended with the line below.
+
+```Groovy
+archive.put(molecule)
+```
+
+In the case of a virtually stored archive, the script retrieves a molecule record to the non-virtual memory, it performs the action as written in the script, and continues. Subsequently, this additional line is required to place the modified record back in virtual storage.
