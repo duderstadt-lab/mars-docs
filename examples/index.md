@@ -19,5 +19,5 @@ Complete workflow for tracking and processing the motion of magnetic beads tethe
 [1. Plot the Kinetic Change Point Rates with Python](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/KCP_widget_and_jupyter_plot.ipynb)  
 Jupyter notebook showing how to retrieve the segment tables in a Python environment and how to plot the calculated rates with seaborn as well as in the **Rover** scriptable widgets.
 
-[2. Generate a table of parameter values from the archive](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/Generate_a_table_of_parameter_values.groovy)  
+[2. Generate a Table of Parameter Values from the Archive](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/Generate_a_table_of_parameter_values.groovy)  
 Groovy script to make a MarsTable showing the value for the specified parameter for each molecule entry.   
