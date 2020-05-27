@@ -35,6 +35,8 @@ Tutorials for learning how to use Mars. For exploring the software and its most 
   _Skill level: Intermediate._ Learn how to access and perform basic operations with MoleculeArchives.
 * [Advanced groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/)  
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of MoleculeArchive records.
+* [MarsTable tutorial](marstable)  
+  _Skill level: Intermediate._ Learn how to use scripts to build and edit a fully customizable MarsTable.
 
 
 #### Affine2D Transformation
