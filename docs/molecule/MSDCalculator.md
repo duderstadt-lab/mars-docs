@@ -26,7 +26,7 @@ permalink: /docs/molecule/varCalculator/index.html
 import de.mpg.biochem.mars.molecule.*;
 
 //Make an instance of the Command you want to run...
-final MSDCalculatorCommand varCalc = new MSDCalculatorCommand();
+final VarianceCalculatorCommand varCalc = new VarianceCalculatorCommand();
 
 //Populates @Parameters Services etc.. using the current context
 //which we get from the ImageJ input...
