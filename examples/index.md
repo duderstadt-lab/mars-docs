@@ -11,7 +11,7 @@ permalink: /examples/index.html
 
 Complete workflow for tracking and processing the motion of magnetic beads tethered to individual DNA molecules under flow. (Agarwal _et al._, unpublished)
 
-
+---
 ---
 
 #### Short Script Examples
