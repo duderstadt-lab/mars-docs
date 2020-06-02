@@ -6,7 +6,7 @@ permalink: /tutorials/scripting/introduction-to-groovy-scripting/index.html
 
 This tutorial will introduce the basics of Mars scripting. Scripting gives the opportunity of (partly) automating data analysis. In this first tutorial the key aspects of scripting will be discussed: how to open the Fiji script editor, how to execute a script, access data from the archive from within a script, examples for simple calculations, and coding in single lines: streams. The [advanced scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/) will go into more detail on less straight-forward Groovy scripting in **Mars**. For more information on the Groovy scripting language the reader is referred to the [Groovy documentation](https://groovy-lang.org/learn.html).
 
-These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files).
+These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/Groovy%20tutorial%20calculations%20in%20Python.ipynb).
 
 
 ### 1. How to open the script editor in Fiji

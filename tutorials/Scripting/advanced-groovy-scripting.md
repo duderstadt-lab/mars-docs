@@ -8,7 +8,7 @@ This advanced groovy scripting tutorial builds on the information discussed in t
 
 To follow along with this tutorial open the 'TestVideo_archive.yama' archive in **Mars** that was created in the [Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, download this archive from the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files).
 
-These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files).
+These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/Groovy%20tutorial%20calculations%20in%20Python.ipynb).
 
 ### 1. Filtering with 'has' functions - Calculate the dist_y_var with respect to tag category
 In the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial the distance travelled by each molecule in the y direction (dist_y) was calculated (section 5.1). Subsequently, the sample variance on the collection of obtained values was calculated (section 5.2). Since the data in the MoleculeArchive consists of molecules showing no activity (not tagged) as well as active molecules (tagged 'Active') and thus large differences in the dist_y values are observed, also the calculated sample variance was very high. To get a better understanding of the variance on the dist_y parameter the variance should be calculated with respect to both categories instead yielding a variance for the tagged molecules (dist_y_active_var) as well as the untagged molecules (dist_y_unactive_var).  
@@ -86,6 +86,7 @@ The obtained values for variance are still quite high. To investigate the data a
 
 The script for the bubble plot is based on the example in the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/). To visualize both populations with respect to category, the tagged population is all plotted at x=1, and the untagged population at x=2. These x-values serve purely to plot the values in distinct areas in the plot and have no data-related function whatsoever.
 
+Note: this script is written in Groovy. Select the Groovy running language in the scripting tab of the scriptable widget before running to prevent compiling errors.
 ```Groovy
 #@ MoleculeArchive archive
 #@OUTPUT String xlabel
@@ -96,7 +97,6 @@ The script for the bubble plot is based on the example in the [tutorial](https:/
 #@OUTPUT Double ymin
 #@OUTPUT Double ymax
 
-//Set global outputs
 xlabel = "Category (1=tagged, 2=untagged)"
 ylabel = "Dist_y"
 title = "Dist_y with respect to category"
@@ -105,7 +105,6 @@ xmax = 3.0
 ymin = -10
 ymax = 35
 
-//Series 1 and 2 Outputs
 #@OUTPUT Double[] series1_xvalues
 #@OUTPUT Double[] series1_yvalues
 #@OUTPUT Double[] series1_size
@@ -121,11 +120,7 @@ ymax = 35
 
 series1_yvalues = []
 series2_yvalues = []
-listUID = []
-
-//Assign the yvalues dependent on the tag
-
-archive.getMoleculeUIDs().forEach{UID -> listUID.add(UID)}
+listUID = archive.getMoleculeUIDs()
 
 for (int i = 0; i<listUID.size();i++){
   if (archive.get(listUID[i]).hasTag("Active")){
@@ -135,7 +130,6 @@ for (int i = 0; i<listUID.size();i++){
   }
 }
 
-//Declare all other plot output features
 series1_markerColor = "lightgreen"
 series1_xvalues = []
 series1_size = []

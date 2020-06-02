@@ -210,7 +210,7 @@ Open the 'XY Chart' widget and switch to the scripting tab (<>). Replace the exa
 #@OUTPUT Integer series10_strokeWidth
 
 # Set global outputs
-xlabel = "Slice"
+xlabel = "Time point (T)"
 ylabel = "Displacement (Y)"
 title = "XY Chart"
 xmin = 0.0
@@ -224,7 +224,7 @@ list1_y=[]
 
 for UID in archive.getMoleculeUIDs():
     if archive.get(UID).hasTag('Active'):
-        list1_x.append(archive.get(UID).getDataTable().getColumnAsDoubles("slice"))
+        list1_x.append(archive.get(UID).getDataTable().getColumnAsDoubles("T"))
         list1_y.append(archive.get(UID).getDataTable().getColumnAsDoubles("y"))
 
 # Since all variables have to be explicitly defined, always adjust this part based on the amount of tagged molecules.
@@ -346,7 +346,7 @@ Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to th
 #@OUTPUT Double ymax
 
 # Set global outputs
-xlabel = "Track length (slices)"
+xlabel = "Track length (T)"
 ylabel = "Variance"
 title = "Bubble chart"
 
