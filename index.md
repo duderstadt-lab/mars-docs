@@ -11,6 +11,6 @@ Mars provides a collection of ImageJ2 commands to find, fit, track and character
 
 This site is currently undergoing major changes and has many broken links. Check back within the next days/weeks for the updates.
 
-To get started with Mars, take a look at the [tutorials](tutorials), [example gallery](examples), and [usage guide](usage), or read [about the project's goals](about). Comprehensive reference material can be found in the [documentation](docs) section.
+To get started with Mars, take a look at the [tutorials](tutorials), [example gallery](examples), and [usage guide](install), or read [about the project's goals](about). Comprehensive reference material can be found in the [documentation](docs) section.
 
 <div style="text-align: center"><img src='{{site.baseurl}}/assets/200417_status_full.gif' width="450"/></div>
