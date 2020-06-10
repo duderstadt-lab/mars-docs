@@ -7,6 +7,8 @@ permalink: /docs/OME/datarequirements/index.html
 The structure of the data that can be used to build MoleculeArchives on using the **Mars** software and plugins is based on the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) file format. This open source format provides a universal framework for acquiring and storing of imaging data in biological microscopy experiments.
 
 
+<img align='center' src='{{site.baseurl}}/docs/OME/img/img1.png' width='750' />
+
 ---
 
 Coming soon.
