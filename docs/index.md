@@ -10,6 +10,13 @@ To start learning how to use Mars, we recommend first working through the introd
 
 Script writers and java developers can get started using the **Mars** development tutorial. Complete javadoc for the mars-core API can be found [here](http://duderstadt-lab.github.io/mars-core/javadoc/).
 
+## <a name="commands"></a>Data Requirements - OME
+
+### Open Microscopy Environment (OME)
+The structure of the data that can be used to build MoleculeArchives on using the **Mars** software and plugins is based on the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) file format. This open source format provides a universal framework for acquiring and storing of imaging data in biological microscopy experiments.
+More information on the format and further requirements can be found in the [data requirements](./OME/datarequirements) section.
+
+
 ## <a name="commands"></a>Command Reference
 
 ### Molecule
