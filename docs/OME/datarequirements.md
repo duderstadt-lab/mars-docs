@@ -8,12 +8,12 @@ The structure of the data that can be used to build MoleculeArchives on using th
 
 
 ### The Coordinate Framework
-Data collection and storage is based on a 5-coordinate framework: x, y, T (time),Z (slice), and C (channel). This allows for the acquisition of data over time, with different channels (f.e. different colors of excitation lasers for multi-color experiments) and if desired through different slices of an object (Z). Each recorded x-y field is called a plane, and is specified by its T, Z and C coordinates (**plane(T,Z,C)**).
+Data collection and storage is based on a 5-coordinate framework: x, y, T (time),Z (slice), and C (channel). This allows for the acquisition of data over time, with different channels (f.e. different colors of excitation lasers for multi-color experiments) and if desired through different slices of an object (Z). Each recorded x-y field is called a plane, and is specified by its T, Z and C coordinates ( **plane(T,Z,C)** ).
 
 
 <img align='center' src='{{site.baseurl}}/docs/OME/img/img1.png' width='750' />
 
 
-### How to convert your data to OME format
+### How to Convert Data to the OME Format
 
 Coming soon.
