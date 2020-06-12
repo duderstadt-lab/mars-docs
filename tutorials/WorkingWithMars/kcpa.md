@@ -28,7 +28,7 @@ The trace should be piece-wise linear between the kinetic change points. It is a
 The analysis will result in the position of kinetic change points and linear fits in between the points. The linear fits contain information about the rate. For example if one would track the position of the replisome over time one would get the rate of replication.
 
 #### How to: Run the kinetic change point
-If the archive of interest is not already opened, import the archive.
+If the archive of interest is not already opened, import the archive. In case the previous tutorials were not followed visit the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials) for an example dataset.
 
 To run the kinetic change point analysis go under "Plugins-> MoleculeArchive Suite-> KCP-> Change Point Finder" (also shown in the image).
 

@@ -14,7 +14,7 @@ single-molecule dataset provides an excellent way to familiarise yourself with
 **Mars** and the most important plugins.
 
 ### 1. Import a video in Fiji
-Open the example dataset 'TestVideo.tif' in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
+Open the example dataset ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo.tif) in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='450' />
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450' />

@@ -89,6 +89,7 @@ archive = SingleMoleculeArchive(yamaFile)
 ```
 Now one has to add the location of the yama archive which will be used for analysis. The file path has to be added in the code line. Just
 right click on the file and "Get Info" and there the file path will be written out.
+For testing purposes the ['TestVideo_archive_var.yama'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo_archive_var.yama) can be downloaded from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).
 
 ### Get started with simple Operations
 After loading on the necessary packages for python and loading the file one can finally can work with the archive. The archive is specified as a "SingleMoleculeArchive". An extensive list of methods that can be called can be found **[here](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/SingleMoleculeArchive.html)**. In the next section the most commonly used ones are presented.
