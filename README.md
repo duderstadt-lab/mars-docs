@@ -2,8 +2,6 @@
 
 This repository contains the Mars documentation. You can visit the site at https://duderstadt-lab.github.io/mars-docs/
 
-Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
-
 This work is licensed under
 [![CC BY 4.0][cc-by-image]][cc-by]
 
