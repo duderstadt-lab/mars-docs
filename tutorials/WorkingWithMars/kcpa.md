@@ -62,7 +62,11 @@ The result from the analysis can be plotted for visual inspection of the fit. Go
 
 
 #### Take it to the next level
-By simply looking at the example above one can think that the algorithm produces simple linear regressions. This comes from the fact that most traces in the example only have one transition. To show the real power of the kinetic change point analysis another example is analysed. The trace has multiple kinetic changes (see image below). This time an estimation of the background is directly taken from the trace (the global sigma is not considered). For that mark a region and name it background (just for convenience). Then select the region which should be analysed. The trace has simulated gaussian noise.
+By simply looking at the example above one can think that the algorithm produces simple linear regressions. This comes from the fact that most traces in the example only have one transition. To show the real power of the kinetic change point analysis another example is analysed.
+
+The following trace can be found in a separate yama file in the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials) named "TestVideo_archive_kcp_complex.yama". Be aware that the y column is now called nucleotides instead. 
+
+ The trace has multiple kinetic changes (see image below). This time an estimation of the background is directly taken from the trace (the global sigma is not considered). For that mark a region and name it background (just for convenience). Then select the region which should be analysed. The trace has simulated gaussian noise.
 
 <p align='center'>
  <img src='{{site.baseurl}}/tutorials/img/kcpa/img5.png' width='450' />
