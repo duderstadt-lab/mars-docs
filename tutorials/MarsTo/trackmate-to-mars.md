@@ -42,5 +42,7 @@ To export the traces to **Mars** select 'Go to Mars' in the drop-down menu and p
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img11.png' width='250' />
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img12.png' width='450' />
 
+_Note:_ Be aware that when using TrackMate to build a MoleculeArchive only the traces selected through the filtering options in the TrackMate dialog end up as molecule entries in contrast to using the [Mars Peak Tracker](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakTracker/) and do all the filtering in the Mars Rover GUI.
+
 
 <sup>1</sup> Tinevez, JY.; Perry, N. & Schindelin, J. et al. (2017), "Trackmate: An open and extensible platform for single-particle tracking.", _Methods_ **115**: 80-90, PMID 27713081
