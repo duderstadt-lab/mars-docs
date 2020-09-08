@@ -23,7 +23,7 @@ The command is intended to be used together with the [DriftCorrector](../DriftCo
 
 * The MoleculeArchive provided as Input is modified. The drift information is added to the metadata table 'Plane' since it applies globally to all molecules within the given dataset. In the example below the drift in all directions is 0 for the plane selected.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img4.png' width='400' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img4.png' width='650' />
 
 ### How to run this Command from a groovy script
 

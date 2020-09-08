@@ -25,7 +25,7 @@ Background region start and end points are also required. The mean of this regio
 
 * The MoleculeArchive provided as Input is modified. The drift is subtracted from the x and y columns to generate x_drift_corr and y_drift_corr. Column names will vary depending on settings...
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img5' width='800' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img5.png' width='800' />
 
 ### How to run this Command from a groovy script
 
