@@ -3,27 +3,23 @@ layout: molecule
 title: Add Time
 permalink: /docs/molecule/AddTime/index.html
 ---
-This command makes a map between the slice and Time columns in all ImageMetaData records and uses that map to add a Time column to all molecule DataTables.
 
-The ImageMetaData record from a Bead experiment collected using the Norpix software look like:
-
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/ImageMetaData table.png' width='750' />
-
-Once a map between slice and Time (s) is established using the table above, it is used to add a Time (s) column below for each molecule record:
-
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Molecule Time column-01.png' width='750' />
-
-Since a mapping is used, missed slices are not a problem. Also, if multiple dataset are combined in the archive. The slice and Time will only be applied based on the corresponding ImageDataRecord for each molecule. This ensures that molecules from different datasets get the correct time information, and that this information can be completely different between molecule sets and ImageMetaData records inside the same merged archive.
+This commands adds a column to the molecule tables to convert time points (T) to real time values in seconds. To do so the user can either select the dt value specified in the metadata or define a time increment themselves. This is a mapping procedure that is not disturbed by missing data points.
 
 #### Inputs
 
-* *MoleculeArchive* - MoleculeArchive for which to add a Time (s) column to all molecule records.
+* *MoleculeArchive* - MoleculeArchive input for the time conversion.
+* *Source* - Select either the 'dt' information specified in the metadata are the option 'Time increment' in case the time increment will be specified below.
+* *Time increment (s)* - Input value for the time increment if selected above.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Add Time.png' width='250' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img2.png' width='450' />
+
 
 #### Output
+* *MoleculeArchive* - Modified MoleculeArchive that was provided as input, the column 'Time (s)' is added to each molecule table.
 
-* The MoleculeArchive provided as Input is modified.
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img3.png' width='450' />
+
 
 ### How to run this Command from a groovy script
 

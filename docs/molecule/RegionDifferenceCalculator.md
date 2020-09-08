@@ -20,10 +20,6 @@ permalink: /docs/molecule/RegionDifferenceCalculator/index.html
 
    * The MoleculeArchive provided as Input is modified.
 
-#### Example Molecule for inputs above
-
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/regionDifferencePlot.png' width='400' />
-
 Running the command on an archive with this molecule results in the Parameter "rdc" with value -2.59 being added for this molecule.
 
 <img align='center' src='{{site.baseurl}}/docs/molecule/img/Added Parameter.png' width='400' />
