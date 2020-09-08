@@ -3,28 +3,27 @@ layout: molecule
 title: Drift Calculator
 permalink: /docs/molecule/DriftCalculator/index.html
 ---
-This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. Then calculates the mean x and y position for each slice from those immobile molecules and places the results into each ImageMetaData record's datatable with the column headings x_drift and y_drift:
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/ImageMetaData Drift.png' width='750' />
+This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. Then calculates the mean or median x and y position for each slice from those immobile molecules and places the results into the metadata as x_drift and y_drift.
 
-This command can also be used to calculate other kinds of background besides drift. For example, if you have changes in flow, you could add that in a second set of columns to the ImageMetaData table and correct for it.
-
-The command is intended to be used together with the [[DriftCorrector]]. First, you calculate the drift with this command and then you correct for it using the [DriftCorrector](../DriftCorrector).
+The command is intended to be used together with the [DriftCorrector](../DriftCorrector). First, you calculate the drift with this command and then you correct for it using the [DriftCorrector](../DriftCorrector).
 
 #### Inputs
 
 * *MoleculeArchive* - MoleculeArchive to calculate drift for.
-* *Background Tag* - The tag added to all molecules that should be used to calculate background. For a bead experiment, this tag can be added to all beads that don't reverse beyond a certain point and have an MSD below a certain threshold. Typically for bead experiments the tags are added using custom groovy scripts.
+* *Background Tag* - The tag added to all molecules that should be used to calculate background.
 * *Input X (x)* - The input x column to use the build the background trace. Usually this should just be x.
 * *Input Y (y)* - The input y column to use the build the background trace. Usually this should just be y.
-* *Output X (x_drift)* - The output column name used when the x background is added to the ImageMetaData table. Usually this should just be x_drift.
-* *Output Y (y_drift)* - The output column name used when the y background is added to the ImageMetaData table. Usually this should just be y_drift.
 * *Use incomplete traces* - Uses all traces for the drift calculation including those that do not have all slices, which sometimes happens when peak fitting fails for a certain frame. If there are no observations for a certain slice, then NaN is used.
+* *mode* - Select between using the 'mean' or 'median' x and y position.
+* *Zero* - Select between treating the starting point or then end point as zero.
 
 <img align='center' src='{{site.baseurl}}/docs/molecule/img/Drift Calculator.png' width='400' />
 
 #### Output
 
-* The MoleculeArchive provided as Input is modified. The drift information is added to the ImageMetaData table since it applies globally to all molecules within the given dataset.
+* The MoleculeArchive provided as Input is modified. The drift information is added to the metadata table 'Plane' since it applies globally to all molecules within the given dataset. In the example below the drift in all directions is 0 for the plane selected.
+
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img4.png' width='400' />
 
 ### How to run this Command from a groovy script
 
