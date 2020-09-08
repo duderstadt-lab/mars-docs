@@ -13,6 +13,21 @@ In the Duderstadt lab we study molecular machines that reshape and remake chromo
 
 The **Mars** software utilises features from other software packages as referenced in the respective documentation pages and tutorials.
 
+#### Mars Core Connections
+As highlighted in the [repositories](https://duderstadt-lab.github.io/mars-docs/about/Repositories/) page Mars Core and/or Mars Rover depend on the following software packages.
+
+**Fiji**
+Schindelin, J.; Arganda-Carreras, I. & Frise, E. et al. (2012), "Fiji: an open-source platform for biological-image analysis", _Nature methods_ **9(7)**: 676-682, PMID 22743772
+
+**ImageJ**
+Rueden, CT.; Schindelin, J. & Hiner, MC. et al. (2017), "ImageJ2: ImageJ for the next generation of scientific image data", _BMC Bioinformatics_ **18**: 529, PMID 29187165
+
+**ChartFX**
+A scientific charting librabry focused on performance optimised real-time data visualisation.
+https://github.com/GSI-CS-CO/chart-fx
+
+#### Connections of Mars Rover with other Software Packages
+
 **Trackmate**  
 Tinevez, JY.; Perry, N. & Schindelin, J. et al. (2017), "Trackmate: An open and extensible platform for single-particle tracking.", _Methods_ **115**: 80-90, PMID 27713081
 
