@@ -12,3 +12,5 @@ The files accompanying the tutorials, such as an example dataset, can be found i
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of MoleculeArchive records.  
 * [MarsTable tutorial](marstable)  
   _Skill level: Intermediate._ Learn how to use scripts to build and edit a fully customizable MarsTable.
+
+Please visit the [Mars Java docs](https://duderstadt-lab.github.io/mars-core/javadoc/) for more background information about all classes and individual commands.

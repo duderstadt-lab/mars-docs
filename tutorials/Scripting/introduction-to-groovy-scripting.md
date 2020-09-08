@@ -46,7 +46,8 @@ In the example script used before, the parameter 'archive' is defined as an inpu
 
 
 ### 4. Access data from the archive with a script
-All functions that can be called on with accompanying documentation can be found in the [javadocs](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/MoleculeArchive.html). The expected arguments of each function are listed between the brackets of each defined function. Frequently used commands are discussed in this section of the tutorial.
+All functions that can be called on with accompanying documentation can be found in the [Mars javadocs](https://duderstadt-lab.github.io/mars-core/javadoc/). The expected arguments of each function are listed between the brackets of each defined function. Frequently used commands are discussed in this section of the tutorial.
+
 
 #### 4.1 'get' functions: get a parameter from the MoleculeArchive
 

@@ -27,4 +27,4 @@ Script to show the tracking results in the MoleculeArchive as color coded ROIs o
 
 
 
-More example scripts can be found in the git [repository](https://github.com/duderstadt-lab/mars-tutorials).
+More example scripts can be found in the git [repository](https://github.com/duderstadt-lab/mars-tutorials). Please visit the [Mars Java docs](https://duderstadt-lab.github.io/mars-core/javadoc/) for more information about all classes and individual commands.

@@ -16,13 +16,13 @@ The **Mars** software utilises features from other software packages as referenc
 #### Mars Core Connections
 As highlighted in the [repositories](https://duderstadt-lab.github.io/mars-docs/about/Repositories/) page Mars Core and/or Mars Rover depend on the following software packages.
 
-**Fiji**
+**Fiji**  
 Schindelin, J.; Arganda-Carreras, I. & Frise, E. et al. (2012), "Fiji: an open-source platform for biological-image analysis", _Nature methods_ **9(7)**: 676-682, PMID 22743772
 
-**ImageJ**
+**ImageJ**  
 Rueden, CT.; Schindelin, J. & Hiner, MC. et al. (2017), "ImageJ2: ImageJ for the next generation of scientific image data", _BMC Bioinformatics_ **18**: 529, PMID 29187165
 
-**ChartFX**
+**ChartFX**  
 A scientific charting librabry focused on performance optimised real-time data visualisation.
 https://github.com/GSI-CS-CO/chart-fx
 
