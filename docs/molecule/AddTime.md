@@ -18,7 +18,7 @@ This commands adds a column to the molecule tables to convert time points (T) to
 #### Output
 * *MoleculeArchive* - Modified MoleculeArchive that was provided as input, the column 'Time (s)' is added to each molecule table.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img3.png' width='450' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img3.png' width='650' />
 
 
 ### How to run this Command from a groovy script

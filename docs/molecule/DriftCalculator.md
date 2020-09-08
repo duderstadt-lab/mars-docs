@@ -3,7 +3,7 @@ layout: molecule
 title: Drift Calculator
 permalink: /docs/molecule/DriftCalculator/index.html
 ---
-This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. Then calculates the mean or median x and y position for each slice from those immobile molecules and places the results into the metadata as x_drift and y_drift.
+This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. Then calculates the mean or median x and y position for each slice from those immobile molecules and places the results into the metadata specified per plane as xDrift, yDrift and zDrift.
 
 The command is intended to be used together with the [DriftCorrector](../DriftCorrector). First, you calculate the drift with this command and then you correct for it using the [DriftCorrector](../DriftCorrector).
 

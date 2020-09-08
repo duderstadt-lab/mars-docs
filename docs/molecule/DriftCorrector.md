@@ -3,23 +3,21 @@ layout: molecule
 title: Drift Corrector
 permalink: /docs/molecule/DriftCorrector/index.html
 ---
-This command corrects all molecules for sample drift using the x_drift and y_drift information in each ImageMetaData record generated using the [DriftCalculator](../DriftCalculator). This is done in a manner such that each molecule is corrected using the drift in its ImageMetaData record.
+This command corrects all molecules for sample drift using the drift values in the metadata generated using the [DriftCalculator](../DriftCalculator). By doing so it generates new columns for each molecule table listing 'x_drift_corr' and 'y_drift_corr'.
 
 Background region start and end points are also required. The mean of this region is subtracted from the whole trace, effectively making it approximately zero. This procedure is independent of the drift correction, which is conducted before hand for all rows in the molecule table.
 
-The input and output columns can be changed to apply multiple corrections in sequence or correct for different kinds of background independently.
 
 ##### Inputs
 
-* *MoleculeArchive* - MoleculeArchive for which drift will be corrected. The drift will be subtracted from the x and y columns for each molecule using the corresponding drift information in the ImageMetaData record.
-* *from slice* - The first slice of the background region.
-* *to slice* - The last slice of the background region.
-* *MetaData Background X (x_drift)* - X column in the ImageMetaData Table to use for background correction. Usually this is x_drift.
-* *MetaData Background Y (y_drift)* - Y column in the ImageMetaData Table to use for background correction. Usually this is y_drift.
-* *Input X (x)* - X column to correct. Usually this is just x.
-* *Input Y (y)* - Y column to correct. Usually this is just y.
-* *Output X (x_drift_corr)* - The new output x column added to the DataTable with the background corrected trace. Usually this is x_drift_corr.
-* *Output Y (y_drift_corr)* - The new output y column added to the DataTable with the background corrected trace. Usually this is y_drift_corr.
+* *MoleculeArchive* - MoleculeArchive for which drift will be corrected. The drift will be subtracted from the x and y columns for each molecule using the corresponding drift information in the metadata record.
+* *start T* - The first time point of the background region.
+* *end T* - The last time point of the background region.
+* *Input X (x)* - X-coordinates to be corrected. Usually this is just x.
+* *Input Y (y)* - Y-coordinates to be corrected. Usually this is just y.
+* *Output X (x_drift_corr)* - The new output x column added to the table with the background corrected trace. Usually this is x_drift_corr.
+* *Output Y (y_drift_corr)* - The new output y column added to the table with the background corrected trace. Usually this is y_drift_corr.
+* *correct original coordinates* - Tick in case the original coordinates should be overwitten (not advised).
 
 <img align='center' src='{{site.baseurl}}/docs/molecule/img/Drift Corrector.png' width='450' />
 
@@ -27,7 +25,7 @@ The input and output columns can be changed to apply multiple corrections in seq
 
 * The MoleculeArchive provided as Input is modified. The drift is subtracted from the x and y columns to generate x_drift_corr and y_drift_corr. Column names will vary depending on settings...
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/MoleculeArchive molecule drift columns.png' width='800' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/img5' width='800' />
 
 ### How to run this Command from a groovy script
 
