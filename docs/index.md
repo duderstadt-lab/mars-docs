@@ -6,7 +6,7 @@ permalink: /docs/index.html
 
 The **Mars** platform provides a collection of ImageJ2 commands for performing a wide variety of common image processing and secondary analysis tasks. This page provides documentation of the [ImageJ2 commands](https://duderstadt-lab.github.io/mars-core/javadoc/) and the graphical user interface for molecule classification.  
 
-To start learning how to use Mars, we recommend first working through the introductory **[Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)** and exploring the [examples](../examples), then dig further into the documentation.
+To start learning how to use Mars, we recommend first working through the introductory **[Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)** and exploring the [examples](../examples), then dig further into the documentation.
 
 Script writers and java developers can get started using the **Mars** development tutorial. Complete javadoc for the mars-core API can be found [here](http://duderstadt-lab.github.io/mars-core/javadoc/).
 

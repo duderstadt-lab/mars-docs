@@ -4,10 +4,12 @@ title: Variance Calculator
 permalink: /docs/molecule/varCalculator/index.html
 ---
 
+For an introductory tutorial on variance calculations in Mars the reader is referred to the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/).
+
 #### Inputs
 
  * _MoleculeArchive_ - MoleculeArchive to operate on.
- * _Column_ - Column of each molecule datatable to calculate the variance(var) for.
+ * _Column_ - Column of each molecule datatable to calculate the variance (var) for.
  * _Parameter Name_ - The name of the Parameter that will be added to each molecule record.
 
 <img align='center' src='{{site.baseurl}}/docs/molecule/img/img1.png' width='400' />

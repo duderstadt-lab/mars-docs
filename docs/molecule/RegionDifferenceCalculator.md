@@ -14,7 +14,7 @@ permalink: /docs/molecule/RegionDifferenceCalculator/index.html
 * *Region 2 name* - Name of the second region.
 * *Parameter Name* - Name of the Parameter added to each molecule entry in the archive with the calculated difference.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Region Difference Calculator.png' width='600' />
+<img align='center' src='{{site.baseurl}}/docs/molecule/img/Region Difference Calculator.png' width='450' />
 
 #### Output
 
@@ -42,13 +42,11 @@ regionDifference.setContext(ij.getContext());
 
 //Set all the input parameters
 regionDifference.setArchive(archive);
-regionDifference.setXcolumn("slice");
-regionDifference.setYcolumn("x");
-regionDifference.setRegion1Start(40);
-regionDifference.setRegion1End(60);
-regionDifference.setRegion2Start(80);
-regionDifference.setRegion2End(120);
-regionDifference.setParameterName("first_reversal");
+regionDifference.setXcolumn("T");
+regionDifference.setYcolumn("y");
+regionDifference.setRegionOne("reg1");
+regionDifference.setRegionTwo("reg2");
+regionDifference.setParameterName("rdc");
 
 //Run the Command
 regionDifference.run();

@@ -75,16 +75,17 @@ import de.mpg.biochem.mars.ImageProcessing.commands.*
 //Make an instance of the Command you want to run...
 final PeakTrackerCommand peakTracker = new PeakTrackerCommand()
 
-//Populates @Parameters Services etc.. using the current context
-//which we get from the ImageJ input...
+//Populates @Parameters Services etc. using the current context
+//which we get from the ImageJ input.
 peakTracker.setContext(ij.getContext())
 
-peakTracker.setImage(image)
+peakTracker.setDataset(dataset)
 peakTracker.setUseROI(false)
 peakTracker.setX0(0)
 peakTracker.setY0(0)
 peakTracker.setWidth(100)
 peakTracker.setHeight(100)
+peakTracker.setChannel(0)
 peakTracker.setUseDogFiler(true)
 peakTracker.setDogFilterRadius(1.8d)
 peakTracker.setThreshold(50)
@@ -95,13 +96,12 @@ peakTracker.setMinimumRsquared(0.0d)
 peakTracker.setVerboseOutput(false)
 peakTracker.setMaxDifferenceX(5)
 peakTracker.setMaxDifferenceY(5)
-peakTracker.setMaxDifferenceSlice(5)
+peakTracker.setMaxDifferenceFrame(5)
 peakTracker.setMinimumTrackLength(10)
 peakTracker.setIntegrate(true)
 peakTracker.setIntegrationInnerRadius(1)
 peakTracker.setIntegrationOuterRadius(3)
 peakTracker.setMicroscope("Microscope")
-peakTracker.setImageFormat("MicroManager")
 
 //Run the Command
 peakTracker.run();

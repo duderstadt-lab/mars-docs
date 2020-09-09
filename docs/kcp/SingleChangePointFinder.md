@@ -46,8 +46,8 @@ scpCalc.setContext(ij.getContext());
 
 //Set all the input parameters
 scpCalc.setArchive(archive);
-scpCalc.setXcolumn("y");
-scpCalc.setYcolumn("slice");
+scpCalc.setXcolumn("T");
+scpCalc.setYcolumn("y");
 scpCalc.setAnalyzeRegion(False);
 scpCalc.setRegionSource("Molecules");
 scpCalc.setRegion("name");

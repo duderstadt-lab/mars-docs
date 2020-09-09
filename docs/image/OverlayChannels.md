@@ -28,3 +28,23 @@ Affine2D Transformation Matrix: coordinates found with the Affine2D calculation 
 * A single video with individual channels representing the input videos.
 
 <img align='center' src='{{site.baseurl}}/docs/image/img/img7.png' width='450' />
+
+### How to run this Command from a groovy script
+
+```groovy
+#@ ImagePlus image
+#@ ImageJ ij
+
+import de.mpg.biochem.mars.ImageProcessing.*
+
+//Make an instance of the Command you want to run...
+final OverlayChannelsCommand overlayChannels = new OverlayChannelsCommand();
+
+//Populates @Parameters Services etc.. using the current context
+//which we get from the ImageJ input...
+overlayChannels.setContext(ij.getContext())
+
+overlayChannels.run();
+
+//Run the Command
+```

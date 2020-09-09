@@ -44,14 +44,13 @@ driftCorr.setContext(ij.getContext())
 
 //Set all the input parameters
 driftCorr.setArchive(archive)
-driftCorr.setFromSlice(100)
-driftCorr.setToSlice(200)
-driftCorr.setMetaX("x_drift")
-driftCorr.setMetaY("y_drift")
+driftCorr.setStartT(0)
+driftCorr.setendT(100)
 driftCorr.setInputX("x")
 driftCorr.setInputY("y")
 driftCorr.setOutputX("x_drift_corr")
 driftCorr.setOutputY("y_drift_corr")
+driftCorr.setCorrectOriginalCoordinates(false)
 
 //Run the Command
 driftCorr.run();

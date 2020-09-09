@@ -43,7 +43,7 @@ sigCalc.setContext(ij.getContext());
 
 //Set all the input parameters
 sigCalc.setArchive(archive);
-sigCalc.setXcolumn("slice");
+sigCalc.setXcolumn("T");
 sigCalc.setYcolumn("y");
 sigCalc.setRegionType("All");
 sigCalc.setFrom("1");

@@ -71,8 +71,8 @@ kcpCalc.setContext(ij.getContext());
 
 //Set all the input parameters
 kcpCalc.setArchive(archive);
-kcpCalc.setXcolumn("y");
-kcpCalc.setYcolumn("slice");
+kcpCalc.setXcolumn("T");
+kcpCalc.setYcolumn("y");
 kcpCalc.setConfidenceLevel(0.99);
 kcpCalc.setGlobalSigma(1.0);
 kcpCalc.setRegionSource("Molecules");

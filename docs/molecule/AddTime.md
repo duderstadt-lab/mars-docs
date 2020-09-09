@@ -29,11 +29,11 @@ This commands adds a column to the molecule tables to convert time points (T) to
 
 import de.mpg.biochem.mars.molecule.*;
 
-//Make an instance of the Command you want to run...
+//Make an instance of the Command you want to run.
 final AddTimeCommand addTime = new AddTimeCommand();
 
-//Populates @Parameters Services etc.. using the current context
-//which we get from the ImageJ input...
+//Populates @Parameters Services etc. using the current context
+//which we get from the ImageJ input.
 addTime.setContext(ij.getContext());
 
 //Set all the input parameters

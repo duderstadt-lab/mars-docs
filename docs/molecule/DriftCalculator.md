@@ -45,9 +45,9 @@ driftCalc.setArchive(archive);
 driftCalc.setBackgroundTag("background");
 driftCalc.setInputX("x");
 driftCalc.setInputY("y");
-driftCalc.setOutputX("x_drift");
-driftCalc.setOutputY("y_drift");
 driftCalc.setUseIncompleteTraces(false);
+driftCalc.setMode("mean");
+driftCalc.setZeroPoint("end");
 
 //Run the Command
 driftCalc.run();
