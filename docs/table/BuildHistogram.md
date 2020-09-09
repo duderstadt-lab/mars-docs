@@ -7,12 +7,11 @@ This command allows for fast generation of simple histograms. The purpose is to 
 
 
 #### Inputs
-
-<img align='center' src='{{site.baseurl}}/docs/table/img/HistogramBuilderDialog.png' width='450' />
-
 * *Table* - The open MarsTable that contains the column for building the histogram.
 * *Column* - The column to use for building the histogram.
 * *bins* - Number of bins in the histogram.
+
+<img align='center' src='{{site.baseurl}}/docs/table/img/img3.png' width='450' />
 
 #### Output
 

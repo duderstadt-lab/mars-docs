@@ -3,25 +3,20 @@ layout: table
 title: Sort
 permalink: /docs/table/Sort/index.html
 ---
-This command sorts MarsTables based on the values in the specified column. Default sort order is descending.
+This command sorts MarsTables based on the values in the specified column. The default sort order is descending.
 
 #### Inputs
 
-* "ResultsTable" - An open MarsTable would would like to sort.
+* "ResultsTable" - An open MarsTable one would like to sort.
 * "Column" - The column to use when sorting the table.
 * "Group Column" - A possible second column to sort by. This can be a molecule column, for example, allowing for the time series data for individual molecules to be sorted as groups.
 * "ascending" - If checked the table will be sorted in ascending order. If left unchecked the table will be sorted in descending order.
 
-#### Examples
-
-Sorting without grouping. The table shows the result.
-<img align='center' src='{{site.baseurl}}/docs/table/img/ResultsTable Sorter Dialog.png' width='700' />
-Sorting with grouping. The table displays the result.
-<img align='center' src='{{site.baseurl}}/docs/table/img/Results Sorter with group.png' width='700' />
-
 #### Output
-
 * This command sorts the table given as input, so there isn't any output except a change in the row order of the table given.
+
+<img align='center' src='{{site.baseurl}}/docs/table/img/img2.png' width='300' />
+
 
 ### How to sort tables in a groovy script
 

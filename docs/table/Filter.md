@@ -8,9 +8,6 @@ This command offers numerous ways to filter MarsTable rows based on their values
 In all cases, the "inside" and "outside" options provide a choice between all values that lie within the specified region or all values that lie outside the specified region.
 
 #### Inputs
-
-<img align='center' src='{{site.baseurl}}/docs/table/img/Results Filter Dialog.png' width='600' />
-
 * "Table" - The open MarsTable that you want to filter.
 * "Column" - The column to use for filtering.
 * "Type" - The type of filter to apply. If "Min Max" is selected, the table will be filtered based on the range given using the Min and Max values. The range is inclusive of the end points. If "Standard Deviation" is selected, the table will be filtered based on the range given by the "Mean +/- (N * STD)" value. This value is the N in the formula, Finally, if "Filter Table" is selected, the table will be filtered based on the values in the Filter Table provided. In this case, only matching values between "Column" in the Filter Table and "Column" in Table will be included or excluded.
@@ -19,6 +16,8 @@ In all cases, the "inside" and "outside" options provide a choice between all va
 * "Max" - The maximum value if using "Min Max" Filter.
 * "Mean +/- (N * STD)" - The number of standard deviations from the mean to include in the range. The N value in the formula given. This value is used if "Standard deviation" is chosen as the filter type.
 * "Filter Table" - A second table to use as a reference if type is set to "Filter Table."
+
+<img align='center' src='{{site.baseurl}}/docs/table/img/Results Filter Dialog.png' width='600' />
 
 #### Example outputs depending on the options
 
