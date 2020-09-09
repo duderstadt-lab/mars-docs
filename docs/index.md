@@ -14,7 +14,7 @@ Script writers and java developers can get started using the **Mars** developmen
 
 ### Open Microscopy Environment (OME)
 The structure of the data that can be used to build MoleculeArchives on using the **Mars** software and plugins is based on the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) file format. This open source format provides a universal framework for acquiring and storing of imaging data in biological microscopy experiments.
-More information on the format and further requirements can be found in the [data requirements](./OME/datarequirements) section.
+More information on the format and further requirements can be found in the [OME](./OME/) section.
 
 
 ## <a name="commands"></a>Command Reference
@@ -23,14 +23,14 @@ More information on the format and further requirements can be found in the [dat
 
 | :----------------------------- | :----------- |
 | [Import archive](./molecule/ImportArchive) | Use this command to open an archive.|
-| [Build archive from table](./molecule/BuildArchiveFromTable) | Generate a MoleculeArchive using a table with a molecule index column. |
+| [Build archive from table](./molecule/BuildArchiveFromTable) | Generate a Molecule Archive using a table with a molecule index column. |
 | [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Calculator](./molecule/DriftCalculator) | Calculate drift in position. |
 | [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
 | [Var Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
-| [Merge Archives](./molecule/MergeArchives) | Merges a set of MoleculeArchives. |
-| [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual MoleculeArchives. |
+| [Merge Archives](./molecule/MergeArchives) | Merges a set of Molecule Archives. |
+| [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
 
 ### Table
 
@@ -53,7 +53,7 @@ More information on the format and further requirements can be found in the [dat
 ### Kinetic Change Point Analysis (KCP)
 
 | :----------------------------- | :----------- |
-| [Change Point Finder](./kcp/ChangePointFinder) | Find kinetic changes points for a MoleculeArchive. |
+| [Change Point Finder](./kcp/ChangePointFinder) | Find kinetic changes points for a Molecule Archive. |
 | [Single Change Point Finder](./kcp/SingleChangePointFinder) | Find single change point positions. |
 | [Sigma Calculator](./kcp/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
 
@@ -67,7 +67,7 @@ More information on the format and further requirements can be found in the [dat
 
 ## <a name="gui"></a>Mars Rover
 
-Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interface helps to analyse, process, and filter the data in a streamlined and reproducible manner. To familiarise yourself with the most commonly used features explore the [Let's Make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial.
+Accompanying the **Mars** software is the GUI: **Mars Rover**. This user interface helps to analyse, process, and filter the data in a streamlined and reproducible manner. To familiarise yourself with the most commonly used features explore the [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial.
 
 **Toolbar Tabs**
 

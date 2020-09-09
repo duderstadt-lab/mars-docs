@@ -28,7 +28,7 @@ Please visit the [install](https://duderstadt-lab.github.io/mars-docs/install/) 
 
 **References**  
 <sup>1</sup> Marqués, G., Pengo, T., Sanders, M.A. (2020), "Science Forum: Imaging methods are vastly underreported in biomedical research", _eLife_ **9**: e55133  
-<sup>2</sup> Cooper, N., Hsing, P-J. (2017), "Guides to Better Science: Reproducible Code", _Britisch Ecological Society_
+<sup>2</sup> Cooper, N., Hsing, P-J. (2017), "Guides to Better Science: Reproducible Code", _Britisch Ecological Society_  
 <sup>3</sup> Goldberg, IG., Allan, C., Burel, J-M. et al. (2005), "The Open Microscopy Environment (OME) Data Model and XML file: open tools for informatics and quantitative analysis in biological imaging", _Genome Biology_ **6**: R47  
 <sup>4</sup> Rueden, CT.; Schindelin, J. & Hiner, MC. et al. (2017), "ImageJ2: ImageJ for the next generation of scientific image data", _BMC Bioinformatics_ **18**: 529, PMID 29187165  
 <sup>5</sup> Agarwal et al. (2020), in revision.
