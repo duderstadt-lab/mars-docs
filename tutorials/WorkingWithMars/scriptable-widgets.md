@@ -4,10 +4,10 @@ title: "How to use Scriptable Widgets"
 permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 ---
 
-This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a MoleculeArchive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'TestVideo_archive_var.yama' MoleculeArchive from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).
+This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'TestVideo_archive_var.yama' Molecule Archive from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).
 
 In the upcoming sections all four scriptable widgets are described with an example. These sections are not dependent on each other and can be completed independent of each other.
-Please not that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/)
+Please note that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/)
 
 <div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="550"/></div>
 
@@ -15,7 +15,7 @@ Please not that the fifth scriptable widget 'Beaker' is not addressed in this tu
 ### 1. Category Chart - Plot the Mean Variance Value vs. Tag
 **Introduction**
 
-To gain insight in the relationship between the variance (var) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean variance value of both groups as a bar plot.  This gives a first glance at the relation between variance and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a MoleculeArchive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
+To gain insight in the relationship between the variance (var) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean variance value of both groups as a bar plot.  This gives a first glance at the relation between variance and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a Molecule Archive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
 
 To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the var values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues.
 
@@ -65,7 +65,7 @@ There seems to be a clear difference in the variance values in both categories. 
 ### 2. Histogram - Plot a Histogram of variance values
 **Introduction**
 
-A histogram is a good way to familiarise with the spread in the variance in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.
+A histogram is a good way to familiarise oneself with the spread in the variance in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.
 
 The script for this histogram is fairly simple. After setting the global outputs the series1_values list is appended with the calculated variance of each molecule. This data is used to calculate the frequency of values internally to create the histogram.
 The data included in the figure can be selected by setting values for xmin and xmax. This enables the user to either include all data points by using xmin=min(var_values) and xmax=max(var_values) or selecting a smaller region of interest.
@@ -121,13 +121,13 @@ In the example dataset most tracked molecules have a variance below ~15. To expl
 ### 3. XY Chart - Plot all 'Active' Traces in one Figure
 **Introduction**
 
-To inspect whether all 'Active'-tagged molecules behave similarly they are plotted in the same figure (y vs. slice) using the 'XY Chart' widget. As found in the [Let's calculate the Mean Square Displacement](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/) tutorial there were 10 molecules tagged 'Active'.
+To inspect whether all 'Active'-tagged molecules behave similarly they are plotted in the same figure (y vs. slice) using the 'XY Chart' widget. As found in the [Let's calculate the Variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) tutorial there were 10 molecules tagged 'Active'.
 
 The extended script consists of multiple parts:
-* Input/Output section: since the scriptable widgets are based on the [script parameters](https://imagej.net/Script_Parameters) harvesting mechanism all specified inputs (the MoleculeArchive) and outputs (all plot coordinates, plot metadata like colors and titles) have to be explicitly specified.
+* Input/Output section: since the scriptable widgets are based on the [script parameters](https://imagej.net/Script_Parameters) harvesting mechanism all specified inputs (the Molecule Archive) and outputs (all plot coordinates, plot metadata like colors and titles) have to be explicitly specified.
 * Global outputs section: sets the plot metadata like labels, title and min and max coordinates.
 * Make two lists with x and y coordinates: makes two lists containing all x and y coordinates of all traces tagged 'Active'. Since these traces can start wherever on the field of view and do not all start at the same time (slice) these coordinates have to be adjusted to all start at y=0 and slice=0. This enables direct comparison between the traces.
-* Define colours of the stroke, the fill, and strokewidth.
+* Define colors of the stroke, the fill, and strokewidth.
 * Correct the x and y coordinates for each trace: correct by subtracting the min(slice) and min(y) respectively. This makes sure all traces start at slice=0 and y=0 in the plot. Note that since all output parameters need to be assigned explicitly their values also need to be assigned explicitly. In this scripting environment it is impossible to use a script that assigns these values automatically using matrices.
 
 **How to**
@@ -327,7 +327,7 @@ The plot shows that all traces have a similar slope but vary in their tracked le
 ### 4. Bubble Chart - Plot the variance vs. Track Length
 **Introduction**
 
-To answer the question 'Are longer tracks associated with higher variances?' the variance of each molecule is plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the var values as yvalues of the series. As an extra feature the molecule UIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UID is shown.
+To answer the question 'Are longer tracks associated with higher variances?' the variance of each molecule is plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the var values as yvalues of the series. As an extra feature the molecule UUIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UUID is shown.
 
 **How to**
 
