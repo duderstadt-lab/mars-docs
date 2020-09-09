@@ -3,9 +3,12 @@ layout: image
 title: Peak Finder
 permalink: /docs/image/PeakFinder/index.html
 ---
-This command is used to find high intensity spots or peaks in images. Typically these are single polystyrene beads or single fluorescent dyes or groups of dyes. After locating the peaks, this command can perform 2D Gaussian fitting to determine the sub-pixel position of the peaks. This command can be integrated in many workflows where general purpose peak detection is required. For example, this is used to find molecules in single-molecule FRET experiments that are subsequently integrated using the [MoleculeIntegrator](../MoleculeIntegrator) to generate MoleculeArchives for smFRET analysis.
+This command is used to find high intensity spots or peaks in images. Typically these are single polystyrene beads or single fluorescent dyes or groups of dyes. After locating the peaks, this command can perform 2D Gaussian fitting to determine the sub-pixel position of the peaks. This command can be integrated in many workflows where general purpose peak detection is required. For example, this is used to find molecules in single-molecule FRET experiments that are subsequently integrated using the [MoleculeIntegrator](../MoleculeIntegrator) to generate Molecule Archives for smFRET analysis.
 
 #### Inputs
+
+<img align='center' src='{{site.baseurl}}/docs/image/img/img1.png' width='550' />  
+<img align='center' src='{{site.baseurl}}/docs/image/img/img2.png' width='550' />  
 
  * *Image* - The active image selected will be used by the Peak Finder. So this is a required input but doesn't show up in the dialog.
  * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
@@ -16,10 +19,6 @@ This command is used to find high intensity spots or peaks in images. Typically 
  * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
  * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
  * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
-
-
- <img align='center' src='{{site.baseurl}}/docs/image/img/img1.png' width='550' />
- <img align='center' src='{{site.baseurl}}/docs/image/img/img2.png' width='550' />
 
  <img align='center' src='{{site.baseurl}}/docs/image/img/DoGFilterRadiiExample.png' width='600' />
 

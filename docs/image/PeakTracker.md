@@ -17,7 +17,8 @@ The [Color coded track overlay groovy script](https://github.com/duderstadt-lab/
 
 There are a lot of inputs, but don't panic, they are all pretty simple to understand and overlap with the [PeakFinder](../PeakFinder) options. A lot of inputs are included for completeness to give fine control but do not need to be changed in most cases.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Peak Tracker.png' width='550' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/img3.png' width='550' />   
+<img align='center' src='{{site.baseurl}}/docs/image/img/img4.png' width='550' />   
 
 * *Image* - The active image selected will be used by the Peak Tracker. So this is a required input but doesn't show up in the dialog.
 * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox and add the region settings.
@@ -25,6 +26,7 @@ There are a lot of inputs, but don't panic, they are all pretty simple to unders
 * *ROI y0* - Upper right corner y0 position of ROI.
 * *ROI width* - width of the ROI.
 * *ROI height* - height of the ROI.
+* *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
 * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
 * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
 
@@ -36,7 +38,7 @@ There are a lot of inputs, but don't panic, they are all pretty simple to unders
 <img align='center' src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500' />
 
 * *Preview* - When checked crosshairs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
-* *Preview slice* - Scrollbar to select the frame to preview with live update.
+* *T* - Scrollbar to select the frame to preview with live update.
 * *Find Negative Peaks* - If checked peak with negative pixel values are detected. This can be used in gradient images, where a negative gradient results in a negative peak. This is useful for detecting the edges of long DNA molecules and other structures.
 * *Fit Radius* - The radius of pixels used for peak fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 3 or 4 is a good estimate depending for typical single-molecule observations. Optimal fitting is done using a region with background pixels at the edges.
 * *Minimum R-squared* - *Caution:* This should remain set to 0.0 unless there is a very good reason to filter poor fits. Normal single-molecule data has a broad range of R-squared values. This input is the minimum allowed value of R-squared resulting from peak fitting. R-squared is defined as 1 - SSres / SStot to match the definition used in [Prism](
@@ -48,17 +50,18 @@ The following are the settings for tracking absent in the [PeakFinder](../PeakFi
 
 * *Max Difference X* - The threshold difference between the X position of two peaks below which they are still allowed to be linked.
 * *Max Difference Y* - The threshold difference between the Y position of two peaks below which they are still allowed to be linked.
-* *Max Difference Slice* - The number of frames into the future to search for a possible link. This parameter is very important to ensure tracking is robust against single frames where peaks are not detected. Blinking events could cause a molecule to go dark for a couple frames. This setting ensures the track is still linked once the molecule is bright again. Alternatively, a molecule could go out of focus, again causing it to go below the detection threshold. If this value is too large, it will take a long time to track and bad links will start to be formed. Usually 3 to 5 is a good range.
-* *Minimum track length* - All tracks with fewer than this number of slices will be rejected and removed from the MoleculeArchive. Frequently single-molecule experiments have many short tracks resulting from molecules appearing for only a couple frames then going away. This removes all these events.
+* *Max Difference T* - The number of frames (T) into the future to search for a possible link. This parameter is very important to ensure tracking is robust against single frames where peaks are not detected. Blinking events could cause a molecule to go dark for a couple frames. This setting ensures the track is still linked once the molecule is bright again. Alternatively, a molecule could go out of focus, again causing it to go below the detection threshold. If this value is too large, it will take a long time to track and bad links will start to be formed. Usually 3 to 5 is a good range.
+* *Minimum track length* - All tracks with fewer than this number of slices will be rejected and removed from the Molecule Archive. Frequently single-molecule experiments have many short tracks resulting from molecules appearing for only a couple frames then going away. This removes all these events.
 * *Integrate* - Integrate the peak intensities and add them in an intensity column. Adds up the total intensity of the inner region with the median background subtracted from each pixel. The median background is calculated from the background region.
 * *Inner radius* - The radius of the region to integrate around the center of the peak. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Typically 1 is a good value but this depends on the size of molecules on the camera sensor.
 * *Outer radius* - The radius of the region to use for calculating the local median background. This is subtracted from the inner region. Typically 3 is a good value. This radius should be ~2 pixels larger than the inner radius.
 * *Microscope* - The name of the microscope used for data collection. This name is included in the metadata record.
-* *Format* - This is the software used to collect the Image data. Based on this setting, the command will attempt to parse all the metadata included in each tif frame header. This information will then be included in the Data Table and properties of the metadata. This information is very useful to automatically convert slice to time using the raw frame timestamp information and detecting the lasers and filters used.
+* *Pixel length* - Length of a pixel in the microscope system used for data collection.
+* *Pixel units* - Units of the provided pixel length.
 
 ### Output
 
-* *MoleculeArchive* - A MoleculeArchive with individual records for all tracked molecules as well as metadata information.
+* *Molecule Archive* - A Molecule Archive with individual records for all tracked molecules as well as metadata information.
 
 ### How to run this Command from a groovy script
 
