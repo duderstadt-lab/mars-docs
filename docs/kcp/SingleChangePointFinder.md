@@ -4,13 +4,13 @@ title: Single Change Point Finder
 permalink: /docs/kcp/SingleChangePointFinder/index.html
 ---
 
-The single change point finder tool allows for the identification of one change point in the trace in the MoleculeArchive. This can be of use if a bleaching step (a stepwise drop in the intensity vs. time plot indicating the bleaching of a fluorophore) has to be identified, or when the kinetics of the process studied only involve one transition.
+The single change point finder tool allows for the identification of one change point in the trace in the Molecule Archive. This can be of use if a bleaching step (a stepwise drop in the intensity vs. time plot indicating the bleaching of a fluorophore) has to be identified, or when the kinetics of the process studied only involve one transition.
 
 <div style="text-align: center"><img src='{{site.baseurl}}/docs/kcp/img/img3.png' width="450"/></div>  
 
 
 #### Inputs
-* _MoleculeArchive_ - MoleculeArchive to find the single change point for.
+* _MoleculeArchive_ - Molecule Archive to find the single change point for.
 * _X Column_ - X column input (f.e. time).
 * _Y Column_ - Y column input (axis along which displacement takes place).
 * _Analyze region_ - Tick this box if only a specified region of the trace should be analyzed.

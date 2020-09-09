@@ -4,17 +4,17 @@ title: Sigma Calculator
 permalink: /docs/kcp/SigmaCalculator/index.html
 ---
 
-The 'Sigma Calculator' tool calculates the error value in a specific region of all traces in the MoleculeArchive. By either specifying a region of interest manually or selecting it in the plot of a trace the sigma value for a region of interest is calculated. This error value can be used as an input in the 'Change Point Finder' tool and will automatically override a global sigma value. This gives the user the possibility to optimise the fitting process for each trace individually if desired.
+The 'Sigma Calculator' tool calculates the error value in a specific region of all traces in the Molecule Archive. By either specifying a region of interest manually or selecting it in the plot of a trace the sigma value for a region of interest is calculated. This error value can be used as an input in the [Change Point Finder](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/) command and will automatically override a global sigma value. This gives the user the possibility to optimise the fitting process for each trace individually if desired.
 
 
 #### Inputs
-* _MoleculeArchive_ - Select the MoleculeArchive to apply the Sigma Calculator to.
-* _X Column_ - X-coordinates (f.e. time or slice).
+* _MoleculeArchive_ - Select the Molecule Archive to apply the Sigma Calculator to.
+* _X Column_ - X-coordinates (f.e. time or frame).
 * _Y Column_ - Y-coordinates (axis of movement).
 * _Region_ - Select which region of the trace to use in the calculation: all slices, defined below, defined in Molecules or defined in Metadata.  
 When selecting the option 'Defined below':
-  * _from_ - Start slice number.
-  * _to_ - End slice number.
+  * _from_ - Start frame (T) number.
+  * _to_ - End frame (T) number.
 * _Region from MarsRecord_ - Enter region name to use that is defined in the MarsRecord.
 
 
