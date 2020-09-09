@@ -38,7 +38,7 @@ More information on the format and further requirements can be found in the [OME
 | [Import table](./table/ImportTable) | Load csv or yamt format tables. |
 | [Sort](./table/Sort) | Sort table rows by column values. |
 | [Filter](./table/Filter) | Filter table rows. |
-| [Build histogram](./table/BuildHistogram) | Bin observations to generate a histogram table |
+
 
 ### Image processing
 
@@ -57,13 +57,9 @@ More information on the format and further requirements can be found in the [OME
 | [Single Change Point Finder](./kcp/SingleChangePointFinder) | Find single change point positions. |
 | [Sigma Calculator](./kcp/SigmaCalculator) | Estimate background sigma level during optimization of change point detection. |
 
-### ROI Tools
+### Transform ROIs
 
-| :----------------------------- | :----------- |
 | [Transform ROIs](./roi/TransformROIs) | Transform PointRois using an Affine2D transform. |
-| [Open ROIs](./roi/OpenROIs) | Open a grid of small video for manually sorting. |
-| [Save ROIs](./roi/SaveROIs) | Efficiently save all ROIs currently in the RoiManager to individual videos. |
-| [Build ROIs from MoleculeArchive](./roi/BuildROIsFromMoleculeArchive) | Create box ROIs using coordinates from molecules in the archive. |
 
 ## <a name="gui"></a>Mars Rover
 

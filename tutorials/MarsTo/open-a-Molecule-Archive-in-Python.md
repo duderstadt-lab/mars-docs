@@ -1,23 +1,23 @@
 ---
 layout: marsto
-title: Open a MoleculeArchive in Python
+title: Open a Molecule Archive in Python
 permalink: /tutorials/marsto/open-a-Molecule-Archive-in-Python/index.html
 ---
 
-Here is a wonderful set of instructions on how to work with MoleculeArchives in Python notebooks by Thomas Retzer and Nadia Huisjes. All potential problems encountered when configuring the conda environment are fully addressed here.
+In this tutorial you can find a set of instructions on how to work with Molecule Archives in Python by using Anaconda's Jupyter. To do so, one first needs to create a special 'Environment'. This environment only has to be build the first time. When inspecting Molecule Archives later on the environment can be selected and the user can proceed immediately to the 'Molecule Archives in Python' section of this tutorial.
 
 ### Create the Environment
 First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub (it is basically a storage place). It contains all the necessary packages needed to build a bridge between java and python and also makes sure that the correct version of the package is used. The next steps will explain how to create the environment step by step.
 
 The next part will use basic commands from Git. To get familiar with **[Git](https://git-scm.com)** and its function we recommend the **[Git-it workshop](https://github.com/jlord/git-it-electron/releases)**. The workshop consists of different challenges that explain how to use Git. So if you want to understand the commands in more detail you can work through the challenges but this is not needed for working through the tutorial.
 
-1. Install **[Anaconda](https://www.anaconda.com/distribution/)**(Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already installed on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.
+1. Install **[Anaconda](https://www.anaconda.com/distribution/)** (Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already installed on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.
 
 2. Download or clone (for those who are familiar with Git) the tutorial repository. To download the repository just go to the website and press download. To clone the repository use the following command.
 ```terminal
 git clone https://github.com/imagej/tutorials.git
 ```
-3. The environment.yml has to be edited. To do so open the environment.yml file with a text editor (e.g. **[Atom](https://atom.io)**). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
+3. The environment.yml file has to be edited. To do so open the environment.yml file with a text editor (e.g. **[Atom](https://atom.io)**). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
 ```terminal
   - pyjnius=1.2.0
   - seaborn
@@ -29,8 +29,7 @@ Save the file in the same location and with the same name.
 cd tutorials
 ```
 For people who are not familiar with the cd command an example is given. Lets say the folder of interest is located inside the folder
-called my_documents (The file path would look something like this /Users/your_name/my_documents/tutorials). When a terminal window is opened the working directory is the users name ("your_name"). Now one has to navigate first in the my_documents directory with "cd my_documents". To go one layer deeper
-one has to type "cd tutorials". Basically the cd command navigates to the specified layer which lays deeper in the file path. With "cd .." one can go one layer out.
+called my_documents (The file path would look something like this /Users/your_name/my_documents/tutorials). When a terminal window is opened the working directory is the users name ("your_name"). Now one has to navigate first in the my_documents directory with "cd my_documents". To go one layer deeper one has to type "cd tutorials". Basically the cd command navigates to the specified layer which lays deeper in the file path. With "cd .." one can go one layer out again.
 
 5. Create the environment:
 ```terminal
@@ -48,13 +47,16 @@ conda activate scijava
 jupyter notebook
 ```
 
-Now the environment is created and activated and everything is ready to start working with the data from the MoleculeArchive.
+Now the environment is created and activated and everything is ready to start working with the data from the Molecule Archive.
 
 For the next section create a new notebook (New -> Python 3). The code below can be copied and pasted in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option/Alt + Enter" the cell will be executed and a new cell is created).
 
 Before continuing, one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned a folder called "notebooks" was copied. Inside one can find different examples which can be tried out. But this is not necessary for completing this tutorial.
 
-### Load Fiji/ImageJ and the Python Packages
+### Molecule Archives in Python
+To start working with a Molecule Archive in a Jupyter notebook first the Fiji/ImageJ and Python packages should be loaded.
+
+**Load Fiji/ImageJ and Python Packages**  
 Before starting one needs to load Fiji and all the necessary Python packages. To run the commands it uses the local copy of Fiji that is stored on your computer. It should be equipped with Mars (**[instructions how to get Mars ready on a local computer](https://duderstadt-lab.github.io/mars-docs/usage/)**).
 
 ```python
@@ -76,47 +78,49 @@ File = autoclass('java.io.File')
 SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
 ```
 
-One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to
-check the location.
+One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to check the location.
 
 **[Scijava](https://github.com/scijava/scyjava)** is needed to transform java class objects into python objects. The **[jnius package](https://github.com/kivy/pyjnius)** also helps to access Java classes. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** and **[seaborn](https://seaborn.pydata.org)** are plotting libraries.  
 
-### Load the archive
+**Load the Archive to the Jupyter Notebook**  
+Next, one loads a specified Molecule Archive in the Jupyter Notebook.
+
 ```python
 # Here the archive is loaded. Add your file path here
 yamaFile = File('/Users/your_archive.yama')
 archive = SingleMoleculeArchive(yamaFile)
 ```
-Now one has to add the location of the yama archive which will be used for analysis. The file path has to be added in the code line. Just
-right click on the file and "Get Info" and there the file path will be written out.
-For testing purposes the ['TestVideo_archive_var.yama'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo_archive_var.yama) can be downloaded from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).
+Now one has to add the location of the .yama archive which will be used for analysis. The file path has to be added in the code line. Just
+right click on the file and "Get Info" and there the file path will be written out. For testing purposes the ['TestVideo_archive_var.yama'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo_archive_var.yama) can be downloaded from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).
 
-### Get started with simple Operations
-After loading on the necessary packages for python and loading the file one can finally can work with the archive. The archive is specified as a "SingleMoleculeArchive". An extensive list of methods that can be called can be found **[here](https://duderstadt-lab.github.io/mars-core/javadoc/de/mpg/biochem/mars/molecule/SingleMoleculeArchive.html)**. In the next section the most commonly used ones are presented.
+**Get Started with Simple Operations**  
+To start exploring the Molecule Archive in Python the most commonly used methods that can be called on it are presented. For a more extensive overview of all the methods available please visit the [JavaDocs](https://duderstadt-lab.github.io/mars-core/javadoc/).
 
-#### Get the Number of Molecules
+
+**Get the Number of Molecules**  
 As a start, the number of molecules in the archive is read out. The method which will be used for that is called "getNumberOfMolecules()".
 ```python
 archive.getNumberOfMolecules()
 ```
 The notebook will print out the total number of molecules. So here a function from java is used inside of a python script.
-#### Get the UIDs
-If one wants to know all the UIDs from all your molecules the following line can be used. The method is called "getMoleculeUIDs()".
+
+**Get the UUIDs**  
+If one wants to know all the UUIDs from all your molecules the following line can be used. The method is called "getMoleculeUIDs()".
 ```python
 for UID in archive.getMoleculeUIDs():
     molecule = archive.get(UID)
     print(molecule.getUID())
 ```
-The notebook will display all the UIDs.
+The notebook will display all the UUIDs.
 
-#### Get single Molecule Entries from the Archive
-There are two ways of excessing the data entries. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
+**Get single Molecule Entries from the Archive**  
+There are two ways of excessing the data entries themselves. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
 ```python
 #get the DataTable for the molecule at index 0 as a pandas dataframe
 tableByIndex = _pandas.table_to_pandas(archive.get(0).getDataTable())
 tableByIndex
 ```
-One can also use the UIDs to excess certain molecules. Just copy and paste on of them into the following line of code.
+One can also use the UUIDs to access certain molecules. Just copy and paste on of them into the following line of code.
 
 ```python
 #get the DataTable for molecule UID as a pandas dataframe
@@ -125,7 +129,7 @@ tableByUID
 ```
 The build-in function "table_to_pandas(data)" from **"_pandas"** (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getDataTable()".
 
-#### More elegant Way to excess Molecules: Mapping
+**A More elegant Way to excess Molecules: Mapping**  
 Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.
 ```python
 molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
@@ -145,8 +149,8 @@ for molecule in molecules:
 ```
 Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the calculated variance values are stored in a list() that is way the line can be in a separate cell.
 
-#### Getting Parameters from the Data
-In this ***[tutorial for calculating variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-msd/)*** of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to excess the parameters. The parameter was called "var" in the archive and has to be specified if this parameter has to be called with "getParameter()".
+**Getting Parameters from the Data**
+In this ***[tutorial for calculating variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/)*** of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to excess the parameters. The parameter was called "var" in the archive and has to be specified if this parameter has to be called with "getParameter()".
 ```python
 VARs = list(map(lambda UID: archive.get(UID).getParameter('var'), archive.getMoleculeUIDs()))
 ```
@@ -169,8 +173,7 @@ sns.distplot(VARs,kde =False, bins =24)
 
 Now the file can be saved under File -> Save as.
 
-This is the end of the tutorial. The environment can be deactivated with the following
-command in the terminal:
+This is the end of the tutorial. The environment can be deactivated with the following command in the terminal:
 ```terminal
 conda deactivate
 ```
@@ -198,5 +201,3 @@ conda activate scijava
 ```terminal
 jupyter notebook my_notebook.ipnb
 ```
-
-### Great Job!
