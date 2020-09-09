@@ -1,6 +1,6 @@
 ---
 layout: workingwithmars
-title: "Let's Make A MoleculeArchive - Tutorial"
+title: "Let's Make A Molecule Archive - Tutorial"
 permalink: /tutorials/workingwithmars/create-a-Molecule-Archive/index.html
 ---
 
@@ -8,10 +8,10 @@ _level: beginner, duration: 5-10 min_
 
 In this tutorial we will go through the basics of loading a video, finding
 and tracking peaks, navigating through **Mars Rover**, looking at the traces
-corresponding to the tracked peaks, tagging them and saving the result as a
-**MoleculeArchive** (.yama) file. In the example video that is used the transcription movement of fluorescently labeled polymerase over DNA is investigated by means of TIRF microscopy. The DNA itself is not labeled and therefore is not visible in the video. This
-single-molecule dataset provides an excellent way to familiarise yourself with
-**Mars** and the most important plugins.
+corresponding to the tracked peaks, tagging them and saving the result as a **Molecule Archive** (.yama) file. In the example video that is used the transcription movement of fluorescently labeled polymerase over DNA is investigated by means of TIRF microscopy. The DNA itself is not labeled and therefore is not visible in the video. This single-molecule dataset provides an excellent way to familiarise yourself with **Mars** and the most important plugins.
+
+<img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img23.png' width='450' />
+_Figure 1: Schematic representation of the experiment. The DNA molecule is represented as a blue line, and the DNA polymerase as a fluorescently green dot. In the actual experiment the DNA is not fluorescently labeled and hence not visible._
 
 ### 1. Import a video in Fiji
 Open the example dataset ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo.tif) in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
@@ -21,7 +21,7 @@ Open the example dataset ['TestVideo.tif'](https://github.com/duderstadt-lab/mar
 
 
 __Background Information:__  
-When playing the movie, it is clear that molecules with different behaviour
+When playing the movie, it is clear that molecules with different behavior
 are observed. The different types are listed here:
 1. Fast moving molecules only present in a few subsequent frames: these are
 molecules that are not associated with a DNA molecule and float in the buffer.
@@ -57,18 +57,12 @@ data will become available when the data is analysed in the next steps.
 
 
 By using the tabs on the left, the data can be accessed.
-Click on the microscope icon to reveal more information about the video
-(DataTable tab) and used settings (Log tab). Next to this, the ID in the left
-frame shows from which experiment number the data in this set originates. This number is unique for each measurement to make sure filtered data can always be traced back to the correct experiment, even when data from experiments are merged. The DataTable tab shows the slice numbers and the corresponding relative time when the slide was recorded.
+Click on the microscope icon to reveal the Metadata and Analysis log. Next to this, the ID in the left frame shows from which experiment number the data in this set originates. This number is unique for each measurement to make sure filtered data can always be traced back to the correct experiment, even when data from experiments are merged. The OME tab shows the frame numbers and the corresponding relative time when the slide was recorded. Click on each frame to display more detailed information in the middle planes.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img15.png' width='450' />
 
 Next, open the molecule tab. This tab reveals a table with all molecules found.
-Each molecule is assigned an unique identifier (UID) by which the molecule can
-be easily traced back after analysis. Click on an UID to see the corresponding
-data in the adjacent "DataTable". This table shows the coordinates and intensity
-corresponding to the tracked peak over different slides.
-Note that each time "Peak Tracker" is run, a new UID will be assigned to the tracked molecule.
+Each molecule is assigned an universally unique identifier (UUID) by which the molecule can be easily traced back after analysis. Click on an UID to see the corresponding data in the adjacent "DataTable". This table shows the coordinates and intensity corresponding to the tracked peak over different slides. Note that each time "Peak Tracker" is run, a new UID will be assigned to the tracked molecule.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img16.png' width='450' />
 
@@ -86,8 +80,7 @@ Now a plot is obtained showing the vertical displacement of the peak versus the 
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img18.png' width='250' />
 
-Move through the UIDs on the left to show the plot for every molecule. As will become apparent, some molecules show a trace in which the y position almost
-linearly changes with the slice number. These are the molecules that are
+Move through the UUIDs on the left to show the plot for every molecule. As will become apparent, some molecules show a trace in which the y position almost linearly changes with the frame number. These are the molecules that are
 relevant for this dataset since they correspond to a polymerase that
 transcribes the DNA with a uniform speed. Below is an example of such a molecule.
 
@@ -100,13 +93,13 @@ for later reference. For now the tag name "Active" is used to filter for polymer
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img20.png' width='450' />
 
-After going through the entire dataset, go back to the desktop page of **Mars Rover**. After refreshing the "tag plot" the amount of molecules per tag is displayed. In our case: 11
+After going through the entire dataset, go back to the desktop page of **Mars Rover**. After refreshing the "tag plot" the amount of molecules per tag is displayed.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img22.png' width='450' />
 
 ### 6. Saving the MoleculeArchive
 
-The archive can be safed as a .yama file by selecting the save option. Now the data can be further analysed and plotted using Python. If you are interested in that, please continue with the [tutorial on MoleculeArchive data handling in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
+The archive can be saved as a .yama file by selecting the save option. Now the data can be further analysed and plotted using Python. If you are interested in that, please continue with the [tutorial on Molecule Archive data handling in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img21.png' width='200' />
 
