@@ -9,7 +9,7 @@ permalink: /examples/index.html
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img1.png' width='250' />](flow-Magnetic-Tweezers)
 
 
-Complete workflow for tracking and processing the motion of magnetic beads tethered to individual DNA molecules under flow. (Agarwal _et al._, unpublished)
+Complete workflow for tracking and processing the motion of magnetic beads tethered to individual DNA molecules under flow. ([Agarwal & Duderstadt, 2020, Nat. Comm.](https://www.nature.com/articles/s41467-020-18456-y))
 
 ---
 ---
@@ -23,7 +23,7 @@ Jupyter notebook showing how to retrieve the segment tables in a Python environm
 Groovy script to make a MarsTable showing the value for the specified parameter for each molecule entry. Run the script and a pop-up dialog will be created in which the parameter of interest can be selected.
 
 [3. Plot the Tracking Results as Color Coded Overlay in the Image](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/04_Color_coded_tracks_overlay.groovy)  
-Script to show the tracking results in the Molecule Archive as color coded ROIs on the original video. Also possible to show the overlay for tagged molecules only (see (repository example)[https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/05_Color_coded_tracks_overlay_tagged.groovy]).
+Script to show the tracking results in the Molecule Archive as color coded ROIs on the original video. Also possible to show the overlay for tagged molecules only (see [repository example](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/05_Color_coded_tracks_overlay_tagged.groovy)).
 
 
 

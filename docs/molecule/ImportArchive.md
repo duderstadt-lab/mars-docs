@@ -6,7 +6,7 @@ permalink: /docs/molecule/ImportArchive/index.html
 
 #### Inputs
 
-* "MoleculeArchive (.yama or .yama.store)" - The full path to the file or directory that contains the archive you want to open. Mars files are usually smile encoded to reduce the file size, but can also be plain json.
+* "MoleculeArchive (.yama)" - The full path to the file or directory that contains the archive you want to open. Mars files are usually smile encoded to reduce the file size, but can also be plain json.
 
 #### Output
 
