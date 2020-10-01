@@ -5,6 +5,6 @@ permalink: /docs/table/index.html
 ---
 
 | :----------------------------- | :----------- |
-| [Import table](ImportTable) | Load csv or yamt format tables. |
-| [Sort](Sort) | Sort table rows by column values. |
-| [Filter](Filter) | Filter table rows. |
+| [Open table](./table/ImportTable) | Load csv or yamt format tables. |
+| [Sort](./table/Sort) | Sort table rows by column values. |
+| [Filter](./table/Filter) | Filter table rows. |

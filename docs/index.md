@@ -22,20 +22,30 @@ More information on the format and further requirements can be found in the [OME
 ### Molecule
 
 | :----------------------------- | :----------- |
-| [Import archive](./molecule/ImportArchive) | Use this command to open an archive.|
+| [Open archive](./molecule/ImportArchive) | Use this command to open an archive.|
+| [Open virtual store](./molecule/ImportArchive) | Use this command to open a virtually stored archive.|
+| Build DNA archive | |
 | [Build archive from table](./molecule/BuildArchiveFromTable) | Generate a Molecule Archive using a table with a molecule index column. |
 | [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
+| FMT Generate bps | |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Calculator](./molecule/DriftCalculator) | Calculate drift in position. |
 | [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
-| [Var Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
+| [Variance Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of Molecule Archives. |
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
+
+### Import
+
+| :------------- | :------------- |
+| Import IJ1 Table       | Import a table in the IJ1 format.       |
+| Import TableDisplay       | Import a table in the TableDisplay format.       |
+
 
 ### Table
 
 | :----------------------------- | :----------- |
-| [Import table](./table/ImportTable) | Load csv or yamt format tables. |
+| [Open table](./table/ImportTable) | Load csv or yamt format tables. |
 | [Sort](./table/Sort) | Sort table rows by column values. |
 | [Filter](./table/Filter) | Filter table rows. |
 
@@ -43,6 +53,7 @@ More information on the format and further requirements can be found in the [OME
 ### Image processing
 
 | :----------------------------- | :----------- |
+| DNA finder | |
 | [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
 | [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
