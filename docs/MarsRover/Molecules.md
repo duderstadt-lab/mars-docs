@@ -37,7 +37,7 @@ The plotting window itself can be formatted using the tools above the plot. From
 **3. Notes, parameters, and information per molecule.**
 
 | :------------- | :------------- |
-| Information       | UID (copy to clipboard with icon), metaUID, Tags and Notes.      |
+| Information       | UID (copy to clipboard with icon), metaUID, Channel information, Tags and Notes.      |
 | Parameters       | List of parameters.       |
 | Regions       | List of assigned regions.      |
 | Positions       | List of assigned positions.      |
