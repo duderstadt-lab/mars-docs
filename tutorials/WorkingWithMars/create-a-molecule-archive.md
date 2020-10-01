@@ -62,13 +62,13 @@ Click on the microscope icon to reveal the Metadata and Analysis log. Next to th
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img15.png' width='450' />
 
 Next, open the molecule tab. This tab reveals a table with all molecules found.
-Each molecule is assigned an universally unique identifier (UUID) by which the molecule can be easily traced back after analysis. Click on an UID to see the corresponding data in the adjacent "DataTable". This table shows the coordinates and intensity corresponding to the tracked peak over different slides. Note that each time "Peak Tracker" is run, a new UID will be assigned to the tracked molecule.
+Each molecule is assigned an universally unique identifier (UUID) by which the molecule can be easily traced back after analysis. Click on an UID to see the corresponding data in the adjacent "Table". This table shows the coordinates and intensity corresponding to the tracked peak over different slides. Note that each time "Peak Tracker" is run, a new UID will be assigned to the tracked molecule.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img16.png' width='450' />
 
 
 ### 4. Plotting traces
-Next to the automatically opened 'DataTable' tab, there is a tab called 'Plot'. Switch to the Plot tab now to plot the data points.
+Next to the automatically opened 'Table' tab, there is a tab called 'Plot'. Switch to the Plot tab now to plot the data points.
 
 In the top left corner, click on the plotting icon. This opens a menu that can be used to modify the plot. In this case, the settings shown make
 a line plot of the y position versus the slice number. In this dataset that corresponds with the direction of transcription over the DNA. Press the refresh button in the right corner of the menu to show the graph.

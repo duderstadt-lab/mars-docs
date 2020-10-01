@@ -96,7 +96,7 @@ archive.get('UID').getParameter('var')
 **5** Get the data table for a molecule entry
 ```Groovy
 #@ MoleculeArchive archive
-archive.get('UID').getDataTable()
+archive.get('UID').getTable()
 ```
 
 **6** Get the segment table for a molecule  
@@ -166,7 +166,7 @@ dist_y = max(y) - min(y)
 
 First, the input and output parameters have to be declared: the archive is declared as Molecule Archive type. Since the parameter is assigned directly to the archive as well it does not need to be declared as a separate output. Besides this, the molecule, table, util and scijava table classes are imported.
 
-Next, a loop is defined in which for each UUID the molecule entry is retrieved as well as the table containing coordinates and time points. The ymin and ymax values are calculated by applying the min() and max() functions respectively to the DataTable on the column named "y". The distance is calculated as the difference between ymax and ymin and subsequently assigned to the parameter "dist_y".
+Next, a loop is defined in which for each UUID the molecule entry is retrieved as well as the table containing coordinates and time points. The ymin and ymax values are calculated by applying the min() and max() functions respectively to the Table on the column named "y". The distance is calculated as the difference between ymax and ymin and subsequently assigned to the parameter "dist_y".
 
 ```Groovy
 #@ MoleculeArchive archive
@@ -178,7 +178,7 @@ import org.scijava.table.*
 
 archive.getMoleculeUIDs().stream().forEach({UID ->
   Molecule molecule = archive.get(UID)
-  MarsTable table = molecule.getDataTable()
+  MarsTable table = molecule.getTable()
   double ymin = table.min("y")
   double ymax = table.max("y")
   double dist = ymax - ymin
@@ -253,7 +253,7 @@ def list2 = []
 
 archive.getMoleculeUIDs().stream().forEach({UID ->
   Molecule molecule = archive.get(UID)
-  MarsTable table = molecule.getDataTable()
+  MarsTable table = molecule.getTable()
   double ymin = table.min("y")
   double ymax = table.max("y")
   double dist = ymax - ymin

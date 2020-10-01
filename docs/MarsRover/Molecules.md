@@ -19,7 +19,7 @@ The Molecules tab has three main sections:
 **2. Data section.**
 
 | :------------- | :------------- |
-| DataTable      | Molecule specific position information (x, y, intensity, slice).      |
+| Table      | Molecule specific position information (x, y, intensity, slice).      |
 | Plot | Plotting widget for easy in-GUI analysis of the data. |
 | Scriptable widgets      | [Scriptable widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per molecule.       |
 

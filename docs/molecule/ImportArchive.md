@@ -1,6 +1,6 @@
 ---
 layout: molecule
-title: Import Archive
+title: Open Archive
 permalink: /docs/molecule/ImportArchive/index.html
 ---
 

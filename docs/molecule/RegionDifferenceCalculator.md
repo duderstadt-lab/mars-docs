@@ -44,6 +44,7 @@ regionDifference.setContext(ij.getContext());
 regionDifference.setArchive(archive);
 regionDifference.setXcolumn("T");
 regionDifference.setYcolumn("y");
+regionDifference.setRegionSource("Metadata");
 regionDifference.setRegionOne("reg1");
 regionDifference.setRegionTwo("reg2");
 regionDifference.setParameterName("rdc");

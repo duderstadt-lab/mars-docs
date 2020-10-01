@@ -224,8 +224,8 @@ list1_y=[]
 
 for UID in archive.getMoleculeUIDs():
     if archive.get(UID).hasTag('Active'):
-        list1_x.append(archive.get(UID).getDataTable().getColumnAsDoubles("T"))
-        list1_y.append(archive.get(UID).getDataTable().getColumnAsDoubles("y"))
+        list1_x.append(archive.get(UID).getTable().getColumnAsDoubles("T"))
+        list1_y.append(archive.get(UID).getTable().getColumnAsDoubles("y"))
 
 # Since all variables have to be explicitly defined, always adjust this part based on the amount of tagged molecules.
 series1_xvalues = []
@@ -372,7 +372,7 @@ series1_color = []
 series1_label = []
 
 for molecule in archive.molecules().iterator():
-	series1_xvalues.append(molecule.getDataTable().getRowCount()) #Make a list of track lengths
+	series1_xvalues.append(molecule.getTable().getRowCount()) #Make a list of track lengths
 	series1_yvalues.append(molecule.getParameter("var")) #Make a list of var values
 	series1_size.append(4.0)
 	series1_color.append("blue")

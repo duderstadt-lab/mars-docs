@@ -31,7 +31,7 @@ def list2 = []
 //Calculate and assign the dist_y parameter to each molecule
 archive.getMoleculeUIDs().stream().forEach({UID ->
   Molecule molecule = archive.get(UID)
-  MarsTable table = molecule.getDataTable()
+  MarsTable table = molecule.getTable()
   double ymin = table.min("y")
   double ymax = table.max("y")
   double dist = ymax - ymin

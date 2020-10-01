@@ -213,7 +213,7 @@ Force2p5 = metadata.getRegion("Force2p5")
 logService.info("Calculating force...")
 archive.getMoleculeUIDs().parallelStream().forEach{ UID ->
       Molecule molecule = archive.get(UID)
-      MarsTable table = molecule.getDataTable()
+      MarsTable table = molecule.getTable()
 
 	 double msdForce = table.msd("y_drift_corr", "slice", Force2p5.getStart(), Force2p5.getEnd())   //inserts different start and stop slice with each loop
 
@@ -297,7 +297,7 @@ Positive_Coiling_Slope = metadata.getRegion("Positive Coiling Slope")
 logService.info("Calculating molecule-by-molecule cycle numbers...")
 archive.getMoleculeUIDs().parallelStream().forEach({ UID ->
       Molecule molecule = archive.get(UID)
-      MarsTable table = molecule.getDataTable()
+      MarsTable table = molecule.getTable()
 
 	  double[] pos_coils_per_slice = table.linearRegression("slice", "x_drift_corr", Positive_Coiling_Slope.getStart(), Positive_Coiling_Slope.getEnd())
 
@@ -343,7 +343,7 @@ In the gyrase reaction region, there are Before Enzyme and After Enzyme regions.
 //Calculating activity score
 .forEach({ UID ->
     Molecule molecule = archive.get(UID)
-    MarsTable table = molecule.getDataTable()
+    MarsTable table = molecule.getTable()
 
     if (table == null)
         return

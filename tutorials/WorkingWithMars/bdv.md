@@ -22,7 +22,7 @@ First open the video of interest in Fiji as a stack. Next select the BigDataView
 For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the [tutorial repository](https://github.com/duderstadt-lab/mars-tutorials).
 
 ### 2. Coupling the XML File to the Molecule Archive
-The next step is to couple the generated XML file to the corresponding Molecule Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Import Archive) and go to the 'Metadata' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. (see circles on the image) Provide the desired name tag and press the + button.
+The next step is to couple the generated XML file to the corresponding Molecule Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. (see circles on the image) Provide the desired name tag and press the + button.
 
 <img src='{{site.baseurl}}/tutorials/img/bdv/img3.png' width='450' />
 
@@ -39,8 +39,8 @@ The next step is to assign ROI parameters (roi_x and roi_y) that refer to the av
 #@ MoleculeArchive archive
 
 archive.molecules().forEach{molecule ->
-     molecule.setParameter("roi_x", molecule.getDataTable().mean("x"))
-     molecule.setParameter("roi_y", molecule.getDataTable().mean("y"))
+     molecule.setParameter("roi_x", molecule.getTable().mean("x"))
+     molecule.setParameter("roi_y", molecule.getTable().mean("y"))
 }
 
 ```

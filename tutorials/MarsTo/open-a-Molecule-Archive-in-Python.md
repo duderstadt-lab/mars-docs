@@ -116,18 +116,18 @@ The notebook will display all the UUIDs.
 **Get single Molecule Entries from the Archive**  
 There are two ways of excessing the data entries themselves. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
 ```python
-#get the DataTable for the molecule at index 0 as a pandas dataframe
-tableByIndex = _pandas.table_to_pandas(archive.get(0).getDataTable())
+#get the Table for the molecule at index 0 as a pandas dataframe
+tableByIndex = _pandas.table_to_pandas(archive.get(0).getTable())
 tableByIndex
 ```
 One can also use the UUIDs to access certain molecules. Just copy and paste on of them into the following line of code.
 
 ```python
-#get the DataTable for molecule UID as a pandas dataframe
-tableByUID = _pandas.table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getDataTable())
+#get the Table for molecule UID as a pandas dataframe
+tableByUID = _pandas.table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getTable())
 tableByUID
 ```
-The build-in function "table_to_pandas(data)" from **"_pandas"** (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getDataTable()".
+The build-in function "table_to_pandas(data)" from **"_pandas"** (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getTable()".
 
 **A More elegant Way to excess Molecules: Mapping**  
 Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.
