@@ -40,11 +40,17 @@ import de.mpg.biochem.mars.ImageProcessing.*
 //Make an instance of the Command you want to run...
 final OverlayChannelsCommand overlayChannels = new OverlayChannelsCommand();
 
-//Populates @Parameters Services etc.. using the current context
-//which we get from the ImageJ input...
-overlayChannels.setContext(ij.getContext())
-
-overlayChannels.run();
+//Set the parameters required for the command
+overlayChannels.setAddToMe(img1.tif);
+overlayChannels.setKeepOriginals(True);
+overlayChannels.setTransformMe(img2.tif);
+overlayChannels.setM00(1);
+overlayChannels.setM01(0);
+overlayChannels.setM02(0);
+overlayChannels.setM10(0);
+overlayChannels.setM20(1);
+overlayChannels.setM12(0);
 
 //Run the Command
+overlayChannels.run();
 ```

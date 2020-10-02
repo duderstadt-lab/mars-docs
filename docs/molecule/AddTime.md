@@ -38,6 +38,8 @@ addTime.setContext(ij.getContext());
 
 //Set all the input parameters
 addTime.setArchive(archive);
+addTime.setSource("dt");
+addTime.setTimeIncrement(2);
 
 //Run the Command
 addTime.run();

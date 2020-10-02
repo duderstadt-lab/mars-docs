@@ -58,6 +58,7 @@ The following are the settings for tracking absent in the [PeakFinder](../PeakFi
 * *Microscope* - The name of the microscope used for data collection. This name is included in the metadata record.
 * *Pixel length* - Length of a pixel in the microscope system used for data collection.
 * *Pixel units* - Units of the provided pixel length.
+* *Norpix format* - Tick if a dataset in the Norpix format is analyzed.
 
 ### Output
 
@@ -102,6 +103,9 @@ peakTracker.setIntegrate(true)
 peakTracker.setIntegrationInnerRadius(1)
 peakTracker.setIntegrationOuterRadius(3)
 peakTracker.setMicroscope("Microscope")
+peakTracker.setPixelLength(1)
+peakTracker.setPixelUnits("pixel")
+peakTracker.setNorpixFormat(False)
 
 //Run the Command
 peakTracker.run();
