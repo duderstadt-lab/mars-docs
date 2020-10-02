@@ -38,8 +38,8 @@ More information on the format and further requirements can be found in the [OME
 ### Import
 
 | :------------- | :------------- |
-| [Import IJ1 Table](./import/Import_IJ1)       | Import a table in the IJ1 format.       |
-| [Import TableDisplay](./import/Import_TableDisplay)       | Import a table in the TableDisplay format.       |
+| [Import IJ1 Table](./import/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
+| [Import TableDisplay](./import/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
 
 
 ### Table

@@ -21,20 +21,21 @@ Command to import any Scijava table (such as TableDisplay) to the MarsTable form
 
 ```groovy
 #@ ImageJ ij
+#@output MarsTable table
 
-import de.mpg.biochem.mars.molecule.*;
+import de.mpg.biochem.mars.table.*;
 
 //Make an instance of the Command you want to run.
-final AddTimeCommand addTime = new AddTimeCommand();
+final MarsTable table = new MarsTable();
 
 //Populates @Parameters Services etc. using the current context
-addTime.setContext(ij.getContext());
+table.setContext(ij.getContext());
 
 //Set all the input parameters
-addTime.setArchive(archive);
+table.setArchive(archive);
 
 
 //Run the Command
-addTime.run();
+table.run();
 
 ```
