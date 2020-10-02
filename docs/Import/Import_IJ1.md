@@ -4,7 +4,7 @@ title: Import IJ1 table
 permalink: /docs/import/Import_IJ1/index.html
 ---
 
-Command to import any ImageJ1 table (such as ResultsTable) to the MarsTable format.
+Command to import any ImageJ1 table (such as ResultsTable) to the MarsTable format. This allows for a smooth interaction between the Mars-related commands as well as table features (see also the [MarsTable tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/marstable/)). By default, the MarsTable also gives access to the plotter and the scriptable widgets.
 
 #### Inputs
 * *ImageJ1 table* - Table that should be converted. This needs to be an active table in the ImageJ1 format. In the example below a ResultsTable generated with the 'Measure' tool is used to show the conversion.
@@ -20,7 +20,6 @@ Command to import any ImageJ1 table (such as ResultsTable) to the MarsTable form
 ### How to run this Command from a groovy script
 
 ```groovy
-#@ MoleculeArchive archive
 #@ ImageJ ij
 
 import de.mpg.biochem.mars.molecule.*;
@@ -34,14 +33,8 @@ addTime.setContext(ij.getContext());
 
 //Set all the input parameters
 addTime.setArchive(archive);
-addTime.setSource("dt");
-addTime.setTimeIncrement(2);
 
 //Run the Command
 addTime.run();
 
-//Retrieve output from the command
-//In this case, the archive is just modified
-//so no output is needed and the line below is not needed
-//archive = regionDifference.getArchive();
 ```
