@@ -17,31 +17,31 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 
 #### Inputs
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Molecule Integrator Dialog.png' width='400' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/img8.png' width='400' />
 
 * *Image* - The selected image will by analyzed using the peaks in the RoiManger. This is a required input but doesn't show up in the dialog, it is just the open image you have have selected at the time you run the command.
-* *Microscope* - The microscope name added to the  metadata record.
-* *Format* - The software used to collect the data. Currently, Micromanger is the only supported format that allows for automatic detection of color information and other settings. If None is selected then no metadata information will be taken from the frames and a generic ImageMetaData record will be created. This generic record will only have slice numbers in the data table, but other information can be manually added later if desired.
-* *Colors* - The Detect option means the color information we will automatically determined based on the image metadata information, and other dialog settings. The Specify option means the names inputed for the Long Wavelength Color and Short Wavelength Color will be used.
-* *Dichroic* - This is the dichroic you are using the split the light in the dual view. This is used to automatically determine the colors on each side of the dual view using the image metadata.
-* *FRET* - If you are performing FRET check this box. It ensure the Long wavelength channel is integrated even when there is no long wavelength laser turned on. Only important when using automatic color detection.
-* *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc..
+* *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
 * *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrate and serve as the local background to correct the inner region.
-* *Integrate long wavelength* - If checked peaks within the long wavelength ROI will be integrated.
 * *LONG x0* - Upper left corner x0 position of Long wavelength ROI.
 * *LONG y0* - Upper right corner y0 position of Long wavelength ROI.
 * *LONG width* - width of the Long wavelength ROI.
 * *LONG height* - height of the Long wavelength ROI.
-* *Long Wavelength Color* - The name of the long wavelength color that will be used as the color header in the outputted MoleculeArchive. Used if Colors:Specify is selected.
 * *SHORT x0* - Upper left corner x0 position of Short wavelength ROI.
 * *SHORT y0* - Upper right corner y0 position of Short wavelength ROI.
 * *SHORT width* - width of the Short wavelength ROI.
 * *SHORT height* - height of the Short wavelength ROI.
-* *Short Wavelength Color* - The name of the short wavelength color that will be used as the color header in the outputted MoleculeArchive. Used if Colors:Specify is selected.
+* *Microscope* - The microscope name added to the  metadata record.
+* *FRET short wavelength name* - The name of the short wavelength color that will be used as the color header in the outputted MoleculeArchive.
+* *FRET long wavelength name* - The name of the long wavelength color that will be used as the color header in the outputted MoleculeArchive.
+* *Channels* - Autodetects which channels are present in the video (when supplied in the video metadata). Then allows for assignment of the correct function for each channel (f.e. None, Short, Long or FRET).
+
+
 
 #### Output
 
 * *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
+
+<img align='center' src='{{site.baseurl}}/docs/image/img/img9.png' width='400' />
 
 ### How to run this Command from a groovy script
 
@@ -58,31 +58,22 @@ import de.mpg.biochem.mars.ImageProcessing.*
 //Make an instance of the Command you want to run...
 final MoleculeIntegratorCommand moleculeIntegrator = new MoleculeIntegratorCommand();
 
-//Populates @Parameters Services etc.. using the current context
-//which we get from the ImageJ input...
+//Populates @Parameters Services using the current context
+//which we get from the ImageJ input.
 moleculeIntegrator.setContext(ij.getContext())
 
 moleculeIntegrator.setImage(image)
-moleculeIntegrator.setMicroscope("Dobby")
-moleculeIntegrator.setFormat("MicroManager")
-moleculeIntegrator.setColors("Detect")
-moleculeIntegrator.setDichroic("635lpxr")
-moleculeIntegrator.setFRET(true)
 moleculeIntegrator.setInnerRadius(1)
 moleculeIntegrator.setOuterRadius(5)
-moleculeIntegrator.setUseLongWavelength(true)
 moleculeIntegrator.setLONGx0(0)
 moleculeIntegrator.setLONGy0(0)
 moleculeIntegrator.setLONGWidth(1024)
 moleculeIntegrator.setLONGHeight(500)
-moleculeIntegrator.setLONGWavelengthColor("Red")
-moleculeIntegrator.setUseShortWavelength(true)
 moleculeIntegrator.setSHORTx0(0)
 moleculeIntegrator.setSHORTy0(524)
 moleculeIntegrator.setSHORTWidth(1024)
 moleculeIntegrator.setSHORTHeight(500)
-moleculeIntegrator.setSHORTWavelengthColor("Green")
-
+moleculeIntegrator.setMicroscope("Dobby")
 moleculeIntegrator.setRoiManager(roiManager)
 
 //Run the Command
@@ -94,6 +85,6 @@ archive = moleculeIntegrator.getArchive()
 
 #### Future Applications
 
-Currently, this command will integrate fixed locations for all frames with correct color information independent of collection sequence. However, the implementation is written in a manner so that the integration module is a separate class and cane easily be used in scripts independent of this command. Internally, the command uses a peak position list for integrating peaks in each frame. So in future versions it would be very easy to integrate moving spots and/or provide a MoleculeArchive and use the molecule position as a function of Time for integration.
+Currently, this command will integrate fixed locations for all frames with correct color information independent of collection sequence. However, the implementation is written in a manner so that the integration module is a separate class and can easily be used in scripts independent of this command. Internally, the command uses a peak position list for integrating peaks in each frame. So in future versions it would be very easy to integrate moving spots and/or provide a MoleculeArchive and use the molecule position as a function of Time for integration.
 
 This command was coded with these possible future applications, however implementing these options depends on the need for them and the core modules can be used in scripts to accommodate a wide variety of workflows. But there are not current examples. That will also depend on projects needing custom integration options.

@@ -24,10 +24,10 @@ More information on the format and further requirements can be found in the [OME
 | :----------------------------- | :----------- |
 | [Open archive](./molecule/ImportArchive) | Use this command to open an archive.|
 | [Open virtual store](./molecule/ImportArchive) | Use this command to open a virtually stored archive.|
-| Build DNA archive | |
+| [Build DNA archive](./molecule/BuildDNAarchive) | |
 | [Build archive from table](./molecule/BuildArchiveFromTable) | Generate a Molecule Archive using a table with a molecule index column. |
 | [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
-| FMT Generate bps | |
+| [FMT Generate bps](./molecule/FMTbps) | |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Calculator](./molecule/DriftCalculator) | Calculate drift in position. |
 | [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
@@ -38,8 +38,8 @@ More information on the format and further requirements can be found in the [OME
 ### Import
 
 | :------------- | :------------- |
-| Import IJ1 Table       | Import a table in the IJ1 format.       |
-| Import TableDisplay       | Import a table in the TableDisplay format.       |
+| [Import IJ1 Table](./import/Import_IJ1)       | Import a table in the IJ1 format.       |
+| [Import TableDisplay](./import/Import_TableDisplay)       | Import a table in the TableDisplay format.       |
 
 
 ### Table
@@ -53,7 +53,7 @@ More information on the format and further requirements can be found in the [OME
 ### Image processing
 
 | :----------------------------- | :----------- |
-| DNA finder | |
+| [DNA finder](./image/DNA_finder) | |
 | [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
 | [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
