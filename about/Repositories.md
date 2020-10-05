@@ -15,5 +15,5 @@ All repositories can be found on the [github page](https://github.com/duderstadt
 | [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials)       | Repository with all example files accompanying the tutorials as well as example scripts.       |                 |
 | [mars-docs](https://github.com/duderstadt-lab/mars-docs)       | All information to build the mars documentation website.       |                 |
 | [mars-fmt](https://github.com/duderstadt-lab/mars-fmt)      | Experimental mars flow magnetic tweezer plugin development.      |      [mars-core](https://github.com/duderstadt-lab/mars-core)           |
-| [fmt-scripts](https://github.com/duderstadt-lab/fmt-scripts)       | Scripts accompanying the mars-fmt plugin.      |    [mars-core](https://github.com/duderstadt-lab/mars-core)           |
+| [fmt-scripts](https://github.com/duderstadt-lab/fmt-scripts)       | Analysis scripts from [Agarwal & Duderstadt, 2020, Nat. Comm.](https://www.nature.com/articles/s41467-020-18456-y).      |    [mars-core](https://github.com/duderstadt-lab/mars-core), [mars-fmt](https://github.com/duderstadt-lab/mars-fmt)           |
 | [mars-swing](https://github.com/duderstadt-lab/mars-swing)       | Outdated and unmaintained mars gui written in swing.       |   [mars-core](https://github.com/duderstadt-lab/mars-core)         |
