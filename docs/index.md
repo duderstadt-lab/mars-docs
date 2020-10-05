@@ -13,9 +13,12 @@ Script writers and java developers can get started using the **Mars** developmen
 ## <a name="commands"></a>Data Requirements - OME
 
 ### Open Microscopy Environment (OME)
-The structure of the data that can be used to build MoleculeArchives on using the **Mars** software and plugins is based on the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) file format. This open source format provides a universal framework for acquiring and storing of imaging data in biological microscopy experiments.
-More information on the format and further requirements can be found in the [OME](./OME/) section.
 
+Mars stores image metadata using an enhanced version of the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) format. This format provides a universal nomenclature for the storage of 6D images (X, Y, Z, C, T at multiple positions) collected in biological microscopy experiments. More information on the format and further requirements can be found in the [OME](./OME/) section.
+
+Mars image processing algorithms work best with videos opened using [SCIFIO](https://scif.io/) that provides translators to OME format. SCIFIO can be activated in ImageJ or Fiji under Edit>Options>ImageJ2... Once activated, File>Open will use SCIFIO by default. An enhanced SCIFIO reader ([mars-scifio](https://github.com/duderstadt-lab/mars-scifio)) compatible with data collected using MicroManager 1.4 is available through the mars update site. Otherwise, only tiff format has been extensively tested, but SCIFIO supports a large number of other formats. We are eager to help make sure mars properly supports other formats through SCIFIO. Please get in touch by posting on the [ImageJ forum](https://forum.image.sc) if you encounter problems tag the post with mars and mention @karlduderstadt to make sure we are notified.
+
+Mars image processing algorithms will also work with ordinary videos opened in ImageJ. However, in this case, metadata is generated using best guesses and may be less accurate.
 
 ## <a name="commands"></a>Command Reference
 
@@ -50,7 +53,7 @@ More information on the format and further requirements can be found in the [OME
 | [Filter](./table/Filter) | Filter table rows. |
 
 
-### Image processing
+### Image
 
 | :----------------------------- | :----------- |
 | [DNA finder](./image/DNA_finder) | |
