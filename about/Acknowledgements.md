@@ -11,7 +11,7 @@ In the Duderstadt lab we study molecular machines that reshape and remake chromo
 
 ### Software
 
-The **Mars** software utilizes features from other software packages as referenced in the respective documentation pages and tutorials. We should like to thank the [ImageJ community](https://forum.image.sc) for creating a fantastic platform for the development of image processing and analysis in Java. We are grateful for the recent development efforts of ImageJ2 and common frameworks that have greatly enhanced the applications across platforms. Special thanks go to Curtis Rueden and Jan Eglinger as well as Tobias Pietzsch for taking the time to answer the many questions that have come up during the development and Curtis Rueden for helping to configure our repositories for Travis. 
+The **Mars** software utilizes features from other software packages as referenced in the respective documentation pages and tutorials. We should like to thank the [ImageJ community](https://forum.image.sc) for creating a fantastic platform for the development of image processing and analysis software. We are grateful for the recent development efforts of ImageJ2 and common frameworks that have greatly enhanced the applications across platforms. Special thanks go to Curtis Rueden and Jan Eglinger as well as Tobias Pietzsch for taking the time to answer the many questions that have come up during development and Curtis Rueden for helping to configure our repositories for Travis. 
 
 #### Mars Core Connections
 As highlighted in the [repositories](https://duderstadt-lab.github.io/mars-docs/about/Repositories/) page Mars Core and/or Mars Rover depend on the following software packages.
