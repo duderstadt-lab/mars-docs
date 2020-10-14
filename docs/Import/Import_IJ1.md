@@ -20,21 +20,9 @@ Command to import any ImageJ1 table (such as ResultsTable) to the MarsTable form
 ### How to run this Command from a groovy script
 
 ```groovy
-#@ ImageJ ij
+#@ MarsTableService marsTableService
+#@ ResultsTable resultsTable
+#@OUTPUT MarsTable marsTable
 
-import de.mpg.biochem.mars.molecule.*;
-
-//Make an instance of the Command you want to run.
-final AddTimeCommand addTime = new AddTimeCommand();
-
-//Populates @Parameters Services etc. using the current context
-//which we get from the ImageJ input.
-addTime.setContext(ij.getContext());
-
-//Set all the input parameters
-addTime.setArchive(archive);
-
-//Run the Command
-addTime.run();
-
+marsTable = marsTableService.createTable(resultsTable)
 ```
