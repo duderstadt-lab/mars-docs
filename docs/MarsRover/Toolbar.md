@@ -8,9 +8,11 @@ permalink: /docs/MarsRover/Toolbar/index.html
 #### File
 
 | :------------- | :------------- |
-| Save       | Save the created Molecule Archive.      |
-| Save a Copy       | Save a copy of the created Molecule Archive.       |
-| Save a Virtual Store Copy       | Save the Molecule Archive in virtual storage.       |
+| Save       | Save the created Molecule Archive in the format used currently (.yama for normally stored records, .sml for virtually stored records).      |
+| Save a Copy       | Save a copy of the current Molecule Archive.       |
+| Save a Json Copy | Save a copy of the current Molecule Archive in .yama.json format. |
+| Save a Virtual Store Copy       | Save the current Molecule Archive as virtually stored archive with .sml format (smile encoded).       |
+| Save a Json Virtual Store Copy | Save a copy of the current Molecule Archive in virtual storage using .json files |
 | Close      | Close **Mars Rover**.|
 
 A Molecule Archive can be saved in two ways:
