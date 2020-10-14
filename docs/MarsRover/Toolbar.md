@@ -15,9 +15,10 @@ permalink: /docs/MarsRover/Toolbar/index.html
 | Save a Json Virtual Store Copy | Save a copy of the current Molecule Archive in virtual storage using .json files |
 | Close      | Close **Mars Rover**.|
 
+
 A Molecule Archive can be saved in two ways:
-1. Normal storage: saved in the .yama file format. Additionally a .yama.cfg file is saved containing information like settings and selections. A .cfg file can be renamed and reused for another archive to apply the settings defined for another Archive.
-2. Virtual storage: saves a .yama.store folder containing .json files for the indexes, properties, all molecule UIDs and experiment IDs separately. Choose this saving mode when dealing with large data sets.
+1. Normal storage: saved in the .yama file format. Additionally a .yama.cfg file is saved containing information like settings and selections. A .cfg file can be renamed and reused for another archive to apply the settings defined for another Archive. By default files are stored using Smile encoding.
+2. Virtual storage: saves a .yama.sml folder containing .sml files for the indexes, properties, all molecule UIDs and experiment IDs separately. Choose this saving mode when dealing with large data sets.
 
 
 #### Tools
