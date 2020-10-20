@@ -10,7 +10,7 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 
 #### Inputs
 
-<img align='center' height='1300' src='{{site.baseurl}}/docs/image/img/DNA Finder Dialog.png' width='550' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/DNA Finder Dialog.png' width='550' />
 
 * *Image* - The active image selected will be used by the DNA Finder. This is a required input but doesn't show up in the dialog.
 * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, by making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
@@ -20,7 +20,7 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 * *ROI height* - height of the ROI.
 * *Gaussian Filter Sigma* - The sigma used for gaussian smoothing. The DNA Finder uses the ImageJ op derivativeGauss which filters the image with a combined gaussian smoothing and takes the derivative. Usually a sigma of 1 is usually sufficient. Higher sigma values might lead to too much smoothing and obscure important features.
 
-<img align='center' height='1300' src='{{site.baseurl}}/docs/image/img/derivativeSeriesSmall.png' width='800' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/derivativeSeriesSmall.png' width='800' />
 
 * *End detection threshold (mean + N * STD)* - This is how many standard deviations above the mean the end peak detection threshold should we set as. So the input here is N in the expression. mean is the mean value of pixels in the image and STD is the standard deviation of the pixel values. Usually, between 2 and 4 is good for low signals and 5-8 is good for higher signals. End detection is performed using the derivativeGauss filtered image (lower row above) and the threshold given is use for detecting both positive and negative ends.
 * *Minimum distance between edges (in pixels)* - This is the minimum allowed distance between peaks (edges here), This means only the pixel with the highest (or lowest) intensity within this radius will be accepted as a peak, even if there are other peaks above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. If you see a lot of overlapping DNAs increasing this setting will help.
@@ -30,14 +30,14 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 * *Filter by median intensity* - If checked DNAs will be removed if their median intensity is below the "Median DNA intensity lower bound" value.
 * *Median DNA intensity lower bound* - A lower bound threshold for the median intensity of the DNA molecule. Sometimes two small DNA fragments are considered a single DNA. In this case the median DNA intensity is low. This filter can be used to remove these.
 
-<img align='center' height='1300' src='{{site.baseurl}}/docs/image/img/MedianFilter.png' width='500' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/MedianFilter.png' width='500' />
 
 * *Filter by intensity MSD* - If checked DNAs will be removed if the mean squared deviation of their intensity is above the "DNA intensity MSD upper bound" value.
 * *DNA intensity MSD upper bound* - An upper bound threshold for the mean squared deviation of the DNA intensity. Sometimes multiple DNAs clump together or form arches. These structures are sometimes detected as single DNA molecules, but have a large mean squared intensity deviation. Setting an upper bound threshold for the MSD will remove these.
 
-<img align='center' height='1300' src='{{site.baseurl}}/docs/image/img/MSDFilter.png' width='500' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/MSDFilter.png' width='500' />
 
-<img align='center' height='1300' src='{{site.baseurl}}/docs/image/img/MSDFilter2.png' width='500' />
+<img align='center' src='{{site.baseurl}}/docs/image/img/MSDFilter2.png' width='500' />
 
 * *Fit ends (subpixel localization)* - If checked the DNA ends will be fit with 2D Gaussians to determine their sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. See the [[Peak Finder]] for further information about fitting.
 * *Fit Radius* - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.
