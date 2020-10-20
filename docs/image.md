@@ -5,7 +5,7 @@ permalink: /docs/image/index.html
 ---
 
 | :----------------------------- | :----------- |
-| [DNA finder](./DNA_finder) | |
+| [DNA finder](./DNA_finder) | Find and fit linear DNA molecules |
 | [Peak Finder](./PeakFinder) | Counting and subpixel localization of molecules. |
 | [Peak Tracker](./PeakTracker) | Find, subpixel localize, and track molecules. |
 | [Beam Profile Corrector](./BeamProfileCorrector) | Correct images for non-uniform beam profile. |
