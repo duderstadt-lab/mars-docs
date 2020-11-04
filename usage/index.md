@@ -28,5 +28,5 @@ If you encounter problems of any kind or have a usage question please create an 
 ### System compatibility
 Mars is compatible with Windows, Linux and Mac OS. Mars has been extensively tested on mac and linux systems. However, we have not tested mars on windows.
 
-<img align='center' src='{{site.baseurl}}/usage/img/img1' width='100' />
-<img align='center' src='{{site.baseurl}}/usage/img/img2.png' width='100' />
+<img align='center' src='{{site.baseurl}}/usage/img/img1.png' width='50' />
+<img align='center' src='{{site.baseurl}}/usage/img/img2.png' width='50' />
