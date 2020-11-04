@@ -10,7 +10,7 @@ Mars is developed as a plugin for the [Fiji software package](https://imagej.net
 
 1. Download and install [Fiji](https://imagej.net/Fiji/Downloads). This should take up to a couple of minutes to be completed.
 2. Open Fiji and make sure you are up-to-date by running Help>Update. Click accept changes to update to the newest versions of all components. After the update, restart Fiji.
-3. **Mac:** Verity that javafx is installed in your Fiji. Previously, javafx was bundled with the download but the newest version of Fiji does not automatically come with javafx. To check this show the package contents of the Fiji folder in the finder. In case javafx is not present in this folder, your java folder has to be replaced with one that contains javafx in order for the Mars Rover gui to work. See [this](https://forum.image.sc/t/can-not-use-javafx-on-fiji-at-openjdk/27213/10) post for further details. We hope javafx will again be bundled in Fiji soon.
+3. **Mac:** Verify that javafx is installed in your Fiji. Previously, javafx was bundled with the download but the newest version of Fiji does not automatically come with javafx. To check this show the package contents of the Fiji folder in the finder and search for a version of 'javafxsvg.jar' (right mouse click on the Fiji folder in applications>Show Package Contents>Jars). In case javafx is not present in this folder, your java folder has to be replaced with one that contains javafx in order for the Mars Rover gui to work. See [this](https://forum.image.sc/t/can-not-use-javafx-on-fiji-at-openjdk/27213/10) post for further details. We hope javafx will again be bundled in Fiji soon.
 
 ### 2. Install the Mars project in your local Fiji
 An imagej update site has been created to help with maintenance and distribution of Mars and all necessary dependencies. Follow the directions below to install Mars in your local copy of Fiji:
@@ -25,8 +25,8 @@ Once you have installed Mars in your Fiji using the update site, the submenu "Ma
 ### Don't be a stranger
 If you encounter problems of any kind or have a usage question please create an issue on one of the mars repositories in Github or post your question on the [ImageJ forum](https://forum.image.sc). If you post in the forum please make sure to tag it with mars and add *@karlduderstadt* in your comment. We would love to hear back about your experience using mars.
 
----
+### System compatibility
 Mars is compatible with Windows, Linux and Mac OS. Mars has been extensively tested on mac and linux systems. However, we have not tested mars on windows.
 
-<img align='center' src='{{site.baseurl}}/tutorials/usage/img/img1.png' width='200' />
-<img align='center' src='{{site.baseurl}}/tutorials/usage/img/img2.png' width='200' />
+<img align='center' src='{{site.baseurl}}/usage/img/img1' width='100' />
+<img align='center' src='{{site.baseurl}}/usage/img/img2.png' width='100' />
