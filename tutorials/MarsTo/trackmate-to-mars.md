@@ -10,7 +10,7 @@ The aim of this tutorial is to show how the results from TrackMate can be export
 
 
 ### 1. Spot Detection in TrackMate
-Open the video ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo.tif) in Fiji (File>Open>...) and start the TrackMate Plugin (Plugins>Tracking>TrackMate). The TrackMate wizard will open. Keep the default detected settings (the video is 371 pixels wide, 278 pixels tall and has 149 time points).
+Open the video ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Mars%20to%20%5B%5D) in Fiji (File>Open>...) and start the TrackMate Plugin (Plugins>Tracking>TrackMate). The TrackMate wizard will open. Keep the default detected settings (the video is 371 pixels wide, 278 pixels tall and has 149 time points).
 
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img1.png' width='300' />
 <img src='{{site.baseurl}}/tutorials/img/trackmate/img2.png' width='250' />

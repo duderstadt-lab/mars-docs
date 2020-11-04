@@ -6,9 +6,9 @@ permalink: /tutorials/scripting/advanced-groovy-scripting/index.html
 
 This advanced groovy scripting tutorial builds on the information discussed in the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial. For an explanation on how to run a script, script components, and some background information about main functions used during scripting the reader is referred to that tutorial.
 
-To follow along with this tutorial open the 'TestVideo_archive.yama' archive in **Mars** that was created in the [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, download this archive from the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files).
+To follow along with this tutorial open the 'TestVideo_archive.yama' archive in **Mars** that was created in the [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, download this archive from the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting).
 
-These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/Groovy%20tutorial%20calculations%20in%20Python.ipynb).
+These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting).
 
 ### 1. Filtering with 'has' functions - Calculate the dist_y_var with respect to tag category
 In the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial the distance travelled by each molecule in the y direction (dist_y) was calculated (section 5.1). Subsequently, the sample variance on the collection of obtained values was calculated (section 5.2). Since the data in the Molecule Archive consists of molecules showing no activity (not tagged) as well as active molecules (tagged 'Active') and thus large differences in the dist_y values are observed, also the calculated sample variance was very high. To get a better understanding of the variance on the dist_y parameter the variance should be calculated with respect to both categories instead yielding a variance for the tagged molecules (dist_y_active_var) as well as the untagged molecules (dist_y_unactive_var).  
@@ -80,7 +80,7 @@ archive.getMetadata(0).setParameter("dist_y_unactive_var",dist_untag_var)
 ```
 <img src='{{site.baseurl}}/tutorials/img/advanced-groovy/img1.png' width='650' />
 
-The Molecule Archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
+The Molecule Archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting) on GitHub.
 
 The obtained values for variance are still quite high. To investigate the data and check whether a high variance has to be expected indeed the data points of each category can be plotted in the scriptable widgets in the **Rover** dashboard. To do so, the bubble plot is used with a different color for the tagged and untagged categories. Visit also the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) and [documentation](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) on scriptable widgets.
 
@@ -251,7 +251,7 @@ series2_yvalues = [series2_list.sum()/series2_list.size()]
 
 The plot shows that there is a significant (> 1x sigma) difference between the distance travelled on the y-axis by molecules within both categories. Furthermore, there is more heterogeneity within the 'Active'-tagged category when compared to the non-tagged category.
 
-The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
+The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting) on GitHub.
 
 
 ### 2. Groovy One Liners

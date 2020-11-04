@@ -14,7 +14,7 @@ corresponding to the tracked peaks, tagging them and saving the result as a **Mo
 _Figure 1: Schematic representation of the experiment. The DNA molecule is represented as a blue line, and the DNA polymerase as a fluorescently green dot. In the actual experiment the DNA is not fluorescently labeled and hence not visible._
 
 ### 1. Import a video in Fiji
-Open the example dataset ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo.tif) in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
+Open the example dataset ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='450' />
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450' />

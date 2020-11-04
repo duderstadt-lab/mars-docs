@@ -6,11 +6,11 @@ permalink: /tutorials/scripting/introduction-to-groovy-scripting/index.html
 
 This tutorial will introduce the basics of Mars scripting. Scripting gives the opportunity of (partly) automating data analysis. In this first tutorial the key aspects of scripting will be discussed: how to open the Fiji script editor, how to execute a script, access data from the Molecule Archive from within a script, examples for simple calculations, and coding in single lines: streams. The [advanced scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/) will go into more detail on less straight-forward Groovy scripting in **Mars**. For more information on the Groovy scripting language the reader is referred to the [Groovy documentation](https://groovy-lang.org/learn.html).
 
-These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/Groovy%20tutorial%20calculations%20in%20Python.ipynb).
+These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting).
 
 
 ### 1. How to Open the Script Editor in Fiji
-To follow along with this tutorial open the 'TestVideo_archive.yama' archive in **Mars** that was created in the [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, download this archive from the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files).
+To follow along with this tutorial open the 'TestVideo_archive.yama' archive in **Mars** that was created in the [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, download this archive from the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting).
 
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img1.png' width='350' />
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img2.png' width='450' />
@@ -227,7 +227,7 @@ The chart shows that there is a clear difference in the travelled distance with 
 
 <img src='{{site.baseurl}}/tutorials/img/intro-groovy/img9.png' width='300' />
 
-The Molecule Archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
+The Molecule Archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting) on GitHub.
 
 #### 5.2 Calculate the variance on the travelled distance in the y direction (y_dist)
 The sample variance can be calculated according to the following formula:
@@ -283,7 +283,7 @@ archive.getMetadata(0).setParameter("dist_y_var",dist_var)
 
 As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is further described in the [advanced groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/).
 
-The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials) on GitHub.
+The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting) on GitHub.
 
 ### 6. Scripting with a virtually stored Molecule Archive
 Note that in case an archive is stored virtually each script has to be extended with the line below.

@@ -91,7 +91,7 @@ yamaFile = File('/Users/your_archive.yama')
 archive = SingleMoleculeArchive(yamaFile)
 ```
 Now one has to add the location of the .yama archive which will be used for analysis. The file path has to be added in the code line. Just
-right click on the file and "Get Info" and there the file path will be written out. For testing purposes the ['TestVideo_archive_var.yama'](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo_archive_var.yama) can be downloaded from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).
+right click on the file and "Get Info" and there the file path will be written out. For testing purposes the 'TestVideo_archive_var.yama' can be downloaded from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Mars%20to%20%5B%5D).
 
 **Get Started with Simple Operations**  
 To start exploring the Molecule Archive in Python the most commonly used methods that can be called on it are presented. For a more extensive overview of all the methods available please visit the [JavaDocs](https://duderstadt-lab.github.io/mars-core/javadoc/).

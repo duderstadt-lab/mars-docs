@@ -27,7 +27,7 @@ The trace should be piece-wise linear between the kinetic change points. It is a
 The analysis will result in the position of kinetic change points and linear fits in between the points. The linear fits contain information about the rate. For example if one would track the position of the replisome over time one would get the rate of replication.
 
 #### How to: Run the kinetic change point analysis
-If the Molecule Archive of interest is not already opened, open the archive. In case the previous tutorials were not followed visit the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials) for an example dataset.
+If the Molecule Archive of interest is not already opened, open the archive. In case the previous tutorials were not followed visit the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) for an example dataset.
 
 Select the 'Change Point Finder' command in the plugin menu.  
 
@@ -63,7 +63,7 @@ The result from the analysis can be plotted for visual inspection of the fit. Go
 #### Take it to the next level
 By simply looking at the example above one can think that the algorithm produces simple linear regressions. This comes from the fact that most traces in the example only have one transition. To show the real power of the kinetic change point analysis another example is analysed.
 
-The following trace can be found in a separate .yama file in the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials) named "TestVideo_archive_kcp_complex.yama". Be aware that the y column is now called "nucleotides" instead.
+The following trace can be found in a separate .yama file in the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) named "TestVideo_archive_kcp_complex.yama". Be aware that the y column is now called "nucleotides" instead.
 
 The trace has multiple kinetic changes (see image below). This time an estimation of the background is directly taken from the trace (the global sigma is not considered). For that mark a region and name it background (just for convenience). Then select the region which should be analysed. The trace has simulated gaussian noise.
 
