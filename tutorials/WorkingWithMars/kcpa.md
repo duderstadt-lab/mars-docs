@@ -15,21 +15,21 @@ and covered by noise. For example on a molecular scale thermal fluctuations are 
 
 An idealized analysis would detect the small changes while not filtering or binning the data and only rely on a small number of user input. Filtering the data would degrade the quality and could lead to loss of information. The same holds true for binning. If the user only gives a small number of inputs the analysis is less biased and is not based on a predefined model. This would also make the analysis more flexible since it can be used for different scenarios. Furthermore, the analysis is more reproducible. The kinetic change point analysis described here and used in this tutorial combines these trades.
 
-**Assumptions**
+**Assumptions**  
 The trace should be piece-wise linear between the kinetic change points. It is assumed that the noise is Gaussian distributed. This hold true for biological systems observed with single molecule techniques. Assuming a specific kinetic model is not necessary since that would make it specific for one type of behaviour.
 
-**Inputs**
+**Inputs**  
 1. Position vs. time trajectories: To find the kinetic change points one has to give the position (x, y, z) in which the algorithm should search for the points. Be aware that it depends on the unit of the time axis and the unit of the position which kind of rate you will get (e.g. nm per second).
 
 2. Likelihood ratio/False positive rate: This will help to handle the noise in the data and prevent overfitting of the data
 
 3. Noise level (if it is known): Basically a direct input of the noise which also helps to deal with the noise in the data set.
 
-**Output**
+**Output**  
 The analysis will result in the position of kinetic change points and linear fits in between the points. The linear fits contain information about the rate. For example if one would track the position of the replisome over time one would get the rate of replication.
 
 #### How to: Run the kinetic change point analysis
-Open a MoleculeArchive of interest. In case of this tutorial use the archive 'tutorialvideo_archive.yama' generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). Alternatively, one can download this archive on the [git repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mar).
+Open a MoleculeArchive of interest. In case of this tutorial use the archive 'tutorialvideo_archive.yama' generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, one can download this archive on the [git repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mar).
 
 
 Select the 'Change Point Finder' command in the plugin menu.  
