@@ -56,7 +56,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 ### Image
 
 | :----------------------------- | :----------- |
-| [DNA finder](./image/DNA_finder) | |
+| [DNA finder](./image/DNA_finder) | Find and fit linear DNA molecules |
 | [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
 | [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
