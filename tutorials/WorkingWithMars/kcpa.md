@@ -4,7 +4,9 @@ title: "Kinetic Changepoint Analysis"
 permalink: /tutorials/workingwithmars/kcpa/index.html
 ---
 
-In this tutorial a kinetic change point analysis is executed. For in-depth information about the algorithms used as well as assumptions the analysis is based on please check the [documentation section](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/) as well as the paper by [_F.R. Hill et al_](https://doi.org/10.1063/1.5009387)<sup>1</sup>. This tutorial starts with a short introduction to kinetic change points and a disucussion about assumptions and continues with a hands-on example using a Molecule Archive.
+_level: intermediate, duration: 10-15 min_
+
+In this tutorial a kinetic change point analysis is executed. For in-depth information about the algorithms used as well as assumptions the analysis is based on please check the [documentation section](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/) as well as the paper by [_F.R. Hill et al_](https://doi.org/10.1063/1.5009387)<sup>1</sup>. This tutorial starts with a short introduction to kinetic change points and a discussion about assumptions and continues with a hands-on example using a Molecule Archive.
 
 
 #### Introduction
@@ -27,37 +29,31 @@ The trace should be piece-wise linear between the kinetic change points. It is a
 The analysis will result in the position of kinetic change points and linear fits in between the points. The linear fits contain information about the rate. For example if one would track the position of the replisome over time one would get the rate of replication.
 
 #### How to: Run the kinetic change point analysis
-If the Molecule Archive of interest is not already opened, open the archive. In case the previous tutorials were not followed visit the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) for an example dataset.
+Open a MoleculeArchive of interest. In case of this tutorial use the archive 'tutorialvideo_archive.yama' generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). Alternatively, one can download this archive on the [git repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mar).
+
 
 Select the 'Change Point Finder' command in the plugin menu.  
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img1.png' width='350' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img1.png' width='350'/></div>
+
 
 The window shown in the image will open.
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img2.png' width='450' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img2.png' width='450'/></div>
 
 Select the correct Molecule Archive and provide the settings as shown in the image. For a detailed explanation of these settings please visit the [documentation](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/).
 
 #### How to: Read the results of the kinetic change point analysis
 The values from the fit can be read out in Mars Rover.
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img4.png' width='450' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img4.png' width='450'/></div>
 
 Open "y vs slice". A table with different columns will appear. "x1" gives the start time and "x2" the end time point of a region where the trace is piece-wise linear. "y1" and "y2" give the corresponding position start and end points. The linear fit between these to points can be described with a line equation (y = Bx + A). The "B" value is the slope of the line which also corresponds to the rate. "A" represents the intercept with the y axis. The sigma values give the standard deviation of either "A" or "B".
 
 #### How to: Plot the result of the kinetic change point analysis
 The result from the analysis can be plotted for visual inspection of the fit. Go to the menu of the plot and select "Segments". After refreshing the plot straight lines which connect the kinetic change points will appear (the color can be adjusted by changing the "Segment color").
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img3.png' width='450' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img3.png' width='450'/></div>
 
 
 #### Take it to the next level
@@ -67,37 +63,25 @@ The following trace can be found in a separate .yama file in the [git tutorials 
 
 The trace has multiple kinetic changes (see image below). This time an estimation of the background is directly taken from the trace (the global sigma is not considered). For that mark a region and name it background (just for convenience). Then select the region which should be analysed. The trace has simulated gaussian noise.
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img5.png' width='450' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img5.png' width='450'/></div>
 
 Open the "Change Point Finder" as discussed before. Copy the settings from the window displayed below. By specifying the region of the background the algorithm knows where to check for the background. Same holds true for the region.
 
 Side note: How are regions created? Select the icon for creating a region (marked in the image below). Move the mouse to the position where the region should start/end and drag the appearing rectangular til the end/start of the region.
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img9.png' width='450' />
-</p>
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img10.png' width='450' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img9.png' width='450'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img10.png' width='450'/></div>
 
 
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img6.png' width='450' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img6.png' width='450'/></div>
 
 After running the analysis one can plot the segments again by checking the box and refreshing the settings. It will now display the different segments in the selected color (in this case red).
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img7.png' width='600' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img7.png' width='450'/></div>
 
 The actual values can be found under "nucleotides vs time - Region". This tab holding the segment tables is automatically named after the settings. Eight lines with the slope and the intersect are displayed.
 
-<p align='center'>
- <img src='{{site.baseurl}}/tutorials/img/kcpa/img8.png' width='600' />
-</p>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img8.png' width='450'/></div>
 
 <sup>1</sup> Hill, F. R., van Oijen, A. M., & Duderstadt, K. E. (2018). Detection of kinetic change points in piece-wise linear single molecule motion. _The Journal of Chemical Physics_, **148(12)**, 123317–10. http://doi.org/10.1063/1.5009387
