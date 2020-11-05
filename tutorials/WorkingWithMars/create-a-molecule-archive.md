@@ -38,8 +38,7 @@ Now, open the "Peak Tracker" tool from **Mars** as shown and enter all settings 
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img10.png' width='450'/></div>
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img11.png' width='350'/></div>  
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img12.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img11.png' width='350'/></div> <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img12.png' width='350'/></div>
 
 
 Press OK to run the tracking plugin.
