@@ -19,13 +19,13 @@ Background region start and end points are also required. The mean of this regio
 * *Output Y (y_drift_corr)* - The new output y column added to the table with the background corrected trace. Usually this is y_drift_corr.
 * *correct original coordinates* - Tick in case the original coordinates should be overwitten (not advised).
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Drift Corrector.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Drift Corrector.png' width='450'/></div>
 
 #### Output
 
 * The MoleculeArchive provided as Input is modified. The drift is subtracted from the x and y columns to generate x_drift_corr and y_drift_corr. Column names will vary depending on settings...
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img5.png' width='800' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img5.png' width='800'/></div>
 
 ### How to run this Command from a groovy script
 

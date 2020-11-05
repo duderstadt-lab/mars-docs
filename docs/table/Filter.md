@@ -17,15 +17,15 @@ In all cases, the "inside" and "outside" options provide a choice between all va
 * "Mean +/- (N * STD)" - The number of standard deviations from the mean to include in the range. The N value in the formula given. This value is used if "Standard deviation" is chosen as the filter type.
 * "Filter Table" - A second table to use as a reference if type is set to "Filter Table."
 
-<img align='center' src='{{site.baseurl}}/docs/table/img/Results Filter Dialog.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/Results Filter Dialog.png' width='600'/></div>
 
 #### Example outputs depending on the options
 
-<img align='center' src='{{site.baseurl}}/docs/table/img/Results Filter Outcomes 1.png' width='800' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/Results Filter Outcomes 1.png' width='800'/></div>
 
 Example for type "Filter Table" with "molecule" selected as the column.
 
-<img align='center' src='{{site.baseurl}}/docs/table/img/Results Filter Outcomes 2.png' width='800' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/Results Filter Outcomes 2.png' width='800'/></div>
 
 #### Output
 

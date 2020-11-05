@@ -4,7 +4,7 @@ title: Open a Molecule Archive in Python
 permalink: /tutorials/marsto/open-a-Molecule-Archive-in-Python/index.html
 ---
 
-_level: advanced, duration: 20 min (including one-time setup)_
+_level: intermediate, duration: 20 min (including one-time setup)_
 
 In this tutorial you can find a set of instructions on how to work with Molecule Archives in Python by using Anaconda's Jupyter. To do so, one first needs to create a special 'Environment'. This environment only has to be build the first time. When inspecting Molecule Archives later on the environment can be selected and the user can proceed immediately to the 'Molecule Archives in Python' section of this tutorial.
 

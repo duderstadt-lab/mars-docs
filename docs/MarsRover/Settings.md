@@ -8,4 +8,4 @@ In the settings tab one can specify shortcuts for molecule tagging. Click the + 
 Now, when selecting a molecule UID press the shortcut to label with the desired tag quickly.
 
 
-<img align='centre' src='{{site.baseurl}}/docs/img/Rover/img12.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img12.png' width='600'/></div>

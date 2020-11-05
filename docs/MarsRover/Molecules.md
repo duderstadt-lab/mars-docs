@@ -4,7 +4,7 @@ title: Molecules
 permalink: /docs/MarsRover/Molecules/index.html
 ---
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img8.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img8.png' width='600'/></div>
 
 The Molecules tab has three main sections:
 
@@ -32,7 +32,7 @@ Add an additional line by pressing the + in the left corner, update the graph wi
 The plotting window itself can be formatted using the tools above the plot. From left to right: track tool (move over the graph to read the corresponding data values), select XY region, select X region, select Y region, move graph, set region, set position, reset zoom, reload graph, save image as .png, and settings (fix X and Y bounds, turn gridlines on/off).
 
 
-<img align='centre' src='{{site.baseurl}}/docs/img/Rover/img9.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img9.png' width='450'/></div>
 
 **3. Notes, parameters, and information per molecule.**
 

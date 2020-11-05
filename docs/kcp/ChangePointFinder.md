@@ -39,7 +39,7 @@ As an introduction the reader is referred to the [Kinetic Changepoint Analysis t
 * _Include_ - Choose to include 'all', 'tagged with' or 'untagged' molecules in the analysis.
 * _Tags (comma separated list)_ - List of tags to base on which traces are included in the analysis.
 
-<img src='{{site.baseurl}}/docs/kcp/img/img4.png' width='350' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img4.png' width='350'/></div>
 
 #### Output
 * The output of the KCP analysis is the synthesis of a segments table as additional tab in the data section of the 'Molecules' tab in **Rover**. This table contains:
@@ -53,7 +53,7 @@ As an introduction the reader is referred to the [Kinetic Changepoint Analysis t
   * simga_B: Error on the intercept calculation.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img5.png' width='650' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img5.png' width='650'/></div>
 
 #### How to run this Command from a groovy script
 

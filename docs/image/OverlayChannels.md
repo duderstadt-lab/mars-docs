@@ -7,7 +7,7 @@ This simple command can be used to combine several individual videos into one. I
 
 #### Input
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/img6.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img6.png' width='550'/></div>
 
 * *Add To Me* - Select the video to which the other video should be added.
 * *Transform Me* - Select the video to be added to the other video.
@@ -21,13 +21,13 @@ Affine2D Transformation Matrix: coordinates found with the Affine2D calculation 
 * *m11*
 * *m12*
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/img5.png' width='350' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img5.png' width='350'/></div>
 
 #### Output
 
 * A single video with individual channels representing the input videos.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/img7.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img7.png' width='450'/></div>
 
 ### How to run this Command from a groovy script
 

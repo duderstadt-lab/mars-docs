@@ -16,7 +16,7 @@ This command opens a file dialog in which you can select the comma or tab delimi
 For general information about how to work with tables take a look at the [MarsTables tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/marstable/).
 
 An example of an imported table is shown in the image below.  
-<img align='center' src='{{site.baseurl}}/docs/table/img/img1.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/img1.png' width='400'/></div>
 
 #### How to open tables in a groovy script
 

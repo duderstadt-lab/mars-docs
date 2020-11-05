@@ -7,13 +7,13 @@ permalink: /docs/MarsRover/Comments/index.html
 The 'comments' section hosts a fully integrated text editor to annotate the archive. Annotation is possible both with text and inline code. Use the view button (<img align='centre' src='{{site.baseurl}}/docs/img/Rover/img11.png' width='25' />) to show or hide rendered mark down text.
 
 
-<img align='centre' src='{{site.baseurl}}/docs/img/Rover/img10.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img10.png' width='600'/></div>
 
 Markdown rendering depends on extensions from [flexmark](https://github.com/vsch/flexmark-java) and [mermaid](https://mermaid-js.github.io/mermaid/#/README). This allows for easy documentation of tags, parameters, settings and the data analysis flow as a flowchart to be saved in the archive itself to improve reproducibility. Look at the respective web pages for more information on syntax. The example text shows an example of most of the incorporated features. Note that due to the maximum window size the image is split into two separate images.
 
-<img align='centre' src='{{site.baseurl}}/docs/img/Rover/img13.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img13.png' width='600'/></div>
 
-<img align='centre' src='{{site.baseurl}}/docs/img/Rover/img14.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img14.png' width='600'/></div>
 
 Flexmark extensions in **Mars**:
 

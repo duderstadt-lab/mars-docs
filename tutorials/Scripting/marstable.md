@@ -4,7 +4,7 @@ title: "MarsTables tutorial"
 permalink: /tutorials/scripting/marstable/index.html
 ---
 
-_level: beginner, duration: 10 min_
+_level: intermediate, duration: 10 min_
 
 This tutorial shows how to create and modify a **MarsTable** using the scripting feature in Fiji. MarsTables add the functionality of generating tables within the Fiji/ImageJ environment. For a general [introduction on Groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) or more [advanced scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/) the reader is referred to the scripting tutorials. A practical example of the use of a MarsTable is found in the Examples Gallery [short examples, nr2](https://duderstadt-lab.github.io/mars-docs/examples/).
 

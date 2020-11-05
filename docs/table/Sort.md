@@ -15,7 +15,7 @@ This command sorts MarsTables based on the values in the specified column. The d
 #### Output
 * This command sorts the table given as input, so there isn't any output except a change in the row order of the table given.
 
-<img align='center' src='{{site.baseurl}}/docs/table/img/img2.png' width='300' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/img2.png' width='300'/></div>
 
 
 ### How to sort tables in a groovy script

@@ -12,14 +12,14 @@ This commands adds a column to the molecule tables to convert time points (T) to
 * *Source* - Select either the 'dt' information specified in the metadata are the option 'Time increment' in case the time increment will be specified below.
 * *Time increment (s)* - Input value for the time increment if selected above.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img2.png' width='450' />
 
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img2.png' width='450'/></div>
 
 #### Output
 * *MoleculeArchive* - Modified MoleculeArchive that was provided as input, the column 'Time (s)' is added to each molecule table.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img3.png' width='650' />
 
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img3.png' width='650'/></div>
 
 ### How to run this Command from a groovy script
 

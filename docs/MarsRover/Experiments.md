@@ -32,4 +32,4 @@ The Metadata tab has three main sections:
 
 Regions and Positions are globally defined in the Metadata tab and if enabled will show up in the plots made under the 'molecules' tab where relevant.
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img7.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img7.png' width='700'/></div>

@@ -8,8 +8,9 @@ permalink: /docs/molecule/BuildArchiveFromTable/index.html
 
 * "Table with molecule column" - MarsTable with a molecule column. The molecule column will be used as a definition for each molecule entry in the MoleculeArchive.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Input table.png' width='400' />
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Build archive from table.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Input table.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Build archive from table.png' width='400'/></div>
+
 
 #### Output
 

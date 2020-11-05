@@ -7,11 +7,11 @@ permalink: /about/Acknowledgements/index.html
 ### The Duderstadt Lab
 In the Duderstadt lab we study molecular machines that reshape and remake chromosomes using structural, biochemical, and single-molecule approaches. The major part of our research relies on microscopy techniques. To analyse the generated data in a reliable and reproducible manner we developed the 'Molecule ARchive Suite' (**Mars**). More information about the research projects and the team can be found on our [homepage](https://duderstadtlab.org).
 
-<img align='center' src='{{site.baseurl}}/about/img/img1.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/about/img/img1.png' width='450'/></div>
 
 ### Software
 
-The **Mars** software utilizes features from other software packages as referenced in the respective documentation pages and tutorials. We should like to thank the [ImageJ community](https://forum.image.sc) for creating a fantastic platform for the development of image processing and analysis software. We are grateful for the recent development efforts of ImageJ2 and common frameworks that have greatly enhanced the applications across platforms. Special thanks go to Curtis Rueden and Jan Eglinger as well as Tobias Pietzsch for taking the time to answer the many questions that have come up during development and Curtis Rueden for helping to configure our repositories for integration with Travis and scijava maven. 
+The **Mars** software utilizes features from other software packages as referenced in the respective documentation pages and tutorials. We should like to thank the [ImageJ community](https://forum.image.sc) for creating a fantastic platform for the development of image processing and analysis software. We are grateful for the recent development efforts of ImageJ2 and common frameworks that have greatly enhanced the applications across platforms. Special thanks go to Curtis Rueden and Jan Eglinger as well as Tobias Pietzsch for taking the time to answer the many questions that have come up during development and Curtis Rueden for helping to configure our repositories for integration with Travis and scijava maven.
 
 #### Mars Core Connections
 As highlighted in the [repositories](https://duderstadt-lab.github.io/mars-docs/about/Repositories/) page Mars Core and/or Mars Rover depend on the following software packages.

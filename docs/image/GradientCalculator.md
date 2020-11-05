@@ -7,11 +7,11 @@ This command calculates the gradient (slope) of consecutive pixels in the y dire
 
 At the boundaries, a reflected mirror image is used to calculate the slope. Sometimes this can cause edge effects, but not normally.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Gradient Example.png' width='700' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Gradient Example.png' width='700'/></div>
 
 #### Inputs
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Gradient Dialog.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Gradient Dialog.png' width='600'/></div>
 
 * *Image* - An image or sequence of images to calculate the gradient for. This doesn't show up in the dialog since the active image is taken, but this is a required input.
 * *fitLength (in pixels, must be an odd number)* - An odd integer number of pixels to use for slope determination greater than or equal to 3. This number must be odd so that the calculated slope can be placed back as the value of the middle pixel with equal numbers on either side. There is no error checking for this at the moment, so you will get unpredictable results and errors with even numbers - do not use them. Usually 5-11 is a good range for this parameter.

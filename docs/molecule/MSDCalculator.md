@@ -12,7 +12,7 @@ For an introductory tutorial on variance calculations in Mars the reader is refe
  * _Column_ - Column of each molecule table to calculate the variance (var) for.
  * _Parameter Name_ - The name of the Parameter that will be added to each molecule record.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img1.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img1.png' width='400'/></div>
 
 #### Output
 

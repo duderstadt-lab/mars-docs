@@ -17,7 +17,7 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 
 #### Inputs
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/img8.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img8.png' width='400'/></div>
 
 * *Image* - The selected image will by analyzed using the peaks in the RoiManger. This is a required input but doesn't show up in the dialog, it is just the open image you have have selected at the time you run the command.
 * *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
@@ -41,7 +41,7 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 
 * *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/img9.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img9.png' width='400'/></div>
 
 ### How to run this Command from a groovy script
 

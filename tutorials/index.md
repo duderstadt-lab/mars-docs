@@ -39,4 +39,4 @@ The files accompanying the tutorials, such as an example dataset, can be found i
 
 #### Affine2D Transformation
 * [How to calculate Affine2D transformation coordinates](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)  
-  _Skill level: Beginner._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji. Use this transformation to align multiple videos concerning the same field of view.
+  _Skill level: Intermediate._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji. Use this transformation to align multiple videos concerning the same field of view.

@@ -14,7 +14,7 @@ permalink: /docs/molecule/RegionDifferenceCalculator/index.html
 * *Region 2 name* - Name of the second region.
 * *Parameter Name* - Name of the Parameter added to each molecule entry in the archive with the calculated difference.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Region Difference Calculator.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Region Difference Calculator.png' width='450'/></div> 
 
 #### Output
 
@@ -22,7 +22,7 @@ permalink: /docs/molecule/RegionDifferenceCalculator/index.html
 
 Running the command on an archive with this molecule results in the Parameter "rdc" with value -2.59 being added for this molecule.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Added Parameter.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Added Parameter.png' width='400'/></div>
 
 ### How to run this Command from a groovy script
 

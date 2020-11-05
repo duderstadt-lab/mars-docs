@@ -15,10 +15,10 @@ The [Color coded track overlay groovy script](https://github.com/duderstadt-lab/
 
 #### Inputs
 
-There are a lot of inputs, but don't panic, they are all pretty simple to understand and overlap with the [PeakFinder](../PeakFinder) options. A lot of inputs are included for completeness to give fine control but do not need to be changed in most cases.
+There are a lot of inputs, but don't panic, they are all pretty simple to understand and overlap with the [PeakFinder](../PeakFinder) options. A lot of inputs are included for completeness to give fine control but do not need to be changed in most cases.   
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/img3.png' width='550' />   
-<img align='center' src='{{site.baseurl}}/docs/image/img/img4.png' width='550' />   
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img3.png' width='550'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img4.png' width='550'/></div>
 
 * *Image* - The active image selected will be used by the Peak Tracker. So this is a required input but doesn't show up in the dialog.
 * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox and add the region settings.
@@ -30,12 +30,12 @@ There are a lot of inputs, but don't panic, they are all pretty simple to unders
 * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
 * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/DoGFilterRadiiExample.png' width='600' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/DoGFilterRadiiExample.png' width='600'/></div>
 
 * *Detection threshold* - This is threshold in pixel value used for peak detection. Pixels with values above this threshold are considered peaks and pixels below this threshold are considered background. For everyday peak detection, the DoG filter should be used in which case this threshold using on the DoG filtered image. In this case, we have found that values between 40 and 60 provide [optimal detection](../DoGFilterProperties) for typical single-molecule observations. If the DoG Filter is turned off this threshold reflects raw pixel values in the input image.
 * *Minimum distance between peaks* - This is the minimum allowed distance between peaks. This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other pixels above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
 * *Preview* - When checked crosshairs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
 * *T* - Scrollbar to select the frame to preview with live update.
@@ -46,7 +46,7 @@ https://www.graphpad.com/guides/prism/7/curve-fitting/reg_intepretingnonlinr2.ht
 * *Verbose output* - If checked all fit parameters are included in the output (baseline, height, x, y, sigma, R2). If unchecked only the position, slice, intensity columns will be included in the output. Verbose output can be used to optimise the R-squared minimum, or for calculations based on peak properties.
 The following are the settings for tracking absent in the [PeakFinder](../PeakFinder) command. Once all peaks have been found and fit, which peaks correspond to which molecules between slices is still unknown. To connect all the peaks, the Peak Tracker does a nearest-neighbor search between frames. The closest peak in the next frame to the current peak position is considered the same molecule.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Tracking Peak Stack.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Tracking Peak Stack.png' width='400'/></div>
 
 * *Max Difference X* - The threshold difference between the X position of two peaks below which they are still allowed to be linked.
 * *Max Difference Y* - The threshold difference between the Y position of two peaks below which they are still allowed to be linked.

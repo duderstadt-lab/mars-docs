@@ -7,8 +7,7 @@ permalink: /docs/OME/index.html
 Mars Molecule Archives store image metadata using an enhanced version of the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) format. Data collection and storage is based on a 6-coordinate framework: Image, X, Y, Z (slice), T (time) and C (channel). This represents image acquisitions involving multiple positions, at different time points, and for different channels (f.e. different colors of excitation lasers for multi-color experiments) and, if desired, through different slices of an object (Z). Each recorded x-y field is called a plane, and is specified by its T, Z and C coordinates ( **plane(T,Z,C)** ).
 
 
-<img align='center' src='{{site.baseurl}}/docs/OME/img/img1.png' width='750' />
-
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/OME/img/img1.png' width='750'/></div>
 
 MarsMetadata records store this information in MarsOMEImages for each position, which in turn contain MarsOMEPlanes for each set of coordinates sampled. These objects are capable of holding a wealth of information about the state of the microscope over time (i.e. temperature, physical position, delta time, gain, exposure, etc.) in a structured manner with proper units as well as arbitrary image and plane information using key-value pairs.    
 

@@ -5,7 +5,7 @@ permalink: /docs/MarsRover/ScriptableWidgets/index.html
 ---
 <img align='center' src='{{site.baseurl}}/docs/img/Rover/img3.png' width='180' />
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img6.png' width='800'/></div>
 
 The scriptable widgets are available on **Rover** Dashboard and also in the 'Metadata' and 'Molecules' tabs. They allow for a rapid evaluation of the archive, metadata, and molecule features. All scriptable widgets leverage the scripting capabilities of ImageJ to provide limitless customisability. Scripts can be written in Python or Groovy. In both cases, chart scripts are provided with a single input that depends on the dashboard.
 
@@ -38,7 +38,7 @@ In general, a script contains the following sections:
 
 Note that the parameters always have to be declared before assigning them, but the order of the other components of the script is up to the preferences of the user. Variables used for scripting that are not used as a plot output do not need to be declared as parameter in the script.
 
-<img src='{{site.baseurl}}/docs/img/Rover/img15.png' width='800' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img15.png' width='800'/></div>
 
 To learn more about customising the scripts of the widgets please go to the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorial.
 
@@ -72,7 +72,7 @@ For an example script for each plot type visit the [How to use Scriptable Widget
 **Adding Categories**  
 To add additional categories to the plot add another category name to 'xvalues' and another value to 'yvalues'. In case the number of xvalues does not correlate with the number of yvalues an error is returned in the script log.
 
-<img src='{{site.baseurl}}/docs/img/Rover/img16.png' width='350' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img16.png' width='350'/></div>
 
 ##### 2. Histogram
 **Expected Outputs**
@@ -103,7 +103,7 @@ xmax = max(series1_values)
 **Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_values, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
-<img src='{{site.baseurl}}/docs/img/Rover/img18.png' width='350' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img18.png' width='350'/></div>
 
 
 ##### 3. XY Chart
@@ -130,7 +130,7 @@ To add an additional series to the plot define a new set of series-specfic param
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_error, series#_fillColor, series#_strokeColor & series#_strokeWidth)_ and define their values in the script.
 
 
-<img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img5.png' width='450'/></div>
 
 
 
@@ -158,10 +158,10 @@ Note that the _series#_size_, _series#_color_, and _series#_label_ have to be pr
 **Adding Series**  
 To add an additional series to the plot define a new set of series-specfic parameters following the series# naming scheme (#: any number). For every new series define the parameter names (_series#_xvalues, series#_yvalues, series#_size, series#_label, series#_color & series#_markerColor)_ and define their values in the script.
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img19.png' width='350' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img19.png' width='350'/></div>
 
 
 ##### 5. Beaker
 To implement a fully independently written widget use the 'beaker' scriptable widget. This undefined widget space gives the user unlimited possibilities to design widgets of choice.
 
-<img align='center' src='{{site.baseurl}}/docs/img/Rover/img17.png' width='350' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/img/Rover/img17.png' width='350'/></div>

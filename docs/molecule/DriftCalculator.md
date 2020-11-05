@@ -17,13 +17,13 @@ The command is intended to be used together with the [DriftCorrector](../DriftCo
 * *mode* - Select between using the 'mean' or 'median' x and y position.
 * *Zero* - Select between treating the starting point or then end point as zero.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/Drift Calculator.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Drift Calculator.png' width='400'/></div>
 
 #### Output
 
 * The MoleculeArchive provided as Input is modified. The drift information is added to the metadata table 'Plane' since it applies globally to all molecules within the given dataset. In the example below the drift in all directions is 0 for the plane selected.
 
-<img align='center' src='{{site.baseurl}}/docs/molecule/img/img4.png' width='650' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img4.png' width='650'/></div>
 
 ### How to run this Command from a groovy script
 

@@ -13,11 +13,11 @@ Here the thermal noise of the camera sensor (Electronic offset) is subtracted fr
 
 Typically images should be opened in Fiji using File->Import->Image Sequence. with virtual stack selected. This ensures very large videos are not stored in memory. Given this scenario for opening videos, the Beam Profile Correction command can create a new image sequence saved to a directory specified by the user in the dialog. So as soon as images are processed they are saved. This ensures the memory usage is small during the operation. Once the operation is complete, the new corrected image sequence can be opened as a virtual stack and processing can continue on the stack. Next steps might include the [PeakFinder](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakFinder/), [PeakTracker](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakTracker/) or [MoleculeIntegrator](https://duderstadt-lab.github.io/mars-docs/docs/image/MoleculeIntegrator/) commands. Alternatively, you can correct the open image directly, but in this case you can not work with a virtual stack, the whole video must be in memory. The former is the preferred option.
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Image Correction Example.png' width='800' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Image Correction Example.png' width='800'/></div>
 
 #### Inputs
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Beam Profile Correction Dialog.png' width='500' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Beam Profile Correction Dialog.png' width='500'/></div>
 
 * *Image to correct* - The Image to apply beam profile correction to. If you have opened a virtual stack this is usually Pos0. Due to some weirdness of IJ2, sometimes you will also see a list of all the individual images in the sequence, but what you want is Pos0. If the image is opened differently, the file name will be displayed here.
 * *Background Image* - This is a single background tif image that should only have the beam profile signal and no peaks. There are several ways to get this image. One way is to go out of focus and collect and image in which there are no single peaks. Another option is to try and generate this from your actual data. Can you do Z project in Image->Stacks with minimum or median for say 50 frames. This will generate a background image. If you still see peaks you can apply a median or minimum filter to the image using Process->Filters with a large radius 3-6. Hopefully this makes a nice background image like the one above in the example with no single peaks (or better than the example).
@@ -33,7 +33,7 @@ Typically images should be opened in Fiji using File->Import->Image Sequence. wi
 
 Ok... so I followed the instructions and my image looks like shit. What happened?
 
-<img align='center' src='{{site.baseurl}}/docs/image/img/Bad Correction.png' width='400' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Bad Correction.png' width='400'/></div>
 
 You probably have a bad backgroundImage, so you need to try a different method to create the background image. It is alway better to have a background image with a minimal profile. If the background image has a very strong profile sometimes the image can be overcorrected and you end up with peaks with lower intensity than background. The example above is after auto contrasting. If you have this noise like pattern you need to try a background image with a lower profile. For example, use a larger minimum filter radius so globally the background is lower. And/or ensure it is smooth using a gaussian filter.
 

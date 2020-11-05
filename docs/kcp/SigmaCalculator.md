@@ -18,14 +18,14 @@ When selecting the option 'Defined below':
 * _Region from MarsRecord_ - Enter region name to use that is defined in the MarsRecord.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img7.png' width='450' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img7.png' width='450'/></div>
 
 
 #### Output
 * _y_sigma_ - The value of the calculated error at the specified settings as a parameter to each Molecule entry.
 
 
-<img src='{{site.baseurl}}/docs/kcp/img/img8.png' width='250' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img8.png' width='250'/></div>
 
 
 #### How to run this Command from a groovy script
