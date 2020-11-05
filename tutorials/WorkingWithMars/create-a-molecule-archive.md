@@ -10,11 +10,17 @@ In this tutorial we will go through the basics of loading a video, finding
 and tracking peaks, navigating through **Mars Rover**, looking at the traces
 corresponding to the tracked peaks, tagging them and saving the result as a **Molecule Archive** (.yama) file. In the example video that is used the transcription movement of fluorescently labeled polymerase over DNA is investigated by means of TIRF microscopy. The DNA itself is not labeled and therefore is not visible in the video. This single-molecule dataset provides an excellent way to familiarise yourself with **Mars** and the most important plugins.
 
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img23.png' width='450'/></div>
+
+
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img23.png' width='450' />  
 _Figure 1: Schematic representation of the experiment. The DNA molecule is represented as a blue line, and the DNA polymerase as a fluorescently green dot. In the actual experiment the DNA is not fluorescently labeled and hence not visible._
 
 ### 1. Import a video in Fiji
 Open the example dataset ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) in Fiji. This will open the video in a new screen. Use the slider below the video to go through all recorded frames.
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='450'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450'/></div>
 
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img1.png' width='450' />
 <img align='center' src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img2.png' width='450' />
