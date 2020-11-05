@@ -4,12 +4,15 @@ title: "How to use Scriptable Widgets"
 permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 ---
 
+_level: advanced, duration: 15 min_
+
 This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'TestVideo_archive_var.yama' Molecule Archive from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
 In the upcoming sections all four scriptable widgets are described with an example. These sections are not dependent on each other and can be completed independent of each other.
 Please note that the fifth scriptable widget 'Beaker' is not addressed in this tutorial. The 'Beaker' widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the [documentation section.](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/)
 
-<div style="text-align: center"><img src='{{site.baseurl}}/tutorials/img/script/img1.png' width="550"/></div>
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/script/img1.png' width='550'/></div>
 
 
 ### 1. Category Chart - Plot the Mean Variance Value vs. Tag
@@ -23,7 +26,7 @@ To make the plot, the script first has to make two categories: 'Active'-tagged m
 
 First, open the Category Chart widget in the **Rover** Dashboard toolbar. Switch to the script tab (<>) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: 'var'). Press the refresh button to load the plot. Switch back to the plot tab.
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/script/img2.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/script/img2.png' width='550'/></div>
 
 
 ```python
@@ -57,7 +60,7 @@ yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)] #Define the yvalues as the
 
 ```
 
-<img src='{{site.baseurl}}/tutorials/img/script/img3.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/script/img3.png' width='550'/></div>
 
 There seems to be a clear difference in the variance values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger variance, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal variance.
 
@@ -74,7 +77,7 @@ The data included in the figure can be selected by setting values for xmin and x
 
 Open the histogram widget in **Rover** dashboard by clicking on the icon in the toolbar. Move to the script tab (<>) and replace the example script with the script below. Make sure to adapt the script below to match the correct parameter name (in this example: 'var') and the desired xmin, xmax, ymin, ymax values. To display this histogram, click the refresh icon in the far right.
 
-<img src='{{site.baseurl}}/tutorials/img/Tvar/img5.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/Tvar/img5.png' width='550'/></div>
 
 
 ```python
@@ -114,7 +117,7 @@ for molecule in archive.molecules().iterator():
 
 In the example dataset most tracked molecules have a variance below ~15. To explore the subset of the data with value <15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise.
 
-<img src='{{site.baseurl}}/tutorials/img/Tvar/img6.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/Tvar/img6.png' width='550'/></div>
 
 
 
@@ -134,7 +137,7 @@ The extended script consists of multiple parts:
 
 Open the 'XY Chart' widget and switch to the scripting tab (<>). Replace the example script by the script below. Press the refresh icon to render the plot. Note that in this example all error values are set to 0 since no error information is available.
 
-<img src='{{site.baseurl}}/tutorials/img/script/img4.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/script/img4.png' width='550'/></div>
 
 
 ```python
@@ -321,7 +324,9 @@ series10_error = [0]*len(series10_yvalues)
 
 The plot shows that all traces have a similar slope but vary in their tracked length.
 
-<img src='{{site.baseurl}}/tutorials/img/script/img5.png' width='650' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/script/img5.png' width='650'/></div>
+
+When dealing with larger datasets the code displayed above should be converted to an automated version in which all series-specific values are assigned automatically. This is left as an exercise to the reader.
 
 
 ### 4. Bubble Chart - Plot the variance vs. Track Length
@@ -333,7 +338,7 @@ To answer the question 'Are longer tracks associated with higher variances?' the
 
 Open the 'Bubble Chart' widget in the **Rover** dashboard toolbar and move to the script tab (<>). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: 'var'). Press the refresh icon to render the plot.
 
-<img src='{{site.baseurl}}/tutorials/img/Tvar/img7.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/Tvar/img7.png' width='550'/></div>
 
 ```python
 #@ MoleculeArchive archive
@@ -379,4 +384,4 @@ for molecule in archive.molecules().iterator():
 	series1_label.append(molecule.getUID()) #Make a list of the UIDs
 ```
 
-<img align='center' src='{{site.baseurl}}/tutorials/img/Tvar/img8.png' width='550' />
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/Tvar/img8.png' width='550'/></div>
