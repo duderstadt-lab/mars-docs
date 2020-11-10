@@ -4,457 +4,168 @@ title: Flow Magnetic Tweezers Pipeline
 permalink: /examples/flow-Magnetic-Tweezers/index.html
 ---
 
-This example demonstrates a complete workflow for tracking and processing the motion of beads tethered to individual DNA molecules. The example video provided was collected using a novel force spectroscopy technique called Flow Magnetic Tweezers (Agarwal et al., unpublished). The technique enables multidimensional force manipulation of individual molecules. Here individual DNAs are stretched by a combination of lateral and vertical forces from flow and magnetic tweezers, respectively. During the experiment, DNA molecules are probed by changing the flow and supercoiled through the application of torque using magnet rotation. Finally, *E.coli* DNA gyrase is introduced into the flowcell. Gyrase relaxes positive supercoils in the DNA and introduces negative supercoils (Nöllmann *et al.*, 2007). These transformations lead to lengthening and shorting of the DNA observed as changes in the bead position as a function of time.
+#### Quick summary
 
-The first step in the workflow is tracking the beads as a function of time using the Mars [Peak Tracker](../../docs/image/PeakTracker). Once optimal peak finding and tracking settings have been found this command generates a MoleculeArchive containing the tracking results. The remainder of the example relies on a script that automates the process of feature recognition by calculating a series of single value parameters for the slopes and differences within and between regions of interest. In one step this script also tags molecules based on thresholds for each feature. In Mars tags allow for rapid and efficient reslicing of data. Subsets of molecules that exhibit unique combinations of behaviors can be rapidly called up and processed. Once the archive is tagged and parameterised, a final `.csv` file is generated with necessary data to make plots showing the velocity of coiling by DNA Gyrase vs the start time of events. Have fun Tweezing. <br>
+Topoisomerases mediate DNA topology during different processes, like DNA replication and transcription, and are important to compact DNA. DNA gyrase from *E. coli* is an example of such a topoisomerase.
+In this example, the interaction between gyrase and DNA is studied using a flow magnetic tweezers set-up (a combination of magnetic tweezers and a flow stretching assay). The huge dataset is analyzed using MARS highlighting its ability to sort and store tracking information, parameters, and filtering tags in a highly reproducible manner.
 
-Gyrase is a bacterial enzyme that maintains the topology of chromosomes and facilitates important processes like DNA replication and transcription. It does so by opening the G-segment (gate) and passing the T-segment (transfer) through it and religating the DNA G-segment. This results in a -2 change in linking number. In the cell, gyrase using energy from ATP to resolve positive supercoils and introduce negative supercoils as shown in the figure. <br><br>
+The example gives an overview of how a real data set would be analysed with MARS starting from tracking single molecules, sorting the traces by calculated features, over to producing a final publishable plot. Next to this, the scripting feature in Fiji is used to calculate parameters in an automated fashion.
 
-<a style='text-decoration: none; color: orange;'>
-  <img src='{{site.baseurl}}/examples/img/fmt/gyrase_cycle.png' style='width: 950px'>
+
+#### <a name="reference"></a>Table of contents
+
+- [Background information](#background)
+  - [The flow magnetic tweezers set up](#FMT)
+  - [Gyrase](#gyr)
+  - [The assay](#assay)
+  - [The MARS workflow](#workflow)
+- [Tracking of the single molecule data](#tracking)
+- [Add regions for different activities to the archive](#add)
+- [Classification using groovy scripts](#classification)
+- [Export data and plot with python](#export)
+- [Conclusion](#conc)
+
+
+
+#### <a name="background"></a>Background information
+
+Before the in depth analysis starts a general background about the experiment is given. For a very detailed description of the experiment and the set-up please refer to our publication: 'Multiplex flow magnetic tweezers reveal rare enzymatic events with single molecule precision' ([Agarwal, R., Duderstadt, K.E., Nat Commun 11, 4714 (2020).](https://www.nature.com/articles/s41467-020-18456-y))<sup>1</sup>.
+
+
+##### <a name="FMT"></a>The flow magnetic tweezers set up
+The method used is a novel force spectroscopy technique called ['flow magnetic tweezers'](https://www.nature.com/articles/s41467-020-18456-y)<sup>1</sup> (FMT). In FMT experiments, a magnetic tweezer set-up is combined with a flow stretching assay. In this way, stretching and shrinking movements of DNA molecules are observed in the x-direction instead of the z-direction as is the case in classical magnetic tweezer experiments. This allows for the imaging up to tens of thousands of molecules at the same time while retaining single-molecule resolution. Consequently, the ability to measure so many molecules at once makes the analysis of FMT datasets very challenging due to their size and complexity.
+
+In this experiment, individual DNA molecules tethered to a microscope slide are stretched by a combination of lateral and vertical forces from flow and magnetic tweezers, respectively. During the experiment, DNA molecules are probed by changing the flow and are supercoiled through the application of torque using magnet rotation.
+
+
+##### <a name="gyr"></a>Gyrase
+Gyrase is a bacterial enzyme that maintains the topology of chromosomes and thereby facilitates important processes like DNA replication and transcription [(Nöllmann et al., 2007)](https://www.nature.com/articles/nsmb1213)<sup>2</sup>. It does so by opening the G-segment (gate) and passing the T-segment (transfer) through it and religating the DNA G-segment. This results in a -2 change in linking number. In the cell, gyrase using energy from ATP to resolve positive supercoils and introduce negative supercoils as shown in the figure. This function is very important to compact the chromosome inside a cell and to mediate the topological stress during transcription and replication. The figure below illustrates the cycle of gyrase.  <br><br>
+
+
+<p align='center'>
+  <img src='{{site.baseurl}}/examples/img/fmt/gyrase_cycle.png' style='width: 700px'>
+</p>  
   <div style='width: 950px; text-align: center;'>Cycle of DNA gyrase</div>
 
-The single-molecule assay used here tethers DNA molecules to a slide surface and a super-paramagnetic bead. There is a constant flow resulting in a drag force on the molecule and also topological control of the DNA molecule as the bead is trapped in the magnetic field of the antiparallely mounted block magnets.<br>
+##### <a name="assay"></a>The assay
+To study the interaction between gyrase and DNA, DNA molecules are tethered to a functionalized glass slide surface and on the other side to a super-paramagnetic bead. These beads are rather large and can be imaged and tracked easily. The molecules are under a constant flow resulting in a drag force on the molecule. At the same time, there is also topological control of the DNA molecule as the bead is trapped in the magnetic field of the antiparallely mounted block magnets. When rotating the magnet, turns (positive and negative) can be introduced in the DNA similar to what would happen during biological processes on DNA. Furthermore the direction of the flow and the (drag) force can be changed by regulating the flow. Both features are used in different combinations to find out different properties of the DNA. An in-depth discussing of specific DNA characteristics probed in this experiment can be found [here](https://duderstadt-lab.github.io/mars-docs/examples/Additional-Information/index.html).
 
-During the assay, there are several checkpoints which characterize the bead and discussed in [Running analysis Pipeline: Selecting parameter boundaries and tags](#6-running-analysis-pipeline-selecting-parameter-boundaries-and-tags). Following these steps, the DNA is left positively coiled and gyrase is introduced: <br><br>
+The following figure illustrates the main experimental idea. DNA is positively supercoiled by turning the magnet on top. Next, after the addition of gyrase and ATP, the positive coils are resolved and negative supercoils are introduced. The timing and velocity of this process are monitored and analyzed throughout this example.
+<br><br>
 
-<a style='text-decoration: none; color: orange;'>
-  <img src='{{site.baseurl}}/examples/img/fmt/sm_assay.png' style='width: 950px'>
+
+
+<p align='center'>
+  <img src='{{site.baseurl}}/examples/img/fmt/sm_assay.png' style='width: 700px'>
+</p>  
   <div style='width: 950px; text-align: center;'>Gyrase reaction on Flow Magnetic Tweezers</div>
 
 
-### 1. Importing the video in FIJI
+##### <a name="workflow"></a>The MARS workflow
 
-Drag and drop the file `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442) in FIJI. Alternatively, you can select File -> Open.. -> and then choose the `FMT_Example_Video.tif`. This is a segment of the total field of view from a gyrase experiment. <br>
+To analyze the generated dataset, the single molecule beads are tracked using the build in tracker from MARS ([Peak Tracker](../../docs/image/PeakTracker)). A 'MoleculeArchive' is created containing all the tracking information of every single molecule. This archive is the centre of the analysis and will keep track of all calculated parameters, tags, and applied filters over time to ensure reproducibility. Parameters are calculated using scripts (e.g. groovy based) for different time points of the trace to be used later on to classify molecules with tags. A selection of molecules with certain tags can then be used for further analysis. Tables can be exported with specific information which can then be used in combination with other plotting tools (e.g. python) to create great data representation or with other software to analyse the data further. Keep in mind that this workflow is a result of extensive work on the topic for a couple of months.
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image001.png' width='950' />
+#### <a name="tracking"></a> Tracking of the single molecule data
 
-### 2. Opening tracker from Mars plugin: option -> MoleculeArchive Suite -> Image Processing -> Peak Tracker
+##### Importing the video in Fiji
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image002.png' width='950' />
+The file is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) to Fiji (the file can be accessed using this link: `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442)). For this example, a smaller video with only a segment of the total field of view from a gyrase experiment is provided. The white pixels in the field of view represent the magnetic beads and can either be single DNA-bead tethers, multiple DNA-bead tethers, or beads stuck on the surface. <br>
 
-### 3. Choosing boundaries and parameters for the peak finder and subsequent tracking
 
-The program uses Difference of Gaussian filter ([DoG filter](../../docs/image/DogFilterProperties)) to find peak position with sub pixel precision. Once peaks are found, the program tracks them through the stacks making a trajectory of the bead movement in xy-plane.
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image001.png' width='700' />
+</p>  
 
-After choosing appropriate settings for the DoG filter radius, Detection threshold and minimum distance between peaks, Preview checkbox displays the tracked peaks per frame. The Preview slice slider can we use to check the tracking of subsequent frames. <br>
+##### Opening tracker from Mars plugin
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image003.png' width='950' />
+The MARS plugin comes with a build in tracker. A simple example for using the tracker is explained in detail in the tutorial section and can be found [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). The program uses 'Difference of Gaussian filter' ([DoG filter](../../docs/image/DogFilterProperties)) to find peak position with sub pixel precision. Once peaks are found, the program tracks them through the stacks making a trajectory of the bead movement in xy-plane. In the screenshot below you can see the detection of single beads by the tracker (yellow crosses) and also the different parameters which can be set for the tracking which are stored in the archive (shown in the console).
 
-Once appropriate setting are chosen, the tracking can be started. Console here displays the steps and times, status bar the progress of peak fitting and tracking. <br>
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image004.png' width='950' />
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image003.png' width='700' />
+</p>  
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image004.png' width='700' />
+</p>  
+##### MARS GUI and archive
 
-### 4. MARS GUI and archive
+Once the tracking is done, an archive is created. The 'Info' widget shows how many molecules are tracked: in this case there are 24542 tracked molecules (the number can vary depending on the tracking settings). All molecules here have unique IDs (UUID) for traceability and display the x and y tracking information by default. In the next step these molecules are classified using tags.
 
-Once the tracking is done, an archive is made in memory. Console here displays the time taken. Here it took 23 minutes. It can vary depending on the system and the memory allotted to ImageJ. <br>
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image005.png' width='950' />
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image005.png' width='700' />
+</p>  
 
-This file can also be saved as a store where all molecules are saved as separate files and loaded on as-needed basis. This format is very memory efficient and still compatible with multi-threading. All molecules here have unique IDs. The x and y tracking information is given by default. At this point **`Step1_Add_Regions.groovy`**
-<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy?slice=0:15">
-</script>
-can be executed. <br>
+The screenshot below shows an example trace. The evolution of x and y over time is plotted. This trace shows the behavior which we are looking for.
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image006.png' width='950' />
 
-### 5. Adding regions of different activites to the archive
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image006.png' width='700' />
+</p>  
 
-The groovy script adds different regions as displayed. Like reversals, Region of gyrase activity, slope of supercoiling steps etc.
+#### <a name="add"></a>Add regions
 
-```groovy
+##### Adding regions for different activities to the archive
 
-//MarsRegion(name, column, start, end, hex color, opacity (0-1))
+In the experiment conducted, different flow settings and magnet rotations were applied at certain time points to probe for certain DNA behaviors. These time points are annotated in the archive using ‘regions’. In this example a [groovy script] (https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy))assigns these automatically. If you are interested in groovy scripting you can check out our tutorials [here](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/).
 
-metadata.putRegion(new MarsRegion("First Reversal RF", "slice", 100, 120, "#FFCA28", 0.2))
-metadata.putRegion(new MarsRegion("First Reversal FF", "slice", 200, 220, "#42A5F5", 0.2))
 
-metadata.putRegion(new MarsRegion("Gyrase Reaction", "slice", 4600, 6990, "#42A5F5", 0.2))
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image007.png' width='700' />
+</p>  
 
-```
+#### <a name="classification"></a>Classification using groovy scripts
 
-The Regions are used by the **`Step2_FMT_Pipeline.groovy`**
-<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step2_FMT_Pipeline.groovy?slice=0:15">
-</script>
-to calculate different parameters and tag molecules. <br>
+##### Selecting parameter boundaries and tags
+To classify the identified molecules in the archive parameters are calculated and compared to threshold values. In the case a specific threshold value is met a tag will be assigned to the molecule. By selecting a set of tags molecules can be filtered easily without having to remove data from the dataset. More information on the parameters calculated in this example as well as the tagging strategy can be found [here](https://duderstadt-lab.github.io/mars-docs/examples/Additional-Information/index.html). [Script 2]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step2_FMT_Pipeline.groovy) was applied on the MoleculeArchive to do these calculations for each molecule automatically. After running the script these parameters and tags can be found in the archive.
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image007.png' width='950' />
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image009.png' width='700' />
+</p>
 
-### 6. Running analysis Pipeline: Selecting parameter boundaries and tags
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image008.png' width='700' />
+</p>
 
-For the analysis pipeline stated previously, following figures explain the steps to characterize molecules in the archive. Following is a singly-tethered molecule showing a gyrase reaction. Notice that the trace is “flipped”, The coordinates for projected length here are given in microns. <br>
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image013.png' width='950' /> <br><br>
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image013.png' width='700' /> <br><br>
+</p>
 
- Notice all the parameters and values, these were calculated with the analysis pipeline. Only prerequisite is that the regions should be added. The regions shown here are labelled as such with the add regions file. Additional to the Parameters, molecules are also classified using tags. <br>
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image014.png' width='950' /> <br><br>
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image014.png' width='700' /> <br><br>
+</p>
 
-So how does the program know that the molecule shown above is a singly-tethered, coilable and what force the molecule experiences? The inputs to analyse these questions are shown here. They will be discussed in detail through rest of the page. <br>
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image015.png' width='600' /> <br><br>
 
-Different aspects of the molecules are analyzed. Shown below is the whole trace. With parameters on the right-hand side. <br>
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image016.png' width='950' /> <br><br>
 
-#### Reversal at the beginning
+#### <a name="export"></a> Create and export the final data for Python
 
-The zoom is set to initial part of the trace called reversal (starting from left side: beginning of the trace). The first 238 frames here show a flow reversal. The regions are named first reversal RF (reverse flow) and first reversal FF (forward flow). An Inbuilt function called region difference calculator is used. As the name suggest, it calculates the difference between the stated region. Here the parameter was rev_begin_x (reversal at the beginning for x coordinate). <br><br>
+##### Final data
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image019.png' width='600' /> <br><br>
+Now the data is analyzed and sorted it can be plotted using external programs like Python or Matlab. To do so a [Groovy script]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy) is applied that generates a csv file containing parameters from the filtered set of molecules. This script specifically looks for specific tags and then tries to find the maximum inclination in the positive and negative coiling step.
 
-```groovy
 
-//Get Regions form the metadata
+##### Plotting the dataset with Python
 
-First_Reversal_RF = metadata.getRegion("First Reversal RF")
-First_Reversal_FF = metadata.getRegion("First Reversal FF")
+To investigate positive uncoiling and negative coiling rates a plot is made which shows these rates with respect to the time point of measurement. Data from the csv file generated in the previous step is plotted using a [Python script](https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step4_scatter_plot.py). The plot generated nicely illustrates the difference in velocity depending on positive or negative coils.
 
-//First Reversal: Adding the Parameters rev_begin_x and rev_begin_y
 
-//RegionDifferenceCalculatorCommand.calcRegionDifference(molecule, xColumn, yColumn, regionOne, regionTwo, parameterName)
-RegionDifferenceCalculatorCommand.calcRegionDifference(molecule, "slice", "x", First_Reversal_RF, First_Reversal_FF, "rev_begin_x")
-RegionDifferenceCalculatorCommand.calcRegionDifference(molecule, "slice", "y", First_Reversal_RF, First_Reversal_FF, "rev_begin_y")
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image012.png' width='600' />
+</p>
 
-//reversal start
-if (molecule.getParameter("rev_begin_x") > reversalLowerBound &&\
-  molecule.getParameter("rev_begin_x") < reversalUpperBound) {
-  molecule.addTag("mobile_begin")
-}
+#### <a name="conc"></a> Conclusion
+This example illustrates how to go from a huge data set to a figure which can be used for a publication. Because MARS stores every information during the analysis process everyone can reproduce the steps. Furthermore, if one wants to revise the parameters or thresholds one can easily start over because no trace was deleted in the process.
 
-//reversal start neg
-if (molecule.getParameter("rev_begin_x") > reversalLowerBoundNeg &&\
-  molecule.getParameter("rev_begin_x") < reversalUpperBoundNeg) {
-  molecule.addTag("mobile_begin_neg")
-}
+If this example caught your attention please check out our more step by step ['tutorials'](https://duderstadt-lab.github.io/mars-docs/tutorials/) and try to use your own dataset afterwards. If you encounter a bug please contact us on the [forum](https://github.com/duderstadt-lab/mars-fx/issues).
 
-```
 
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image017.png' width='950' /> <br><br>
+#### References
 
+<sup>1</sup>Agarwal, R.; Duderstadt, K.E. (2020), "Multiplex flow magnetic tweezers reveal rare enzymatic events with single molecule precision", _Nat Commun_ *11*: 4714, https://doi.org/10.1038/s41467-020-18456-y
 
-The reversal threshold separate mobile beads from stuck beads. Also, some multiply-tethered beads can be classified using reversals.
 
-#### Magnet rotation at high force
-
-
-Following the reversal, magnets are rotated at 2rot/sec and high flow rate (20 &mu;l/min - ca. 2pN) for 1200 frames to distinguish singly-tethered molecules. Two different parameters are calculated here. <br>
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image022.png' width='600' /> <br><br>
-
-A singly-tethered bead is shown here. <br>
-
-```groovy
-
-//Get regions
-coil20_Positive_Peak = metadata.getRegion("coil20 Positive Peak")
-coil20_Negative_Peak = metadata.getRegion("coil20 Negative Peak")
-
-//RegionDifferenceCalculatorCommand.calcRegionDifference(molecule, xColumn, yColumn, regionOne, regionTwo, parameterName)
-//coil20
-RegionDifferenceCalculatorCommand.calcRegionDifference(molecule, "slice", "x", coil20_Positive_Peak, coil20_Negative_Peak, "coil20")
-
-//coilable20
-if (molecule.getParameter("coil20") > coilable20LowerBound &&\
-  molecule.getParameter("coil20") < coilable20UpperBound) {
-    molecule.addTag("coilable20")
-}
-
-```
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image020.png' width='950' /> <br><br>
-
-Here the magnets were rotated 150 turns in both positive and negative directions. Magrot20f is the region where the magnets are rotated. coil20 Negative Peak and coil20 Positive Peak are respective regions where sigma for DNA is highest for respective coilings. A single peak is observed here as DNA separates locally when negatively coiled, dissipating the torsion. This is not the case for bead that is tethered via multiple DNA molecules. To separate these molecules further, an additional region Slope_Neg_20 is calculated. <br>
-
-```groovy
-
-//Get regions
-Slope_Neg_20 = metadata.getRegion("Slope_Neg_20")
-
-//Calculate slopes
-output = table.linearRegression("slice","x", Slope_Neg_20.getStart(), Slope_Neg_20.getEnd())
-molecule.setParameter("Slope_Neg_20", output[2])
-
-//doubleCoiling
-if (molecule.getParameter("Slope_Neg_20") > doubleCoilingLowerBound &&\
-  molecule.getParameter("Slope_Neg_20") < doubleCoilingUpperBound) {
-    molecule.addTag("doubleCoiling")
-}
-
-```
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image021.png' width='950' /> <br><br>
-
-The Slope_Neg_20 parameter is the slope of the region shown. Following thresholds are empirically chosen.
-
-The tags here are doubleCoiling and coilable20 respectively.
-
-#### Force calculation
-
-Bead fluctuations lateral to flow direction are used to numerically ascertain force and length of the DNA molecule. As only the projected length is known, DNA is assumed to have Worm-like chain behavior.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image025.png' width='600' />
-
-The <var>&delta;</var><var>y</var><sup>2</sup> is the the mean squared displacement of the bead excursions in the y direction. They are taken from the Force2p5 region.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image026.png' width='600' /> <br><br>
-
-Other parameters such as temperature, persistanceLength, contourLength are given in the pipeline.
-
-The other two values for slidingForceWindow and stdSlidingForce are used to check if the bead, in the chosen, get transiently stuck. It the bead gets stuck, it registers as higher force. The sliding windows iteratively calculates mean and standard deviation of each window. If a particular window deviates more than threshold MSD, the bead is tagged as stuckForce. This also makes sense as MSD of these fluctuations are supposed to be constant throughout the region.
-
-```groovy
-
-//Get regions
-Force2p5 = metadata.getRegion("Force2p5")
-
-//Force Calculation and tagging
-logService.info("Calculating force...")
-archive.getMoleculeUIDs().parallelStream().forEach{ UID ->
-      Molecule molecule = archive.get(UID)
-      MarsTable table = molecule.getTable()
-
-	 double msdForce = table.msd("y_drift_corr", "slice", Force2p5.getStart(), Force2p5.getEnd())   //inserts different start and stop slice with each loop
-
-	 msdForce = msdForce*conversionPixelToMicron*conversionPixelToMicron
-	 double[] solution;
-	 try {
-	 	solution = MarsMath.calculateForceAndLength(persistenceLength, contourLength, temperature, msdForce);
-	 } catch (Exception e) {
-	 	return;
-	 }
-
-	 double force = solution[0]
-	 double length = solution[1]
-	 String force1 = "Force_PL35";			// make Force_2.5, Force_5 for different flow rates
-	 String length1 = "Length_PL35";			// similarly for length
-
-	 molecule.setParameter(force1, force);
-	 molecule.setParameter(length1, length);
-
-	 DoubleColumn msdColSlide = new DoubleColumn("MSDs")
-
-	  double MaxMSD = 0
-	  double MinMSD = 0
-
-      for (int row = 0; row < table.getRowCount() - slidingForceWindow; row++) {
-	      	if (table.get("slice",row) >= Force2p5.getStart() && table.get("slice",row) <= Force2p5.getEnd() && table.getRowCount() > row + slidingForceWindow) {
-				double msdSlideForce = table.msd("y_drift_corr","slice",table.get("slice",row),table.get("slice",row + slidingForceWindow))
-
-				if (msdSlideForce > MaxMSD)
-					MaxMSD = msdSlideForce
-
-				if (msdSlideForce < MinMSD)
-					MinMSD = msdSlideForce
-
-				msdColSlide.add(msdSlideForce)
-	      	}
-	  }
-
-	  MarsTable tempTable = new MarsTable("MSDs table")
-	  tempTable.add(msdColSlide)
-
-	  double msdSTD = tempTable.std("MSDs")
-	  double meanMSD = tempTable.mean("MSDs")
-
-	  if (msdSTD*stdSlidingForce > Math.abs(MaxMSD - meanMSD)) {
-	  	molecule.addTag("stuckForce")
-	  } else if (msdSTD*stdSlidingForce > Math.abs(meanMSD - MinMSD)) {
-	  	molecule.addTag("stuckForce")
-	  }
-
-      archive.put(molecule)
- }
-
-```
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image024.png' width='950' />
-
-#### Rotation at reaction flow rate
-
-Before the gyrase reaction, the molecule is supercoiled at reaction flow rate. This part of the trace shows the molecule being coiled negatively at first and then positively. Ultimately, the tether is left at +60 turns for the gyrase reaction.
-
-Similar to the coilable20 tag, coilable2p5 is a region difference calculation. It helps further refine finding optimal traces. The regions used for this tag are coil2p5 Peak and coil2p5 Background.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image033.png' width='600' />
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image028.png' width='950' />
-
-
-Positive Coiling Slope and Negative Coiling Slope regions are used as coordinate conversion tool from pixels to cycles/sec. Here the magnet rotation is 1 rot/sec and frame acquisition rate is 4 frames per second. Hence turns_per_slice is 1 rot/4 frames = 0.25. turns_per_cycle is one cycle of gyrase as it is a type II topoisomerase.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image034.png' width='600' />
-
-```groovy
-
-//Get regions
-Negative_Coiling_Slope = metadata.getRegion("Negative Coiling Slope")
-Positive_Coiling_Slope = metadata.getRegion("Positive Coiling Slope")
-
-
-//Calculate poscycles and negcycles on a molecules-by-molecule basis
-logService.info("Calculating molecule-by-molecule cycle numbers...")
-archive.getMoleculeUIDs().parallelStream().forEach({ UID ->
-      Molecule molecule = archive.get(UID)
-      MarsTable table = molecule.getTable()
-
-	  double[] pos_coils_per_slice = table.linearRegression("slice", "x_drift_corr", Positive_Coiling_Slope.getStart(), Positive_Coiling_Slope.getEnd())
-
-	  molecule.setParameter("pos_coil_slope", pos_coils_per_slice[2])
-
-	  	if (!table.hasColumn("poscycles"))
-			table.appendColumn("poscycles")
-
-		for (int row = 0; row < table.getRowCount(); row++) {
-			double conversion = (-1)*(turns_per_slice/pos_coils_per_slice[2])/turns_per_cycle
-			table.setValue("poscycles", row, conversion*table.getValue("x_drift_corr", row))
-		}
-
-	  double[] neg_coils_per_slice = table.linearRegression("slice", "x_drift_corr", Negative_Coiling_Slope.getStart(), Negative_Coiling_Slope.getEnd())
-
-	  molecule.setParameter("neg_coil_slope", neg_coils_per_slice[2])
-
-	  	if (!table.hasColumn("negcycles"))
-			table.appendColumn("negcycles")
-
-		for (int row = 0; row < table.getRowCount(); row++) {
-			double conversion = (1)*(turns_per_slice/neg_coils_per_slice[2])/turns_per_cycle
-			table.setValue("negcycles", row, conversion*table.getValue("x_drift_corr", row))
-		}
-
-      archive.put(molecule)
-})
-
-```
-
-#### Gyrase reaction
-
-Final part of the trace after all the checkpoints is the gyrase reaction.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image031.png' width='950' />
-
-In the gyrase reaction region, there are Before Enzyme and After Enzyme regions. As gyrase reactions are force dependent, for any force above ca. 0.5 pN, only positive coils are resolved (chi reaction). For lower forces, both positive coils are resolved and negative coils are introduced (alpha reactions). Following thresholds tag molecules either alpha or chimol. Also, the parameter activity_score is calculated in the Gyrase Reaction region.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image035.png' width='600' />
-
-```groovy
-
-//Calculating activity score
-.forEach({ UID ->
-    Molecule molecule = archive.get(UID)
-    MarsTable table = molecule.getTable()
-
-    if (table == null)
-        return
-
-	 double startTime = Gyrase_Reaction.getStart()
-     double endTime = Gyrase_Reaction.getEnd()
-
-     if (table.getValue("slice", table.getRowCount()-1) < Gyrase_Reaction.getEnd()) {
-       endTime = table.getValue("slice", table.getRowCount()-1) - 10
-     }
-
-    double gMax = -1000000
-    double gMin =1000000
-
-    for (int row=0; row<table.getRowCount();row++) {
-        double start = table.getValue("slice", row)
-        double end = table.getValue("slice", row)
-
-        if (start >= startTime && end <= endTime) {
-            double cMax = table.getValue("poscyclesG", row)
-            if (gMax < cMax)
-                gMax = cMax
-
-            double cMin = table.getValue("poscyclesG", row)
-            if (gMin > cMin)
-            	gMin = cMin
-        }
-    }
-
-	molecule.setParameter("activity_score", gMax - gMin)
-
-```
-
-**Additional Thresholds shown here:**
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image037.png' width='600' />
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image036.png' width='600' />
-
-```groovy
-
-//From the reversal parameters calculated
-
-//stuckRev
-if (Math.abs(molecule.getParameter("rev_begin_x")) < stuckRevThreshold &&\
-Math.abs(molecule.getParameter("rev_begin_y")) < stuckRevThreshold) {
-  molecule.addTag("stuckRev")
-
-}
-
-//stuckMSD
-if (molecule.hasTag("stuckRev") &&\
-  molecule.getParameter("x_MSD") < stuckMSDThresholdx &&\
-  molecule.getParameter("y_MSD") < stuckMSDThresholdy) {
-    molecule.addTag("stuckMSD")
-}
-
-//shortTrajectory
-int deadSlice = table.getValue("slice",table.getRowCount()-1)
-if (deadSlice < minLength)
-  molecule.addTag("shortTrajectory")
-
-//Drift Calculator
-  DriftCalculatorCommand.calcDrift(archive, "stuckMSD", "x", "y", "x_drift", "y_drift", false, "mean", "end")
-
-//Drift Corrector
-  DriftCorrectorCommand.correctDrift(archive, driftZeroRegionStart, driftZeroRegionEnd, "x_drift", "y_drift", "x", "y", "x_drift_corr", "y_drift_corr", false)
-
-
-```
-
-dirftZeroRegion is the number of frames during drift correction where coordinates are set to 0 for this reference region.
-conversionPixeltoMicron is the pixels size in microns.
-
-
-
-stuckRevThreshold uses the reversal parameters rev_begin_x and rev_begin_y to tag immobile beads. There should be no motion during flow reversal in either x or y coordinate. These are tagged stuckRev.
-
-stuckMSDThresholdx and stuckMSDThresholdy parameters are calculated MSD for the whole trace for x and y respectively. Molecules within the threshold are tagged stuckMSD. There are than usd to calculate and correct drift.
-
-minLength tags molecules shortTrajectory. This filters out all the the trajectories which have less frames than the threshold provided here by excluding this tag.
-
-Once appropriate boundaries are chosen, the program can be run. Values for this particular example are set by default in the script.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image008.png' width='950' />
-
-Once the program runs, the activity can be traced. Here it took 7 minutes to analyse.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image009.png' width='950' />
-
-
-### 7. Final Data
-
-The data shown is now drift corrected, different parameters calculated on the right are unique to this particular molecules. The molecules are tagged and the categories can be displayed by searching for the tag (top left) which also shows count of the tags. Calculated columns are shown at the bottom.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image010.png' width='950' />
-
-At this point, **`Step3_generate_csv.groovy`**  
-<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy?slice=0:20">
-</script>
-can be executed. It extracts the coordinate, force and rate information form the analyzed data. Once the analysis pipeline is through, the tags singleTether (include: coilable20, exclude: doubleCoiling and shortTrajectory) and coilable2p5 are analysed with a sliding window which finds the maximum inclination for both positive and negative coiling from the poscycles and negcycles columns respectively.
-
-Once the Step 3 groovy is done, a csv file is generated in the directory of the archive named **`Gyrase_Scatter.csv`**.
-
-### 8. Plotting the dataset
-
-For plotting, the csv can either be placed in the same folder as the python script  **`Step4_scatter_plot.py`**
-<script src="http://gist-it.appspot.com/https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step4_scatter_plot.py?slice=0:20">
-</script>
-or a path for this csv can be provided to any given IDE. Here Spyder is used.
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image011.png' width='950' />
-
-<img align='center' src='{{site.baseurl}}/examples/img/fmt/image012.png' width='800' />
+<sup>2</sup> Nöllmann, M., Stone, M., Bryant, Z. et al. (2007), "Multiple modes of Escherichia coli DNA gyrase activity revealed by force and torque", _Nat Struct Mol Biol_ *14*: 264–271, https://doi.org/10.1038/nsmb1213

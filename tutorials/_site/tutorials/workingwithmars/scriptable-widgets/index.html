@@ -1,0 +1,366 @@
+<p>This tutorial focusses on working with the scriptable widgets. It highlights the functions of the ‘Category Chart’, ‘Histogram’, ‘XY Chart’ and ‘Bubble Chart’ widgets based on example data generated in the <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/">Let’s make a Molecule Archive</a> and <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/">Let’s calculate the variance</a> tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of <strong>Mars</strong>. Alternatively, download the ‘TestVideo_archive_var.yama’ Molecule Archive from the <a href="https://github.com/duderstadt-lab/mars-tutorials">git tutorials repository</a>.</p>
+
+<p>In the upcoming sections all four scriptable widgets are described with an example. These sections are not dependent on each other and can be completed independent of each other.
+Please note that the fifth scriptable widget ‘Beaker’ is not addressed in this tutorial. The ‘Beaker’ widget gives complete freedom to the user to script anything that is desired - from showing a weather prediction to creating a fully customised chart specific to a data type of interest. For more documentation on the widgets please visit the <a href="https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/">documentation section.</a></p>
+
+<div style="text-align: center"><img src="/tutorials/img/script/img1.png" width="550" /></div>
+
+<h3 id="1-category-chart---plot-the-mean-variance-value-vs-tag">1. Category Chart - Plot the Mean Variance Value vs. Tag</h3>
+<p><strong>Introduction</strong></p>
+
+<p>To gain insight in the relationship between the variance (var) and the assigned group (tag: ‘Active’ or no tag) a category chart is used. It plots the mean variance value of both groups as a bar plot.  This gives a first glance at the relation between variance and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/">Open a Molecule Archive in Python</a> tutorial.</p>
+
+<p>To make the plot, the script first has to make two categories: ‘Active’-tagged molecules and molecules without a tag. Next, the var values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues.</p>
+
+<p><strong>How to</strong></p>
+
+<p>First, open the Category Chart widget in the <strong>Rover</strong> Dashboard toolbar. Switch to the script tab (&lt;&gt;) and replace the example script with the script below. Make sure to insert the correct parameter name (in this example: ‘var’). Press the refresh button to load the plot. Switch back to the plot tab.</p>
+
+<p><img align="center" src="/tutorials/img/script/img2.png" width="550" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#@ MoleculeArchive archive
+#@OUTPUT String xlabel
+#@OUTPUT String ylabel
+#@OUTPUT String color
+#@OUTPUT String title
+#@OUTPUT String[] xvalues
+#@OUTPUT Double[] yvalues
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
+</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s">"#add8e6"</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s">"Category Chart"</span>
+<span class="n">xlabel</span> <span class="o">=</span> <span class="s">"Categories"</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s">"Mean var value"</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">60.0</span>
+
+<span class="n">xvalues</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Active'</span><span class="p">,</span><span class="s">'NotActive'</span><span class="p">]</span> <span class="c1">#Name the categories to be displayed
+</span><span class="n">list1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">UID</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">getMoleculeUIDs</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">hasTag</span><span class="p">(</span><span class="s">'Active'</span><span class="p">):</span> <span class="c1">#Check if an entry is tagged 'Active'
+</span>        <span class="n">list1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">getParameter</span><span class="p">(</span><span class="s">'var'</span><span class="p">))</span> <span class="c1">#Make a list of var values
+</span>    <span class="k">else</span><span class="p">:</span>
+        <span class="n">list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">getParameter</span><span class="p">(</span><span class="s">'var'</span><span class="p">))</span> <span class="c1">#Make a list of var values for untagged molecules
+</span><span class="n">yvalues</span><span class="o">=</span><span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">),</span><span class="nb">sum</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">list2</span><span class="p">)]</span> <span class="c1">#Define the yvalues as the means of both lists
+</span>
+</code></pre></div></div>
+
+<p><img src="/tutorials/img/script/img3.png" width="550" /></p>
+
+<p>There seems to be a clear difference in the variance values in both categories. This was to be expected: active molecules are expected to move quite some distance over the DNA during the experiment resulting in a larger variance, while not-Active molecules are expected to stay more or less in the same position resulting in a minimal variance.</p>
+
+<h3 id="2-histogram---plot-a-histogram-of-variance-values">2. Histogram - Plot a Histogram of variance values</h3>
+<p><strong>Introduction</strong></p>
+
+<p>A histogram is a good way to familiarise oneself with the spread in the variance in the dataset. The frequency of occurrence of a certain value is plot against the value itself and gives a first indication of the presence of a certain distribution in the data.</p>
+
+<p>The script for this histogram is fairly simple. After setting the global outputs the series1_values list is appended with the calculated variance of each molecule. This data is used to calculate the frequency of values internally to create the histogram.
+The data included in the figure can be selected by setting values for xmin and xmax. This enables the user to either include all data points by using xmin=min(var_values) and xmax=max(var_values) or selecting a smaller region of interest.</p>
+
+<p><strong>How to</strong></p>
+
+<p>Open the histogram widget in <strong>Rover</strong> dashboard by clicking on the icon in the toolbar. Move to the script tab (&lt;&gt;) and replace the example script with the script below. Make sure to adapt the script below to match the correct parameter name (in this example: ‘var’) and the desired xmin, xmax, ymin, ymax values. To display this histogram, click the refresh icon in the far right.</p>
+
+<p><img src="/tutorials/img/Tvar/img5.png" width="550" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#@ MoleculeArchive archive
+#@OUTPUT String xlabel
+#@OUTPUT String ylabel
+#@OUTPUT String title
+#@OUTPUT Integer bins
+#@OUTPUT Double xmin
+#@OUTPUT Double xmax
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
+</span>
+<span class="c1"># Set global outputs
+</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s">"Variance"</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s">"Frequency"</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s">"Variance"</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">xmin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">150.0</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">60.0</span>
+
+<span class="c1"># Series 1 Outputs
+#@OUTPUT Double[] series1_values
+#@OUTPUT String series1_strokeColor
+#@OUTPUT Integer series1_strokeWidth
+</span>
+<span class="n">series1_strokeColor</span> <span class="o">=</span> <span class="s">"black"</span>
+<span class="n">series1_strokeWidth</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">series1_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">molecules</span><span class="p">()</span><span class="o">.</span><span class="n">iterator</span><span class="p">():</span>
+    <span class="n">series1_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getParameter</span><span class="p">(</span><span class="s">"var"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>In the example dataset most tracked molecules have a variance below ~15. To explore the subset of the data with value &lt;15 one can change the xmin and xmax values accordingly to show the histogram from for example x=0 to x=15. This is left for the reader as an exercise.</p>
+
+<p><img src="/tutorials/img/Tvar/img6.png" width="550" /></p>
+
+<h3 id="3-xy-chart---plot-all-active-traces-in-one-figure">3. XY Chart - Plot all ‘Active’ Traces in one Figure</h3>
+<p><strong>Introduction</strong></p>
+
+<p>To inspect whether all ‘Active’-tagged molecules behave similarly they are plotted in the same figure (y vs. slice) using the ‘XY Chart’ widget. As found in the <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/">Let’s calculate the Variance</a> tutorial there were 10 molecules tagged ‘Active’.</p>
+
+<p>The extended script consists of multiple parts:</p>
+<ul>
+  <li>Input/Output section: since the scriptable widgets are based on the <a href="https://imagej.net/Script_Parameters">script parameters</a> harvesting mechanism all specified inputs (the Molecule Archive) and outputs (all plot coordinates, plot metadata like colors and titles) have to be explicitly specified.</li>
+  <li>Global outputs section: sets the plot metadata like labels, title and min and max coordinates.</li>
+  <li>Make two lists with x and y coordinates: makes two lists containing all x and y coordinates of all traces tagged ‘Active’. Since these traces can start wherever on the field of view and do not all start at the same time (slice) these coordinates have to be adjusted to all start at y=0 and slice=0. This enables direct comparison between the traces.</li>
+  <li>Define colors of the stroke, the fill, and strokewidth.</li>
+  <li>Correct the x and y coordinates for each trace: correct by subtracting the min(slice) and min(y) respectively. This makes sure all traces start at slice=0 and y=0 in the plot. Note that since all output parameters need to be assigned explicitly their values also need to be assigned explicitly. In this scripting environment it is impossible to use a script that assigns these values automatically using matrices.</li>
+</ul>
+
+<p><strong>How to</strong></p>
+
+<p>Open the ‘XY Chart’ widget and switch to the scripting tab (&lt;&gt;). Replace the example script by the script below. Press the refresh icon to render the plot. Note that in this example all error values are set to 0 since no error information is available.</p>
+
+<p><img src="/tutorials/img/script/img4.png" width="550" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#@ MoleculeArchive archive
+#@OUTPUT String xlabel
+#@OUTPUT String ylabel
+#@OUTPUT String title
+#@OUTPUT Double xmin
+#@OUTPUT Double xmax
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
+</span>
+<span class="c1">#@OUTPUT Double[] series1_xvalues
+#@OUTPUT Double[] series1_yvalues
+#@OUTPUT Double[] series1_error
+#@OUTPUT Double[] series2_xvalues
+#@OUTPUT Double[] series2_yvalues
+#@OUTPUT Double[] series2_error
+#@OUTPUT Double[] series3_xvalues
+#@OUTPUT Double[] series3_yvalues
+#@OUTPUT Double[] series3_error
+#@OUTPUT Double[] series4_xvalues
+#@OUTPUT Double[] series4_yvalues
+#@OUTPUT Double[] series4_error
+#@OUTPUT Double[] series5_xvalues
+#@OUTPUT Double[] series5_yvalues
+#@OUTPUT Double[] series5_error
+#@OUTPUT Double[] series6_xvalues
+#@OUTPUT Double[] series6_yvalues
+#@OUTPUT Double[] series6_error
+#@OUTPUT Double[] series7_xvalues
+#@OUTPUT Double[] series7_yvalues
+#@OUTPUT Double[] series7_error
+#@OUTPUT Double[] series8_xvalues
+#@OUTPUT Double[] series8_yvalues
+#@OUTPUT Double[] series8_error
+#@OUTPUT Double[] series9_xvalues
+#@OUTPUT Double[] series9_yvalues
+#@OUTPUT Double[] series9_error
+#@OUTPUT Double[] series10_xvalues
+#@OUTPUT Double[] series10_yvalues
+#@OUTPUT Double[] series10_error
+</span>
+<span class="c1">#@OUTPUT String series1_fillColor
+#@OUTPUT String series1_strokeColor
+#@OUTPUT Integer series1_strokeWidth
+#@OUTPUT String series2_fillColor
+#@OUTPUT String series2_strokeColor
+#@OUTPUT Integer series2_strokeWidth
+#@OUTPUT String series3_fillColor
+#@OUTPUT String series3_strokeColor
+#@OUTPUT Integer series3_strokeWidth
+#@OUTPUT String series4_fillColor
+#@OUTPUT String series4_strokeColor
+#@OUTPUT Integer series4_strokeWidth
+#@OUTPUT String series5_fillColor
+#@OUTPUT String series5_strokeColor
+#@OUTPUT Integer series5_strokeWidth
+#@OUTPUT String series6_fillColor
+#@OUTPUT String series6_strokeColor
+#@OUTPUT Integer series6_strokeWidth
+#@OUTPUT String series7_fillColor
+#@OUTPUT String series7_strokeColor
+#@OUTPUT Integer series7_strokeWidth
+#@OUTPUT String series8_fillColor
+#@OUTPUT String series8_strokeColor
+#@OUTPUT Integer series8_strokeWidth
+#@OUTPUT String series9_fillColor
+#@OUTPUT String series9_strokeColor
+#@OUTPUT Integer series9_strokeWidth
+#@OUTPUT String series10_fillColor
+#@OUTPUT String series10_strokeColor
+#@OUTPUT Integer series10_strokeWidth
+</span>
+<span class="c1"># Set global outputs
+</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s">"Time point (T)"</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s">"Displacement (Y)"</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s">"XY Chart"</span>
+<span class="n">xmin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mi">35</span>
+
+<span class="c1"># Make two lists containing the lists of x and y coordinates of the molecules tagged 'Active'
+</span><span class="n">list1_x</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">list1_y</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">UID</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">getMoleculeUIDs</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">hasTag</span><span class="p">(</span><span class="s">'Active'</span><span class="p">):</span>
+        <span class="n">list1_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">getTable</span><span class="p">()</span><span class="o">.</span><span class="n">getColumnAsDoubles</span><span class="p">(</span><span class="s">"T"</span><span class="p">))</span>
+        <span class="n">list1_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">getTable</span><span class="p">()</span><span class="o">.</span><span class="n">getColumnAsDoubles</span><span class="p">(</span><span class="s">"y"</span><span class="p">))</span>
+
+<span class="c1"># Since all variables have to be explicitly defined, always adjust this part based on the amount of tagged molecules.
+</span><span class="n">series1_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series1_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series2_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series2_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series3_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series3_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series4_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series4_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series5_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series5_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series6_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series6_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series7_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series7_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series8_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series8_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series9_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series9_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series10_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series10_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Define the colors of the stroke, the fill, and strokewidth
+</span><span class="p">[</span><span class="n">series1_strokeColor</span><span class="p">,</span><span class="n">series2_strokeColor</span><span class="p">,</span><span class="n">series3_strokeColor</span><span class="p">,</span><span class="n">series4_strokeColor</span><span class="p">,</span><span class="n">series5_strokeColor</span><span class="p">,</span> <span class="n">series6_strokeColor</span><span class="p">,</span><span class="n">series7_strokeColor</span><span class="p">,</span><span class="n">series8_strokeColor</span><span class="p">,</span><span class="n">series9_strokeColor</span><span class="p">,</span><span class="n">series10_strokeColor</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s">"black"</span><span class="p">,</span><span class="s">"blue"</span><span class="p">,</span><span class="s">"red"</span><span class="p">,</span><span class="s">"green"</span><span class="p">,</span><span class="s">"yellow"</span><span class="p">,</span><span class="s">"cyan"</span><span class="p">,</span><span class="s">"orange"</span><span class="p">,</span><span class="s">"violet"</span><span class="p">,</span><span class="s">"pink"</span><span class="p">,</span><span class="s">"gray"</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">series1_fillColor</span><span class="p">,</span><span class="n">series2_fillColor</span><span class="p">,</span><span class="n">series3_fillColor</span><span class="p">,</span><span class="n">series4_fillColor</span><span class="p">,</span><span class="n">series5_fillColor</span><span class="p">,</span><span class="n">series6_fillColor</span><span class="p">,</span>
+<span class="n">series7_fillColor</span><span class="p">,</span><span class="n">series8_fillColor</span><span class="p">,</span><span class="n">series9_fillColor</span><span class="p">,</span><span class="n">series10_fillColor</span><span class="p">]</span><span class="o">=</span> <span class="p">[</span><span class="n">series1_strokeColor</span><span class="p">,</span><span class="n">series2_strokeColor</span><span class="p">,</span><span class="n">series3_strokeColor</span><span class="p">,</span><span class="n">series4_strokeColor</span><span class="p">,</span><span class="n">series5_strokeColor</span><span class="p">,</span> <span class="n">series6_strokeColor</span><span class="p">,</span><span class="n">series7_strokeColor</span><span class="p">,</span><span class="n">series8_strokeColor</span><span class="p">,</span><span class="n">series9_strokeColor</span><span class="p">,</span><span class="n">series10_strokeColor</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">series1_strokeWidth</span><span class="p">,</span><span class="n">series2_strokeWidth</span><span class="p">,</span><span class="n">series3_strokeWidth</span><span class="p">,</span><span class="n">series4_strokeWidth</span><span class="p">,</span><span class="n">series5_strokeWidth</span><span class="p">,</span><span class="n">series6_strokeWidth</span><span class="p">,</span> <span class="n">series7_strokeWidth</span><span class="p">,</span><span class="n">series8_strokeWidth</span><span class="p">,</span><span class="n">series9_strokeWidth</span><span class="p">,</span><span class="n">series10_strokeWidth</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Assign the x and y values for each trace
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">series1_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">series1_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">series1_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series1_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">series2_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">series2_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">series2_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series2_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="n">series3_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="n">series3_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">series3_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series3_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">series4_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">series4_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+<span class="n">series4_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series4_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+    <span class="n">series5_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">4</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+    <span class="n">series5_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">4</span><span class="p">]))</span>
+<span class="n">series5_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series5_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">series6_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">series6_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+<span class="n">series6_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series6_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span>
+    <span class="n">series7_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span>
+    <span class="n">series7_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+<span class="n">series7_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series7_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span>
+    <span class="n">series8_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span>
+    <span class="n">series8_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span>
+<span class="n">series8_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series8_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span>
+    <span class="n">series9_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">8</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span>
+    <span class="n">series9_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">8</span><span class="p">]))</span>
+<span class="n">series9_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series9_yvalues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_x</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="n">series10_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_x</span><span class="p">[</span><span class="mi">9</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_y</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="n">series10_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">list1_y</span><span class="p">[</span><span class="mi">9</span><span class="p">]))</span>
+<span class="n">series10_error</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">series10_yvalues</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The plot shows that all traces have a similar slope but vary in their tracked length.</p>
+
+<p><img src="/tutorials/img/script/img5.png" width="650" /></p>
+
+<h3 id="4-bubble-chart---plot-the-variance-vs-track-length">4. Bubble Chart - Plot the variance vs. Track Length</h3>
+<p><strong>Introduction</strong></p>
+
+<p>To answer the question ‘Are longer tracks associated with higher variances?’ the variance of each molecule is plotted against the track length using the ‘Bubble Chart’ widget. To do so, the track length is provided as xvalues in the script and the var values as yvalues of the series. As an extra feature the molecule UUIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UUID is shown.</p>
+
+<p><strong>How to</strong></p>
+
+<p>Open the ‘Bubble Chart’ widget in the <strong>Rover</strong> dashboard toolbar and move to the script tab (&lt;&gt;). Replace the example script by the script below and make sure to adjust the parameter name to match the name in the archive (in this example: ‘var’). Press the refresh icon to render the plot.</p>
+
+<p><img src="/tutorials/img/Tvar/img7.png" width="550" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#@ MoleculeArchive archive
+#@OUTPUT String xlabel
+#@OUTPUT String ylabel
+#@OUTPUT String title
+#@OUTPUT Double xmin
+#@OUTPUT Double xmax
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
+</span>
+<span class="c1"># Set global outputs
+</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s">"Track length (T)"</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s">"Variance"</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s">"Bubble chart"</span>
+
+<span class="n">xmin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mi">160</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mi">125</span>
+
+<span class="c1"># Series 1 Outputs
+#@OUTPUT Double[] series1_xvalues
+#@OUTPUT Double[] series1_yvalues
+#@OUTPUT Double[] series1_size
+#@OUTPUT String[] series1_label
+#@OUTPUT String[] series1_color
+#@OUTPUT String series1_markerColor
+</span>
+<span class="n">series1_markerColor</span> <span class="o">=</span> <span class="s">"lightgreen"</span>
+
+<span class="n">series1_xvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series1_yvalues</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series1_size</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series1_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">series1_label</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">molecules</span><span class="p">()</span><span class="o">.</span><span class="n">iterator</span><span class="p">():</span>
+	<span class="n">series1_xvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getTable</span><span class="p">()</span><span class="o">.</span><span class="n">getRowCount</span><span class="p">())</span> <span class="c1">#Make a list of track lengths
+</span>	<span class="n">series1_yvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getParameter</span><span class="p">(</span><span class="s">"var"</span><span class="p">))</span> <span class="c1">#Make a list of var values
+</span>	<span class="n">series1_size</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span>
+	<span class="n">series1_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"blue"</span><span class="p">)</span>
+	<span class="n">series1_label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getUID</span><span class="p">())</span> <span class="c1">#Make a list of the UIDs
+</span></code></pre></div></div>
+
+<p><img align="center" src="/tutorials/img/Tvar/img8.png" width="550" /></p>

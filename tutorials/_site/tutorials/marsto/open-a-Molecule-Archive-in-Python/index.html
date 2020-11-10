@@ -1,0 +1,182 @@
+<p>In this tutorial you can find a set of instructions on how to work with Molecule Archives in Python by using Anaconda’s Jupyter. To do so, one first needs to create a special ‘Environment’. This environment only has to be build the first time. When inspecting Molecule Archives later on the environment can be selected and the user can proceed immediately to the ‘Molecule Archives in Python’ section of this tutorial.</p>
+
+<h3 id="create-the-environment">Create the Environment</h3>
+<p>First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this <strong><a href="https://github.com/imagej/tutorials">repository</a></strong> on GitHub (it is basically a storage place). It contains all the necessary packages needed to build a bridge between java and python and also makes sure that the correct version of the package is used. The next steps will explain how to create the environment step by step.</p>
+
+<p>The next part will use basic commands from Git. To get familiar with <strong><a href="https://git-scm.com">Git</a></strong> and its function we recommend the <strong><a href="https://github.com/jlord/git-it-electron/releases">Git-it workshop</a></strong>. The workshop consists of different challenges that explain how to use Git. So if you want to understand the commands in more detail you can work through the challenges but this is not needed for working through the tutorial.</p>
+
+<ol>
+  <li>
+    <p>Install <strong><a href="https://www.anaconda.com/distribution/">Anaconda</a></strong> (Python 3.7). Alternatively, one can also install <strong><a href="https://conda.io/miniconda.html">Miniconda</a></strong>. If Anaconda/Miniconda is already installed on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.</p>
+  </li>
+  <li>Download or clone (for those who are familiar with Git) the tutorial repository. To download the repository just go to the website and press download. To clone the repository use the following command.
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">git clone https://github.com/imagej/tutorials.git
+</span></code></pre></div>    </div>
+  </li>
+  <li>The environment.yml file has to be edited. To do so open the environment.yml file with a text editor (e.g. <strong><a href="https://atom.io">Atom</a></strong>). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">  - pyjnius=1.2.0
+  - seaborn
+</span></code></pre></div>    </div>
+    <p>Save the file in the same location and with the same name.</p>
+  </li>
+  <li>Open a terminal window and navigate to the repository folder using cd:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">cd tutorials
+</span></code></pre></div>    </div>
+    <p>For people who are not familiar with the cd command an example is given. Lets say the folder of interest is located inside the folder
+called my_documents (The file path would look something like this /Users/your_name/my_documents/tutorials). When a terminal window is opened the working directory is the users name (“your_name”). Now one has to navigate first in the my_documents directory with “cd my_documents”. To go one layer deeper one has to type “cd tutorials”. Basically the cd command navigates to the specified layer which lays deeper in the file path. With “cd ..” one can go one layer out again.</p>
+  </li>
+  <li>Create the environment:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">conda env create -f environment.yml
+</span></code></pre></div>    </div>
+    <p>It now uses the modified environment.yml file to create a python environment using the specified packages (like pyjnius version 1.2.0) which are specified inside.</p>
+  </li>
+  <li>Activate the environment in the terminal:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">conda activate scijava
+</span></code></pre></div>    </div>
+  </li>
+  <li>Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">jupyter notebook
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Now the environment is created and activated and everything is ready to start working with the data from the Molecule Archive.</p>
+
+<p>For the next section create a new notebook (New -&gt; Python 3). The code below can be copied and pasted in a cell and by using “Shift + Enter” the code inside will be executed (when pressing “Option/Alt + Enter” the cell will be executed and a new cell is created).</p>
+
+<p>Before continuing, one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned a folder called “notebooks” was copied. Inside one can find different examples which can be tried out. But this is not necessary for completing this tutorial.</p>
+
+<h3 id="molecule-archives-in-python">Molecule Archives in Python</h3>
+<p>To start working with a Molecule Archive in a Jupyter notebook first the Fiji/ImageJ and Python packages should be loaded.</p>
+
+<p><strong>Load Fiji/ImageJ and Python Packages</strong><br />
+Before starting one needs to load Fiji and all the necessary Python packages. To run the commands it uses the local copy of Fiji that is stored on your computer. It should be equipped with Mars (<strong><a href="https://duderstadt-lab.github.io/mars-docs/usage/">instructions how to get Mars ready on a local computer</a></strong>).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">imagej</span>
+<span class="c1"># One needs to add the path to the Fiji application on the computer
+</span><span class="n">ij</span> <span class="o">=</span> <span class="n">imagej</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s">'/Applications/Fiji.app'</span><span class="p">)</span>
+<span class="c1"># Python packages
+</span><span class="kn">import</span> <span class="nn">scyjava</span> <span class="k">as</span> <span class="n">sc</span>
+<span class="kn">from</span> <span class="nn">scyjava.convert</span> <span class="kn">import</span> <span class="n">_pandas</span>
+<span class="kn">import</span> <span class="nn">jnius</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">jnius</span> <span class="kn">import</span> <span class="n">autoclass</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="c1">#instantiate required classes to load archives
+</span><span class="n">File</span> <span class="o">=</span> <span class="n">autoclass</span><span class="p">(</span><span class="s">'java.io.File'</span><span class="p">)</span>
+<span class="n">SingleMoleculeArchive</span> <span class="o">=</span> <span class="n">autoclass</span><span class="p">(</span><span class="s">'de.mpg.biochem.mars.molecule.SingleMoleculeArchive'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to check the location.</p>
+
+<p><strong><a href="https://github.com/scijava/scyjava">Scijava</a></strong> is needed to transform java class objects into python objects. The <strong><a href="https://github.com/kivy/pyjnius">jnius package</a></strong> also helps to access Java classes. <strong><a href="https://numpy.org">Numpy</a></strong> is essential for scientific computing. <strong><a href="https://pandas.pydata.org">Pandas</a></strong> is a great tool to manipulate and analysis data sets. <strong><a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html">matplotlib.pyplot</a></strong> and <strong><a href="https://seaborn.pydata.org">seaborn</a></strong> are plotting libraries.</p>
+
+<p><strong>Load the Archive to the Jupyter Notebook</strong><br />
+Next, one loads a specified Molecule Archive in the Jupyter Notebook.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Here the archive is loaded. Add your file path here
+</span><span class="n">yamaFile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">'/Users/your_archive.yama'</span><span class="p">)</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">SingleMoleculeArchive</span><span class="p">(</span><span class="n">yamaFile</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Now one has to add the location of the .yama archive which will be used for analysis. The file path has to be added in the code line. Just
+right click on the file and “Get Info” and there the file path will be written out. For testing purposes the <a href="https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/TestVideo_archive_var.yama">‘TestVideo_archive_var.yama’</a> can be downloaded from the <a href="https://github.com/duderstadt-lab/mars-tutorials">git tutorials repository</a>.</p>
+
+<p><strong>Get Started with Simple Operations</strong><br />
+To start exploring the Molecule Archive in Python the most commonly used methods that can be called on it are presented. For a more extensive overview of all the methods available please visit the <a href="https://duderstadt-lab.github.io/mars-core/javadoc/">JavaDocs</a>.</p>
+
+<p><strong>Get the Number of Molecules</strong><br />
+As a start, the number of molecules in the archive is read out. The method which will be used for that is called “getNumberOfMolecules()”.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">archive</span><span class="o">.</span><span class="n">getNumberOfMolecules</span><span class="p">()</span>
+</code></pre></div></div>
+<p>The notebook will print out the total number of molecules. So here a function from java is used inside of a python script.</p>
+
+<p><strong>Get the UUIDs</strong><br />
+If one wants to know all the UUIDs from all your molecules the following line can be used. The method is called “getMoleculeUIDs()”.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">UID</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">getMoleculeUIDs</span><span class="p">():</span>
+    <span class="n">molecule</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getUID</span><span class="p">())</span>
+</code></pre></div></div>
+<p>The notebook will display all the UUIDs.</p>
+
+<p><strong>Get single Molecule Entries from the Archive</strong><br />
+There are two ways of excessing the data entries themselves. One can use the index from the archive. For example: excessing the first entry one can use the index “0” (indexing in Python starts with 0).</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#get the Table for the molecule at index 0 as a pandas dataframe
+</span><span class="n">tableByIndex</span> <span class="o">=</span> <span class="n">_pandas</span><span class="o">.</span><span class="n">table_to_pandas</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getTable</span><span class="p">())</span>
+<span class="n">tableByIndex</span>
+</code></pre></div></div>
+<p>One can also use the UUIDs to access certain molecules. Just copy and paste on of them into the following line of code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#get the Table for molecule UID as a pandas dataframe
+</span><span class="n">tableByUID</span> <span class="o">=</span> <span class="n">_pandas</span><span class="o">.</span><span class="n">table_to_pandas</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'22HniKENuPgefz6YHvk1Pm'</span><span class="p">)</span><span class="o">.</span><span class="n">getTable</span><span class="p">())</span>
+<span class="n">tableByUID</span>
+</code></pre></div></div>
+<p>The build-in function “table_to_pandas(data)” from <strong>“_pandas”</strong> (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is “pandas_to_table(data)” which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called “getTable()”.</p>
+
+<p><strong>A More elegant Way to excess Molecules: Mapping</strong><br />
+Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">molecules</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">UID</span><span class="p">:</span> <span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">),</span> <span class="n">archive</span><span class="o">.</span><span class="n">getMoleculeUIDs</span><span class="p">())</span>
+</code></pre></div></div>
+<p>Now it is possible to loop through the molecules and print their corresponding UIDs.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">molecules</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getUID</span><span class="p">())</span>    
+</code></pre></div></div>
+<p>Mapping makes it possible to excess the tags of the molecule. This for-loop will print all the molecules tagged with “reaction”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">molecules</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">UID</span><span class="p">:</span> <span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">),</span> <span class="n">archive</span><span class="o">.</span><span class="n">getMoleculeUIDs</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">molecules</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">molecule</span><span class="o">.</span><span class="n">hasTag</span><span class="p">(</span><span class="s">'reaction'</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">getUID</span><span class="p">())</span>
+</code></pre></div></div>
+<p>Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the calculated variance values are stored in a list() that is way the line can be in a separate cell.</p>
+
+<p><strong>Getting Parameters from the Data</strong>
+In this <strong><em><a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/">tutorial for calculating variance</a></em></strong> of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to excess the parameters. The parameter was called “var” in the archive and has to be specified if this parameter has to be called with “getParameter()”.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">VARs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">UID</span><span class="p">:</span> <span class="n">archive</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">UID</span><span class="p">)</span><span class="o">.</span><span class="n">getParameter</span><span class="p">(</span><span class="s">'var'</span><span class="p">),</span> <span class="n">archive</span><span class="o">.</span><span class="n">getMoleculeUIDs</span><span class="p">()))</span>
+</code></pre></div></div>
+<p>Finally, one can plot the distribution of the variance in a histogram using the matplotlib package.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">VARs</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">VARs</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">VARs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Variance'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'var'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'count'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>The seaborn package from python is really good for statistical plots and is based on the matplotlib package.
+When using seaborn the histogram can be plotted with one simple line. Kernel density estimation (kde) is turned off (“False”).
+Bins specifies the number of bins.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">VARs</span><span class="p">,</span><span class="n">kde</span> <span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now the file can be saved under File -&gt; Save as.</p>
+
+<p>This is the end of the tutorial. The environment can be deactivated with the following command in the terminal:</p>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">conda deactivate
+</span></code></pre></div></div>
+
+<p>Or simply by closing the notebook and the terminal window.</p>
+
+<p>Now you can make a bridge between the archive and python and use the great packages from python to create awesome plots.
+This connections offers unlimited possibilities to work with the data created in Mars.</p>
+
+<h3 id="restart-the-environment-and-reopen-a-jupyter-notebook">Restart the environment and reopen a Jupyter notebook</h3>
+
+<p>To reopen the Jupyter notebook one needs to activate the environment again.</p>
+
+<ol>
+  <li>Open a terminal window and navigate to the repository folder where the jupyter notebooks are stored:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">cd notebooks
+</span></code></pre></div>    </div>
+  </li>
+  <li>Activate the environment in the terminal:
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">conda activate scijava
+</span></code></pre></div>    </div>
+  </li>
+  <li>Select the notebook of interest from the list and open it.
+    <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">jupyter notebook my_notebook.ipnb
+</span></code></pre></div>    </div>
+  </li>
+</ol>

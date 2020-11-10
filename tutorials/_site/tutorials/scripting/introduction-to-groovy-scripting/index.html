@@ -1,0 +1,262 @@
+<p>This tutorial will introduce the basics of Mars scripting. Scripting gives the opportunity of (partly) automating data analysis. In this first tutorial the key aspects of scripting will be discussed: how to open the Fiji script editor, how to execute a script, access data from the Molecule Archive from within a script, examples for simple calculations, and coding in single lines: streams. The <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/">advanced scripting tutorial</a> will go into more detail on less straight-forward Groovy scripting in <strong>Mars</strong>. For more information on the Groovy scripting language the reader is referred to the <a href="https://groovy-lang.org/learn.html">Groovy documentation</a>.</p>
+
+<p>These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the <a href="https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/Groovy%20tutorial%20calculations%20in%20Python.ipynb">mars tutorials repository</a>.</p>
+
+<h3 id="1-how-to-open-the-script-editor-in-fiji">1. How to Open the Script Editor in Fiji</h3>
+<p>To follow along with this tutorial open the ‘TestVideo_archive.yama’ archive in <strong>Mars</strong> that was created in the <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/">Let’s Make a Molecule Archive</a> tutorial. Alternatively, download this archive from the <a href="https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files">mars tutorials repository</a>.</p>
+
+<p><img src="/tutorials/img/intro-groovy/img1.png" width="350" />
+<img src="/tutorials/img/intro-groovy/img2.png" width="450" /></p>
+
+<p>To open the script editor press File &gt; New &gt; Script in the Fiji menu as displayed in the image. This will open a new window to be used for scripting. Select the language of choice using the Language menu in the Fiji toolbar. In this case, set the language to ‘Groovy’. Notice that the script name changes to the .groovy extension after the Groovy language is selected.</p>
+
+<p><img src="/tutorials/img/intro-groovy/img3.png" width="450" /></p>
+
+<h3 id="2-how-to-execute-a-script">2. How to Execute a Script</h3>
+<p>Next, copy the short example script below and paste it into the scripting window. If this is done correctly, a grey 1 and 2 should show up in front of the lines annotating the line numbers. Run the script by pressing the run button. A dialogue window will pop up in which the archive of interest has to be selected. In this case choose ‘TestVideo_archive.yama’ and press OK. The script will now be run on the archive.</p>
+
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+sleep(10000)
+</code></pre>
+<p><img src="/tutorials/img/intro-groovy/img4.png" width="450" />
+<img src="/tutorials/img/intro-groovy/img5.png" width="250" />
+<img src="/tutorials/img/intro-groovy/img6.png" width="450" /></p>
+
+<p>The example script used in this tutorial is a rather illustrative one: it locks the Molecule Archive (i.e. disables editing functions temporarily) and displays the rotating mars icon to show the user that the archive has been locked. The archive unlocks automatically as soon as the sleep timer has ended.</p>
+
+<h3 id="3-the-general-outline-of-a-script">3. The General Outline of a Script</h3>
+<p>To learn how write useful scripts, first the general contents of a script are discussed. To make the platform as versatile as possible, Fiji (and therefore <strong>Mars</strong>) utilises <a href="https://imagej.net/Script_Parameters">script parameter harvesting</a>. This universal way of denoting input and output parameters allow for an easy interpretation of multiple languages in the software. On top of that, it makes the scripts interpretable in other platforms and script running environments. The syntax uses #@ to denote new parameters and explicitly specifies the parameter type (f.e. string, integer, double, MoleculeArchive) and the name of that parameter.</p>
+
+<p><strong>Script Parameter Syntax</strong></p>
+<pre><code class="language-Groovy">#@ Parametertype Name          #define an input parameter
+#@ OUTPUT Parametertype Name   #define an output parameter
+</code></pre>
+
+<p>In the example script used before, the parameter ‘archive’ is defined as an input of parameter type ‘MoleculeArchive’. In this way, it is clear to which object the script has to be applied. No output is declared: no output parameters are defined by the script.</p>
+
+<h3 id="4-access-data-from-the-molecule-archive-with-a-script">4. Access Data from the Molecule Archive with a Script</h3>
+<p>All functions that can be called on with accompanying documentation can be found in the <a href="https://duderstadt-lab.github.io/mars-core/javadoc/">Mars javadocs</a>. The expected arguments of each function are listed between the brackets of each defined function. Frequently used commands are discussed in this section of the tutorial.</p>
+
+<h4 id="41-get-functions-get-a-parameter-from-the-moleculearchive">4.1 ‘get’ Functions: get a Parameter from the MoleculeArchive</h4>
+
+<p><strong>1</strong> Get the number of molecules in the Molecule Archive</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.getNumberOfMolecules()
+</code></pre>
+
+<p><strong>2</strong> Get the list of molecule UUIDs</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+println(archive.getMoleculeUIDs())
+</code></pre>
+<p>This prints a comma separated list of the UUIDs in the output window in the lower half of the scripting window. For a neater looking table display of the UUIDs use a MarsTable.</p>
+
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+#@OUTPUT MarsTable table
+
+import de.mpg.biochem.mars.table.*
+import org.scijava.table.*
+
+table = new MarsTable("UIDs")
+GenericColumn col = new GenericColumn ("UID")
+archive.getMoleculeUIDs().forEach{UID -&gt; col.add(UID)}
+
+table.add(col)
+</code></pre>
+
+<p><img src="/tutorials/img/intro-groovy/img7.png" width="650" /></p>
+
+<p><strong>3</strong> Get the list of tags of a certain molecule</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.getTagList('UID') #Replace 'UID' by the actual UID of the molecule of interest.
+</code></pre>
+
+<p><strong>4</strong> Get the value of a parameter. For example the ‘var’ parameter   calculated for each molecule entry in the Molecule Archive.</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.get('UID').getParameter('var')
+</code></pre>
+
+<p><strong>5</strong> Get the data table for a molecule entry</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.get('UID').getTable()
+</code></pre>
+
+<p><strong>6</strong> Get the segment table for a molecule</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.get('UID').getSegmentsTable("xcolumn_name","ycolumn_name")
+</code></pre>
+
+<h4 id="42-has-functions-functions-used-to-check-if-an-entry-has-something">4.2 ‘has’ Functions: Functions used to check if an Entry has Something</h4>
+
+<p><strong>7</strong> Find out if a molecule has a tag</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.moleculeHasTag('UID','tag') #Replace 'UID' by the actual UID of the molecule of interest and 'tag' by the name of the tag.
+</code></pre>
+<p>Returns a boolean indicating whether this molecule has this tag (True) or not (False). Provide only the ‘UUID’ as input to find out if a molecule has any tag.</p>
+
+<p><strong>8</strong> Find out if a molecule has a segments table</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.get('UID').hasSegmentsTable("xcolumn_name","ycolumn_name")
+</code></pre>
+<p>Returns a boolean indicating whether this molecule has a segments table (True) or not (False).</p>
+
+<h4 id="43-general-functions-save-store-location">4.3 General Functions: Save, Store location</h4>
+
+<p><strong>9</strong> Save the archive</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.save()
+</code></pre>
+<p>Alternatively, use the saveAs() or saveAsVirtualStore() commands to save the archive with a different name or in virtual storage.</p>
+
+<p><strong>10</strong> Get the name of the archive</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.getName())
+</code></pre>
+
+<p><strong>11</strong> Retrieve the archive storage location</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.getStoreLocation()
+</code></pre>
+
+<h4 id="44-set-functions-set-certain-values-of-the-molecule-archive">4.4 ‘set’ Functions: Set Certain Values of the Molecule Archive</h4>
+
+<p><strong>12</strong> Define a new parameter in the Molecule Archive</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.get('UID').setParameter('parameter_name',value)
+</code></pre>
+
+<p><strong>13</strong> Set the name the Molecule Archive should be saved to</p>
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+archive.setName('name')
+</code></pre>
+
+<h3 id="5-examples-for-simple-calculations">5. Examples for Simple Calculations</h3>
+<h4 id="51-calculating-the-total-travelled-distance-in-the-y-direction">5.1 Calculating the total travelled distance in the y direction</h4>
+<p>In this example the total travelled distance of each molecule in the y direction is calculated and assigned to the parameter ‘dist_y’ declared for all molecule entries. Defining such a parameter might be of use for investigating the heterogeneity in the total distance travelled within the sample and can subsequently be plotted. The following definition is used:</p>
+
+<p>dist_y = max(y) - min(y)</p>
+
+<p>First, the input and output parameters have to be declared: the archive is declared as Molecule Archive type. Since the parameter is assigned directly to the archive as well it does not need to be declared as a separate output. Besides this, the molecule, table, util and scijava table classes are imported.</p>
+
+<p>Next, a loop is defined in which for each UUID the molecule entry is retrieved as well as the table containing coordinates and time points. The ymin and ymax values are calculated by applying the min() and max() functions respectively to the Table on the column named “y”. The distance is calculated as the difference between ymax and ymin and subsequently assigned to the parameter “dist_y”.</p>
+
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+
+import de.mpg.biochem.mars.molecule.*
+import de.mpg.biochem.mars.table.*
+import de.mpg.biochem.mars.util.*
+import org.scijava.table.*
+
+archive.getMoleculeUIDs().stream().forEach({UID -&gt;
+  Molecule molecule = archive.get(UID)
+  MarsTable table = molecule.getTable()
+  double ymin = table.min("y")
+  double ymax = table.max("y")
+  double dist = ymax - ymin
+  molecule.setParameter("dist_y",dist)
+ })
+
+</code></pre>
+
+<p>An inspection on the Molecule Archive shows that indeed “dist_y” is added as a parameter to the parameters tab for each molecule.</p>
+
+<p><img src="/tutorials/img/intro-groovy/img8.png" width="650" /></p>
+
+<p>To plot the mean distance travelled in the y direction with respect to tag the category chart widget script in the <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/">how to use scriptable widgets</a> tutorial can be adjusted slightly. Pasting the script into the <a href="https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/">category chart scriptable widget</a> on <a href="https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/"><strong>Rover</strong> dashboard</a> yields the chart displayed below.</p>
+
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+#@OUTPUT String xlabel
+#@OUTPUT String ylabel
+#@OUTPUT String color
+#@OUTPUT String title
+#@OUTPUT String[] xvalues
+#@OUTPUT Double[] yvalues
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
+
+color = "#add8e6"
+title = "Dist_y vs. Category"
+xlabel = "Categories"
+ylabel = "Mean dist_y value"
+ymin = 0.0
+ymax = 30.0
+
+xvalues = ['Active','NotActive'] #Name the categories to be displayed
+list1 = []
+list2 = []
+
+for UID in archive.getMoleculeUIDs():
+    if archive.get(UID).hasTag('Active'): #Check if an entry is tagged 'Active'
+        list1.append(archive.get(UID).getParameter('dist_y'))
+    else:
+        list2.append(archive.get(UID).getParameter('dist_y'))
+yvalues=[sum(list1)/len(list1),sum(list2)/len(list2)]
+</code></pre>
+
+<p>The chart shows that there is a clear difference in the travelled distance with respect to the y-axis between molecules tagged ‘Active’ compared to non-tagged molecules. In section 5.2 the variance on the dist_y parameter is calculated.</p>
+
+<p><img src="/tutorials/img/intro-groovy/img9.png" width="300" /></p>
+
+<p>The Molecule Archive generated in this tutorial can also be found in the <a href="https://github.com/duderstadt-lab/mars-tutorials">tutorial files repository</a> on GitHub.</p>
+
+<h4 id="52-calculate-the-variance-on-the-travelled-distance-in-the-y-direction-y_dist">5.2 Calculate the variance on the travelled distance in the y direction (y_dist)</h4>
+<p>The sample variance can be calculated according to the following formula:</p>
+
+<p><img src="/tutorials/img/intro-groovy/img10.png" width="300" /></p>
+
+<p>X: data point value (in this case the value of dist_y)<br />
+X bar: the mean (mean(dist_y))<br />
+n: number of data points</p>
+
+<p>The components of the script to calculate and assign this parameter (dist_y_var) for each molecule in the Molecule Archive is very similar to the previous script. First, the value of dist_y is calculated and assigned to each molecule entry. This step could be omitted in case the script written in section 5.1 already has been run.</p>
+
+<pre><code class="language-Groovy">#@ MoleculeArchive archive
+
+import de.mpg.biochem.mars.molecule.*
+import de.mpg.biochem.mars.table.*
+import de.mpg.biochem.mars.util.*
+import org.scijava.table.*
+
+def list = []
+def list2 = []
+
+archive.getMoleculeUIDs().stream().forEach({UID -&gt;
+  Molecule molecule = archive.get(UID)
+  MarsTable table = molecule.getTable()
+  double ymin = table.min("y")
+  double ymax = table.max("y")
+  double dist = ymax - ymin
+  double[] distlist = []
+  list.add(dist)
+  molecule.setParameter("dist_y",dist)
+ })
+
+double sum = list.sum()
+double len = list.size()
+double mean = sum/len
+
+archive.getMoleculeUIDs().stream().forEach({UID -&gt;
+  Molecule molecule = archive.get(UID)
+  double dist2 = molecule.getParameter("dist_y")
+  double diff = (dist2 - mean)
+  double diff2 = diff * diff
+  list2.add(diff2)
+ })
+
+double dist_var = list2.sum()/(len-1)
+archive.getMetadata(0).setParameter("dist_y_var",dist_var)
+
+</code></pre>
+
+<p><img src="/tutorials/img/intro-groovy/img11.png" width="550" /></p>
+
+<p>As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is further described in the <a href="https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/">advanced groovy scripting tutorial</a>.</p>
+
+<p>The archive generated in this tutorial can also be found in the <a href="https://github.com/duderstadt-lab/mars-tutorials">tutorial files repository</a> on GitHub.</p>
+
+<h3 id="6-scripting-with-a-virtually-stored-molecule-archive">6. Scripting with a virtually stored Molecule Archive</h3>
+<p>Note that in case an archive is stored virtually each script has to be extended with the line below.</p>
+
+<pre><code class="language-Groovy">archive.put(molecule)
+</code></pre>
+
+<p>In the case of a virtually stored archive, the script retrieves a molecule record to the non-virtual memory, it performs the action as written in the script, and continues. Subsequently, this additional line is required to place the modified record back in virtual storage.</p>

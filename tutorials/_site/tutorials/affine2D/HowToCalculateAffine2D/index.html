@@ -1,0 +1,30 @@
+<h3 id="introduction">Introduction</h3>
+
+<p>To interpret data from a two channel dualvideo dataset obtained with single-molecule TIRF studies these two channels need to be aligned. The Descriptor-based registration (2d/3d) in Fiji provide robust tools for determination of coordinate transformations and can be used excellently to calculate these transformation coordinates.</p>
+
+<p>A dataset with bright fluorescent beads fluorescing in both channels is required for this calculation. This will then serve as a coordination framework that should remain equal for samples measured afterwards with the same laser and micro mirror alignment settings. Such an example dataset can be found on the <a href="https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Affine2D">repository</a>.</p>
+
+<h3 id="how-to-run-the-command">How to run the command</h3>
+<p>First, open both images that should be aligned: image1 and image2 in this example. Next, locate the plugin in Fiji by using the search bar. Put in “registration” and select the “Descriptor-based registration (2d/3d)” plugin from the menu. Press run.</p>
+
+<p><img src="/tutorials/img/search.png" width="600" /></p>
+
+<p>Select the two images of interest (in this example “image1.tif” and “image2.tif”) and press ok.</p>
+
+<p><img src="/tutorials/img/dialog1.png" width="600" /></p>
+
+<p>Select the settings as shown in the screenshot below. Select the ‘Gaussian mask localization fit’ for subpixel alignment, and next to that for our data we have been doing an 2D affine transform.</p>
+
+<p><img src="/tutorials/img/dialog2.png" width="600" /></p>
+
+<p>A yellow box will be displayed on image 1. Make sure that the fluorescent dots are within this box and show up as selected with the green indicators shown. Adjust sigma 1 and the threshold to find the optimum settings. Sigma 2 can only be applied when 3D data is interpreted.</p>
+
+<p><img src="/tutorials/img/dialog3.png" width="600" /></p>
+
+<p><img src="/tutorials/img/dialog4.png" width="600" /></p>
+
+<p>Now look at the results shown in the fused image window. If everything went correctly the result for this particular example should look as follows.</p>
+
+<p><img src="/tutorials/img/dialog5.png" width="600" /></p>
+
+<p>Besides a visual output, the console outputs the actual calculated coordinates. These are needed as an input in Mars Rover to use the BigDataViewer (<a href="https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/">see BigDataViewer tutorial</a>) or when using the <a href="https://duderstadt-lab.github.io/mars-docs/docs/roi/TransformROIs/">Transform ROIs</a> command.</p>
