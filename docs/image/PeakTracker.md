@@ -38,6 +38,7 @@ There are a lot of inputs, but don't panic, they are all pretty simple to unders
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
 * *Preview* - When checked crosshairs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
+ * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
 * *T* - Scrollbar to select the frame to preview with live update.
 * *Find Negative Peaks* - If checked peak with negative pixel values are detected. This can be used in gradient images, where a negative gradient results in a negative peak. This is useful for detecting the edges of long DNA molecules and other structures.
 * *Fit Radius* - The radius of pixels used for peak fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 3 or 4 is a good estimate depending for typical single-molecule observations. Optimal fitting is done using a region with background pixels at the edges.
@@ -67,14 +68,15 @@ The following are the settings for tracking absent in the [PeakFinder](../PeakFi
 ### How to run this Command from a groovy script
 
 ```groovy
-#@ ImagePlus image
+#@ Dataset dataset
 #@ ImageJ ij
+#@OUTPUT MoleculeArchive archive
 
 import de.mpg.biochem.mars.molecule.*
-import de.mpg.biochem.mars.ImageProcessing.commands.*
+import de.mpg.biochem.mars.image.commands.*
 
 //Make an instance of the Command you want to run...
-final PeakTrackerCommand peakTracker = new PeakTrackerCommand()
+PeakTrackerCommand peakTracker = new PeakTrackerCommand()
 
 //Populates @Parameters Services etc. using the current context
 //which we get from the ImageJ input.
@@ -93,15 +95,15 @@ peakTracker.setThreshold(50)
 peakTracker.setMinimumDistance(5)
 peakTracker.setFindNegativePeaks(false)
 peakTracker.setFitRadius(4)
-peakTracker.setMinimumRsquared(0.0d)
+peakTracker.setMinimumRsquared(0)
 peakTracker.setVerboseOutput(false)
 peakTracker.setMaxDifferenceX(5)
 peakTracker.setMaxDifferenceY(5)
-peakTracker.setMaxDifferenceFrame(5)
+peakTracker.setMaxDifferenceT(5)
 peakTracker.setMinimumTrackLength(10)
 peakTracker.setIntegrate(true)
-peakTracker.setIntegrationInnerRadius(1)
-peakTracker.setIntegrationOuterRadius(3)
+peakTracker.setIntegrationInnerRadius(2)
+peakTracker.setIntegrationOuterRadius(4)
 peakTracker.setMicroscope("Microscope")
 peakTracker.setPixelLength(1)
 peakTracker.setPixelUnits("pixel")
@@ -111,7 +113,7 @@ peakTracker.setNorpixFormat(False)
 peakTracker.run();
 
 //Retrieve output from the command
-MoleculeArchive archive = peakTracker.getArchive()
+archive = peakTracker.getArchive()
 
 //If run in Fiji the archive will appear,
 //but you can continue to use it for further processing
