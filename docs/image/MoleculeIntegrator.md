@@ -19,7 +19,7 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img8.png' width='400'/></div>
 
-* *Image* - The selected image will by analyzed using the peaks in the RoiManger. This is a required input but doesn't show up in the dialog, it is just the open image you have have selected at the time you run the command.
+* *Image* - The selected image will by analyzed using the peaks in the RoiManager. This is a required input but doesn't show up in the dialog, it is just the open image you have have selected at the time you run the command.
 * *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
 * *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrate and serve as the local background to correct the inner region.
 * *LONG x0* - Upper left corner x0 position of Long wavelength ROI.
@@ -46,35 +46,90 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 ### How to run this Command from a groovy script
 
 ```groovy
-#@ ImagePlus image
+#@ Dataset dataset
 #@ ImageJ ij
-#@ RoiManager roiManager
-#@output MoleculeArchive(label="archive.yama") archive
+#@OUTPUT MoleculeArchive(label="archive.yama") archive
 
 import de.mpg.biochem.mars.table.*
 import de.mpg.biochem.mars.molecule.*
-import de.mpg.biochem.mars.ImageProcessing.*
+import de.mpg.biochem.mars.image.*
+import de.mpg.biochem.mars.util.*
+import de.mpg.biochem.mars.image.commands.*
+import java.util.HashMap
+import java.util.Map
 
 //Make an instance of the Command you want to run...
-final MoleculeIntegratorCommand moleculeIntegrator = new MoleculeIntegratorCommand();
+final MoleculeIntegratorCommand moleculeIntegrator = new MoleculeIntegratorCommand()
 
 //Populates @Parameters Services using the current context
 //which we get from the ImageJ input.
 moleculeIntegrator.setContext(ij.getContext())
 
-moleculeIntegrator.setImage(image)
-moleculeIntegrator.setInnerRadius(1)
-moleculeIntegrator.setOuterRadius(5)
+moleculeIntegrator.setInnerRadius(2)
+moleculeIntegrator.setOuterRadius(7)
 moleculeIntegrator.setLONGx0(0)
 moleculeIntegrator.setLONGy0(0)
-moleculeIntegrator.setLONGWidth(1024)
-moleculeIntegrator.setLONGHeight(500)
+moleculeIntegrator.setLONGWidth(50)
+moleculeIntegrator.setLONGHeight(25)
 moleculeIntegrator.setSHORTx0(0)
-moleculeIntegrator.setSHORTy0(524)
-moleculeIntegrator.setSHORTWidth(1024)
-moleculeIntegrator.setSHORTHeight(500)
-moleculeIntegrator.setMicroscope("Dobby")
-moleculeIntegrator.setRoiManager(roiManager)
+moleculeIntegrator.setSHORTy0(25)
+moleculeIntegrator.setSHORTWidth(50)
+moleculeIntegrator.setSHORTHeight(25)
+moleculeIntegrator.setMicroscope("Microscope")
+
+//Below is an example of how to manually add the lists of peaks positions
+//that should be integrated for all time points
+//Alternatively, the lines below could be removed and Roi can be taken from
+//the RoiManager. In that case the positions are assume to be constant
+//for all time points.
+
+String mol1UID = MarsMath.getUUID58()
+String mol2UID = MarsMath.getUUID58()
+String mol3UID = MarsMath.getUUID58()
+
+Map<Integer, Map<String, Peak>> longIntegrationMap = new HashMap<>()
+for (int t = 0; t < 50; t++) {
+	Map<String, Peak> peaks = new HashMap<>()
+	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 10.0d))
+	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 8d))
+	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 16.7d))
+	longIntegrationMap.put(t, peaks)
+}
+moleculeIntegrator.addIntegrationMap("FRET Red", 0, moleculeIntegrator
+	.getLONGInterval(), longIntegrationMap)
+
+Map<Integer, Map<String, Peak>> longIntegrationMap2 = new HashMap<>()
+for (int t = 0; t < 50; t++) {
+	Map<String, Peak> peaks = new HashMap<>()
+	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 10.0d))
+	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 8d))
+	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 16.7d))
+	longIntegrationMap2.put(t, peaks)
+}
+moleculeIntegrator.addIntegrationMap("Red", 2, moleculeIntegrator
+	.getLONGInterval(), longIntegrationMap2)
+
+Map<Integer, Map<String, Peak>> shortIntegrationMap = new HashMap<>()
+for (int t = 0; t < 50; t++) {
+	Map<String, Peak> peaks = new HashMap<>();
+	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 35d))
+	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 33d))
+	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 41.7d))
+	shortIntegrationMap.put(t, peaks)
+}
+moleculeIntegrator.addIntegrationMap("FRET Green", 0, moleculeIntegrator
+	.getSHORTInterval(), shortIntegrationMap)
+
+Map<Integer, Map<String, Peak>> shortIntegrationMap2 = new HashMap<>()
+for (int t = 0; t < 50; t++) {
+	Map<String, Peak> peaks = new HashMap<>()
+	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 35d))
+	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 33d))
+	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 41.7d))
+	shortIntegrationMap2.put(t, peaks)
+}
+moleculeIntegrator.addIntegrationMap("Blue", 1, moleculeIntegrator
+	.getSHORTInterval(), shortIntegrationMap2)
 
 //Run the Command
 moleculeIntegrator.run()
@@ -82,9 +137,3 @@ moleculeIntegrator.run()
 //Retrieve output from the command
 archive = moleculeIntegrator.getArchive()
 ```
-
-#### Future Applications
-
-Currently, this command will integrate fixed locations for all frames with correct color information independent of collection sequence. However, the implementation is written in a manner so that the integration module is a separate class and can easily be used in scripts independent of this command. Internally, the command uses a peak position list for integrating peaks in each frame. So in future versions it would be very easy to integrate moving spots and/or provide a MoleculeArchive and use the molecule position as a function of Time for integration.
-
-This command was coded with these possible future applications, however implementing these options depends on the need for them and the core modules can be used in scripts to accommodate a wide variety of workflows. But there are not current examples. That will also depend on projects needing custom integration options.
