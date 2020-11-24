@@ -27,7 +27,8 @@ This command is used to find high intensity spots or peaks in images. Typically 
 
  <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
- * *Preview* - When checked crosshairs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
+ * *Preview* - When checked rois will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
+ * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
  * *T* - Select the time point (T) to show peak finding results on in the video.
  * *Find Negative Peaks* - If checked peak with negative pixel values are detected. This can be used in gradient images, where a negative gradient results in a negative peak. This is useful for detecting the edges of long DNA molecules and other structures.
  * *Generate peak count table* - If checked a table will appear in which each row has the number of detected peaks for each slice. This is useful to look at bead loss as a function of time in the bead assays and bleaching for a given intensity in smTIRF data.
@@ -60,15 +61,15 @@ Several different kinds of output are possible depending on the settings used.
 ### How to run this Command from a groovy script
 
 ```groovy
-#@ ImagePlus image
+#@ Dataset dataset
 #@OUTPUT MarsTable peakTable
 #@ ImageJ ij
 
 import de.mpg.biochem.mars.table.*
-import de.mpg.biochem.mars.ImageProcessing.commands.*
+import de.mpg.biochem.mars.image.commands.*
 
 //Make an instance of the Command you want to run...
-final PeakFinderCommand peakFinder = new PeakFinderCommand()
+PeakFinderCommand peakFinder = new PeakFinderCommand()
 
 //Populates @Parameters Services etc.. using the current context
 //which we get from the ImageJ input...
@@ -78,9 +79,10 @@ peakFinder.setDataset(dataset)
 peakFinder.setUseROI(false)
 peakFinder.setX0(0)
 peakFinder.setY0(0)
-peakFinder.setWidth(1024)
-peakFinder.setHeight(1024)
+peakFinder.setWidth(50)
+peakFinder.setHeight(50)
 peakFinder.setChannel(0)
+peakFinder.setT(0)
 peakFinder.setUseDogFiler(true)
 peakFinder.setDogFilterRadius(1.8d)
 peakFinder.setThreshold(50)
@@ -88,7 +90,7 @@ peakFinder.setMinimumDistance(4)
 peakFinder.setFindNegativePeaks(false)
 peakFinder.setGeneratePeakCountTable(false)
 peakFinder.setGeneratePeakTable(true)
-peakFinder.setMinimumRsquared(0.01)
+peakFinder.setMinimumRsquared(0)
 peakFinder.setAddToRoiManager(false)
 peakFinder.setProcessAllFrames(true)
 peakFinder.setFitPeaks(true)
@@ -96,7 +98,6 @@ peakFinder.setFitRadius(4)
 peakFinder.setIntegrate(true)
 peakFinder.setIntegrationInnerRadius(1)
 peakFinder.setIntegrationOuterRadius(3)
-peakFinder.setVerboseOutput(true)
 
 //Run the Command
 peakFinder.run();
