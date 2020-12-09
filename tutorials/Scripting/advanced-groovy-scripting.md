@@ -184,7 +184,7 @@ archive.getMetadata(0).setParameter("disty_sigma_unactive",sigma_unactive)
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/advanced-groovy/img4.png' width='550'/></div>
 
-To plot the mean dist_y values and accompanying errors use the following script. In this example an XY Chart scriptable widget is used plotting the two categories as x=1 and x=2 in two different colors since this is the only chart type able to plot error bars. Note that even though this gives a good visual description of the dataset, the reader is referred to the [mars to python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial to make better looking plots using the seaborn and MatPlotLib libraries in Python instead.
+To plot the mean dist_y values and accompanying errors use the following script. In this example an XY Chart scriptable widget is used plotting the two categories as x=1 and x=2 in two different colors since this is the only chart type able to plot error bars. Note that even though this gives a good visual description of the dataset, the reader is referred to the [mars to python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial to make better looking plots using the seaborn and MatPlotLib libraries in Python instead. Note that for this script the language option has to be set to "Groovy".
 
 ```Groovy
 #@ MoleculeArchive archive
