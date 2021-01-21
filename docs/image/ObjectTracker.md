@@ -4,7 +4,7 @@ title: Object Tracker
 permalink: /docs/image/ObjectTracker/index.html
 ---
 
-This command is used to identify unspecified objects in microscopic images and track their position through frames. Classification by segmentation allows for the identification of these objects and their center of mass is tracked as the position of the object.
+This command is used to identify unspecified objects in microscopic images and track their position through frames. Classification by segmentation allows for the identification of these objects and their center of mass is tracked as the position of the object.  
 **Note**: the Object Tracker command computationally rather expensive. Hence, it is advised to run the command either with small videos or with larger videos on a computing cluster.
 
 #### How does object identification work?
