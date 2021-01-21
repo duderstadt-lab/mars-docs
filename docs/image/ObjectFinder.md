@@ -6,7 +6,7 @@ permalink: /docs/image/ObjectTracker/index.html
 
 This command is used to identify unspecified objects in microscopic images and track their position through frames. Classification by segmentation allows for the identification of these objects and their center of mass is tracked as the position of the object.
 
-#### How does this object identification work?
+#### How does object identification work?
 **Segmentation**  
 Objects are identified in the image through [segmentation](https://en.wikipedia.org/wiki/Image_segmentation). Image segmentation is the process of partitioning an image into segments (sets of pixels) in order to simplify. In the case of the Object Tracker tool the image is segmented based on pixel intensity values according to a set threshold. In the example below you see a segmentation of an artificial example image displaying a curved white feature against a black background. Through segmentation this object was identified as the yellow-outlined area.
 
@@ -48,11 +48,11 @@ As an example the Object Tracker settings can be applied on a standard Fiji samp
 * *Microscope* - The name of the microscope used for data collection. This name is included in the metadata record.
 * *Pixel length* - Length of a pixel in the microscope system used for data collection.
 * *Pixel units* - Units of the provided pixel length.
-* *Exclude* - List timepoints to exclude  from the tracking process. This allows the user to exclude frames from the analysis without having to delete them from the dataset irreversibly.
+* *Exclude* - List timepoints to exclude from the tracking process. This allows the user to exclude frames from the analysis without having to delete them from the dataset irreversibly.
 
 ### Output
 
-* *Molecule Archive* - A Molecule Archive with individual records for all tracked molecules as well as metadata information.
+* *Object Archive* - An Object Archive with individual records for all tracked molecules as well as metadata information.
 
 ### How to run this Command from a groovy script
 ```groovy
@@ -88,7 +88,7 @@ objectTracker.setVerboseOutput(false)
 objectTracker.setMicroscope("Microscope")
 objectTracker.setPixelLength(1)
 objectTracker.setPixelUnits("pixel")
-objectTracker.setExcludedTimePointsList("[0,2]")
+objectTracker.setExcludedTimePointsList()
 
 //Run the Command
 objectTracker.run();

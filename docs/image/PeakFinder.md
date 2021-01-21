@@ -8,10 +8,9 @@ This command is used to find high intensity spots or peaks in images. Typically 
 #### Inputs  
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img1.png' width='550'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img2.png' width='550'/></div>
 
  * *Image* - The active image selected will be used by the Peak Finder. So this is a required input but doesn't show up in the dialog.
- * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
+ * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box.
  * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
  * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
  * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
@@ -73,10 +72,6 @@ peakFinder.setContext(ij.getContext())
 
 peakFinder.setDataset(dataset)
 peakFinder.setUseROI(false)
-peakFinder.setX0(0)
-peakFinder.setY0(0)
-peakFinder.setWidth(50)
-peakFinder.setHeight(50)
 peakFinder.setChannel(0)
 peakFinder.setT(0)
 peakFinder.setUseDogFiler(true)
