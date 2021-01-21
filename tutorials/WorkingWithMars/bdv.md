@@ -37,8 +37,8 @@ Note that during this coupling step the path to the file is specified. When chan
 ### 3. Show the Tracked Molecule in the Video
 Now a connection between the MoleculeArchive and the file has been established the tracked molecule can be viewed in the original video. To do so, select a molecule of interest in **Rover** by selecting it in the 'Molecule' tab. Then open the video tool via Tools>Show Video in the top menu bar of Rover (see screenshot below). A dialog window opens.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img8.png' width='250'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img9.png' width='250'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img8.png' width='250'/>
+<img  src='{{site.baseurl}}/tutorials/img/bdv/img9.png' width='250'/></div>
 
 **Inputs**
 * View number - Select the number of viewing windows to be rendered. The position in these windows is correlated such that a selection of a different channel in each allows to look at the observed peak in multiple recorded colors. This can for example be used to study FRET single molecule data.
