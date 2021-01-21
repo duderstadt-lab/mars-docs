@@ -8,21 +8,23 @@ _level: advanced, duration: 10 min_
 
 This tutorial explores the **Rover** option to show a tracked molecule in the original video. This eminently useful function can be used for visual examination of the molecule after analysis for validation of the observed behavior. This would rule out flaws in tracking having a major impact on the drawn conclusion from the data.
 
-The video viewer is based on [BigDataViewer](https://imagej.net/BigDataViewer#Description)<sup>1</sup> and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5. To do so the [instructions](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer) supplied in their documentation is used.
+The video viewer is based on [BigDataViewer](https://imagej.net/BigDataViewer#Description)<sup>1</sup> and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5 or in the [XML/N5](https://github.com/saalfeldlab/n5) format. [Instructions](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer) to convert your video to the XML/HDF5 format can be found in the BigDataViewer documentation.
 
-Steps 1-3 are required to set up the connection between the Molecule Archive and the XML video. These only have to be executed once per Molecule Archive and can then be saved to the Molecule Archive. If the connection has been established and saved, step 4 and 5 can be executed independently. To start, download the ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) dataset from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
+Steps 1-3 are required to set up the connection between the Molecule Archive and the video. These only have to be executed once per Archive and can then be saved to the Archive for later reference. Please note that the explicit file path is saved, meaning that if the video files were to be stored at a different position, the file path would need to  be updated. If the connection has been established and saved, step 4 and 5 can be executed independently. To start, download the ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) dataset from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
-### 1. Converting the Video to XML/H5 Format
-First open the video of interest in Fiji as a stack. Next select the BigDataViewer plugin and select the function "Export Current Image as XML/HDF5". This will open a dialogue in which the export path has to be set. Press ok and wait until the export process has finished. Find the exported video at the specified file path.
+### 1. Converting the Video to XML/H5 or XML/N5 Format  
+First open the video of interest in Fiji as a stack. Next select the BigDataViewer plugin and select the function "Export Current Image as XML/HDF5" or select "Export Current Image as XML/N5". This will open a dialogue in which the export path has to be set. Press ok and wait until the export process has finished. Find the exported video at the specified file path.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img1.png' width='450'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img2.png' width='350'/></div>
+<div style="text-align: center">
+<img  src='{{site.baseurl}}/tutorials/img/bdv/img2.png' width='350'/>
+<img  src='{{site.baseurl}}/tutorials/img/bdv/img14.png' width='350'/></div>
 
 
 For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the [tutorial repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
-### 2. Coupling the XML File to the Molecule Archive
-The next step is to couple the generated XML file to the corresponding Molecule Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. (see circles on the image) Provide the desired name tag and press the + button. Select the XML file and continue.
+### 2. Coupling the file to the Molecule Archive
+The next step is to couple the generated HDF5 or N5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. (see circles on the image) Provide the desired name tag and press the + button. Select the file and continue. Make sure to select the correct format on the button left of the entry field by clicking on it to switch between N5 and HD5.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img3.png' width='450'/></div>
 
