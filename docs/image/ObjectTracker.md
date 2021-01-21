@@ -5,6 +5,7 @@ permalink: /docs/image/ObjectTracker/index.html
 ---
 
 This command is used to identify unspecified objects in microscopic images and track their position through frames. Classification by segmentation allows for the identification of these objects and their center of mass is tracked as the position of the object.
+**Note**: the Object Tracker command computationally rather expensive. Hence, it is advised to run the command either with small videos or with larger videos on a computing cluster.
 
 #### How does object identification work?
 **Segmentation**  
@@ -32,6 +33,7 @@ As an example the Object Tracker settings can be applied on a standard Fiji samp
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img12.png' width='550'/></div>
 
 * *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
+To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions on ROI tools can be found in this [video](https://www.youtube.com/watch?v=ZPS78T_-gUs&feature=youtu.be).
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
 * *Local otsu radius* - Specifies the surrounding radius in pixels that are used to calculate the local otsu threshold on which segmentation will be based. Selecting a too small region might result in the identification of noise as objects, a too large region might overlook objects.
 * *Minimum distance between object centers* - Specifies how much pixels need to be present between objects. Two objects closer to each other than this parameter will be merged into one object.

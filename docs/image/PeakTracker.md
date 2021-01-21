@@ -21,7 +21,8 @@ There are a lot of inputs, but don't panic, they are all pretty simple to unders
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img4.png' width='550'/></div>
 
 * *Image* - The active image selected will be used by the Peak Tracker. So this is a required input but doesn't show up in the dialog.
-* *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox.
+* *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox.
+To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions on ROI tools can be found in this [video](https://www.youtube.com/watch?v=ZPS78T_-gUs&feature=youtu.be).
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
 * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
 * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
