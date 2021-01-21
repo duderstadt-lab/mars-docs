@@ -5,18 +5,18 @@ permalink: /docs/kcp/ChangePointFinder/index.html
 ---
 
 #### Introduction on the Kinetic Change Point Algorithm
-Single-molecule imaging approaches provide datasets that reveal the kinetic behavior of individual molecules within the dataset. Detailed characterisation of rate changes and pausing is possible yielding valuable information on the kinetics of processes such as transcription, translation, and motor protein precession on an immobilized target. Due to the stochastic nature of these processes the obtained trace can usually be described best by a piece-wise linear motion.
+Single-molecule imaging approaches provide datasets that reveal the kinetic behavior of individual molecules within the dataset. Detailed characterisation of rate changes and pausing is possible yielding valuable information on the kinetics of processes such as transcription, translation, and motor protein precession on an immobilized target. Due to the stochastic nature of these processes the obtained trace can usually be analysed as piece-wise linear motion.
 
 <div style="text-align: center"><img src='{{site.baseurl}}/docs/kcp/img/img1.png' width="450"/></div>  
 _Figure 1: Theoretical trace with identified change points (blue dots) and fitted linear regression lines (blue dashed lines)._
 
-The kinetic change point (KCP) algorithm<sup>1</sup> used in the KCP analysis tools in **Mars** was specifically designed to detect these different linear regions in single-molecule traces effectively. In short, the algorithm detects the change points in the trace (fig. 1, blue dots) and fits a linear regression line between the points to yield the rates for every segment (fig. 1, blue regression lines). The algorithm was especially developed for motion of processive single molecules having Gaussian noise and assumes piece-wise linear motion. For a detailed mathematical explanation of the model and the decision strategy the reader is referred to the paper by Hill _et al._<sup>1</sup>.
+The kinetic change point (KCP) algorithm<sup>1</sup> used in the KCP analysis tools in **Mars** was specifically designed to detect these different linear regions in single-molecule traces effectively. In short, the algorithm detects the change points in the trace (fig. 1, blue dots) and fits a line between the points to yield the rates for every segment (fig. 1, blue lines). The algorithm was especially developed for motion of processive single molecules having Gaussian noise and assumes piece-wise linear motion. For a detailed mathematical explanation of the model and the decision strategy the reader is referred to the paper by Hill _et al._<sup>1</sup>.
 
 #### Implementation of the Algorithm
-The recursive binary search strategy for multiple change points identification algorithm (_figure 2_) can be visualized in three distinct steps:
+The recursive binary search strategy for multiple change points (_figure 2_) can be visualized in three distinct steps:
 1. Initial sweep: Initially, the boundaries of the recorded trace are used to limit the change point search region. As soon as the first change point is identified, it is recorded and the search region is reduced accordingly. This process is repeated until the end of the trajectory is reached. This yields a first list of change points in the trajectory.
 2. Refinement: The positions of the identified change points are optimized locally by re-finding the change point in a smaller region around its identified location.
-3. Fitting: Fit a linear regression line between all change points found. As an output the coordinates of the change points as well as the regression fits (slope and intercept) are obtained.
+3. Fitting: The fit parameters (start, end, slope and intercept) of the final linear segments between all change points are reported.
 
 
 <div style="text-align: center"><img src='{{site.baseurl}}/docs/kcp/img/img2.png' width="650"/></div>  
@@ -42,15 +42,15 @@ As an introduction the reader is referred to the [Kinetic Changepoint Analysis t
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img4.png' width='350'/></div>
 
 #### Output
-* The output of the KCP analysis is the synthesis of a segments table as additional tab in the data section of the 'Molecules' tab in **Rover**. This table contains:
-  * x1: X-coordinate of the change point, start point segment.
-  * y1: Y-coordinate of the change point, start point segment.
-  * x2: X-coordinate of the change point, end point segment.
-  * y2: Y-coordinate of the change point, end point segment.
-  * A: Slope of the linear line (rate).
-  * sigma_A: Error on the slope calculation.
-  * B: Intercept of the linear line.
-  * simga_B: Error on the intercept calculation.
+* The results of KCP analysis are reported in a segments table that appears in a new sub-tab in the 'Molecules' tab in **Rover**. This table contains:
+  * x1: X-coordinate of segment start.
+  * y1: Y-coordinate of segment start.
+  * x2: X-coordinate of segment end.
+  * y2: Y-coordinate of segment end.
+  * A: Intercept of the line.
+  * sigma_A: Standard deviation from linear regression.
+  * B: Slope of the line (rate).
+  * simga_B: Standard deviation from linear regression.
 
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img5.png' width='650'/></div>
