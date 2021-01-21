@@ -24,50 +24,51 @@ First open the video of interest in Fiji as a stack. Next select the BigDataView
 For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the [tutorial repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
 ### 2. Coupling the file to the Molecule Archive
-The next step is to couple the generated HDF5 or N5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. (see circles on the image) Provide the desired name tag and press the + button. Select the file and continue. Make sure to select the correct format on the button left of the entry field by clicking on it to switch between N5 and HD5.
+The next step is to couple the generated HDF5 or N5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Views' tab in the middle window and move to text input field. Provide the desired name tag and press the + button. Select the file and continue. Make sure to select the correct format on the button left of the entry field by clicking on it to switch between N5 and HD5.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img3.png' width='450'/></div>
 
-This will add the link to the XML file to the Molecule Archive. A row should appear in the 'Bdv Views' tab showing the provided name tag, some parameter columns and the file path to the XML file.
+This will add the link to the file to the Molecule Archive. A row should appear in the 'Bdv Views' tab showing the provided name tag, some parameter columns and the file path to the HD5 or N5 file.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img4.png' width='600'/></div>
 
 Note that during this coupling step the path to the file is specified. When changing the location of the video on the computer, a new coupling to the new location of the file has to be set up.
 
-### 3. Setting ROI Parameters for each Tracked Molecule
-The next step is to assign ROI parameters (roi_x and roi_y) that refer to the average position of the tracked molecule (in case of a linear movement this is equal to the middle of the trace). These ROI parameters are later provided to the video viewer to find the molecule of interest in the video. To retrieve these parameters for each molecules run the following script. Check the [Introduction to Groovy Scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial for a detailed introduction on how to run a script.
-
-```groovy
-#@ MoleculeArchive archive
-
-archive.molecules().forEach{molecule ->
-     molecule.setParameter("roi_x", molecule.getTable().mean("x"))
-     molecule.setParameter("roi_y", molecule.getTable().mean("y"))
-}
-
-```
-
-To run the script go to file>new>script in the main Fiji menu, paste the script and save it as .Groovy file to set the language. Then press run to execute it. This will open a dialogue in which the Molecule Archive has to be selected.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img5.png' width='400'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img6.png' width='300'/></div>
-
-Check if the roi_x and roi_y parameters are added to the molecules by moving to the Molecule tab in **Rover** and pressing the 'parameter' tab. Save the Molecule Archive (File>Save) to keep the established connection with the video for future times the Archive is opened.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img7.png' width='600'/></div>
-
-### 4. Show the Tracked Molecule in the Video
-Now a connection between the MoleculeArchive and the XML file has been established and the roi coordinates for each molecule have been defined, the tracked molecule can be viewed in the original video. To do so, select a molecule of interest in **Rover** by selecting it in the 'Molecule' tab. Then open the video tool via Tools>Show Video in the top menu bar of Rover (see screenshot below). Select roi_x and roi_y in the pop-up dialogue as parameters.
+### 3. Show the Tracked Molecule in the Video
+Now a connection between the MoleculeArchive and the file has been established the tracked molecule can be viewed in the original video. To do so, select a molecule of interest in **Rover** by selecting it in the 'Molecule' tab. Then open the video tool via Tools>Show Video in the top menu bar of Rover (see screenshot below). A dialog window opens.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img8.png' width='450'/></div>
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img9.png' width='200'/></div>
 
-After pressing OK this opens the video at the position of the selected molecule. Move through the different time points (frames) with the slider below to see the movement of the molecule over time. To move to a different molecule keep the video window opened and click another UUID in **Rover**.
+**Inputs**
+* View number - Select the number of viewing windows to be rendered. The position in these windows is correlated such that a selection of a different channel in each allows to look at the observed peak in multiple recorded colors. This can for example be used to study FRET single molecule data.
+* N5 volatile view - Enable to reduce computer memory use.
+
+After pressing OK this opens the video at the position of the selected molecule. Move through the different time points with the slider below to see the movement of the molecule over time.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img10.png' width='400'/></div>
 
-### 5. Export the Video
-To save the video showing the molecule of interest use the 'Export Video' tool in the 'Tools' menu in **Rover**. Make sure to have the video open on the molecule of interest, then open the 'Export Video' tool in the 'Tools' menu. Stick with the default settings for the parameters in the popped-up dialogue and press OK.
+Click on the right of the viewer on the << icon to show the settings menu. Here the current 'channel' can be  selected under sources, display options can be found and settings can be provided on Location and Track.
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img15.png' width='400'/></div>
+
+
+**How to work with this video**
+1. Improving the contrast in the video: press the 'Contrast' button.
+2. Moving through different molecules: to look at different molecules in the video tick the box 'rover sync' in the Location section of the menu. Then keep this viewer window open and click on another UUID in Rover. The viewer now automatically moves to the new position.
+3. Label the molecule with a circle and/or tag: if there are plenty of molecules in one field of view, the selected UUID can be found easily when ticking the boxes 'circle' and/or 'label'. Refresh the viewer by pressing the 'Go to' button in the Display section of the menu. Now a circle is placed around the current molecule and the first characters of the UUID are displayed.  
+**note**: to label all molecules in this way tick the 'all' box. Tick the 'rainbow' box to display all molecules in different colors. The radius and scale factor settings can be changed to change the appearance of the labels.
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img16.png' width='400'/></div>
+
+4. Show the tracks of each peak: in the Track menu select the 'track' box to show the track of the respective molecule. Also select 'label' to display the first characters of the UUID.  
+**note**: to label all molecules in this way tick the 'all' box. Tick the 'rainbow' box to display all molecules in different colors. The radius and scale factor settings can be changed to change the appearance of the labels.
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img17.png' width='400'/></div>
+
+
+### 4. Export the Video
+To save the video showing the molecule of interest use the 'Export Video' tool in the 'Display' menu on the side of the viewer. Stick with the default settings for the parameters in the popped-up dialogue and press OK.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img11.png' width='450'/></div>
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img12.png' width='200'/></div>
