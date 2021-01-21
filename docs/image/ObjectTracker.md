@@ -24,7 +24,9 @@ After the segmentation procedure has been executed  [connected component analysi
 **Example data**  
 As an example the Object Tracker settings can be applied on a standard Fiji sample. Open the 'blobs' image going through File>Open Samples>Blobs. Now apply the settings as shown below to identify the blobs as objects.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img13.png' width='350'/> <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img14.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img13.png' width='350'/> </div>
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img14.png' width='350'/></div>
 
 
 #### Inputs
