@@ -22,10 +22,6 @@ There are a lot of inputs, but don't panic, they are all pretty simple to unders
 
 * *Image* - The active image selected will be used by the Peak Tracker. So this is a required input but doesn't show up in the dialog.
 * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox and add the region settings.
-* *ROI x0* - Upper left corner x0 position of ROI.
-* *ROI y0* - Upper right corner y0 position of ROI.
-* *ROI width* - width of the ROI.
-* *ROI height* - height of the ROI.
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
 * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
 * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
@@ -60,6 +56,7 @@ The following are the settings for tracking absent in the [PeakFinder](../PeakFi
 * *Pixel length* - Length of a pixel in the microscope system used for data collection.
 * *Pixel units* - Units of the provided pixel length.
 * *Norpix format* - Tick if a dataset in the Norpix format is analyzed.
+* *Exclude* - List timepoints to exclude  from the tracking process. This allows the user to exclude frames from the analysis without having to delete them from the dataset irreversibly. 
 
 ### Output
 

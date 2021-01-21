@@ -12,10 +12,6 @@ This command is used to find high intensity spots or peaks in images. Typically 
 
  * *Image* - The active image selected will be used by the Peak Finder. So this is a required input but doesn't show up in the dialog.
  * *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
- * *ROI x0* - Upper left corner x0 position of ROI.
- * *ROI y0* - Upper right corner y0 position of ROI.
- * *ROI width* - width of the ROI.
- * *ROI height* - height of the ROI.
  * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
  * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
  * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
@@ -27,7 +23,7 @@ This command is used to find high intensity spots or peaks in images. Typically 
 
  <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
- * *Preview* - When checked rois will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
+ * *Preview* - When checked ROIs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
  * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
  * *T* - Select the time point (T) to show peak finding results on in the video.
  * *Find Negative Peaks* - If checked peak with negative pixel values are detected. This can be used in gradient images, where a negative gradient results in a negative peak. This is useful for detecting the edges of long DNA molecules and other structures.
