@@ -50,14 +50,14 @@ After pressing OK this opens the video at the position of the selected molecule.
 
 
 **How to work with this video**
-1. Improving the contrast in the video: press the 'Contrast' button.
-2. Moving through different molecules: to look at different molecules in the video tick the box 'rover sync' in the Location section of the menu. Then keep this viewer window open and click on another UUID in Rover. The viewer now automatically moves to the new position.
-3. Label the molecule with a circle and/or tag: if there are plenty of molecules in one field of view, the selected UUID can be found easily when ticking the boxes 'circle' and/or 'label'. Refresh the viewer by pressing the 'Go to' button in the Display section of the menu. Now a circle is placed around the current molecule and the first characters of the UUID are displayed.  
+- Improving the contrast in the video: press the 'Contrast' button.
+- Moving through different molecules: to look at different molecules in the video tick the box 'rover sync' in the Location section of the menu. Then keep this viewer window open and click on another UUID in Rover. The viewer now automatically moves to the new position.
+- Label the molecule with a circle and/or tag: if there are plenty of molecules in one field of view, the selected UUID can be found easily when ticking the boxes 'circle' and/or 'label'. Refresh the viewer by pressing the 'Go to' button in the Display section of the menu. Now a circle is placed around the current molecule and the first characters of the UUID are displayed.  
 **note**: to label all molecules in this way tick the 'all' box. Tick the 'rainbow' box to display all molecules in different colors. The radius and scale factor settings can be changed to change the appearance of the labels.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img16.png' width='400'/></div>
 
-4. Show the tracks of each peak: in the Track menu select the 'track' box to show the track of the respective molecule. Also select 'label' to display the first characters of the UUID.  
+- Show the tracks of each peak: in the Track menu select the 'track' box to show the track of the respective molecule. Also select 'label' to display the first characters of the UUID.  
 **note**: to label all molecules in this way tick the 'all' box. Tick the 'rainbow' box to display all molecules in different colors. The radius and scale factor settings can be changed to change the appearance of the labels.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img17.png' width='400'/></div>
