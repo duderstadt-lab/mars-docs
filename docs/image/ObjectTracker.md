@@ -5,7 +5,7 @@ permalink: /docs/image/ObjectTracker/index.html
 ---
 
 This command is used to identify unspecified objects in microscopic images and track their position through frames. Classification by segmentation allows for the identification of these objects and their center of mass is tracked as the position of the object.  
-**Note**: the Object Tracker command computationally rather expensive. Hence, it is advised to run the command either with small videos or with larger videos on a computing cluster.
+**Note**: the Object Tracker command computationally rather expensive scaling up with the otsu radius that is applied. Hence, it is advised to run the command either with very small videos or when using larger videos to rund this command on a computing cluster.
 
 #### How does object identification work?
 **Segmentation**  
@@ -63,7 +63,7 @@ To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions
 #@OUTPUT ObjectArchive archive
 
 import de.mpg.biochem.mars.object.*
-import de.mpg.biochem.mars.image.commands.*
+import de.mpg.biochem.mars.object.commands.*
 
 //Make an instance of the Command you want to run.
 ObjectTrackerCommand objectTracker = new ObjectTrackerCommand()
@@ -77,7 +77,7 @@ objectTracker.setImagePlus(true)
 objectTracker.setROI()
 objectTracker.setUseROI(false)
 objectTracker.setChannel(0)
-objectTracker.setLocalOtsuRadius(50)
+objectTracker.setLocalOtsuRadius(20)
 objectTracker.setMinimumDistance(10)
 objectTracker.setInterpolationFactor(1)
 objectTracker.setUseAreaFilter(false)
@@ -90,7 +90,7 @@ objectTracker.setVerboseOutput(false)
 objectTracker.setMicroscope("Microscope")
 objectTracker.setPixelLength(1)
 objectTracker.setPixelUnits("pixel")
-objectTracker.setExcludedTimePointsList()
+objectTracker.setExcludedTimePointsList("0-100, 154, 234-400")
 
 //Run the Command
 objectTracker.run();
