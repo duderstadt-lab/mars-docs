@@ -17,7 +17,7 @@ permalink: /docs/MarsRover/Toolbar/index.html
 
 
 A Molecule Archive can be saved in two ways:
-1. Normal storage: saved in the .yama file format. Additionally a .yama.cfg file is saved containing information like settings and selections. A .cfg file can be renamed and reused for another archive to apply the settings defined for another Archive. By default files are stored using Smile encoding.
+1. Normal storage: saved in the .yama file format. Additionally a .yama.rover file is saved containing information like settings and selections. A .rover file can be renamed and reused for another archive to apply the settings defined for another Archive. By default files are stored using Smile encoding.
 2. Virtual storage: saves a .yama.sml folder containing .sml files for the indexes, properties, all molecule UIDs and experiment IDs separately. Choose this saving mode when dealing with large data sets.
 
 
