@@ -24,7 +24,9 @@ conda create -n pyimagejMars -c conda-forge pyimagej openjdk=8
 conda activate pyimagejMars
 
 ```
- Now copy and paste the next line. Follow the instructions in the terminal
+
+Now copy and paste the next line. Follow the instructions in the terminal:
+
 ```terminal
 conda install seaborn
 ```
