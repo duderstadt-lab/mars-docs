@@ -22,7 +22,6 @@ conda create -n pyimagejMars -c conda-forge pyimagej openjdk=8
 3. The environment has everything you need to work with MARS and python. But for convenience we will add two packages for python. The first one helps to create better looking plots. It is called seaborn. For that activate the environment first with the following line:
 ```terminal
 conda activate pyimagejMars
-
 ```
 
 Now copy and paste the next line. Follow the instructions in the terminal:
