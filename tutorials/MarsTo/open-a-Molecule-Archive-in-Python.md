@@ -9,42 +9,32 @@ _level: intermediate, duration: 20 min (including one-time setup)_
 In this tutorial you can find a set of instructions on how to work with Molecule Archives in Python by using Anaconda's Jupyter. To do so, one first needs to create a special 'Environment'. This environment only has to be build the first time. When inspecting Molecule Archives later on the environment can be selected and the user can proceed immediately to the 'Molecule Archives in Python' section of this tutorial.
 
 ### Create the Environment
-First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/tutorials)** on GitHub (it is basically a storage place). It contains all the necessary packages needed to build a bridge between java and python and also makes sure that the correct version of the package is used. The next steps will explain how to create the environment step by step.
+First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/pyimagej)** on GitHub (it is basically a storage place). It contains all the necessary packages needed to build a bridge between java and python and also makes sure that the correct version of the package is used. The next steps will explain how to create the environment step by step.
 
 The next part will use basic commands from Git. To get familiar with **[Git](https://git-scm.com)** and its function we recommend the **[Git-it workshop](https://github.com/jlord/git-it-electron/releases)**. The workshop consists of different challenges that explain how to use Git. So if you want to understand the commands in more detail you can work through the challenges but this is not needed for working through the tutorial.
 
 1. Install **[Anaconda](https://www.anaconda.com/distribution/)** (Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already installed on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.
 
-2. Download or clone (for those who are familiar with Git) the tutorial repository. To download the repository just go to the website and press download. To clone the repository use the following command.
+2. Open the terminal and paste the following line. This will automatically download the environment and it will be called conda pyimageMars:
 ```terminal
-git clone https://github.com/imagej/tutorials.git
+conda create -n pyimagejMars -c conda-forge pyimagej openjdk=8
 ```
-3. The environment.yml file has to be edited. To do so open the environment.yml file with a text editor (e.g. **[Atom](https://atom.io)**). The file can be found in the downloaded folder. There is a list of dependencies and two dependencies have to be added. Make sure that the dependencies are in line with the others:
+3. The environment has everything you need to work with MARS and python. But for convenience we will add two packages for python. The first one helps to create better looking plots. It is called seaborn. For that activate the environment first with the following line:
 ```terminal
-  - pyjnius=1.2.0
-  - seaborn
-```
-Save the file in the same location and with the same name.
+conda activate pyimagejMars
 
-4. Open a terminal window and navigate to the repository folder using cd:
-```terminal
-cd tutorials
 ```
-For people who are not familiar with the cd command an example is given. Lets say the folder of interest is located inside the folder
-called my_documents (The file path would look something like this /Users/your_name/my_documents/tutorials). When a terminal window is opened the working directory is the users name ("your_name"). Now one has to navigate first in the my_documents directory with "cd my_documents". To go one layer deeper one has to type "cd tutorials". Basically the cd command navigates to the specified layer which lays deeper in the file path. With "cd .." one can go one layer out again.
-
-5. Create the environment:
+ Now copy and paste the next line. Follow the instructions in the terminal
 ```terminal
-conda env create -f environment.yml
-```
-It now uses the modified environment.yml file to create a python environment using the specified packages (like pyjnius version 1.2.0) which are specified inside.
-
-6. Activate the environment in the terminal:
-```terminal
-conda activate scijava
+conda install seaborn
 ```
 
-7. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
+4. Now we need to install jupyter notebook. Use the following line. Copy and paste it and again follow the instructions in the terminal:
+```terminal
+conda install jupyter notebook
+```
+
+5. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
 ```terminal
 jupyter notebook
 ```
@@ -53,7 +43,6 @@ Now the environment is created and activated and everything is ready to start wo
 
 For the next section create a new notebook (New -> Python 3). The code below can be copied and pasted in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option/Alt + Enter" the cell will be executed and a new cell is created).
 
-Before continuing, one can get familiar to ImageJ in the Jupyter Notebook. When the repository was cloned a folder called "notebooks" was copied. Inside one can find different examples which can be tried out. But this is not necessary for completing this tutorial.
 
 ### Molecule Archives in Python
 To start working with a Molecule Archive in a Jupyter notebook first the Fiji/ImageJ and Python packages should be loaded.
@@ -65,24 +54,23 @@ Before starting one needs to load Fiji and all the necessary Python packages. To
 import imagej
 # One needs to add the path to the Fiji application on the computer
 ij = imagej.init('/Applications/Fiji.app')
+
 # Python packages
+import jpype
+import jpype.imports
 import scyjava as sc
-from scyjava.convert import _pandas
-import jnius
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from jnius import autoclass
+from java.io import File
+from de.mpg.biochem.mars.molecule import SingleMoleculeArchive
 import seaborn as sns
 
-#instantiate required classes to load archives
-File = autoclass('java.io.File')
-SingleMoleculeArchive = autoclass('de.mpg.biochem.mars.molecule.SingleMoleculeArchive')
 ```
 
 One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to check the location.
 
-**[Scijava](https://github.com/scijava/scyjava)** is needed to transform java class objects into python objects. The **[jnius package](https://github.com/kivy/pyjnius)** also helps to access Java classes. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** and **[seaborn](https://seaborn.pydata.org)** are plotting libraries.  
+**[Scijava](https://github.com/scijava/scyjava)** is needed to transform java class objects into python objects. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** and **[seaborn](https://seaborn.pydata.org)** are plotting libraries.  
 
 **Load the Archive to the Jupyter Notebook**  
 Next, one loads a specified Molecule Archive in the Jupyter Notebook.
@@ -119,17 +107,17 @@ The notebook will display all the UUIDs.
 There are two ways of excessing the data entries themselves. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
 ```python
 #get the Table for the molecule at index 0 as a pandas dataframe
-tableByIndex = _pandas.table_to_pandas(archive.get(0).getTable())
+tableByIndex = sc._table_to_pandas(archive.get(0).getTable())
 tableByIndex
 ```
 One can also use the UUIDs to access certain molecules. Just copy and paste on of them into the following line of code.
 
 ```python
 #get the Table for molecule UID as a pandas dataframe
-tableByUID = _pandas.table_to_pandas(archive.get('22HniKENuPgefz6YHvk1Pm').getTable())
+tableByUID = sc._table_to_pandas(archive.get('2AEygnwajcvHUBYGGUHcNa').getTable())
 tableByUID
 ```
-The build-in function "table_to_pandas(data)" from **"_pandas"** (imported from scijava.convert at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getTable()".
+The build-in function "_table_to_pandas(data)" from **"sc"** (imported from scijava at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "_pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getTable()".
 
 **A More elegant Way to excess Molecules: Mapping**  
 Usually not a particular molecule is needed. Most of the times one wants to loop through all of the molecules. To make that possible in an easy fashion the map function can be used.
@@ -139,14 +127,14 @@ molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
 Now it is possible to loop through the molecules and print their corresponding UIDs.
 ```python
 for molecule in molecules:
-    print(molecule.getUID())    
+    print(molecule.getUID())      
 ```
 Mapping makes it possible to excess the tags of the molecule. This for-loop will print all the molecules tagged with "reaction".
 
 ```python
 molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
 for molecule in molecules:
-    if molecule.hasTag('reaction'):
+    if molecule.hasTag('Active'):
         print(molecule.getUID())
 ```
 Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the calculated variance values are stored in a list() that is way the line can be in a separate cell.
@@ -159,7 +147,11 @@ VARs = list(map(lambda UID: archive.get(UID).getParameter('var'), archive.getMol
 Finally, one can plot the distribution of the variance in a histogram using the matplotlib package.
 ```python
 plt.xlim([min(VARs)-5, max(VARs)+5])
-plt.hist(VARs, bins=24, alpha=0.5)
+
+numberofpoints = len(VARs)
+bins = round(np.sqrt(numberofpoints))
+
+plt.hist(VARs, bins=bins, alpha=0.5)
 plt.title('Variance')
 plt.xlabel('var')
 plt.ylabel('count')
@@ -170,7 +162,8 @@ The seaborn package from python is really good for statistical plots and is base
 When using seaborn the histogram can be plotted with one simple line. Kernel density estimation (kde) is turned off ("False").
 Bins specifies the number of bins.
 ```python
-sns.distplot(VARs,kde =False, bins =24)
+sns.set_style("darkgrid")
+sns.distplot(VARs,kde =False, bins =bins)
 ```
 
 Now the file can be saved under File -> Save as.
@@ -196,7 +189,7 @@ cd notebooks
 
 2. Activate the environment in the terminal:
 ```terminal
-conda activate scijava
+conda activate pyimagejMars
 ```
 
 3. Select the notebook of interest from the list and open it.
