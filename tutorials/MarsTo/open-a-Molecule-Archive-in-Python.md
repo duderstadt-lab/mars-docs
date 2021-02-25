@@ -23,19 +23,15 @@ conda create -n pyimagejMars -c conda-forge pyimagej openjdk=8
 ```terminal
 conda activate pyimagejMars
 ```
-
-Now copy and paste the next line. Follow the instructions in the terminal:
-
+4. Now copy and paste the next line. You will use conda to install the package. Follow the instructions in the terminal:
 ```terminal
 conda install seaborn
 ```
-
-4. Now we need to install jupyter notebook. Use the following line. Copy and paste it and again follow the instructions in the terminal:
+5. Now we need to install jupyter notebook. Use the following line. Copy and paste it and again follow the instructions in the terminal:
 ```terminal
 conda install jupyter notebook
 ```
-
-5. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
+6. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
 ```terminal
 jupyter notebook
 ```
