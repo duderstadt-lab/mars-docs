@@ -18,9 +18,10 @@ The Metadata tab has three main sections:
 
 | :------------- | :------------- |
 | OME      | All Metadata records are listed here. Select the image from the plane on the left to show all 'Image' and 'Plane' information in the middle two segments.      |
+| Bdv Sources | Section where BigDataViewer parameters and filepaths can be set. This can be used to find back a molecule in the original video and visualize their position over time in the video. See also the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/) and [extended documentation page](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/BDV/index.html) about this feature.
 | Log       | Log of parameters set in image processing and tracking.       |
 | Scriptable widgets      | [Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per Metadata entry.       |
-| Bdv Views       | BigDataViewer parameters to be used for video visualisations. See [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/).       |
+
 
 **3. Notes, parameters, and information valid for all molecules within the metadata entry.**
 
