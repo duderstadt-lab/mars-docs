@@ -27,7 +27,7 @@ This pipeline has been developed in a modular fashion to allow for maximum flexi
 
 #### <a name="open"></a>Open the sample video with SCIFIO
 
-Use File>Open... and select the metadata.txt file within the directory that contains the images.
+Use File>Import>Image Sequence... and select the folder that contains the images of the video. Stick with the default settings to load the stack.
 
 #### <a name="beam"></a>Correct for the beam profile
 
@@ -48,7 +48,7 @@ When the command is finished, a Single Molecule Archive should appear that conta
 
 #### <a name="transform"></a>Transform to overlay tracked proteins with the DNA channel
 
-The example video was collected using a dualview in which long wavelength emission is shown on the top half of the camera sensor and short wavelength emission is displayed on the bottom half of the sensor. Proteins were labeled a red dye and is longer in wavelength as compared to DNA that was imaged using a green stain that was shorter in wavelength. Therefore, the coordinates of the two channels are offset, appearing either on the bottom or two. To locate the positions of proteins on DNA molecules, the coordinates resulting from tracking must be transformed from the long wavelength channel to the reference frame of the short wavelength DNA channel. This is accomplished using the following script that loops through all molecule records and applies a 2D Affine transform to the x and y positions of all molecules.
+The example video was collected using a dualview in which long wavelength emission is shown on the top half of the camera sensor and short wavelength emission is displayed on the bottom half of the sensor. Proteins were labeled a red dye and is longer in wavelength as compared to DNA that was imaged using a green stain that was shorter in wavelength. Therefore, the coordinates of the two channels are offset, appearing either on the bottom or two. To locate the positions of proteins on DNA molecules, the coordinates resulting from tracking must be transformed from the long wavelength channel to the reference frame of the short wavelength DNA channel. This is accomplished using the following script that loops through all molecule records and applies a 2D Affine transform to the x and y positions of all molecules. Make sure to select 'Groovy' as the script language before running.
 
 ```groovy
 #@ MoleculeArchive archive
@@ -100,13 +100,13 @@ archive.molecules().filter{ m -> m.getParameter("MSD") < 1}.forEach{ m -> m.addT
 The tagged molecules can then be used to calculate the drift with the 'Drift Calculator' (Plugins> MARS> Molecules> Drift Calculator). 'Zero' needs to be 'end' since the last frame contains the DNA molecules.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/driftcalculator.png' width='450' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/driftcalculator.png' width='350' />
 </div>
 
 After running the function the drift is calculated. In the next step the x and y coordinates need to corrected with the calculated drift using the 'Drift Corrector' tool.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/driftcorrector.png' width='450' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/driftcorrector.png' width='350' />
 </div>
 
 Output columns should be x_drift_corr and y_drift_corr. The origin or zero should be the last frame because that is the frame (T) we used with the DNA finder and there was a few minutes between the protein collection and post staining of DNA.
