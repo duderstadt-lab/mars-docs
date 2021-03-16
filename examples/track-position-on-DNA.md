@@ -41,7 +41,8 @@ Finally, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector)
 
 Now that the protein channel has been corrected in step 2, the [Peak Tracker](../../docs/image/PeakTracker) can be used to track all individual proteins in channel 0 over time to generate a Single Molecule Archive. First use the Rectangle tool to select the region that should be processed. This should be the top half of the image that contains all the labeled protein signal. Once your selection is complete, run the [Peak Tracker](../../docs/image/PeakTracker) with the following settings:
 
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/peakTrackerSettings.png' width='450' />
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/peakTrackerSettings.png' width='450' /></div>
 
 When the command is finished, a Single Molecule Archive should appear that contains all tracked molecules.
 
@@ -98,11 +99,15 @@ archive.molecules().filter{ m -> m.getParameter("MSD") < 1}.forEach{ m -> m.addT
 
 The tagged molecules can then be used to calculate the drift with the 'Drift Calculator' (Plugins> MARS> Molecules> Drift Calculator). 'Zero' needs to be 'end' since the last frame contains the DNA molecules.
 
+<div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/driftcalculator.png' width='450' />
+</div>
 
 After running the function the drift is calculated. In the next step the x and y coordinates need to corrected with the calculated drift using the 'Drift Corrector' tool.
 
+<div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/driftcorrector.png' width='450' />
+</div>
 
 Output columns should be x_drift_corr and y_drift_corr. The origin or zero should be the last frame because that is the frame (T) we used with the DNA finder and there was a few minutes between the protein collection and post staining of DNA.
 
@@ -110,7 +115,9 @@ Output columns should be x_drift_corr and y_drift_corr. The origin or zero shoul
 
 Now that we have finished making the Single Molecule Archive, we can use the [DNA finder](../../docs/image/DNA_finder) to local all DNA molecules in channel 0. This can be accomplished using the following settings:
 
+<div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/dnaFinderSettings.png' width='450' />
+</div>
 
 The only output should be a list of line ROIs added to the RoiManager, each with a UID. It is very important that the frame is set to 159 since the DNA can only be seen in the last frames.
 
@@ -118,7 +125,8 @@ The only output should be a list of line ROIs added to the RoiManager, each with
 
 Now we can use the Single Molecule Archive together with the DNA molecule line ROI sets that is in the RoiManager to create a DNA Molecule Archive using the [build DNA archive](../docs/molecule/BuildDNAarchive) command with the following settings:
 
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/buildDNAArchiveSettings.png' width='450' />
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/buildDNAArchiveSettings.png' width='450' /></div>
 
 The DNA molecule archive should appear containing DNA molecule records that contain tables with all tracked molecules that were found to be located on DNAs as well as their position on DNA and integrated intensity.
 
