@@ -52,7 +52,6 @@ In all cases, press the 'go to molecule' button to refresh and incorporate the s
 
 
 
-
 For more information on how to use the video viewer please visit the [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/).
 
 
