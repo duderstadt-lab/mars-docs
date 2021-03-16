@@ -27,7 +27,7 @@ The Metadata tab has three main sections:
 
 | :------------- | :------------- |
 | Information       | UID (copy to clipboard with icon), Tags and Notes.      |
-| Parameters       | List of Metadata record-wide parameters.       |
+| Parameters       | List of Metadata record-wide parameters. Select the parameter type in the box and then type the parameter name. Parameter types: number (123), string (Aa) & Boolean (square)      |
 | Regions       | List of assigned regions (f.e. to denote the change of a parameter at a certain time point in the experiment).       |
 | Positions       | List of globally assigned positions.      |
 

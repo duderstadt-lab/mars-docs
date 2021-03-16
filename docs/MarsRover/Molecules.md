@@ -38,6 +38,6 @@ The plotting window itself can be formatted using the tools above the plot. From
 
 | :------------- | :------------- |
 | Information       | UID (copy to clipboard with icon), metaUID, Channel information, Tags and Notes.      |
-| Parameters       | List of parameters.       |
+| Parameters       | List of parameters. Select the parameter type in the box and then type the parameter name. Parameter types: number (123), string (Aa) & Boolean (square)      |
 | Regions       | List of assigned regions.      |
 | Positions       | List of assigned positions.      |
