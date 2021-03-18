@@ -97,12 +97,12 @@ xfm.get(1,0) + ", " + xfm.get(1,1) + ", " + xfm.get(1,2) + "]")
 archive.logln(LogBuilder.endBlock())
 ```
 #### <a name="drift"></a>Driftcorrection of the x and y coordinates
-In the next the step the x and y coordinates need to be drift corrected. For this the amount of drift needs to be assessed. The protein channel has fixed dots/stuck proteins which can be used. Stuck molecules have a lower mean square displacement than the mobile proteins. How to calculate the variance with MARS is documented [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/). After calculating the variance a short script groovy script is used to tag molecules with a variance below a certain threshold with 'background'.
+In the next the step the x and y coordinates need to be drift corrected. For this the amount of drift needs to be assessed. The protein channel has fixed dots/stuck proteins which can be used. Stuck molecules have a lower movement variance than the mobile proteins. How to calculate the variance with MARS is documented [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/). Name the parameter 'y_var'. After calculating the variance a short script groovy script is used to tag molecules with a variance below a certain threshold with 'background'.
 
 ```groovy
 #@ MoleculeArchive archive
 
-archive.molecules().filter{ m -> m.getParameter("MSD") < 1}.forEach{ m -> m.addTag("background") }
+archive.molecules().filter{ m -> m.getParameter("y_var") < 1}.forEach{ m -> m.addTag("background") }
 ```
 
 The tagged molecules can then be used to calculate the drift to be used subsequently to correct the tracking coordinates. Select the 'Drift Corrector' tool (Plugins>MARS>Molecule>Drift Corrector) and supply the settings as shown below.
@@ -144,4 +144,4 @@ Now select a molecule of interest in the molecule tab and open the video viewer 
 
 
 #### <a name="conc"></a> Conclusion
-You have now successfully analyzed a full dataset containing stretched DNA molecules and a polymerase that moves on this DNA. 
+You have now successfully analyzed a full dataset containing stretched DNA molecules and a polymerase that moves on this DNA.
