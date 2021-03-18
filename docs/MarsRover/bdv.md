@@ -15,13 +15,15 @@ To couple the video file to the archive the 'Bdv Sources' tab in the [Metadata](
 <img  src='{{site.baseurl}}/docs/img/Rover/img21.png' width='500'/>
 </div>
 
-Once the video is coupled to the archive, the user can select a molecule of choice in the [Molecules](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Molecules/) section of the Archive. The BDV video viewer is located in the 'Tools' menu under the 'Show Video' command. Now the video is opened at the position indicated by the molecule selected in the archive allowing the user to do visual inspection. Move the slider below the video to move through different frames (T). Additional setting options can be found in the menu on the left of the viewer.
+Once the video is coupled to the archive, the user can select a molecule of choice in the [Molecules](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Molecules/) section of the Archive. The BDV video viewer is located in the 'Tools' menu under the 'Show Video' command. Now the video is opened at the position indicated by the molecule selected in the archive allowing the user to do visual inspection. Move the slider below the video to move through different frames (T).
+
+Additional setting options can be found in the menu on the left of the viewer.
 
 - Sources: lists the videos that are coupled to the Archive. These can be activated or deactivated from the viewer and the label color can be adjusted. This allows for the visualisation of the same location through different videos or channels, which is relevant for f.e. multi-colored microscopy experiments.
 The slider can be used to change the transparency of the label color.
 - Display: general video options.
   - Go to molecule: centers the video on the selected molecule.
-  - Full view: switches back to viewing the entire video.
+  - Full view: switches back to viewing the entire video. Please note that this can generate a large computing load in the case of big video files and many annotations shown.
   - Contrast: optimize constrast settings.
   - Export: export a video cropped around the molecule of interest. Cropping region can be set in the pup-up dialog window. Labels as selected in the 'Location' settings will not be exported in this video.
   - Help: general video control options explained.
