@@ -25,7 +25,7 @@ The slider can be used to change the transparency of the label color.
   - Go to molecule: centers the video on the selected molecule.
   - Full view: switches back to viewing the entire video. Please note that this can generate a large computing load in the case of big video files and many annotations shown.
   - Contrast: optimize constrast settings.
-  - Export: export a video cropped around the molecule of interest. Cropping region can be set in the pup-up dialog window. Labels as selected in the 'Location' settings will not be exported in this video.
+  - Export: export a video cropped around the molecule of interest. Cropping region can be set in the pup-up dialog window. Labels as selected in the 'Location' settings will not be exported to this video.
   - Help: general video control options explained.
 - Location:
   - Source: source table for the coordinates.
@@ -38,7 +38,7 @@ The slider can be used to change the transparency of the label color.
     - all: shows all identified molecules. Can only be used in combination with an active 'circle' marker.
     - rainbow: color molecule labels in rainbow colors. Especially useful when looking at all molecules at the same time.
     - label: display a label listing the first characters of the UUID of the molecule. Can only be used in combination with an active 'circle' marker.
-    - follow: if checked, the circle marker will follow the tracked position with respect to T instead of displaying the average position.
+    - follow: if checked, the circle marker will follow the tracked position with respect to T instead of displaying the average position. Can only be used in combination with an active 'circle' marker.
     - rover sync: if checked, the viewer will update the displayed position when a different molecule is selected in the Archive.
   - Radius: sets the radius for the 'circle' marker.
   - Scale factor: factor that determines the zooming around the molecule of interest. Set to a lower value to display a larger portion of the video, and to a higher value to zoom more closely.

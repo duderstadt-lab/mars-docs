@@ -15,5 +15,5 @@ The files accompanying the tutorials, such as an example dataset, can be found i
   _Skill level: Advanced._  Learn how to create customised widgets for fast initial data analysis on the **Rover** Dashboard.
 * [Kinetic Changepoint Analysis](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/kcpa)  
   _Skill level: Intermediate._  Learn how to do a kinetic changepoint analysis.
-* [How to Find an Archive Entry back in the Video](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/)  
+* [How to Find Tracked Molecules in the Video](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/)  
   _Skill level: Advanced._  Learn how to visualise an Molecule Archive entry in the original video. This enables the user to look back at the molecule in the original video.

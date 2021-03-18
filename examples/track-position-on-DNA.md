@@ -27,7 +27,8 @@ This pipeline has been developed in a modular fashion to allow for maximum flexi
 
 #### <a name="open"></a>Open the sample video with SCIFIO
 
-Use File>Import>Image Sequence... and select the folder that contains the images of the video. Stick with the default settings to load the stack.
+First make sure the SCIFIO option is turned on: Edit>Options>ImageJ2, check the 'Use SCIFIO when opening files' option. This makes sure all metadata can be converted correctly to the archive later on.
+Now open the file: use File>Open... and select the metadata file in the folder that contains the images of the video. A video viewer window opens automatically.
 
 #### <a name="beam"></a>Correct for the beam profile
 
