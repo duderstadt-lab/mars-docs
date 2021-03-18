@@ -14,7 +14,7 @@ The first part of this tutorial shows how to convert your video to either of the
 To start, download the ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) dataset from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
 #### 1. Converting the Video to XML/HDF5 or N5
-**XML/HDF5**
+**XML/HDF5**  
 First open the video of interest in Fiji as a stack. Next select the BigDataViewer plugin and select the function "Export Current Image as XML/HDF5". This will open a dialogue in which the export path has to be set. Press ok and wait until the export process has finished. Find the exported video at the specified file path.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img1.png' width='450'/></div>
@@ -24,24 +24,30 @@ First open the video of interest in Fiji as a stack. Next select the BigDataView
 
 For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the [tutorial repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
-**N5**
+**N5**  
 First open the video of interest in Fiji as a stack. Next select File>Save As>Export N5. This will open a dialogue window with the following settings:
-- N5 root: used to set the root directory in which all N5 datasets of the project will be saved. Browse for a location in your file system, add the folder name and end with the .n5 format.
+- N5 root: used to set the root directory in which all N5 datasets of the project will be saved. Browse for a location in your file system, add the folder name and end with the .n5 format.  
 *For Example:* /Users/UserName/Data/N5_videos.n5
 - Dataset: name of the data set you are converting.
-- Block size: determines in how many blocks the video will be converted. These blocks are either defined as XYT or XYZT. Usually blocks are defined such that the X and Y axis can be devided nicely in even blocks, and C & T are chosen as their full maximum. This would create XY-blocks as shown below that are grouped for all channels (C) and frames (T) per block. **For Example:** {256, 256, 2, 150} for a video of 1024x1024 pixels to be split in 16 blocks with a total amount of 2 channels (C) and 150 frames (T).
+- Block size: determines in how many blocks the video will be converted. These blocks are either defined as XYT or XYZT. Usually blocks are defined such that the X and Y axis can be devided nicely in even blocks, and C & T are chosen as their full maximum. This would create XY-blocks as shown below that are grouped for all channels (C) and frames (T) per block.  
+*For Example:* {256, 256, 2, 150} for a video of 1024x1024 pixels to be split in 16 blocks with a total amount of 2 channels (C) and 150 frames (T).
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img19.png' width='450'/></div>
 - Compression: select a compression option. By default choose 'gzip'.
 - Metadata type: select 'None'.
 - Thread count: select how many CPUs will be dedicated to do the conversion.
 
-Press 'ok' and wait for the command to be finished. Find the exported dataset at the specified file path. More information on the [N5](https://github.com/saalfeldlab/n5) data format can be found [here](https://github.com/saalfeldlab/n5).
-
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img18.png' width='450'/></div>
 
+Press 'ok' and wait for the command to be finished. Find the exported dataset at the specified file path. More information on the [N5](https://github.com/saalfeldlab/n5) data format can be found [here](https://github.com/saalfeldlab/n5).
+
+
 #### 2. Coupling the file to the Molecule Archive
-The next step is to couple the generated HDF5 or N5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Sources' tab in the middle window and move to text input field. Select the file format by clicking the 'N5/HD5' button, provide a name and press the + button. Select the file:
-- XML/HDF5: select the 'video.xml' file in the browser. This file was generated in step 1 of this tutorial. Press ok.
+The next step is to couple the generated HDF5 or N5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Sources' tab in the middle window and move to text input field. Select the file format by clicking the 'N5/HD5' button, provide a name and press the + button.
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img22.png' width='450'/></div>
+
+Select the file:
+- XML/HDF5: select the 'video.xml' file in the browser (this file was generated in step 1 of this tutorial). Press ok.
 - N5: browse to the N5 root folder (name.n5) that you generated in step 1 of this tutorial. Select and press 'Choose'. Now press 'Detect datasets' to detect the n5 datasets present in this root folder. Select the right one and press ok. The dataset selection window should look similar to the one below.
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img20.png' width='450'/></div>
 
@@ -56,17 +62,14 @@ If done correctly, the video name should appear in the Bdv Sources list, and whe
 ### Part two: How to work with the video viewer
 
 #### 3. Show the Tracked Molecule in the Video
-Now a connection between the MoleculeArchive and the file has been established the tracked molecule can be viewed in the original video. To do so, select a molecule of interest in **Rover** by selecting it in the 'Molecule' tab. Then open the video tool via Tools>Show Video in the top menu bar of Rover (see screenshot below). A dialog window opens.
+Now a connection between the MoleculeArchive and the file has been established the tracked molecule can be viewed in the original video. To do so, select a molecule of interest in **Rover** by selecting it in the 'Molecule' tab. Then open the video tool via Tools>Show Video in the top menu bar of Rover (see screenshot below). A dialog window opens. Select the number of viewing windows to be rendered. The position in these windows is correlated such that a selection of a different channel in each allows to look at the observed peak in multiple recorded colors. This can for example be used to study FRET single molecule data.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img8.png' width='250'/>
 <img  src='{{site.baseurl}}/tutorials/img/bdv/img9.png' width='250'/></div>
 
-**Inputs**
-* View number - Select the number of viewing windows to be rendered. The position in these windows is correlated such that a selection of a different channel in each allows to look at the observed peak in multiple recorded colors. This can for example be used to study FRET single molecule data.
-
 After pressing OK this opens the video at the position of the selected molecule. Move through the different time points with the slider below to see the movement of the molecule over time. Click on the right of the viewer on the << icon (see arrow) to show the settings menu. Here the current 'channel' can be  selected under sources, display options can be found and settings can be provided on Location and Track.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img15.png' width='600'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img23.png' width='600'/></div>
 
 
 **How to work with this video**
@@ -75,7 +78,7 @@ After pressing OK this opens the video at the position of the selected molecule.
 - Label the molecule with a circle and/or tag: if there are plenty of molecules in one field of view, the selected UUID can be found easily when ticking the boxes 'circle' and/or 'label'. Refresh the viewer by pressing the 'Go to' button in the Display section of the menu. Now a circle is placed around the current molecule and the first characters of the UUID are displayed.  
 **note**: to label all molecules in this way tick the 'all' box. Tick the 'rainbow' box to display all molecules in different colors. The radius and scale factor settings can be changed to change the appearance of the labels.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img16.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img15.png' width='400'/></div>
 
 - Show the tracks of each peak: in the Track menu select the 'track' box to show the track of the respective molecule. Also select 'label' to display the first characters of the UUID.  
 **note**: to label all molecules in this way tick the 'all' box. Tick the 'rainbow' box to display all molecules in different colors. The radius and scale factor settings can be changed to change the appearance of the labels.
