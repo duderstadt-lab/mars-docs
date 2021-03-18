@@ -25,7 +25,7 @@ The slider can be used to change the transparency of the label color.
   - Contrast: optimize constrast settings.
   - Export: export a video cropped around the molecule of interest. Cropping region can be set in the pup-up dialog window. Labels as selected in the 'Location' settings will not be exported in this video.
   - Help: general video control options explained.
-- Location: these settings can depend on the type of Archive and may not be present for all types.
+- Location:
   - Source: source table for the coordinates.
   - T: column to use for the slider, usually T or another column describing time.
   - X: column to use for the x-coordinates, usually x
@@ -40,12 +40,15 @@ The slider can be used to change the transparency of the label color.
     - rover sync: if checked, the viewer will update the displayed position when a different molecule is selected in the Archive.
   - Radius: sets the radius for the 'circle' marker.
   - Scale factor: factor that determines the zooming around the molecule of interest. Set to a lower value to display a larger portion of the video, and to a higher value to zoom more closely.
+- DNA-Overlay: (DNA Archives only)
+  - show: show the identified DNA molecule as a colored line.
+  - Thickness: adjusts the thickness of the plotted line.
+
 
 In all cases, press the 'go to molecule' button to refresh and incorporate the settings you just changed.
 
 <div style="text-align: center">
 <img  src='{{site.baseurl}}/docs/img/Rover/img22.png' width='400'/>
-<img  src='{{site.baseurl}}/docs/img/Rover/img23.png' width='400'/>
 </div>
 
 
