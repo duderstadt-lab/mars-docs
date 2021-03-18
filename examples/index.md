@@ -14,6 +14,13 @@ Complete workflow for tracking and processing the motion of magnetic beads tethe
 ---
 ---
 
+#### Tracking of a Protein on DNA
+[<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='250' />](track-position-on-DNA)
+
+Complete workfow for the tracking and processing of polymerase movement on a stretched DNA molecule. ([Scher, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178))
+
+
+
 #### Short Script Examples
 
 [1. Plot the Kinetic Change Point Rates with Python](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_scripts_and_notebooks/13_KCP_widget_and_jupyter_plot.ipynb)  

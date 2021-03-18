@@ -6,7 +6,7 @@ permalink: /examples/track-position-on-DNA/index.html
 
 #### Quick summary
 
-DNA is one of the essential macromolecules throughout all domains of life. A lot of proteins interact with DNA and move along. Single molecule approaches can be used to study these processes. This example demonstrates a complete workflow for tracking the positions of proteins moving on individual DNA molecules.
+DNA is one of the essential macromolecules throughout all domains of life. A lot of proteins interact with DNA and move along. Single molecule approaches can be used to study these processes. This example demonstrates a complete workflow for tracking the positions of proteins moving on individual DNA molecules. ([Scher, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178))
 
 #### <a name="reference"></a>Table of contents
 
