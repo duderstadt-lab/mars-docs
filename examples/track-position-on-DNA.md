@@ -1,16 +1,15 @@
 ---
 layout: example
-title: Track protein position on DNA Pipeline
+title: Track the Position of a Protein on a long DNA Molecule
 permalink: /examples/track-position-on-DNA/index.html
 ---
 
-#### Quick summary
-
-DNA is one of the essential macromolecules throughout all domains of life. A lot of proteins interact with DNA and move along. Single molecule approaches can be used to study these processes. This example demonstrates a complete workflow for tracking the positions of proteins moving on individual DNA molecules. ([Scher, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178))
+DNA is one of the essential macromolecules throughout all domains of life. Many proteins interact with DNA, and while doing so move along the DNA molecule. Single molecule approaches can be used to study the kinetics and mechanisms of these processes. This example demonstrates a complete workflow from microscopy data to kinetic information about the enzyme studied on a single-molecule level.
 
 #### <a name="reference"></a>Table of contents
 
-- [Background information - The MARS workflow](#background)
+- [Biological system - T7 RNA Polymerase movement on DNA](#biol)
+- [Data analysis - The MARS workflow](#background)
 - [Open the sample video with SCIFIO](#open)
 - [Correct for the beam profile](#beam)
 - [Track the proteins to create a Single Molecule Archive](#track)
@@ -21,10 +20,32 @@ DNA is one of the essential macromolecules throughout all domains of life. A lot
 -	[Look at the Molecules in the Video](#look)
 - [Conclusion](#conc)
 
-#### <a name="background"></a>Background information
+#### <a name="biol"></a> Biological system - T7 RNA Polymerase movement on DNA
+In this example the processivity of single T7 RNA polymerase molecules on a 21 kbps DNA molecule is studied. The bacteriophagal T7 RNA polymerase is a member of the class of single-subunit DNA-dependent RNA polymerases and transcribes a double stranded DNA molecule to yield an RNA product. Transcription is always initiated at the T7 promoter site and runs until a specific terminator is reached. <sup>1, 2</sup>
+
+In this single-molecule experiment a fluorescently labeled T7 RNA polymerase and a 21 kbps dsDNA template with a T7 promotor are used. The DNA template is immobilized to a functionalized glass slide through a streptavidin-biotin interaction. The molecule is stretched by buffer flow. The RNA polymerase binds the promotor sequence on this DNA template and transcribes the template in the opposite direction of the flow. Tracking the fluorescent signal over time enables us to follow and characterize the transcription activity of the polymerase. After transcription is completed, a fluorescent dsDNA stain is added to the buffer to visualize the individual DNA molecules in a different color. For more information on the set-up and the biological relevance please visit the paper by Scherr et al. <sup>3</sup>
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img7.png' width='450' />  
+*Figure 1: The set-up of the single-molecule experiment investigating movement of the T7 RNA polymerase on a 21 kbps DNA template. Adapted from Scherr et al. <sup>3</sup>*
+</div>
+
+
+#### <a name="background"></a>Data analysis - The MARS workflow
+
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img8.png' width='450' />  
+*Figure 2: Flowchart showing the data analysis in MARS. The analysis is divided into four parts: raw corrections, localization & tracking, data correction and merge. These parts will be explained in detail below.*
+</div>
+
+
+
 The first step in the workflow is tracking the proteins as a function of time using the [Peak Tracker](../../docs/image/PeakTracker). Once optimal peak finding and tracking settings have been found this command generates a Molecule Archive containing the tracking results. Next, the stained DNA molecules are located and fit using the [DNA finder](../../docs/image/DNA_finder). Finally, the [build DNA archive](../docs/molecule/BuildDNAarchive) command is used to generate a DNA Molecule Archive containing DNA molecule records with the positions of all proteins on them as a function of time.
 
 This pipeline has been developed in a modular fashion to allow for maximum flexibility in image preprocessing and manual adjustment depending on the individual demands of the current project.
+
+---
 
 #### <a name="open"></a>Open the sample video with SCIFIO
 
@@ -145,3 +166,9 @@ Now select a molecule of interest in the molecule tab and open the video viewer 
 
 #### <a name="conc"></a> Conclusion
 You have now successfully analyzed a full dataset containing stretched DNA molecules and a polymerase that moves on this DNA.
+
+
+#### References
+<sup>1</sup> McAllister W.T. (1997) Transcription by T7 RNA Polymerase. In: Eckstein F., Lilley D.M.J. (eds) Mechanisms of Transcription. Nucleic Acids and Molecular Biology, vol 11. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-642-60691-5_2
+<sup>2</sup> Berg, Jeremy M., John L. Tymoczko, and Lubert Stryer. "Biochemistry." (2002)
+<sup>3</sup> [Scherr, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178)
