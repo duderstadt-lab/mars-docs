@@ -26,7 +26,7 @@ In this example the processivity of single T7 RNA polymerase molecules on a 21 k
 In this single-molecule experiment a fluorescently labeled T7 RNA polymerase and a 21 kbps dsDNA template with a T7 promotor are used. The DNA template is immobilized to a functionalized glass slide through a streptavidin-biotin interaction. The molecule is stretched by buffer flow. The RNA polymerase binds the promotor sequence on this DNA template and transcribes the template in the opposite direction of the flow. Tracking the fluorescent signal over time enables us to follow and characterize the transcription activity of the polymerase. After transcription is completed, a fluorescent dsDNA stain is added to the buffer to visualize the individual DNA molecules in a different color. For more information on the set-up and the biological relevance please visit the paper by Scherr et al. <sup>3</sup>
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img7.png' width='450' />  
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img7.png' width='450'>  
 *Figure 1: The set-up of the single-molecule experiment investigating movement of the T7 RNA polymerase on a 21 kbps DNA template. Adapted from Scherr et al. <sup>3</sup>*
 </div>
 
@@ -35,7 +35,7 @@ In this single-molecule experiment a fluorescently labeled T7 RNA polymerase and
 
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img8.png' width='450' />  
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img8.png' width='650'>  
 *Figure 2: Flowchart showing the data analysis in MARS. The analysis is divided into four parts: raw corrections, localization & tracking, data correction and merge. These parts will be explained in detail below.*
 </div>
 
