@@ -168,7 +168,80 @@ Now select a molecule of interest in the molecule tab and open the video viewer 
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/tracking_gif.gif' width='450' /></div>
 
 **Kinetic studies**  
-[to be added]
+Now all coordinates with respect to time are calculated for each polymerase that was recorded many kinetic detailed studies are possible. These for example include studies of processivity, reaction rate, pausing behavior and studies in presence and absence of other components to study interactions.
+
+As example we will examine the global reaction rate of the observed T7 RNA polymerases in our set-up. To do so, we will use the T column as a measure of time, and the 'position on DNA' column as a measure of reaction progression since it expresses the position of the protein with respect to the nucleotide position on the DNA. When we now divide the total change in position (progression) by the total time we obtain a global reaction rate. To do so run the script below in the script editor. Use 'Groovy' as the running language.
+
+```Groovy
+#@ MoleculeArchive archive
+
+import de.mpg.biochem.mars.molecule.*
+import de.mpg.biochem.mars.table.*
+import de.mpg.biochem.mars.util.*
+import org.scijava.table.*
+
+archive.getMoleculeUIDs().stream().forEach({UID ->
+  Molecule molecule = archive.get(UID)
+  MarsTable table = molecule.getTable()
+  double ymin = table.min("polymerase_1_Position_on_DNA")
+  double ymax = table.max("polymerase_1_Position_on_DNA")
+  double Tmin = table.min("polymerase_1_T")
+  double Tmax = table.max("polymerase_1_T")
+  double dist = ymax - ymin
+  double time = Tmax - Tmin
+  double speed = dist / time
+  molecule.setParameter("dist_DNA",dist)
+  molecule.setParameter("del_T",time)
+  molecule.setParameter("reaction_rate",speed)
+ })
+```
+
+The script above calculates three parameters:
+- dist_DNA: the total distance the polymerase travelled on the DNA (nucleotides)
+- del_T: the total time elapsed for this movement (/frame)
+- reaction_rate: the global reaction rate expressed as nucleotides/frame
+
+These parameter values can be found in the [parameter tab](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Molecules/).
+
+To visualize the spread in the calculated global reaction rate between all measured molecules we will make a plot using a [scriptable widget](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/). To do so move to the [Dashboard](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/RoverDashboard/) and click the histogram icon. Move to the scripting tab (<>) and past the following code. Select 'Python' as running language and press the refresh button. Then move to the graph tab and obtain the histogram as shown below.
+
+```
+#@ MoleculeArchive archive
+#@OUTPUT String xlabel
+#@OUTPUT String ylabel
+#@OUTPUT String title
+#@OUTPUT Integer bins
+#@OUTPUT Double xmin
+#@OUTPUT Double xmax
+#@OUTPUT Double ymin
+#@OUTPUT Double ymax
+
+# Set global outputs
+xlabel = "Rate of Reaction (nts/T)"
+ylabel = "Frequency"
+title = "Distribution"
+bins = 10
+xmin = 0.0
+xmax = 350.0
+ymin = 0.0
+ymax = 100.0
+
+# Series 1 Outputs
+#@OUTPUT Double[] series1_values
+#@OUTPUT String series1_strokeColor
+#@OUTPUT Integer series1_strokeWidth
+
+series1_strokeColor = "black"
+series1_strokeWidth = 2
+
+series1_values = []
+
+for molecule in archive.molecules().iterator():
+    series1_values.append(molecule.getParameter("reaction_rate"))
+```
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img9.png' width='450' /></div>
 
 
 #### <a name="conc"></a> Conclusion
