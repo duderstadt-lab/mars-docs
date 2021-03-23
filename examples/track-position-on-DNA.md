@@ -27,7 +27,7 @@ In this single-molecule experiment a fluorescently labeled T7 RNA polymerase and
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img7.png' width='450'></div>  
 
 <div style="text-align: center">
-Figure 1: The set-up of the single-molecule experiment investigating movement of the T7 RNA polymerase on a 21 kbps DNA template. Adapted from Scherr et al. <sup>3</sup>
+Figure 1: The set-up of the single-molecule experiment investigating movement of the T7 RNA polymerase   on a 21 kbps DNA template. Adapted from Scherr et al. <sup>3</sup>
 </div>
 
 
@@ -36,7 +36,7 @@ Figure 1: The set-up of the single-molecule experiment investigating movement of
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img8.png' width='650'></div>  
 
 <div style="text-align: center">
-*Figure 2: Flowchart showing the data analysis in MARS. The analysis is divided into four parts: raw corrections, localization & tracking, data correction and merge. These parts will be explained in detail below.*
+Figure 2: Flowchart showing the data analysis in MARS. The analysis is divided into four parts: raw corrections,  localization & tracking, data correction and merge. These parts will be explained in detail below.
 </div>
 
 First, some raw corrections to the collected frame are carried out: in this case only a [beam correction](https://duderstadt-lab.github.io/mars-docs/docs/image/BeamProfileCorrector/). Next the location of the fluorescent dots (T7 RNA polymerase) are [tracked](../docs/image/PeakTracker) over time, and the [DNA molecules](../../docs/image/DNA_finder) themselves will be localized. The subsequent data correction stage removes artefacts like movement through sample [drift](https://duderstadt-lab.github.io/mars-docs/docs/molecule/DriftCorrector/) and [transforms the coordinate frame](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/) so both DNA and protein are within the same coordinate frame work. In the final step the data is merged in a [DNA archive](../docs/molecule/BuildDNAarchive). This archive is then used to investigate T7 RNA polymerase movement on the DNA in the final sections of this example.
