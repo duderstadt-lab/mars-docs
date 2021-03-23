@@ -39,11 +39,9 @@ In this single-molecule experiment a fluorescently labeled T7 RNA polymerase and
 *Figure 2: Flowchart showing the data analysis in MARS. The analysis is divided into four parts: raw corrections, localization & tracking, data correction and merge. These parts will be explained in detail below.*
 </div>
 
+As indicated in the flow chart, first some raw corrections to the collected frame are carried out: in this case only a [beam correction](https://duderstadt-lab.github.io/mars-docs/docs/image/BeamProfileCorrector/). Next the location of the fluorescent dots (T7 RNA polymerase) are [tracked](../docs/image/PeakTracker) over time, and the [DNA molecules](../../docs/image/DNA_finder) themselves will be localized. The subsequent data correction stage removes artefacts like movement through sample [drift](https://duderstadt-lab.github.io/mars-docs/docs/molecule/DriftCorrector/) and [transforms the coordinate frame](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/) so both DNA and protein are within the same coordinate frame work. In the final step the data is merged in a [DNA archive](../docs/molecule/BuildDNAarchive). This archive is then used to investigate T7 RNA polymerase movement on the DNA in the final sections of this example.
 
 
-The first step in the workflow is tracking the proteins as a function of time using the [Peak Tracker](../../docs/image/PeakTracker). Once optimal peak finding and tracking settings have been found this command generates a Molecule Archive containing the tracking results. Next, the stained DNA molecules are located and fit using the [DNA finder](../../docs/image/DNA_finder). Finally, the [build DNA archive](../docs/molecule/BuildDNAarchive) command is used to generate a DNA Molecule Archive containing DNA molecule records with the positions of all proteins on them as a function of time.
-
-This pipeline has been developed in a modular fashion to allow for maximum flexibility in image preprocessing and manual adjustment depending on the individual demands of the current project.
 
 ---
 
