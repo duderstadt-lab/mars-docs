@@ -32,8 +32,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
 | [FMT Generate bps](./molecule/FMTbps) | |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
-| [Drift Calculator](./molecule/DriftCalculator) | Calculate drift in position. |
-| [Drift Corrector](./molecule/DriftCorrector) | Remove drift from the molecule positions. |
+| [Drift Corrector](./molecule/DriftCorrector) | Correct the molecule coordinates for sample drift during the measurement. |
 | [Variance Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of Molecule Archives. |
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |

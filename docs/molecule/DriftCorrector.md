@@ -3,23 +3,28 @@ layout: molecule
 title: Drift Corrector
 permalink: /docs/molecule/DriftCorrector/index.html
 ---
-This command corrects all molecules for sample drift using the drift values in the metadata generated using the [DriftCalculator](../DriftCalculator). By doing so it generates new columns for each molecule table listing 'x_drift_corr' and 'y_drift_corr'.
 
-Background region start and end points are also required. The mean of this region is subtracted from the whole trace, effectively making it approximately zero. This procedure is independent of the drift correction, which is conducted before hand for all rows in the molecule table.
+This command calculates the sample drift given a MoleculeArchive and a tag corresponding to all immobile molecules. It calculates the mean or median x and y position for each frame (T) of these immobile molecules and reports those results in the metadata specified per plane (xDrift, yDrift). If selected, the coordinates for the molecules in the MoleculeArchive will be corrected for drift by generating new columns for each molecule table listing 'x_drift_corr' and y_drift_corr.
 
 
 ##### Inputs
 
-* *MoleculeArchive* - MoleculeArchive for which drift will be corrected. The drift will be subtracted from the x and y columns for each molecule using the corresponding drift information in the metadata record.
-* *start T* - The first time point of the background region.
-* *end T* - The last time point of the background region.
+* *MoleculeArchive* - MoleculeArchive for which drift will be corrected. The drift will be subtracted from the x and y columns for each molecule using the corresponding drift information.
+* *Single Channel* - Tick this box if the drift should only be calculated for all data corresponding to a certain channel. The drift correction can be executed sequentially for all channels in the archive if drift differences are to be expected between different channels.
+* *Channel* - Select the channel for which the drift should be calculated in case the 'single channel' option is ticked.
+* *Calculate drift* - Tick this box if the drift should be calculated.
+* *Background Tag* - The tag added to all molecules that should be used to calculate background.
 * *Input X (x)* - X-coordinates to be corrected. Usually this is just x.
 * *Input Y (y)* - Y-coordinates to be corrected. Usually this is just y.
+* *Use incomplete traces* - Uses all traces for the drift calculation including those that do not have all slices, which sometimes happens when peak fitting fails for a certain frame. If there are no observations for a certain slice, then NaN is used.
+* *mode* - Select between using the 'mean' or 'median' x and y position.
+* *Zero* - Select between treating the starting point or then end point as zero.
+* *Correct drift* - Select if the coordinates should be corrected for drift.
 * *Output X (x_drift_corr)* - The new output x column added to the table with the background corrected trace. Usually this is x_drift_corr.
 * *Output Y (y_drift_corr)* - The new output y column added to the table with the background corrected trace. Usually this is y_drift_corr.
-* *correct original coordinates* - Tick in case the original coordinates should be overwitten (not advised).
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Drift Corrector.png' width='450'/></div>
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img7.png' width='450'/></div>
 
 #### Output
 
