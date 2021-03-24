@@ -7,7 +7,7 @@ permalink: /docs/molecule/index.html
 | :----------------------------- | :----------- |
 | [Open archive](./ImportArchive) | Use this command to open an archive.|
 | [Open virtual store](./ImportArchive) | Use this command to open a virtually stored archive.|
-| [Build DNA archive](./BuildDNAarchive) | |
+| [Build DNA archive](./BuildDNAarchive) | Builds a DNA Archive from a SingleMoleculeArchive and a list of DNA ROIs |
 | [Build archive from table](./BuildArchiveFromTable) | Generate a Molecule Archive using a table with a molecule index column. |
 | [Region Difference Calculator](./RegionDifferenceCalculator) | Add parameter for difference between two regions. |
 | [FMT Generate bps](./FMTbps) | |

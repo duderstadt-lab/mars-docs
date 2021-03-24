@@ -4,7 +4,7 @@ title: Repositories
 permalink: /about/Repositories/index.html
 ---
 
-All repositories can be found on the [github page](https://github.com/duderstadt-lab). Current and complete dependency information can be found in the pom.xml within each repository. The main dependencies are highlighted below. All projects inherit dependencies from the [SciJava POM][https://github.com/scijava/pom-scijava].
+All repositories can be found on the [github page](https://github.com/duderstadt-lab). Current and complete dependency information can be found in the pom.xml within each repository. The main dependencies are highlighted below. All projects inherit dependencies from the [SciJava POM](https://github.com/scijava/pom-scijava).
 
 | Repository     | Function     | Dependencies    |
 | :------------- | :------------- | :---------------|

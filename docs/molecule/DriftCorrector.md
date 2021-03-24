@@ -49,19 +49,22 @@ driftCorr.setContext(ij.getContext())
 
 //Set all the input parameters
 driftCorr.setArchive(archive)
-driftCorr.setStartT(0)
-driftCorr.setendT(100)
+driftCorr.setSingleChannel(False)
+driftCorr.setChannel(0)
+driftCorr.setCalculateDrift(True)
+driftCorr.setBackgroundTag("background")
 driftCorr.setInputX("x")
 driftCorr.setInputY("y")
+driftCorr.setUseIncompleteTraces(false)
+driftCorr.setMode("mean")
+driftCorr.setZeroPoint("end")
+driftCorr.setCorrectDrift(True)
 driftCorr.setOutputX("x_drift_corr")
 driftCorr.setOutputY("y_drift_corr")
-driftCorr.setCorrectOriginalCoordinates(false)
+
 
 //Run the Command
 driftCorr.run();
 
-//Retrieve output from the command
-//In this case, the archive is just modified
-//so no output is needed and the line below is not needed
-//archive = driftCorr.getArchive();
+
 ```
