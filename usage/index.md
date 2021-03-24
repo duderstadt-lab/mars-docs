@@ -26,7 +26,7 @@ Once you have installed Mars in your Fiji using the update site, the submenu "Ma
 If you encounter problems of any kind or have a usage question please create an issue on one of the mars repositories in Github or post your question on the [ImageJ forum](https://forum.image.sc). If you post in the forum please make sure to tag it with mars and add *@karlduderstadt* in your comment. We would love to hear back about your experience using mars.
 
 ### System compatibility
-Mars is compatible with Windows, Linux and Mac OS. Mars has been extensively tested on mac and linux systems. However, we have not tested Mars on windows.
+Mars is compatible with Windows, Linux and Mac OS. Mars has been extensively tested on mac and linux systems. However, we have not tested Mars as extensively on windows.
 
 <img align='center' src='{{site.baseurl}}/usage/img/img1.png' width='50' />
 <img align='center' src='{{site.baseurl}}/usage/img/img2.png' width='50' />
