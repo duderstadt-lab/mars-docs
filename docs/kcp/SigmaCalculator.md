@@ -15,7 +15,7 @@ The 'Sigma Calculator' tool calculates the error value in a specific region of a
 When selecting the option 'Defined below':
   * _from_ - Start frame (T) number.
   * _to_ - End frame (T) number.
-* _Region from MarsRecord_ - Enter region name to use that is defined in the MarsRecord.
+* _Region_ - Enter region name to use that is defined in the Archive.
 
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img7.png' width='450'/></div>

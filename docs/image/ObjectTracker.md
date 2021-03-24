@@ -35,8 +35,10 @@ As an example the Object Tracker settings can be applied on a standard Fiji samp
 * *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
 To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions on ROI tools can be found in this [video](https://www.youtube.com/watch?v=ZPS78T_-gUs&feature=youtu.be).
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
+* *Use local otsu* - Tick this to use the local otsu radius.
 * *Local otsu radius* - Specifies the surrounding radius in pixels that are used to calculate the local otsu threshold on which segmentation will be based. Selecting a too small region might result in the identification of noise as objects, a too large region might overlook objects.
 * *Minimum distance between object centers* - Specifies how much pixels need to be present between objects. Two objects closer to each other than this parameter will be merged into one object.
+* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
 * *Preview* - Shows a contour of the identified objects with the current settings.
 * *T* - Select the time point (T) to show peak finding results on in the video.
 * *Linear interpolation factor* - Set to >1 for smoother fit results using linear interpolation.
@@ -51,6 +53,7 @@ To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions
 * *Pixel length* - Length of a pixel in the microscope system used for data collection.
 * *Pixel units* - Units of the provided pixel length.
 * *Exclude* - List timepoints to exclude from the tracking process. This allows the user to exclude frames from the analysis without having to delete them from the dataset irreversibly.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 ### Output
 
@@ -74,9 +77,9 @@ objectTracker.setContext(ij.getContext())
 
 objectTracker.setDataset(dataset)
 objectTracker.setImagePlus(true)
-objectTracker.setROI()
 objectTracker.setUseROI(false)
 objectTracker.setChannel(0)
+objectTracker.setUseLocalOtsu(False)
 objectTracker.setLocalOtsuRadius(20)
 objectTracker.setMinimumDistance(10)
 objectTracker.setInterpolationFactor(1)

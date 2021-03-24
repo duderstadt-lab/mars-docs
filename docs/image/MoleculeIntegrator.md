@@ -33,6 +33,7 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 * *Microscope* - The microscope name added to the  metadata record.
 * *FRET short wavelength name* - The name of the short wavelength color that will be used as the color header in the outputted MoleculeArchive.
 * *FRET long wavelength name* - The name of the long wavelength color that will be used as the color header in the outputted MoleculeArchive.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 * *Channels* - Autodetects which channels are present in the video (when supplied in the video metadata). Then allows for assignment of the correct function for each channel (f.e. None, Short, Long or FRET).
 
 

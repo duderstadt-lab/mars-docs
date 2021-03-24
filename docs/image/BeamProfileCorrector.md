@@ -17,13 +17,12 @@ Typically images should be opened in Fiji using File->Import->Image Sequence. wi
 
 #### Inputs
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Beam Profile Correction Dialog.png' width='500'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img16.png' width='500'/></div>
 
-* *Image to correct* - The Image to apply beam profile correction to. If you have opened a virtual stack this is usually Pos0. Due to some weirdness of IJ2, sometimes you will also see a list of all the individual images in the sequence, but what you want is Pos0. If the image is opened differently, the file name will be displayed here.
-* *Background Image* - This is a single background tif image that should only have the beam profile signal and no peaks. There are several ways to get this image. One way is to go out of focus and collect and image in which there are no single peaks. Another option is to try and generate this from your actual data. Can you do Z project in Image->Stacks with minimum or median for say 50 frames. This will generate a background image. If you still see peaks you can apply a median or minimum filter to the image using Process->Filters with a large radius 3-6. Hopefully this makes a nice background image like the one above in the example with no single peaks (or better than the example).
+* *Image to correct* - The Image to apply beam profile correction to, make sure this image is opened and active in Fiji.
+* *Background Image* - This is a single background tif image that should only have the beam profile signal and no peaks. There are several ways to get this image. One way is to go out of focus and collect and image in which there are no single peaks. Another option is to try and generate this from your actual data. Can you do Z project in Image->Stacks with minimum or median for say 50 frames. This will generate a background image. If you still see peaks you can apply a median or minimum filter to the image using Process->Filters with a large radius 3-6. Hopefully this makes a nice background image like the one above in the example with no single peaks (or better than the example). The background image should be active in Fiji.
 * *Electronic offset* - This is the background signal of the camera. So if you completely block all light to the camera for you settings (must be with your exposure and other settings), the mean pixel value is the electronic offset or thermal noise in the sensor. For the moment we don't have this for most data, so it can be left at 0.
-* *Save sequence to directory* - If checked the corrected images will be saved to the directory specified. If unchecked the image given will be directly corrected in memory. If the images were loaded as a virtual stack, you must check this box and provide an output directory.
-* *Output Directory* - The folder where the corrected image sequence will be saved.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 #### Output
 
@@ -57,8 +56,6 @@ profileCorrector.setContext(ij.getContext())
 profileCorrector.setImage(image)
 profileCorrector.setBackgroundImage(backgroundImage)
 profileCorrector.setElectronicOffset(0)
-profileCorrector.setSaveToDisk(true);
-profileCorrector.setDirectory(directory);
 
 //Run the Command
 profileCorrector.run();

@@ -21,6 +21,8 @@ Affine2D Transformation Matrix: coordinates found with the Affine2D calculation 
 * *m11*
 * *m12*
 
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
+
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img5.png' width='350'/></div>
 
 #### Output

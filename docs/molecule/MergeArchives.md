@@ -7,10 +7,7 @@ This command merges multiple Molecule Archives (yama files) into one. To ensure 
 
 #### Inputs
 
-* *Directory* - A directory containing multiple .yama files you would like to merge (They can be either txt or smile encoded or a combination of the two). Can be as many as you like but they must all contain unique datasets (unique MetaData UIDs). If two archives have MetaData items with the same UIDs the merge process will be aborted until the conflict is resolved.
-* *Use smile encoding* - The encoding of the output .yama file. Usually smile encoding is preferred because it will results in smaller file sizes. However, if export to another software is required plain txt JSON is preferred.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/merge.png' width='400'/></div>
+* The input of this command is the folder containing the archives that should be merged. When running the command a file explorer window is opened where this directory can be selected.
 
 #### Output
 
@@ -32,7 +29,6 @@ merger.setContext(ij.getContext())
 
 //Set all the input parameters
 merger.setDirectory("/Users/me/data")
-merger.setSmileEncoding(true)
 
 //Run the Command
 merger.run()

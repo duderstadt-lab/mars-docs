@@ -17,16 +17,14 @@ Several additional inputs allow for filtering PointROIs in one channel based on 
 * *Affine2D parameters* - The matrix values for the Affine2D transform generated using the Descriptor-based registration plugin.
 * *Transformation Direction* - Whether detected peaks are being transformed from Long Wavelength to Short Wavelength or visa vera. This determines the names added to the ROIs. If Long Wavelength to Short Wavelength then the original Rois will get the _LONG ending and the new ones the _SHORT ending. If the opposite direction is selected, then the labels will be reversed.
 * *Colocalize* - If checked the transformed peak positions will be checked for peaks and filtered to remove transformations to locations that do not have peaks in the second channel.
+* *Channel* - Select the channel that needs to be transformed in the case of a multi-channel video.
+* *T* - Select the frame (T) in case of a multi-frame video.
 * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
 * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/DoGFilterRadiiExample.png' width='600'/></div>
 
 * *Detection threshold* - This is threshold in pixel value used for peak detection. Pixels with values above this threshold are considered peaks and pixels below this threshold are considered background. For everyday peak detection, the DoG filter should be used in which case this threshold using on the DoG filtered image. In this case, we have found that values between 40 and 60 provide [optimal detection](../DoGFilterProperties) for typical single-molecule observations. If the DoG Filter is turned off this threshold reflects raw pixel values in the input image.
-* *Minimum distance between peaks* - This is the minimum allowed distance between peaks. This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other pixels above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
-
 * *Filter Original ROIs* - If checked the peaks detected at the transformed locations will be used to filter the original ROIs in the starting channel. This is helpful to remove all proteins that do not colocalize with DNA for example. The effect will not be shown in the preview, it will only be show in the resulting output ROIs.
 * *Colocalize search radius* - The radius of pixels to include for peak detection in the transformed peak. If the alignment is not perfect or the signal is more distributed in the transformed position, this setting will ensure there are fewer false negatives.
 * *Preview* - If checked the resulting transformed peaks will show up on the image based on the settings. *Note: The results of Filtering the original ROIs will not show up in preview but only in the final output.*  
@@ -62,10 +60,11 @@ transformROIs.setM11(0)
 transformROIs.setM12(0)
 transformROIs.setTransformationDirection("Long Wavelength to Short Wavelength")
 transformROIs.setColocalize(false)
+transformROIs.setChannel(0)
+transformROIs.setT(0)
 transformROIs.setUseDogFilter(false)
 transformROIs.setDogFilterRadius(2)
 transformROIs.setTreshold(50)
-transformROIs.setMinimumDistance(4)
 transformROIs.setFilterOriginalRois(false)
 transformROIs.setColocalizeSearchRadius(1)
 

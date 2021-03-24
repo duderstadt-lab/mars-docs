@@ -10,14 +10,10 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 
 #### Inputs
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/DNA Finder Dialog.png' width='550'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img15.png' width='550'/></div>
 
 * *Image* - The active image selected will be used by the DNA Finder. This is a required input but doesn't show up in the dialog.
-* *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, by making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
-* *ROI x0* - Upper left corner x0 position of ROI.
-* *ROI y0* - Upper right corner y0 position of ROI.
-* *ROI width* - width of the ROI.
-* *ROI height* - height of the ROI.
+* *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can add a selection with the box tool, by making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
 * *Gaussian Filter Sigma* - The sigma used for gaussian smoothing. The DNA Finder uses the scijava OpService op derivativeGauss which filters the image with a combined gaussian smoothing and takes the derivative. Usually a sigma of 1 is usually sufficient. Higher sigma values might lead to too much smoothing and obscure important features.
 
@@ -38,8 +34,8 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MedianFilter.png' width='500'/></div>
 
-* *Filter by intensity MSD* - If checked DNAs will be removed if the mean squared deviation of their intensity is above the "DNA intensity MSD upper bound" value.
-* *DNA intensity MSD upper bound* - An upper bound threshold for the mean squared deviation of the DNA intensity. Sometimes multiple DNAs clump together or form arches. These structures are sometimes detected as single DNA molecules, but have a large mean squared intensity deviation. Setting an upper bound threshold for the MSD will remove these.
+* *Filter by intensity variance* - If checked DNAs will be removed if the variance of their intensity is above the "DNA intensity variance upper bound" value.
+* *DNA intensity variance upper bound* - An upper bound threshold for the variance of the DNA intensity. Sometimes multiple DNAs clump together or form arches. These structures are sometimes detected as single DNA molecules, but have a large mean squared intensity deviation. Setting an upper bound threshold for the variance will remove these.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MSDFilter.png' width='500'/></div>
 
@@ -48,9 +44,9 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 * *Fit ends (subpixel localization)* - If checked the DNA ends will be fit with 2D Gaussians to determine their sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. See the [[Peak Finder]] for further information about fitting.
 * *Fit 2nd order* - Will perform the subpixel fitting on the second derivative image. If turned off the first derivative image is used. The second derivative image will result in more accurate length estimate but may be less stable.
 * *Fit Radius* - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.
-* The Baseline, Height, and Sigma are all varied and no max error thresholds are applied. No max error thresholds are applied. If fitting results in NaN values, the pixel values will be used.
-* *Preview label type* - To help with determination of median intensity and mean squared deviation thresholds, the values of these parameters can be displayed in preview mode. This radio button determines which of the two values to display. The labels may include k for x1,000 or m for x1,000,000 for clarity.
+* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
 * *Preview* - Check this box to turn on preview mode. This will display an overlay of the DNAs that were located on the image. Sometime if you have a very large image this might be really slow, be patient. Otherwise, just make an ROI for preview testing, which will run faster. Once you have found the right settings you can cancel, remove the ROI, and run the command on the whole image with the correct settings.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 #### Outputs
 
@@ -82,29 +78,27 @@ dnaFinder.setContext(ij.getContext())
 
 dnaFinder.setDataset(dataset)
 dnaFinder.setUseROI(false)
-dnaFinder.setX0(0)
-dnaFinder.setY0(0)
-dnaFinder.setWidth(1024)
-dnaFinder.setHeight(1024)
 dnaFinder.setGaussianSigma(1)
+dnaFinder.setUseDogFilter(True)
+dnaFinder.setDogFilterRadius(1.8)
 dnaFinder.setThreshold(2)
 dnaFinder.setMinimumDistance(4)
 dnaFinder.setOptimalDNALength(34)
-dnaFinder.setyDNAEndSearchRadius(27)
-dnaFinder.setxDNAEndSearchRadius(3)
+dnaFinder.setYDNAEndSearchRadius(27)
+dnaFinder.setXDNAEndSearchRadius(3)
 dnaFinder.setFilterByMedianIntensity(true)
 dnaFinder.setMedianIntensityLowerBound(3000)
-dnaFinder.setFilterByMSD(true)
-dnaFinder.setMSDUpperBound(900000)
+dnaFinder.setFilterByVariance(true)
+dnaFinder.setVarianceUpperBound(900000)
+dnaFinder.setFit(True)
+dnaFinder.setFitSecondOrder(False)
+dnaFinder.setFitRadius(2)
+dnaFinder.setT(0)
 dnaFinder.setGenerateDNACountTable(false)
 dnaFinder.setGenerateDNATable(true)
 dnaFinder.setAddToRoiManager(false)
-dnaFinder.setProcessAllSlices(false)
-dnaFinder.setFitEnds(true)
-dnaFinder.setFitRadius(2)
-dnaFinder.setInitialBaseline(0)
-dnaFinder.setInitialHeight(3000)
-dnaFinder.setInitialSigma(1)
+dnaFinder.setProcessAllFrames(false)
+
 
 //Run the Command
 dnaFinder.run();

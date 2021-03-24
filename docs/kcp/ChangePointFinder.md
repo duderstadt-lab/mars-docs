@@ -38,6 +38,7 @@ As an introduction the reader is referred to the [Kinetic Changepoint Analysis t
 * _Fit steps (zero slope)_ - Fit regression lines with a slope of 0, especially useful for fitting pauses.
 * _Include_ - Choose to include 'all', 'tagged with' or 'untagged' molecules in the analysis.
 * _Tags (comma separated list)_ - List of tags to base on which traces are included in the analysis.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img4.png' width='350'/></div>
 

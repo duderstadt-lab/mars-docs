@@ -36,8 +36,8 @@ varCalc.setContext(ij.getContext());
 
 //Set all the input parameters
 varCalc.setArchive(archive);
-varCalc.setColumn("x");
-varCalc.setParameterName("MSD_x");
+varCalc.setColumn("y");
+varCalc.setParameterName("var");
 
 //Run the Command
 varCalc.run();

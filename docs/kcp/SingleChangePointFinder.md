@@ -22,6 +22,7 @@ The single change point finder tool allows for the identification of one change 
 * _Position_ - Name for the position.
 * _Include_ - Choose to include 'all', 'tagged with' or 'untagged' molecules in the analysis.
 * _Tags (comma separated list)_ - List of tags to base on which traces are included in the analysis.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/kcp/img/img6.png' width='450'/></div>
 

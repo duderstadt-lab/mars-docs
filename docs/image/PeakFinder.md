@@ -23,6 +23,7 @@ This command is used to find high intensity spots or peaks in images. Typically 
 
  <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
+ * *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
  * *Preview* - When checked ROIs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
  * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
  * *T* - Select the time point (T) to show peak finding results on in the video.
@@ -46,6 +47,7 @@ Where x0 and y0 are the subpixel positions of a peak with a given height, baseli
  * *Inner radius* - The radius of the region to integrate around the center of the peak. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Typically 1 is a good value but this depends on the size of molecules on the camera sensor.
  * *Outer radius* - The radius of the region to use for calculating the local median background. This is subtracted from the inner region. Typically 3 is a good value. This radius should be ~2 pixels larger than the inner radius.
  * *Verbose output* - If checked all fit parameters are included in the output (baseline, height, x, y, sigma, R2). If unchecked only the position, slice, intensity columns will be included in the output. Verbose output can be used to optimise the R-squared minimum, or for calculations based on peak properties.
+ * *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 #### Output
 
@@ -74,22 +76,23 @@ peakFinder.setContext(ij.getContext())
 peakFinder.setDataset(dataset)
 peakFinder.setUseROI(false)
 peakFinder.setChannel(0)
-peakFinder.setT(0)
 peakFinder.setUseDogFiler(true)
-peakFinder.setDogFilterRadius(1.8d)
+peakFinder.setDogFilterRadius(1.8)
 peakFinder.setThreshold(50)
 peakFinder.setMinimumDistance(4)
+peakFinder.setT(0)
 peakFinder.setFindNegativePeaks(false)
 peakFinder.setGeneratePeakCountTable(false)
 peakFinder.setGeneratePeakTable(true)
-peakFinder.setMinimumRsquared(0)
 peakFinder.setAddToRoiManager(false)
 peakFinder.setProcessAllFrames(true)
 peakFinder.setFitPeaks(true)
 peakFinder.setFitRadius(4)
+peakFinder.setMinimumRsquared(0)
 peakFinder.setIntegrate(true)
 peakFinder.setIntegrationInnerRadius(1)
 peakFinder.setIntegrationOuterRadius(3)
+peakFinder.setVerboseOutput(False)
 
 //Run the Command
 peakFinder.run();

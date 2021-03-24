@@ -18,7 +18,6 @@ The [Color coded track overlay groovy script](https://github.com/duderstadt-lab/
 There are a lot of inputs, but don't panic, they are all pretty simple to understand and overlap with the [PeakFinder](../PeakFinder) options. Many inputs are included for completeness to give fine control but do not need to be changed in most cases.   
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img3.png' width='550'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img4.png' width='550'/></div>
 
 * *Image* - The active image selected will be used by the Peak Tracker. So this is a required input but doesn't show up in the dialog.
 * *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool to add a rectangular ROI to the image. Upon running the command, this ROI will activate the checkbox.
@@ -34,6 +33,7 @@ To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
+* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
 * *Preview* - When checked crosshairs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
  * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
 * *T* - Scrollbar to select the frame to preview with live update.
@@ -56,8 +56,8 @@ The following are the settings for tracking absent in the [PeakFinder](../PeakFi
 * *Microscope* - The name of the microscope used for data collection. This name is included in the metadata record.
 * *Pixel length* - Length of a pixel in the microscope system used for data collection.
 * *Pixel units* - Units of the provided pixel length.
-* *Norpix format* - Tick if a dataset in the Norpix format is analyzed.
 * *Exclude* - List timepoints to exclude from the tracking process. This allows the user to exclude frames from the analysis without having to delete them from the dataset irreversibly.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
 ### Output
 
@@ -101,7 +101,6 @@ peakTracker.setIntegrationOuterRadius(4)
 peakTracker.setMicroscope("Microscope")
 peakTracker.setPixelLength(1)
 peakTracker.setPixelUnits("pixel")
-peakTracker.setNorpixFormat(False)
 peakTracker.setExcludedTimePointsList()
 
 //Run the Command
