@@ -63,6 +63,10 @@ The following figure illustrates the main experimental idea. DNA is positively s
 
 ##### <a name="workflow"></a>The MARS workflow
 
+<p align='center'>
+  <img src='{{site.baseurl}}/examples/img/fmt/img1.png' style='width: 700px'>
+</p>
+
 To analyze the generated dataset, the single molecule beads are tracked using the build in tracker from MARS ([Peak Tracker](../../docs/image/PeakTracker)). A 'MoleculeArchive' is created containing all the tracking information of every single molecule. This archive is the centre of the analysis and will keep track of all calculated parameters, tags, and applied filters over time to ensure reproducibility. Parameters are calculated using scripts (e.g. groovy based) for different time points of the trace to be used later on to classify molecules with tags. A selection of molecules with certain tags can then be used for further analysis. Tables can be exported with specific information which can then be used in combination with other plotting tools (e.g. python) to create great data representation or with other software to analyse the data further. Keep in mind that this workflow is a result of extensive work on the topic for a couple of months.
 
 #### <a name="tracking"></a> Tracking of the single molecule data
