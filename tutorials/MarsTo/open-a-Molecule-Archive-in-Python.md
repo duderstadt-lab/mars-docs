@@ -191,5 +191,5 @@ conda activate pyimagejMars
 
 3. Select the notebook of interest from the list and open it.
 ```terminal
-jupyter notebook my_notebook.ipnb
+jupyter notebook my_notebook.ipynb
 ```
