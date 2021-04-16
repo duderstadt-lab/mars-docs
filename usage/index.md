@@ -6,11 +6,11 @@ permalink: /install/index.html
 ---
 
 ### 1. Install Fiji on your computer and check the presence of javafx
-Mars is developed as a plugin for the [Fiji software package](https://imagej.net/Fiji). Therefore an updated version of Fiji is required to run Mars on your computer.
+Mars consists of a collection of scijava commands and user interface that runs in [Fiji](https://imagej.net/Fiji). Therefore an updated version of Fiji is required to run Mars on your computer.
 
 1. Download and install [Fiji](https://imagej.net/Fiji/Downloads). This should take up to a couple of minutes to be completed.
 2. Open Fiji and make sure you are up-to-date by running Help>Update. Click accept changes to update to the newest versions of all components. After the update, restart Fiji.
-3. **Mac:** Verify that javafx is installed in your Fiji. Previously, javafx was bundled with the download but the newest version of Fiji does not automatically come with javafx. To check this show the package contents of the Fiji folder in the finder and search for a version of 'javafxsvg.jar' (right mouse click on the Fiji folder in applications>Show Package Contents>Jars). In case javafx is not present in this folder, your java folder has to be replaced with one that contains javafx in order for the Mars Rover gui to work. See [this](https://forum.image.sc/t/can-not-use-javafx-on-fiji-at-openjdk/27213/10) post for further details. We hope javafx will again be bundled in Fiji soon.
+3. **Mac:** Verify that javafx is installed in your Fiji. Previously, javafx was bundled with the download but the newest versions of Fiji do not come with javafx. To check this show the package contents of the Fiji folder by right-mouse clicking on the Fiji folder and selecting Show Package Contents. Check inside the java folder and macosx subfolder. If you see adoptopenjdk-8.jdk then you do not have javafx installed. In this case you will need to replace this jdk with a zulu_8.jre for the Mars Rover gui to work. You can download the jre [here](https://forum.image.sc/t/can-not-use-javafx-on-fiji-at-openjdk/27213/10) then unzip the downloaded file and replace adoptopenjdk-8.jdk with zulu_8.jre. Once you have done with, you can go back and double-click Fiji to open it and you should now have javafx installed. 
 
 ### 2. Install the Mars project in your local Fiji
 An imagej update site has been created to help with maintenance and distribution of Mars and all necessary dependencies. Follow the directions below to install Mars in your local copy of Fiji:
