@@ -184,15 +184,15 @@ The first correction that is applied to the dataset is a background correction. 
 #### <a name="7"></a> Correction for Leakage and Direct excitation
 
 
-$$\alpha = \frac{\langle ^iiE_{app}^(DO) \rangle}{1 - \langle ^iiE_{app}^(DO) \rangle}$$
+$$\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle ^{ii}E_{app}^{(DO)} \rangle}$$
 
-$$\delta = \frac{\langle ^iiS_{app}^(AO) \rangle}{1 - \langle ^iiS_{app}^(AO) \rangle}$$
+$$\delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}$$
 
-$$F_{A|D}=^iiI_{Aem|Dex} - \alpha ^iiI_{Dem|Dex} - \delta ^iiI_{Aem|Aex}$$
+$$F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}$$
 
-$$^iiE_{app} = \frac{F_{A|D}}{F_{A|D} + ^iiI_{Dem|Dex}}$$
+$$^{ii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}$$
 
-$$^iiS_{app} = \frac{F_{A|D} + ^iiI_{Dem|Dex}}{F_{A|D} + ^iiI_{Dem|Dex} + ^iiI_{Aem|Aex}}$$
+$$^{ii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}$$
 
 
 
