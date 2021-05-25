@@ -1,6 +1,6 @@
 ---
 layout: example
-usemathjax: true
+mathjax: true
 title: FRET dataset analysis using Mars
 permalink: /examples/FRET/index.html
 ---
@@ -169,9 +169,7 @@ To generate a crude and uncorrected 2D histogram of the FRET values obtained in 
 When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
-test
-
-
+test2
 
 
 
