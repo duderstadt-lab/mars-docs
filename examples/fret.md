@@ -156,10 +156,17 @@ Next, identify the bleaching steps in each trace using the 'change point finder'
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img11.png' width='450'></div>
 
-The filtering step itself is automized in a [script](). Please [download]() the script and open it in fiji to run in the script editior. For more information on running scripts in Fiji visit the [introduction to Groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/).
+The filtering step itself is automized in a [script](). Please [download]() the script and open it in Fiji to run in the script editor. For more information on running scripts in Fiji visit the [introduction to Groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/).
 In short, the script calculates the difference between the measured intensities in the change point analysis and assigns a Boolean parameter to the molecule indicating if this difference is larger than zero (∆I > 0). Next, it evaluates whether a single bleaching step or multiple bleaching steps are observed and assigns this to the Boolean parameters 'Red_singlebleach' and 'Green_singlebleach respectively'. After the declaration of these parameters, the molecules that are part of the FRET archive are tagged. A tag ('Active') is added to the molecule in case bleaching is observed both in red and green, in other cases the tag 'background' is assigned. Subsequently, the tag 'Active_single' is assigned to molecules that show a single bleaching event in both colors.
 
+#### <a name="5"></a> Calculate all Intensity Parameters and Use these to Create an Uncorrected FRET Histogram
 
+The next step is to assign the measured fluorophore intensities to the corresponding intensity parameters (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>). To do so, download [script 2]() from the repository and run it in the Fiji script editor. This script determines the highest fluorophore intensity level as reported in the segments table and assigns this to the corresponding parameter name. Later on in the pipeline discriminating the different populations (FRET, AO, DO) as well as selecting only the 'Active_single'-tagged molecules is possible by means of using the assigned tags.
+
+To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these parameters are used in the following formulas.
+
+$\gamma$
+\gamma
 
 
 
