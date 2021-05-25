@@ -4,7 +4,7 @@ title: FRET dataset analysis using Mars
 permalink: /examples/FRET/index.html
 ---
 
-[introduction]
+introduction
 
 #### <a name="reference"></a>Table of contents
 
