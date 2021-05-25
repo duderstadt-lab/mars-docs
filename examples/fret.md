@@ -175,10 +175,12 @@ I_{Aem|Dex}^{FRET}
 I_{Dem|Dex}^{FRET}
 I_{Aem|Aex}^{FRET}
 
-^iS_{app} = \frac{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET} + I_{Aem|Aex}^{FRET}}
+$$^iS_{app} = \frac{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET} + I_{Aem|Aex}^{FRET}}$$
 
-^iE_{app} = \frac{I_{Aem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}
-$$
+$$^iE_{app} = \frac{I_{Aem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}$$
+
+
+test
 
 
 
