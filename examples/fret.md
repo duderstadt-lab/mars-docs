@@ -82,12 +82,12 @@ The following values were found: (note that matrices calculated at a different T
 
 |                 | Left to Right matrix     | Right to Left matrix |
 | :-------------  | :------------- | : ------ |
-| m00             | 0.986          | 1.014 |
-| m01             | 0              | 0     |
-| m02             | 268.639        | -272.404|
-| m10             | 0              | 0.004 |
-| m11             | 0.993          | 1.007 |
-| m12             | 1.170          | -2.299|
+| m<sub>00</sub>             | 0.986          | 1.014 |
+| m<sub>01</sub>             | 0              | 0     |
+| m<sub>02</sub>             | 268.639        | -272.404|
+| m<sub>10</sub>             | 0              | 0.004 |
+| m<sub>11</sub>             | 0.993          | 1.007 |
+| m<sub>12</sub>             | 1.170          | -2.299|
 
 
 #### <a name="3"></a> Localization and Intensity vs. T traces
@@ -125,7 +125,7 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 | :------------- | :------------- | :------------- | :------------- |
 | Molecule      | figure of DNA       | figure of DNA       | figure of DNA       |
 | What to measure | Intensity of fluorescence in red upon red excitation, Intensity of fluorescence in green upon green excitation, Intensity of fluorescence in red upon green excitation (FRET)  | Intensity of fluorescence in red upon red excitation, Leaking fluorescence to the green channel upon red excitation, Leaking fluorescence to the red channel when excited with green  | Leaking fluorescence of red upon green excitation, Intensity of fluorescence in green upon green excitation  |
-| Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>AO</sup>, I<sub>demdex</sub><sup>AO</sup> & I<sub>aemdex</sub><sup>AO</sup>  |  I<sub>aemdex</sub><sup>DO</sup> & I<sub>demdex</sub><sup>DO</sup> |
+| Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
 | Analysis procedure  | Find peaks in red, Transform ROIs (L->R) to colocalize (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in red, Transform ROIs (L->R) to filter out colocalizing peaks (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in green, Transform ROIs (R->L) to filter out colocalizing peaks (C=0), Molecule integrator (C=1 both)  |
 
 <div style="text-align: center">
@@ -165,8 +165,8 @@ The next step is to assign the measured fluorophore intensities to the correspon
 
 To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these parameters are used in the following formulas.
 
-$\gamma$
-\gamma
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 
 
