@@ -1,5 +1,6 @@
 ---
 layout: example
+usemathjax: true
 title: FRET dataset analysis using Mars
 permalink: /examples/FRET/index.html
 ---
