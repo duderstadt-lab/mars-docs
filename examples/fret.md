@@ -166,14 +166,18 @@ The next step is to assign the measured fluorophore intensities to the correspon
 
 To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these parameters are used in the following formulas.
 
-When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
-test2
+\frac{}{}
 
+I_{Aem|Dex}^{FRET}
+I_{Dem|Dex}^{FRET}
+I_{Aem|Aex}^{FRET}
 
+^iS_{app} = \frac{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET} + I_{Aem|Aex}^{FRET}}
 
-
+^iE_{app} = \frac{I_{Aem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}
 
 
 
