@@ -18,6 +18,9 @@ introduction
 - [Data preparation - Calculation of the Affine2D matrix](#2)
 - [Localization and Intensity vs. T traces](#3)
 - [Filter Traces to only have 1 Donor and/or Acceptor](#4)
+- [Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram](#5)
+- [Trace-wise Background Correction](#6)
+- [Correction for Leakage and Direct excitation](#7)
 
 
 #### <a name="design"></a> FRET sample design
@@ -160,32 +163,44 @@ Next, identify the bleaching steps in each trace using the 'change point finder'
 The filtering step itself is automized in a [script](). Please [download]() the script and open it in Fiji to run in the script editor. For more information on running scripts in Fiji visit the [introduction to Groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/).
 In short, the script calculates the difference between the measured intensities in the change point analysis and assigns a Boolean parameter to the molecule indicating if this difference is larger than zero (∆I > 0). Next, it evaluates whether a single bleaching step or multiple bleaching steps are observed and assigns this to the Boolean parameters 'Red_singlebleach' and 'Green_singlebleach respectively'. After the declaration of these parameters, the molecules that are part of the FRET archive are tagged. A tag ('Active') is added to the molecule in case bleaching is observed both in red and green, in other cases the tag 'background' is assigned. Subsequently, the tag 'Active_single' is assigned to molecules that show a single bleaching event in both colors.
 
-#### <a name="5"></a> Calculate all Intensity Parameters and Use these to Create an Uncorrected FRET Histogram
+#### <a name="5"></a> Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram
 
 The next step is to assign the measured fluorophore intensities to the corresponding intensity parameters (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>). To do so, download [script 2]() from the repository and run it in the Fiji script editor. This script determines the highest fluorophore intensity level as reported in the segments table and assigns this to the corresponding parameter name. Later on in the pipeline discriminating the different populations (FRET, AO, DO) as well as selecting only the 'Active_single'-tagged molecules is possible by means of using the assigned tags.
 
-To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these parameters are used in the following formulas.
+To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these intensity  parameters are supplemented into the following two formulae calculating the uncorrected apparent E and S value for each molecule. To do so download [script 3]() and run in the Fiji script editor. Note that for these calculations only the intensity values corresponding to molecules from the FRET archive, tagged with 'Active_single', are taken into consideration.
+
+$$^iS_{app} = \frac{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret}}{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret} + I_{Aem|Aex}^{Fret}}$$
+
+$$^iE_{app} = \frac{I_{Aem|Dex}^{Fret}}{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret}}$$
+
+Next, display the calculated $$^iS_{app}$$ and $$^iE_{app}$$ in the bubble chart widget in rover. Open the bubble chart on the main dashboard, switch to the coding tab (<>) and paste the Python code that can be downloaded in [script 4](). Run by pressing the refresh button and move back to the bubble plot icon tab to show the plot that should be similar to the one below.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img12.png' width='450'></div>
+
+#### <a name="6"></a> Trace-wise Background Correction
+The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. To do this, download [script 5]() and run in the Fiji script editor.
+
+#### <a name="7"></a> Correction for Leakage and Direct excitation
 
 
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+$$\alpha = \frac{\langle ^iiE_{app}^(DO) \rangle}{1 - \langle ^iiE_{app}^(DO) \rangle}$$
+
+$$\delta = \frac{\langle ^iiS_{app}^(AO) \rangle}{1 - \langle ^iiS_{app}^(AO) \rangle}$$
+
+$$F_{A|D}=^iiI_{Aem|Dex} - \alpha ^iiI_{Dem|Dex} - \delta ^iiI_{Aem|Aex}$$
+
+$$^iiE_{app} = \frac{F_{A|D}}{F_{A|D} + ^iiI_{Dem|Dex}}$$
+
+$$^iiS_{app} = \frac{F_{A|D} + ^iiI_{Dem|Dex}}{F_{A|D} + ^iiI_{Dem|Dex} + ^iiI_{Aem|Aex}}$$
+
+
+
+
+-
 
 \frac{}{}
 
 I_{Aem|Dex}^{FRET}
 I_{Dem|Dex}^{FRET}
 I_{Aem|Aex}^{FRET}
-
-$$^iS_{app} = \frac{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET} + I_{Aem|Aex}^{FRET}}$$
-
-$$^iE_{app} = \frac{I_{Aem|Dex}^{FRET}}{I_{Aem|Dex}^{FRET} + I_{Dem|Dex}^{FRET}}$$
-
-
-test
-
-
-
-
-
-
-
--
