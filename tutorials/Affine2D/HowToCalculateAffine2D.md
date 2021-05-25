@@ -8,7 +8,7 @@ _level: intermediate, duration: 10-15 min_
 
 ### Introduction
 
-To interpret data from a two channel dualvideo dataset obtained with single-molecule TIRF studies these two channels need to be aligned. The Descriptor-based registration (2d/3d) in Fiji provide robust tools for determination of coordinate transformations and can be used excellently to calculate these transformation coordinates.
+To interpret data from a two channel dualvideo dataset obtained with single-molecule TIRF studies these two channels need to be aligned. The Descriptor-based registration (2d/3d) in Fiji provide robust tools for determination of coordinate transformations and can be used excellently to calculate these transformation coordinates. A [video tutorial](https://www.youtube.com/watch?v=SKW1xwhsxdo) by the writer of this plugin explaining the basic features can be found on YouTube.
 
 A dataset with bright fluorescent beads fluorescing in both channels is required for this calculation. This will then serve as a coordination framework that should remain equal for samples measured afterwards with the same laser and micro mirror alignment settings. Such an example dataset can be found on the [repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Affine2D).
 
