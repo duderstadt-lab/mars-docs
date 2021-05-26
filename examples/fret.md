@@ -60,6 +60,8 @@ Important features:
 
 #### <a name="workflow"></a> The MARS workflow
 
+---
+
 #### <a name="1"></a> Data preparation - Opening and Converting the video
 
 
@@ -98,6 +100,8 @@ The following values were found: (note that matrices calculated at a different T
 To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These can then later on be merged together while retaining information on to which population the identified molecule belongs, information that is required to do the actual calculations.
 
 All three archives are created following the same pipeline: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces. Below, the pipeline to create the FRET archive is shown accompanied by screenshots. Please reference table 1 to repeat the archive creation also for the AO and DO archives. Alternatively, these archives can be downloaded from the [repository]().
+
+-> Add an image showing archive logistics (FRET + AO + DO archive)
 
 ##### The FRET Archive
 **1. Identify the peaks in the red channel**  
@@ -181,8 +185,10 @@ Next, display the calculated $$^iS_{app}$$ and $$^iE_{app}$$ in the bubble chart
 #### <a name="6"></a> Trace-wise Background Correction
 The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. To do this, download [script 5]() and run in the Fiji script editor.
 
-#### <a name="7"></a> Correction for Leakage and Direct excitation
+#### <a name="7"></a> Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)
+In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the anaysis procedure. For more information about these correction parameters the reader is referred to [literature]().
 
+The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. These are calculated using [this script]() from the data that was collected in the DO and AO archives previously. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. Please download [the script]() and run on the archive using the Fiji script editor. The $\alpha$ and $\delta$ correction factors as well as the calculated $F_{A|D}$,  $^{ii}E_{app}$, and $^{ii}S_{app}$ values will appear as parameters in the archive.
 
 $$\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle ^{ii}E_{app}^{(DO)} \rangle}$$
 
@@ -190,9 +196,9 @@ $$\delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{
 
 $$F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}$$
 
-$$^{ii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}$$
+$$^{iii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}$$
 
-$$^{ii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}$$
+$$^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}$$
 
 
 
