@@ -202,18 +202,17 @@ $$^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} +
 
 
 $$\begin{equation}
-\forall i,j:\ 1\leq i,j\leq n
-   \quad\mathrm{and}\quad
-c_{ij} = \sum a_{ik} b_{kj}
+\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle   ^{ii}E_{app}^{(DO)} \rangle}
+\delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}
 \end{equation}$$
 
-\begin{equation}
-\forall i,j:\ 1\leq i,j\leq n
-   \quad\mathrm{and}\quad
-c_{ij} = \sum a_{ik} b_{kj}
-\end{equation}
 
-$$\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle ^{ii}E_{app}^{(DO)} \rangle} and \delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}$$
+
+$$\begin{equation}
+\forall i,j:\ 1\leq i,j\leq n
+   \quad\mathrm{and}\quad   
+c_{ij} = \sum a_{ik} b_{kj}
+\end{equation}$$
 
 
 -
