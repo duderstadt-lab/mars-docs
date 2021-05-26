@@ -190,36 +190,40 @@ In this step two data corrections are carried out: a correction for leakage, the
 
 The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. These are calculated using [this script]() from the data that was collected in the DO and AO archives previously. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. Please download [the script]() and run on the archive using the Fiji script editor. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
 
-$$\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle ^{ii}E_{app}^{(DO)} \rangle}$$
-
-$$\delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}$$
-
-$$F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}$$
-
-$$^{iii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}$$
-
-$$^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}$$
-
-
 $$\begin{equation}
 \alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle   ^{ii}E_{app}^{(DO)} \rangle}
-\quad\mathrm{and}\quad 
+    \quad\mathrm{and}\quad
 \delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}
 \end{equation}$$
 
-
+$$F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}$$
 
 $$\begin{equation}
-\forall i,j:\ 1\leq i,j\leq n
+^{iii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}
    \quad\mathrm{and}\quad   
-c_{ij} = \sum a_{ik} b_{kj}
+^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
 \end{equation}$$
 
 
+
+
+---
+
+
+$$\begin{equation}
+
+   \quad\mathrm{and}\quad   
+
+\end{equation}$$
+
+
+
+
+
+
+
+
+
+
+
 -
-
-\frac{}{}
-
-I_{Aem|Dex}^{FRET}
-I_{Dem|Dex}^{FRET}
-I_{Aem|Aex}^{FRET}
