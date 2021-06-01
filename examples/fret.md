@@ -208,10 +208,11 @@ $$\begin{equation}
 F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}
 \end{equation}$$
 
-$$\begin{equation}
+$$\begin{equation}  
 ^{iii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}
    \quad\mathrm{and}\quad   
 ^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
+\end{equation}$$
 
 #### <a name="8"></a> Correction for Excitation ($\beta$) and Detection factors ($\gamma$)
 
@@ -219,7 +220,7 @@ The last data correction step corrects for excitation ($\beta$), normalizing exc
 To find both global correction factors a linear regression analysis is performed with the following formulae:
 
 
-$$\begin{equation}
+$$\begin{equation}  
 ^{iii}S_{app}^{(FRET)} = \frac{1}{1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)}}
       \quad\mathrm{which can be rewritten as}\quad
 frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b + a * ^{iii}E_{app}^{(FRET)
@@ -252,12 +253,10 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 
 #### <a name="9"></a> Plotting & Data Exploration in Python
 To explore the data, open [this script]() and copy the code to the scatterplot widget in the Rover dashboard. Run in 'Python' and obtain a scatterplot similar to the one below. In this plot the grey points refer to molecules in the 'FRET' archive, blue points to molecules in the 'DO' archive and red points to molecules in the 'AO' archive. To find the ensemble averages E and S for the population, please open [this Jupyter notebook] to perform the Gaussian fit.
-
+_Note that the analysis of a single video from the dataset such as done in this example leads to a relatively low number of data points. This affects the accuracy of the calculated correction factors and E and S values. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next section._
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img13.png' width='450'></div>
-
-The data analysis as presented so far can be repeated for the other videos corresponding to this dataset to increase the number of data points. Next to that, a comparison can be made between the two different molecules (lo and mid) for which data is available in the repository.
 
 #### <a name="10"></a> Conclusion: Global Analysis Outcomes and Comparisons to Literature
 
