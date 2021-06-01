@@ -23,6 +23,7 @@ introduction
 - [Correction for Leakage and Direct excitation](#7)
 - [Correction for Excitation and Detection factors](#8)
 - [Plotting & Data Exploration in Python](#9)
+- [Conclusion: Global Analysis Outcomes and Comparisons to Literature](#10)
 
 
 #### <a name="design"></a> FRET sample design
@@ -214,13 +215,17 @@ $$\begin{equation}
 #### <a name="8"></a> Correction for Excitation ($\beta$) and Detection factors ($\gamma$)
 
 The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalization of effective fluorescence quantum yields and detection efficiencies of both donor and acceptor.
-To find both global correction factors a linear regression analysis is performed with the following formulae.
+To find both global correction factors a linear regression analysis is performed with the following formulae:
 
 $$\begin{equation}
 ^{iii}S_{app}^{(FRET)} = \frac{1}{1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)}}
       \quad\mathrm{which can be rewritten as}\quad
 frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b + a * ^{iii}E_{app}^{(FRET)
-      \quad\mathrm{leading to}\quad
+\end{equation}$$
+
+From this equation the dependencies of $\beta$ and $\gamma$ on a and b can be deducted to be:
+
+$$\begin{equation}
 \beta = a + b + 1
        \quad\mathrm{and}\quad
 \gamma = frac{b - 1}{a + b + 1}
@@ -232,7 +237,9 @@ $$\begin{equation}
 F_{D|D} = \gamma * ^{ii}I_{Dem|Dex}
    \quad\mathrm{and}\quad   
 F_{A|A} = frac{1}{\beta} * ^{ii}I_{Aem|Aex}
+\end{equation}$$
 
+$$\begin{equation}
 E = frac{F_{A|D}}{F_{D|D} + F_{A|D}}
   \quad\mathrm{and}\quad
 S = frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
@@ -240,11 +247,17 @@ S = frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 \end{equation}$$
 
 #### <a name="9"></a> Plotting & Data Exploration in Python
-To explore the data, open [this script]() and copy the code to the scatterplot widget in the Rover dashboard. Run in 'Python' and obtain a scatterplot similar to the one below. In this plot the grey points refer to molecules in the 'FRET' archive, blue points to molecules in the 'DO' archive and red points to molecules in the 'AO' archive.
+To explore the data, open [this script]() and copy the code to the scatterplot widget in the Rover dashboard. Run in 'Python' and obtain a scatterplot similar to the one below. In this plot the grey points refer to molecules in the 'FRET' archive, blue points to molecules in the 'DO' archive and red points to molecules in the 'AO' archive. To find the ensemble averages E and S for the population, please open [this Jupyter notebook] to perform the Gaussian fit.
 
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img13.png' width='450'></div>
+
+The data analysis as presented so far can be repeated for the other videos corresponding to this dataset to increase the number of data points. Next to that, a comparison can be made between the two different molecules (lo and mid) for which data is available in the repository.
+
+#### <a name="10"></a> Conclusion: Global Analysis Outcomes and Comparisons to Literature
+
+
 
 ---
 
