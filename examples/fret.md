@@ -21,6 +21,8 @@ introduction
 - [Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram](#5)
 - [Trace-wise Background Correction](#6)
 - [Correction for Leakage and Direct excitation](#7)
+- [Correction for Excitation and Detection factors](#8)
+- [Plotting & Data Exploration in Python](#9)
 
 
 #### <a name="design"></a> FRET sample design
@@ -209,9 +211,40 @@ $$\begin{equation}
    \quad\mathrm{and}\quad   
 ^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
 
+#### <a name="8"></a> Correction for Excitation ($\beta$) and Detection factors ($\gamma$)
+
+The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalization of effective fluorescence quantum yields and detection efficiencies of both donor and acceptor.
+To find both global correction factors a linear regression analysis is performed with the following formulae.
+
+$$\begin{equation}
+^{iii}S_{app}^{(FRET)} = \frac{1}{1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)}}
+      \quad\mathrm{which can be rewritten as}\quad
+frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b + a * ^{iii}E_{app}^{(FRET)
+      \quad\mathrm{leading to}\quad
+\beta = a + b + 1
+       \quad\mathrm{and}\quad
+\gamma = frac{b - 1}{a + b + 1}
+\end{equation}$$
+
+Once the values of $\beta$ and $\gamma have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [this script]() and run on the archive to obtain these values.
+
+$$\begin{equation}
+F_{D|D} = \gamma * ^{ii}I_{Dem|Dex}
+   \quad\mathrm{and}\quad   
+F_{A|A} = frac{1}{\beta} * ^{ii}I_{Aem|Aex}
+
+E = frac{F_{A|D}}{F_{D|D} + F_{A|D}}
+  \quad\mathrm{and}\quad
+S = frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
+
+\end{equation}$$
+
+#### <a name="9"></a> Plotting & Data Exploration in Python
+To explore the data, open [this script]() and copy the code to the scatterplot widget in the Rover dashboard. Run in 'Python' and obtain a scatterplot similar to the one below. In this plot the grey points refer to molecules in the 'FRET' archive, blue points to molecules in the 'DO' archive and red points to molecules in the 'AO' archive.
 
 
-
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img13.png' width='450'></div>
 
 ---
 

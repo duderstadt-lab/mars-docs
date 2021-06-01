@@ -74,7 +74,7 @@ PeakFinderCommand peakFinder = new PeakFinderCommand()
 peakFinder.setContext(ij.getContext())
 
 peakFinder.setDataset(dataset)
-peakFinder.setUseROI(false)
+peakFinder.setUseRoi(false)
 peakFinder.setChannel(0)
 peakFinder.setUseDogFiler(true)
 peakFinder.setDogFilterRadius(1.8)
@@ -92,7 +92,7 @@ peakFinder.setMinimumRsquared(0)
 peakFinder.setIntegrate(true)
 peakFinder.setIntegrationInnerRadius(1)
 peakFinder.setIntegrationOuterRadius(3)
-peakFinder.setVerboseOutput(False)
+peakFinder.setVerboseOutput(false)
 
 //Run the Command
 peakFinder.run();
