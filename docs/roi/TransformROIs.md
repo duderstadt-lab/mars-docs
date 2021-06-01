@@ -66,6 +66,7 @@ transformROIs.setUseDogFilter(false)
 transformROIs.setDogFilterRadius(2)
 transformROIs.setTreshold(50)
 transformROIs.setFilterOriginalRois(false)
+transformROIs.setFilterColocalizingRois(true)
 transformROIs.setColocalizeSearchRadius(1)
 
 //Run the Command
