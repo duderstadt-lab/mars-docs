@@ -197,6 +197,7 @@ In this step two data corrections are carried out: a correction for leakage, the
 
 The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. These are calculated using [this script]() from the data that was collected in the DO and AO archives previously. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. Please download [the script]() and run on the archive using the Fiji script editor. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
 
+
 $$\begin{equation}
 \alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle   ^{ii}E_{app}^{(DO)} \rangle}
     \quad\mathrm{and}\quad
@@ -217,6 +218,7 @@ $$\begin{equation}
 The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalization of effective fluorescence quantum yields and detection efficiencies of both donor and acceptor.
 To find both global correction factors a linear regression analysis is performed with the following formulae:
 
+
 $$\begin{equation}
 ^{iii}S_{app}^{(FRET)} = \frac{1}{1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)}}
       \quad\mathrm{which can be rewritten as}\quad
@@ -225,13 +227,15 @@ frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_
 
 From this equation the dependencies of $\beta$ and $\gamma$ on a and b can be deducted to be:
 
+
 $$\begin{equation}
 \beta = a + b + 1
        \quad\mathrm{and}\quad
 \gamma = frac{b - 1}{a + b + 1}
 \end{equation}$$
 
-Once the values of $\beta$ and $\gamma have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [this script]() and run on the archive to obtain these values.
+Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [this script]() and run on the archive to obtain these values.
+
 
 $$\begin{equation}
 F_{D|D} = \gamma * ^{ii}I_{Dem|Dex}
