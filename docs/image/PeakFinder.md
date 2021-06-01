@@ -93,6 +93,7 @@ peakFinder.setIntegrate(true)
 peakFinder.setIntegrationInnerRadius(1)
 peakFinder.setIntegrationOuterRadius(3)
 peakFinder.setVerboseOutput(false)
+peakFinder.setRoiType("circle")
 
 //Run the Command
 peakFinder.run();

@@ -221,8 +221,8 @@ To find both global correction factors a linear regression analysis is performed
 
 
 $$\begin{equation}  
-^{iii}S_{app}^{(FRET)} = \frac{1}{1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)}}
-      \quad\mathrm{which can be rewritten as}\quad
+^{iii}S_{app}^{(FRET)} = \frac{1}{1 + \gamma * \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)}}
+      \quad\mathrm{and}\quad
 frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b + a * ^{iii}E_{app}^{(FRET)
 \end{equation}$$
 
