@@ -231,7 +231,7 @@ From this equation the dependencies of $\beta$ and $\gamma$ on a and b can be de
 $$\begin{equation}
 \beta = a + b + 1
        \quad\mathrm{and}\quad
-\gamma = frac{b - 1}{a + b + 1}
+\gamma = \frac{b - 1}{a + b + 1}
 \end{equation}$$
 
 Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [this script]() and run on the archive to obtain these values.
@@ -240,13 +240,13 @@ Once the values of $\beta$ and $\gamma$ have been calculated, the fully correcte
 $$\begin{equation}
 F_{D|D} = \gamma * ^{ii}I_{Dem|Dex}
    \quad\mathrm{and}\quad   
-F_{A|A} = frac{1}{\beta} * ^{ii}I_{Aem|Aex}
+F_{A|A} = \frac{1}{\beta} * ^{ii}I_{Aem|Aex}
 \end{equation}$$
 
 $$\begin{equation}
-E = frac{F_{A|D}}{F_{D|D} + F_{A|D}}
+E = \frac{F_{A|D}}{F_{D|D} + F_{A|D}}
   \quad\mathrm{and}\quad
-S = frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
+S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 
 \end{equation}$$
 
