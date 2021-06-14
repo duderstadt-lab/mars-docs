@@ -141,10 +141,8 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 
 |                | FRET archive     | AO archive     | DO archive     |
 | :------------- | :------------- | :------------- | :------------- |
-| Molecule      | <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'></div>       | <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'></div>         | <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='250'></div>         |
+| Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> |
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='250'> |
 | What to measure | Intensity of fluorescence in red upon red excitation, Intensity of fluorescence in green upon green excitation, Intensity of fluorescence in red upon green excitation (FRET)  | Intensity of fluorescence in red upon red excitation, Leaking fluorescence to the green channel upon red excitation, Leaking fluorescence to the red channel when excited with green  | Leaking fluorescence of red upon green excitation, Intensity of fluorescence in green upon green excitation  |
 | Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
 | Analysis procedure  | Find peaks in red, Transform ROIs (L->R) to colocalize (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in red, Transform ROIs (L->R) to filter out colocalizing peaks (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in green, Transform ROIs (R->L) to filter out colocalizing peaks (C=0), Molecule integrator (C=1 both)  |
@@ -280,15 +278,15 @@ _Note that the analysis of a single video from the dataset such as done in this 
 
 #### <a name="11"></a> References
 
-<sup>1</sup> R. Roy et al., 2008, Nature Methods
-<sup>2</sup> L. Stryer et al., 1967, PNAS
-<sup>3</sup> T. Ha et al., 1996, PNAS
-<sup>4</sup> V. Mekler et al., 2002, Cell
-<sup>5</sup> U. Choi et al., 2010, Nature Structural & Molecular Biology
-<sup>6</sup> B. Hellenkamp et al., 2017, Nature Methods
-<sup>7</sup> B. Schuler et al., 2008, Curr. Opin. in Struc. Biol.
-<sup>8</sup> S. Colombo et al., 2017, Biochem. and Biophys. Res. Comm.
-<sup>9</sup> B. Hellenkamp et al., 2018, Nature Methods
+<sup>1</sup> R. Roy et al., 2008, Nature Methods  
+<sup>2</sup> L. Stryer et al., 1967, PNAS  
+<sup>3</sup> T. Ha et al., 1996, PNAS  
+<sup>4</sup> V. Mekler et al., 2002, Cell  
+<sup>5</sup> U. Choi et al., 2010, Nature Structural & Molecular Biology  
+<sup>6</sup> B. Hellenkamp et al., 2017, Nature Methods  
+<sup>7</sup> B. Schuler et al., 2008, Curr. Opin. in Struc. Biol.  
+<sup>8</sup> S. Colombo et al., 2017, Biochem. and Biophys. Res. Comm.  
+<sup>9</sup> B. Hellenkamp et al., 2018, Nature Methods  
 
 
 ---
