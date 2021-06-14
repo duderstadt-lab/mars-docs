@@ -12,13 +12,10 @@ Mars is very well equipped to be used to analyse the data gathered in such studi
 
 #### <a name="reference"></a>Table of contents
 
-- [The FRET sample design](#design)
-- [The Analysis of an smFRET Dataset](#calc)
-- [Dataset Characteristics](#data)
-- [The MARS workflow](#workflow)
-- [Data preparation - Opening and Converting the video](#1)
-- [Data preparation - Calculation of the Affine2D matrix](#2)
-- [Localization and Intensity vs. T traces](#3)
+- [The FRET Sample Design and MARS Analysis Process](#design)
+- [Data preparation](#1)
+- [Localization of Peaks and Intensity vs. T traces](#3)
+
 - [Filter Traces to only have 1 Donor and/or Acceptor](#4)
 - [Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram](#5)
 - [Trace-wise Background Correction](#6)
@@ -30,7 +27,9 @@ Mars is very well equipped to be used to analyse the data gathered in such studi
 
 ---
 
-#### <a name="design"></a> The FRET sample design
+#### <a name="design"></a> The FRET Sample Design and MARS Analysis Process
+
+**Sample Design**  
 In the experiment as designed by Hellenkamp *et al.* <sup>9</sup> the distance between two fluorophores on a DNA molecule is probed. Two different samples (figure 1) are measured (1-lo and 1-mid) with a different interfluorophore distance as indicated in the figure. Since the FRET efficiency (E) is correlated with the distance between the fluorophores, a different E value is to be expected for both molecules. The fluorescence of both samples was measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in their publication.<sup>9</sup>
 
 <div style="text-align: center">
@@ -40,7 +39,7 @@ In the experiment as designed by Hellenkamp *et al.* <sup>9</sup> the distance b
 Figure 1: Representation of the two different molecules included in the study by Hellenkamp *et al.*. In this example the analysis of the 1-lo dataset is discussed. In the final paragraph of this example results from the 1-mid dataset are discussed as well. <sup>9</sup>
 </div>
 
-#### <a name="calc"></a> The Analysis of an smFRET Dataset
+**The Analysis Procedure**  
 The analysis of an smFRET dataset consists of a number of typical steps: (figure 2)
 - Data recording: recording of the fluorescent emission signal both upon acceptor excitation (figure 2, C=0) and donor excitation (C=1) over time.
 - Data analysis: starting by the extraction of intensity vs. time traces by means of peak integration followed by the application of several correction factors accounting for background differences, signal leakage, direct excitation effects and detection factors.
@@ -56,33 +55,40 @@ Figure 2: General overview of the analysis process of the smFRET dataset consist
 </div>
 
 
-#### <a name="data"></a> Dataset Characteristics
--> Make a figure showing the two populations, the overlap and each subpopulation of AO and DO for clarification.
+**Dataset Characteristics**  
+The data as provided by Hellenkamp *et al.* <sup>9</sup> was recorded with a TIRF microscope setup equipped with dualview collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for both wavelengths at the same time. In practise, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 
-Important features:
-- Channel 0: excitation in red (Aex)
-- Channel 1: excitation in green (Dex)
-- Left part split: acceptor emission (Aem)
-- Right part split: donor emission (Dem)
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img21.png' width='450'></div>
 
--> Make a table of this information showing how to obtain each intensity (from which combination)
+<div style="text-align: center">
+Figure 3: Overview of the different signals that can be obtained from the analysis dependent on channel number and location on the split view. The different intensity values that can be derived for each peak are shown below the individual frames on the left.
+</div>
 
+**The MARS Workflow**  
+The previously introduced analysis steps can be implemented in Mars directly. Figure 4 shows the specific steps and tools that are used in the analysis. [Documentation](https://duderstadt-lab.github.io/mars-docs/docs/) is available for each Mars tool specifically.
+In short, first the video format is converted to contain channel information (excitation color, C=0,1). Next peaks are identified and correlated with the other half of the split view using the ROI transformation tool. The molecule integrator tool subsequently yields the peak intensity values vs. time for each peak generating three archives: a FRET archive (peaks with both donor and acceptor emission), an acceptor only archive (AO, peaks with acceptor emission only), and a donor only archive (DO, peaks with donor emission only). These are then tagged accordingly and merged into one archive. The kinetic change point (KCP) analysis and various data correction steps yield the final E and S values of each molecules. These are plot in the Rover Dashboard using one of the in-built widgets. A final plot with a Gaussian distribution fit is then made using Python.
 
-#### <a name="workflow"></a> The MARS workflow
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img22.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 4: Schematic representation of the Mars workflow starting from the video as supplied from the database, ending with a fully analyzed S vs. E plot generated in Mars. All steps executed with Mars are shown on the orange background. In this analysis the final plot is made both using a Mars dashboard widget as well as a Python-based plot.
+</div>
+
+This example pipeline highlights the flexibility of Mars to be adapted to the specific dataset catering to the needs for specific implementation steps and flexible archive merging.
+
 
 ---
 
-#### <a name="1"></a> Data preparation - Opening and Converting the video
+#### <a name="1"></a> Data preparation -
+**Opening and Converting the Video**  
+First, [download](https://zenodo.org/record/1249497) the dataset from Hellenkamp *et al.*<sup>9</sup>.
+To prepare the video for easy analysis, turn SciFIO on in Fiji (Fiji>Edit>Options>ImageJ2 tick the box) and open the first video (FSII1a_g30r84t200_0.tif) in the 1_lo_TIFF.zip folder. The original video does not contain specific channel information but simply displays the results of the different excitation colors in an alternating fashion. To convert the video to have channel information, run [script1](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET). For information on how to run a script in Fiji please read [the tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/). If the script ran correctly, a new window should have opened showing a video with the channels represented in red and green.
 
 
-1. Open the video with SciFIO turned on. Convert to a 2 channel video using the deinterleavev2.groovy script.
-
-#### <a name="2"></a> Data preparation - Calculation of the Affine2D matrix
-
-- [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
-- short intro on why and what we calculate
-- why do we need to calculate the matrix in both directions
-- Follow along or use the matrix supplied below
+**Calculation of the Affine2D Matrix**  
+Next, to prepare for the data analysis, an Affine2D conversion matrix needs to be calculated. This matrix is used to correlate the peak position as found on one half of the split view to the corresponding position on the other half of the split view. More information about this calculation can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/). Either follow along in the next steps to calculate the matrix or use the result from the calculation as provided below.
 
 To calculate the Affine2D matrix open the file ['calib20140405_0.tif']() from the calibration folder. Since the beads used in this calibration measurement are fluorescent at both measured wavelengths their position matches between both halves of the split view. Therefore this video can be used to calculate the Affine2D transformation matrix between the halves. To do so, select a time point of choice and duplicate the frame twice (Image>Duplicate). This will create two images of the video at the same time point. Rename the images 'left' and 'right' and in each image black out the respective halve of the view by selecting that region with the square ROI tool and pressing delete. This will result in a set of images resembling the ones in the screenshot below.
 
@@ -106,12 +112,10 @@ The following values were found: (note that matrices calculated at a different T
 | m<sub>12</sub>             | 1.170          | -2.299|
 
 
-#### <a name="3"></a> Localization and Intensity vs. T traces
-To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These can then later on be merged together while retaining information on to which population the identified molecule belongs, information that is required to do the actual calculations.
+#### <a name="3"></a> Localization of Peaks and Intensity vs. T traces
+To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while retaining information on to which population the identified molecule belongs, information that is required to do the correction factor calculations.
 
 All three archives are created following the same pipeline: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces. Below, the pipeline to create the FRET archive is shown accompanied by screenshots. Please reference table 1 to repeat the archive creation also for the AO and DO archives. Alternatively, these archives can be downloaded from the [repository]().
-
--> Add an image showing archive logistics (FRET + AO + DO archive)
 
 ##### The FRET Archive
 **1. Identify the peaks in the red channel**  
@@ -150,9 +154,6 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 Table 1: Overview of the three different archives that are created in this step of the analysis: the FRET archive, Acceptor Only (AO) archive and Donor Only (DO) archive. The first row of the table shows a representable molecule for the category, the second row explains what information needs to be extracted from this category of molecules, the third row the corresponding parameter names and the final row describes the analysis procedure that needs to be followed in Mars.
 </div>
 
-
--> Make figures to illustrate what DO, AO and FRET situations would look like
-
 ##### Tag and Merge the Archives
 To make the downstream processing procedure easier the next step is to tag the created archives accordingly and merge them to form one big archive. Use the tag function in the metadata tab to assign the tags 'FRET', 'AO' & 'DO' accordingly and save the archives in the same folder. Next select the merge archives tool (Plugins>Mars>Molecule>Merge Archive) and select the folder. When the command is finished a merged archive is created that can be found in the selected folder. Open the archive.
 
@@ -166,7 +167,7 @@ To do a visual inspection of the identified traces open the plot window in the m
 #### <a name="4"></a> Filter Traces to only have 1 Donor and/or Acceptor
 In the next step, the identified traces will be filtered for having only 1 donor and/or acceptor instead of multiple. This removes molecules from the analysis that might have clumped together therefore showing the presence of multiple fluorophores at one location. This prevents bias in the calculation of the FRET parameters caused by unjustified intensity values.
 
-First, assign a global (metadata) region for the interval 2<T<500 named 'active' to all metadata records. By analyzing this region of the data only the first frames displaying drastic intensity differences are removed from further analysis.
+First, assign a global (metadata) region for the interval 2<T<500 named 'active' to all metadata records (alternative, use [script B](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) to do this and the next step in an automated fashion). By analyzing this region of the data only the first frames displaying drastic intensity differences are removed from further analysis.
 Next, identify the bleaching steps in each trace using the 'change point finder' tool (Plugins>Mars>KCP>Change Point Finder). Apply the settings as shown below. Repeat this step for all intensity channels (Y column: 1 Green, 1 Red & 0)
 
 <div style="text-align: center">
@@ -174,14 +175,13 @@ Next, identify the bleaching steps in each trace using the 'change point finder'
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img11.png' width='450'></div>
 
-The filtering step itself is automized in a [script](). Please [download]() the script and open it in Fiji to run in the script editor. For more information on running scripts in Fiji visit the [introduction to Groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/).
+The filtering step itself is automized in [script2](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET). Please [download](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) the script and open it in Fiji to run in the script editor. For more information on running scripts in Fiji visit the [introduction to Groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/).
 In short, the script calculates the difference between the measured intensities in the change point analysis and assigns a Boolean parameter to the molecule indicating if this difference is larger than zero (∆I > 0). Next, it evaluates whether a single bleaching step or multiple bleaching steps are observed and assigns this to the Boolean parameters 'Red_singlebleach' and 'Green_singlebleach respectively'. After the declaration of these parameters, the molecules that are part of the FRET archive are tagged. A tag ('Active') is added to the molecule in case bleaching is observed both in red and green, in other cases the tag 'background' is assigned. Subsequently, the tag 'Active_single' is assigned to molecules that show a single bleaching event in both colors.
 
 #### <a name="5"></a> Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram
+The next step is to assign the measured fluorophore intensities to the corresponding intensity parameters (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>). To do so, download [script 3](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) from the repository and run it in the Fiji script editor. This script determines the highest fluorophore intensity level as reported in the segments table and assigns this to the corresponding parameter name. Later on in the pipeline discriminating the different populations (FRET, AO, DO) as well as selecting only the 'Active_single'-tagged molecules is possible by means of using the assigned tags.
 
-The next step is to assign the measured fluorophore intensities to the corresponding intensity parameters (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>). To do so, download [script 2]() from the repository and run it in the Fiji script editor. This script determines the highest fluorophore intensity level as reported in the segments table and assigns this to the corresponding parameter name. Later on in the pipeline discriminating the different populations (FRET, AO, DO) as well as selecting only the 'Active_single'-tagged molecules is possible by means of using the assigned tags.
-
-To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these intensity  parameters are supplemented into the following two formulae calculating the uncorrected apparent E and S value for each molecule. To do so download [script 3]() and run in the Fiji script editor. Note that for these calculations only the intensity values corresponding to molecules from the FRET archive, tagged with 'Active_single', are taken into consideration.
+To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these intensity  parameters are supplemented into the following two formulae calculating the uncorrected apparent E and S value for each molecule. To do so download [script 4](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run in the Fiji script editor. Note that for these calculations only the intensity values corresponding to molecules from the FRET archive, tagged with 'Active_single', are taken into consideration.
 
 $$\begin{equation}
 ^iS_{app} = \frac{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret}}{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret} + I_{Aem|Aex}^{Fret}}
@@ -191,18 +191,18 @@ $$\begin{equation}
 ^iE_{app} = \frac{I_{Aem|Dex}^{Fret}}{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret}}
 \end{equation}$$
 
-Next, display the calculated $$^iS_{app}$$ and $$^iE_{app}$$ in the bubble chart widget in rover. Open the bubble chart on the main dashboard, switch to the coding tab (<>) and paste the Python code that can be downloaded in [script 4](). Run by pressing the refresh button and move back to the bubble plot icon tab to show the plot that should be similar to the one below.
+Next, display the calculated $$^iS_{app}$$ and $$^iE_{app}$$ in the bubble chart widget in rover. Open the bubble chart on the main dashboard, switch to the coding tab (<>) and paste the Python code that can be downloaded in [script 9](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET). Run by pressing the refresh button and move back to the bubble plot icon tab to show the plot that should be similar to the one below.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img12.png' width='450'></div>
 
 #### <a name="6"></a> Trace-wise Background Correction
-The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. To do this, download [script 5]() and run in the Fiji script editor.
+The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. To do this, download [script 5](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run in the Fiji script editor.
 
 #### <a name="7"></a> Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)
-In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to [literature]().
+In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>9</sup>.
 
-The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. These are calculated using [this script]() from the data that was collected in the DO and AO archives previously. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. Please download [the script]() and run on the archive using the Fiji script editor. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
+The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. These are calculated using [script 6](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) from the data that was collected in the DO and AO archives previously. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. Please download [the script]() and run on the archive using the Fiji script editor. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
 
 
 $$\begin{equation}
@@ -233,7 +233,6 @@ $$\begin{equation}
 \end{equation}$$
 
 $$\begin{equation}  
-      \quad\mathrm{and}\quad
 frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b + a * ^{iii}E_{app}^{(FRET)
 
 \end{equation}$$
@@ -247,7 +246,7 @@ $$\begin{equation}
 \gamma = \frac{b - 1}{a + b + 1}
 \end{equation}$$
 
-Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [this script]() and run on the archive to obtain these values.
+Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [script 7](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run on the archive to obtain these values.
 
 
 $$\begin{equation}
@@ -264,8 +263,11 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 \end{equation}$$
 
 #### <a name="9"></a> Plotting & Data Exploration in Python
-To explore the data, open [this script]() and copy the code to the scatterplot widget in the Rover dashboard. Run in 'Python' and obtain a scatterplot similar to the one below. In this plot the grey points refer to molecules in the 'FRET' archive, blue points to molecules in the 'DO' archive and red points to molecules in the 'AO' archive. To find the ensemble averages E and S for the population, please open [this Jupyter notebook] to perform the Gaussian fit.
-_Note that the analysis of a single video from the dataset such as done in this example leads to a relatively low number of data points. This affects the accuracy of the calculated correction factors and E and S values. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next section._
+To explore the data, open [script10](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and copy the code to the scatterplot widget in the Rover dashboard. Run in 'Python' and obtain a scatterplot similar to the one below. In this plot the grey points refer to molecules in the 'FRET' archive, blue points to molecules in the 'DO' archive and red points to molecules in the 'AO' archive. To find the ensemble averages E and S for the population, please open [this Jupyter notebook]() to perform the Gaussian fit.
+_Note that the analysis of a single video from the dataset such as done in this example leads to a relatively low number of data points. This affects the accuracy of the calculated correction factors and E and S values. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next paragraph._
+
+-> Add option for jpype
+-> Add link to script 8 + current notebook
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img13.png' width='450'></div>
@@ -286,25 +288,3 @@ _Note that the analysis of a single video from the dataset such as done in this 
 <sup>7</sup> B. Schuler et al., 2008, Curr. Opin. in Struc. Biol.  
 <sup>8</sup> S. Colombo et al., 2017, Biochem. and Biophys. Res. Comm.  
 <sup>9</sup> B. Hellenkamp et al., 2018, Nature Methods  
-
-
----
-
-
-$$\begin{equation}
-
-   \quad\mathrm{and}\quad   
-
-\end{equation}$$
-
-
-$$\begin{equation}
-\end{equation}$$
-
-
-
-
-
-
-
--
