@@ -5,7 +5,10 @@ title: FRET dataset analysis using Mars
 permalink: /examples/FRET/index.html
 ---
 
-introduction
+In this example a typical Mars pipeline for the analysis of a smFRET (single-molecule Förster Resonance Energy Transfer)<sup>1, 2, 3</sup> datasets discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA and DNA on a single-molecule level. Among numerous of interesting and revealing studies, some examples of interesting processes that have been studied in this way are: the structual organization of bacterial RNA polymerase <sup>4</sup>, protein-protein complex formation in neurotransmission pathways <sup>5</sup>, dynamics of multidomain proteins like Hsp90 in solution <sup>6</sup>, protein folding upon ligand interaction <sup>7</sup>, and studies of the cAMP/PKA pathways <sup>8</sup>.
+
+Mars is very well equipped to be used to analyse the data gathered in such studies. It offers a highly effective, easy to use, well documented, and powerful open source alternative to home-built software used by some labs and focusses on reproducibility and transparency of the analysis process. To showcase its applicability to analyse smFRET datasets, in this example, the data of the benchmark study published by Hellenkamp et al <sup>9</sup> is analysed and compared. We show the typical pathway one can follow to analyse the data and find E and S values within the significance values as reported.
+
 
 #### <a name="reference"></a>Table of contents
 
@@ -24,13 +27,17 @@ introduction
 - [Correction for Excitation and Detection factors](#8)
 - [Plotting & Data Exploration in Python](#9)
 - [Conclusion: Global Analysis Outcomes and Comparisons to Literature](#10)
+- [References](#11)
 
 
 #### <a name="design"></a> FRET sample design
-
+In the experiment as designed by Hellenkamp et al.<sup>9</sup> the distance between two fluorophores on a DNA molecule is probed. Two different samples (figure 1) are measured (1-lo and 1-mid) with a different interfluorophore distance. Both samples were measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in their publication.<sup>9</sup>
 
 <div style="text-align: center">
-Figure 1: . <sup>3</sup>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img14.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 1: . <sup>9</sup>
 </div>
 
 #### <a name="calc"></a> General Analysis Procedure of FRET Datasets
@@ -134,7 +141,10 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 
 |                | FRET archive     | AO archive     | DO archive     |
 | :------------- | :------------- | :------------- | :------------- |
-| Molecule      | figure of DNA       | figure of DNA       | figure of DNA       |
+| Molecule      | <div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'></div>       | <div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'></div>         | <div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='250'></div>         |
 | What to measure | Intensity of fluorescence in red upon red excitation, Intensity of fluorescence in green upon green excitation, Intensity of fluorescence in red upon green excitation (FRET)  | Intensity of fluorescence in red upon red excitation, Leaking fluorescence to the green channel upon red excitation, Leaking fluorescence to the red channel when excited with green  | Leaking fluorescence of red upon green excitation, Intensity of fluorescence in green upon green excitation  |
 | Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
 | Analysis procedure  | Find peaks in red, Transform ROIs (L->R) to colocalize (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in red, Transform ROIs (L->R) to filter out colocalizing peaks (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in green, Transform ROIs (R->L) to filter out colocalizing peaks (C=0), Molecule integrator (C=1 both)  |
@@ -265,6 +275,20 @@ _Note that the analysis of a single video from the dataset such as done in this 
 
 #### <a name="10"></a> Conclusion: Global Analysis Outcomes and Comparisons to Literature
 
+\
+
+
+#### <a name="11"></a> References
+
+<sup>1</sup> R. Roy et al., 2008, Nature Methods
+<sup>2</sup> L. Stryer et al., 1967, PNAS
+<sup>3</sup> T. Ha et al., 1996, PNAS
+<sup>4</sup> V. Mekler et al., 2002, Cell
+<sup>5</sup> U. Choi et al., 2010, Nature Structural & Molecular Biology
+<sup>6</sup> B. Hellenkamp et al., 2017, Nature Methods
+<sup>7</sup> B. Schuler et al., 2008, Curr. Opin. in Struc. Biol.
+<sup>8</sup> S. Colombo et al., 2017, Biochem. and Biophys. Res. Comm.
+<sup>9</sup> B. Hellenkamp et al., 2018, Nature Methods
 
 
 ---
