@@ -1,20 +1,19 @@
 ---
 layout: example
 mathjax: true
-title: FRET dataset analysis using Mars
+title: smFRET dataset analysis with Mars
 permalink: /examples/FRET/index.html
 ---
 
-In this example a typical Mars pipeline for the analysis of a smFRET (single-molecule Förster Resonance Energy Transfer)<sup>1, 2, 3</sup> datasets discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA and DNA on a single-molecule level. Among numerous of interesting and revealing studies, some examples of interesting processes that have been studied in this way are: the structual organization of bacterial RNA polymerase <sup>4</sup>, protein-protein complex formation in neurotransmission pathways <sup>5</sup>, dynamics of multidomain proteins like Hsp90 in solution <sup>6</sup>, protein folding upon ligand interaction <sup>7</sup>, and studies of the cAMP/PKA pathways <sup>8</sup>.
+In this example a typical Mars pipeline for the analysis of a smFRET (single-molecule Förster Resonance Energy Transfer)<sup>1, 2, 3</sup> datasets is discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA and DNA on a single-molecule level. Among numerous of interesting and revealing studies, some examples of interesting processes that have been studied in this way are: the structural organization of bacterial RNA polymerase <sup>4</sup>, protein-protein complex formation in neurotransmission pathways <sup>5</sup>, dynamics of multi-domain proteins like Hsp90 in solution <sup>6</sup>, protein folding upon ligand interaction <sup>7</sup>, and studies of the cAMP/PKA pathways <sup>8</sup>.
 
-Mars is very well equipped to be used to analyse the data gathered in such studies. It offers a highly effective, easy to use, well documented, and powerful open source alternative to home-built software used by some labs and focusses on reproducibility and transparency of the analysis process. To showcase its applicability to analyse smFRET datasets, in this example, the data of the benchmark study published by Hellenkamp et al <sup>9</sup> is analysed and compared. We show the typical pathway one can follow to analyse the data and find E and S values within the significance values as reported.
+Mars is very well equipped to be used to analyse the data gathered in such studies. It offers a highly effective, easy to use, well documented, and powerful open source alternative to home-built software used by some labs and focusses on reproducibility and transparency of the analysis process. To showcase its applicability to analyse smFRET datasets, in this example, the data of the benchmark study published by Hellenkamp *et al.* <sup>9</sup> is analysed and compared. We show the typical pathway one can follow to analyse the data and find the FRET values E and S within the significance values as reported by Hellenkamp *et al.*.
 
 
 #### <a name="reference"></a>Table of contents
 
-- [FRET sample design](#design)
-- [General analysis procedure of FRET datasets](#calc)
-- [Required Parameters for the Calculations](#required)
+- [The FRET sample design](#design)
+- [The Analysis of an smFRET Dataset](#calc)
 - [Dataset Characteristics](#data)
 - [The MARS workflow](#workflow)
 - [Data preparation - Opening and Converting the video](#1)
@@ -29,32 +28,33 @@ Mars is very well equipped to be used to analyse the data gathered in such studi
 - [Conclusion: Global Analysis Outcomes and Comparisons to Literature](#10)
 - [References](#11)
 
+---
 
-#### <a name="design"></a> FRET sample design
-In the experiment as designed by Hellenkamp et al.<sup>9</sup> the distance between two fluorophores on a DNA molecule is probed. Two different samples (figure 1) are measured (1-lo and 1-mid) with a different interfluorophore distance. Both samples were measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in their publication.<sup>9</sup>
+#### <a name="design"></a> The FRET sample design
+In the experiment as designed by Hellenkamp *et al.* <sup>9</sup> the distance between two fluorophores on a DNA molecule is probed. Two different samples (figure 1) are measured (1-lo and 1-mid) with a different interfluorophore distance as indicated in the figure. Since the FRET efficiency (E) is correlated with the distance between the fluorophores, a different E value is to be expected for both molecules. The fluorescence of both samples was measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in their publication.<sup>9</sup>
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img14.png' width='450'></div>
 
 <div style="text-align: center">
-Figure 1: . <sup>9</sup>
+Figure 1: Representation of the two different molecules included in the study by Hellenkamp *et al.*. In this example the analysis of the 1-lo dataset is discussed. In the final paragraph of this example results from the 1-mid dataset are discussed as well. <sup>9</sup>
 </div>
 
-#### <a name="calc"></a> General Analysis Procedure of FRET Datasets
+#### <a name="calc"></a> The Analysis of an smFRET Dataset
+The analysis of an smFRET dataset consists of a number of typical steps: (figure 2)
+- Data recording: recording of the fluorescent emission signal both upon acceptor excitation (figure 2, C=0) and donor excitation (C=1) over time.
+- Data analysis: starting by the extraction of intensity vs. time traces by means of peak integration followed by the application of several correction factors accounting for background differences, signal leakage, direct excitation effects and detection factors.
+- Data interpretation: calculation of the FRET efficiency (E) and stoichiometry (S) for each molecule followed by the identification of the ensemble average E and S values for the population.
 
-#### <a name="required"></a> Required Parameters for the Calculations
+For more details on the analysis procedure the reader is kindly referred to the study published by Hellenkamp *et al.* <sup>9</sup>
 
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img20.png' width='450'></div>
 
-Required parameters:
-DO Eapp:
-- Iaemdex for peaks in green that are not present in red - intensity in the red part of the screen
-- Idemdex for peaks in green that are not present in red - intensity in the green part of the screen
+<div style="text-align: center">
+Figure 2: General overview of the analysis process of the smFRET dataset consisting of data recording and data analysis steps in Mars leading to the calculation of the FRET efficiency (E) and stoichiometry (S) values.
+</div>
 
-
-AO Sapp
-- Iaemdex for peaks in red that are not present in green but are excited with green a little bit
-- Idemdex for peaks in red that are not present in green but still give some small green signal upon green excitation
-- Iaemaex for peaks in red that are excited in red (this one I have already in the red only frames)
 
 #### <a name="data"></a> Dataset Characteristics
 -> Make a figure showing the two populations, the overlap and each subpopulation of AO and DO for clarification.
@@ -141,8 +141,7 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 
 |                | FRET archive     | AO archive     | DO archive     |
 | :------------- | :------------- | :------------- | :------------- |
-| Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> |
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='250'> |
+| Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='250'> |
 | What to measure | Intensity of fluorescence in red upon red excitation, Intensity of fluorescence in green upon green excitation, Intensity of fluorescence in red upon green excitation (FRET)  | Intensity of fluorescence in red upon red excitation, Leaking fluorescence to the green channel upon red excitation, Leaking fluorescence to the red channel when excited with green  | Leaking fluorescence of red upon green excitation, Intensity of fluorescence in green upon green excitation  |
 | Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
 | Analysis procedure  | Find peaks in red, Transform ROIs (L->R) to colocalize (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in red, Transform ROIs (L->R) to filter out colocalizing peaks (C=1), Molecule integrator (C=0 long, 1 both)  | Find peaks in green, Transform ROIs (R->L) to filter out colocalizing peaks (C=0), Molecule integrator (C=1 both)  |
