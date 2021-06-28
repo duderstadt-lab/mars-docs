@@ -54,7 +54,7 @@ Figure 2: General overview of the analysis process of the smFRET dataset consist
 The data as provided by Hellenkamp *et al.* <sup>9</sup> was recorded with a TIRF microscope setup equipped with dualview collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img21.png' width='650'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img21.png' width='750'></div>
 
 <div style="text-align: center">
 Figure 3: Overview of the different signals that are obtained from the analysis dependent on channel number and location on the split view.
@@ -105,6 +105,7 @@ The following values were found: (note that matrices calculated at a different T
 | m<sub>10</sub>             | 0              | 0.004 |
 | m<sub>11</sub>             | 0.993          | 1.007 |
 | m<sub>12</sub>             | 1.170          | -2.299|
+
 Table 1: Affine2D conversion matrix values
 
 ---
