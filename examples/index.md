@@ -4,20 +4,30 @@ title: Example Gallery
 permalink: /examples/index.html
 ---
 
+#### Tracking of a Protein on DNA
+[<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='350' />](track-position-on-DNA)
+
+Complete workflow for the tracking and processing of polymerase movement on a stretched DNA molecule. ([Scher, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178))
+
+
+---
+---
+
+#### FRET Analysis
+
+[<img align='center' src='{{site.baseurl}}/examples/img/index/img3.png' width='350' />](FRET)
+
+Complete workflow for the analysis and processing of a FRET dataset containing short DNA molecules with a covalently attached donor and acceptor fluorophore. Benchmarked against freely available standardization data as published by [Hellenkamp *et al.*](https://www.nature.com/articles/s41592-018-0085-0).
+
+---
+---
+
 #### Flow Magnetic Tweezers
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img1.png' width='250' />](flow-Magnetic-Tweezers)
 
 
 Complete workflow for tracking and processing the motion of magnetic beads tethered to individual DNA molecules under flow. ([Agarwal & Duderstadt, 2020, Nat. Comm.](https://www.nature.com/articles/s41467-020-18456-y))
-
----
----
-
-#### Tracking of a Protein on DNA
-[<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='250' />](track-position-on-DNA)
-
-Complete workfow for the tracking and processing of polymerase movement on a stretched DNA molecule. ([Scher, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178))
 
 ---
 ---
