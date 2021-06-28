@@ -143,7 +143,7 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 
 |                | FRET archive     | AO archive     | DO archive     |
 | :------------- | :------------- | :------------- | :------------- |
-| Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='250'> |
+| Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='240'> |
 | What to measure | Intensity of fluorescence in red upon red excitation, Intensity of fluorescence in green upon green excitation, Intensity of fluorescence in red upon green excitation (FRET)  | Intensity of fluorescence in red upon red excitation, Leaking fluorescence to the green channel upon red excitation, Leaking fluorescence to the red channel when excited with green  | Leaking fluorescence of red upon green excitation, Intensity of fluorescence in green upon green excitation  |
 | Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemaex</sub><sup>(DO)</sup>, I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
 | Analysis procedure  | Find peaks in red, Transform ROIs (Affine: L->R) to colocalize (C=1) | Find peaks in red, Transform ROIs (Affine: L->R) to filter out colocalizing peaks (C=1)  | Find peaks in green, Transform ROIs (Affine: R->L) to filter out colocalizing peaks (C=0)  |
@@ -195,7 +195,7 @@ $$\begin{equation}
 Next, display the calculated <sup>i</sup>S<sub>app</sub> and <sup>i</sup>E<sub>app</sub> in the bubble chart widget in rover. Open the bubble chart on the main dashboard, switch to the coding tab (<>) and paste the Python code that can be downloaded in [script 9](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET). Run by pressing the refresh button and move back to the bubble plot icon tab to show the plot that should be similar to the one below.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img12.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img12.png' width='350'></div>
 
 ##### Trace-wise Background Correction
 The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. Note that to calculate the correction value only traces from the FRET archive are taken into consideration. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. To do this, download [script 5](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run in the Fiji script editor.
@@ -233,7 +233,7 @@ $$\begin{equation}
 \end{equation}$$
 
 $$\begin{equation}  
-\frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b + a * ^{iii}E_{app}^{(FRET)}
+\frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = a * ^{iii}E_{app}^{(FRET)} + b
 
 \end{equation}$$
 
