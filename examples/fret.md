@@ -195,7 +195,7 @@ $$\begin{equation}
 Next, display the calculated <sup>i</sup>S<sub>app</sub> and <sup>i</sup>E<sub>app</sub> in the bubble chart widget in rover. Open the bubble chart on the main dashboard, switch to the coding tab (<>) and paste the Python code that can be downloaded in [script 9](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET). Run by pressing the refresh button and move back to the bubble plot icon tab to show the plot that should be similar to the one below.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img12.png' width='350'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img12.png' width='250'></div>
 
 ##### Trace-wise Background Correction
 The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. Note that to calculate the correction value only traces from the FRET archive are taken into consideration. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. To do this, download [script 5](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run in the Fiji script editor.
