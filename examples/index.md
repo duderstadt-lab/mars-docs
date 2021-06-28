@@ -4,6 +4,8 @@ title: Example Gallery
 permalink: /examples/index.html
 ---
 
+*click the image to visit the example page*
+
 #### Tracking of a Protein on DNA
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='350' />](track-position-on-DNA)
