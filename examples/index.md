@@ -4,7 +4,7 @@ title: Example Gallery
 permalink: /examples/index.html
 ---
 
-*click the image to visit the example page*
+*click the images to visit the corresponding example page*
 
 #### Tracking of a Protein on DNA
 
