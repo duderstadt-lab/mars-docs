@@ -168,7 +168,7 @@ Table 3: Overview of the three different archives that are created in this step 
 Change the settings in the previously described tools (peak finder, transform ROIs & molecule integrator) according to the table to generate the AO and DO archives. For clarity, these settings are highlighted in the image below.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img26.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img26.png' width='650'></div>
 
 **Tag and Merge the Archives**  
 To make the downstream processing procedure easier the next step is to tag the created archives accordingly and merge them to form one big archive. Use the tag function in the metadata tab to assign the tags 'FRET', 'AO' & 'DO' accordingly and save the archives in the same folder. Next select the merge archives tool (Plugins>Mars>Molecule>Merge Archive) and select the folder. When the command is finished a merged archive is created that can be found in the selected folder. Open the archive.
