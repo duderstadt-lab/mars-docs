@@ -5,6 +5,11 @@ title: smFRET dataset analysis with Mars
 permalink: /examples/FRET/index.html
 ---
 
+test:
+<sup>[1](nu.nl)</sup>
+
+
+
 In this example a typical Mars pipeline for the analysis of a smFRET (single-molecule Förster Resonance Energy Transfer)<sup>1, 2, 3</sup> datasets is discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA, and DNA on a single-molecule level. Among numerous interesting and revealing studies, some examples of important processes that have been studied in this way are: the structural organization of bacterial RNA polymerase <sup>4</sup>, protein-protein complex formation in neurotransmission pathways <sup>5</sup>, dynamics of multi-domain proteins like Hsp90 in solution <sup>6</sup>, protein folding upon ligand interaction <sup>7</sup>, and studies of the cAMP/PKA pathways <sup>8</sup>.
 
 Mars is very well equipped to be used to analyse the data gathered in such studies. It offers a highly effective, easy to use, well documented, and powerful open source alternative to home-built software currently used by some labs and focusses on reproducibility and transparency of the analysis process. To showcase its applicability to analyse smFRET datasets, in this example, the data of the benchmark study published by Hellenkamp *et al.* <sup>9</sup> is analysed and compared. We show the typical pathway one can follow to analyse the data and find the FRET values E and S from this dataset.
@@ -25,13 +30,13 @@ Mars is very well equipped to be used to analyse the data gathered in such studi
 #### <a name="design"></a> The FRET Sample Design and MARS Analysis Process
 
 **Sample Design**  
-In the experiment as designed by Hellenkamp *et al.* <sup>9</sup> the distance between two fluorophores on a DNA molecule is probed. Two different samples (figure 1: 1-lo and 1-mid) are measured with a different interfluorophore distance as indicated in the figure. Since the FRET efficiency (E) is inversely correlated to the distance between the fluorophores, a different E value is to be expected for both molecules. The fluorescence of both samples was measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in the publication by Hellenkamp *et al.*<sup>9</sup>
+In the experiment as designed by Hellenkamp *et al.* <sup>9</sup> the distance between two fluorophores (a donor and an acceptor) on a DNA molecule is probed. Two different samples (figure 1: 1-lo and 1-mid) are measured with a different interfluorophore distance as indicated in the figure. Since the FRET efficiency (E) is inversely correlated to the distance between the fluorophores, a different E value is to be expected for both molecules. The fluorescence of both samples was measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in the publication by Hellenkamp *et al.*<sup>9</sup>
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img14.png' width='450'></div>
 
 <div style="text-align: center">
-Figure 1: Representation of the two different molecules included in the study by Hellenkamp et al. In this example the analysis of the 1-lo dataset is discussed. In the final paragraph of this example results from the 1-mid dataset are discussed as well. <sup>9</sup>
+Figure 1: Representation of the two different molecules included in the study by Hellenkamp et al. The red sphere (left side DNA molecule) represents the acceptor fluorophore, in this case Atto647N, and the green sphere (right side DNA molecule) represents the donor fluorophore, in this case Atto550. In this example the analysis of the 1-lo dataset is discussed. In the final paragraph of this example results from the 1-mid dataset are discussed as well. <sup>9</sup>
 </div>
 
 **The Analysis Procedure**  
@@ -78,14 +83,14 @@ This example pipeline highlights the flexibility of Mars to be adapted to the sp
 
 #### <a name="1"></a> Data preparation
 **Opening and Converting the Video**  
-First, [download](https://zenodo.org/record/1249497) the dataset from Hellenkamp *et al.*<sup>9</sup>.
-To prepare the video for easy analysis, turn SciFIO on in Fiji (Fiji>Edit>Options>ImageJ2 tick the box) and open the first video (FSII1a_g30r84t200_0.tif) located in the '1_lo_TIFF.zip' folder. The original video does not contain specific channel information but simply displays the results of the different excitation colors in an alternating fashion. To convert the video to have channel information, run [script 1](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET). For information on how to run a script in Fiji please read [this tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/). If the script ran correctly, a new window should have opened showing a video with the channels represented in red and green.
+First, [download](https://zenodo.org/record/1249497) the dataset from Hellenkamp *et al.*<sup>9</sup>. Scroll down on the linked page and download the files named: '1_lo_TIFF.zip', '1_med_TIFF.zip' & 'Calibration_Files_for_TIFFs.zip'.
+To prepare the video for easy analysis, turn SciFIO on in Fiji (Edit>Options>ImageJ2 tick the box) and open the first video (FSII1a_g30r84t200_0.tif) located in the '1_lo_TIFF.zip' folder. The original video does not contain specific channel information but simply displays the results of the different excitation colors in an alternating fashion. To convert the video to have channel information, run [script 1](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script1_convert%20video%20to%20dual%20channel.groovy). For information on how to run a script in Fiji please read [this tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/). If the script ran correctly, a new window should have opened showing a video with the channels represented in red and green.
 
 
 **Calculation of the Affine2D Matrix**  
 Next, to prepare for the data analysis, an Affine2D conversion matrix needs to be calculated. This matrix is used to correlate the peak position as found on one half of the split view to the corresponding position on the other half of the split view. More information about this calculation can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/). Either follow along in the next steps to calculate the matrix or use the result from the calculation as provided in the table below.
 
-To calculate the Affine2D matrix open the file ['calib20140405_0.tif'](https://zenodo.org/record/1249497) from the calibration folder. This file shows a recording of a bead sample that fluoresces in multiple colors upon excitation with a wide variety of wavelengths. In this way, matching of the positions in both halves of the split view is possible. To do so, select a time point of choice and duplicate the frame twice (Image>Duplicate). This will create two images of the video at the same time point. Rename the images 'left' and 'right' and in each image black out the respective halve of the view by selecting that region with the square ROI tool and pressing delete. This will result in a set of images resembling the ones in the screenshot below.
+To calculate the Affine2D matrix open the file ['calib20140402_0.tif'](https://zenodo.org/record/1249497) from the calibration folder 'Calibration_Files_for_TIFFs.zip'. This file shows a recording of a bead sample that fluoresces in multiple colors upon excitation with a wide variety of wavelengths. In this way, matching of the positions in both halves of the split view is possible. To do so, select a time point of choice and duplicate the frame twice (Image>Duplicate). This will create two images of the video at the same time point. Rename the images 'left' and 'right' and in each image black out the respective halve of the view by selecting that region with the square ROI tool and pressing delete. This will result in a set of images resembling the ones in the screenshot below.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img1.png' width='450'></div>
@@ -133,10 +138,23 @@ Next, transform the coordinates (ROIs) of the peaks that were just identified to
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img7.png' width='250'></div>
 
 **3. Apply the molecule integrator to extract I vs. T traces**  
-Integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 2.
+Integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img8.png' width='450'></div>
+
+The molecule integrator automatically names the intensity traces according to the provided channel and wavelength color information. Please reference table 3 for an overview of the corresponding archive names to the intensity parameter names as used in the example.
+
+| Intensity parameter     | Name in Mars     |
+| :------------- | :------------- |
+| I<sub>aemaex</sub>       | "0" (corresponding to C=0, red excitation, red emission)       |
+| I<sub>aemdex</sub>       | "1 Red" (corresponding to C=1, green excitation, red emission)       |
+| I<sub>demdex</sub>       | "1 Green" (corresponding to C=1, green excitation, green emission)       |
+
+
+<div style="text-align: center">
+Table 3: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
+</div>
 
 
 ##### The AO and DO Archives
@@ -144,22 +162,28 @@ Integrate the peaks using the molecule integrator tools developed for dual view 
 |                | FRET archive     | AO archive     | DO archive     |
 | :------------- | :------------- | :------------- | :------------- |
 | Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='240'> |
-| What to measure | Intensity of fluorescence in red upon red excitation, Intensity of fluorescence in green upon green excitation, Intensity of fluorescence in red upon green excitation (FRET)  | Intensity of fluorescence in red upon red excitation, Leaking fluorescence to the green channel upon red excitation, Leaking fluorescence to the red channel when excited with green  | Leaking fluorescence of red upon green excitation, Intensity of fluorescence in green upon green excitation  |
+| What to measure | Intensity of fluorescence in red upon red excitation (I<sub>aemaex</sub>), Intensity of fluorescence in green upon green excitation (I<sub>demdex</sub>), Intensity of fluorescence in red upon green excitation (FRET, I<sub>aemdex</sub>)  | Intensity of fluorescence in red upon red excitation (I<sub>aemaex</sub>), Leaking fluorescence to the green channel upon green excitation (I<sub>demdex</sub>), Leaking fluorescence to the red channel when excited with green (I<sub>aemdex</sub>)  | Leaking fluorescence of red upon green excitation (I<sub>aemdex</sub>), Intensity of fluorescence in green upon green excitation (I<sub>demdex</sub>)  |
 | Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemaex</sub><sup>(DO)</sup>, I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
 | Analysis procedure  | Find peaks in red, Transform ROIs (Affine: L->R) to colocalize (C=1) | Find peaks in red, Transform ROIs (Affine: L->R) to filter out colocalizing peaks (C=1)  | Find peaks in green, Transform ROIs (Affine: R->L) to filter out colocalizing peaks (C=0)  |
 
 <div style="text-align: center">
-Table 2: Overview of the three different archives that are created in this step of the analysis: the FRET archive, Acceptor Only (AO) archive and Donor Only (DO) archive. The first row of the table shows a representable molecule for the category, the second row explains what information needs to be extracted from this category of molecules, the third row the corresponding parameter names, and the final row describes the analysis procedure that needs to be followed in Mars.
+Table 3: Overview of the three different archives that are created in this step of the analysis: the FRET archive, Acceptor Only (AO) archive and Donor Only (DO) archive. The first row of the table shows a representable molecule for the category, the second row explains what information needs to be extracted from this category of molecules, the third row the corresponding parameter names, and the final row describes the analysis procedure that needs to be followed in Mars.
 </div>
 
 **Tag and Merge the Archives**  
 To make the downstream processing procedure easier the next step is to tag the created archives accordingly and merge them to form one big archive. Use the tag function in the metadata tab to assign the tags 'FRET', 'AO' & 'DO' accordingly and save the archives in the same folder. Next select the merge archives tool (Plugins>Mars>Molecule>Merge Archive) and select the folder. When the command is finished a merged archive is created that can be found in the selected folder. Open the archive.
+*Note:* it is very important to save the archive after tagging. Otherwise the tag will not be in the merged archive and errors will be raised in the subsequent analysis steps.
 
 **Plot the Traces to do a Visual Inspection**  
-To do a visual inspection of the identified traces open the plot window in the molecules tab and add three line plots representing the three measured intensities (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>), if applicable, for each molecule. In the screenshot below the red line represents I<sub>aemaex</sub>, the grey line I<sub>aemdex</sub> (FRET), and the blue line I<sub>demdex</sub>.
+To do a visual inspection of the identified traces open the plot window in the molecules tab and add three line plots representing the three measured intensities (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>), if applicable, for each molecule. To do so select the options as shown in the screenshot.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img9.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img24.png' width='450'></div>
+
+In the screenshot below the red line represents I<sub>aemaex</sub>, the grey line I<sub>aemdex</sub> (FRET), and the blue line I<sub>demdex</sub>. These are the three intensity vs. time traces that are required to do further FRET calculations on.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img9.png' width='650'></div>
 
 ---
 
@@ -246,7 +270,7 @@ $$\begin{equation}
 \gamma = \frac{b - 1}{a + b + 1}
 \end{equation}$$
 
-Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [script 7](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run on the archive to obtain these values. Note that these values are extremely sensitive to outliers and will have low significance when used on datasets with a low number of data points. Alternatively, an adjusted [script 7](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) is available in the repository where both a=1 and b=1 thereby effectively omitting this correction step.
+Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [script 7](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) and run on the archive to obtain these values. Note that these values are extremely sensitive to outliers and will have low significance when used on datasets with a low number of data points. Alternatively, an adjusted [script 7 (script7_fixed)](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET) is available in the repository where both a=1 and b=1 thereby effectively omitting this correction step.
 
 
 $$\begin{equation}
@@ -273,6 +297,13 @@ _Note that the analysis of a single video from the dataset such as done in this 
 
 The analysis of the E and S value distributions in Python show that the population average is obtained at E= 0.22 and S= 0.50. This is close to the expected value of E= 0.15 +/- 0.02 and S= 0.50 when considering the low number of data points and high error margin arising from that.
 
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='450'></div>
+
+<div style="text-align: center">
+This image was reproduced from Hellenkamp et al. <sup>9</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
+</div>
+
 
 ---
 
@@ -282,6 +313,13 @@ The final plot of this analysis shows that the FRET populations are observed at 
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img23.png' width='450'></div>
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='450'></div>
+
+<div style="text-align: center">
+This image was reproduced from Hellenkamp et al. <sup>9</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
+</div>
 
 In conclusion, this example Mars pipeline showed that Mars is a software platform that is equipped to do a robust, transparent, traceable, and reliable data analysis for FRET experiments. This analysis outcome comparison to the benchmark study by Hellenkamp *et al.* <sup>9</sup> shows that very similar FRET values are obtained and that therefore Mars is an excellent tool to be used to analyze these type of datasets.
 

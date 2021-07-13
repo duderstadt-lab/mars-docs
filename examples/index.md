@@ -20,7 +20,7 @@ Complete workflow for the tracking and processing of polymerase movement on a st
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img3.png' width='450' />](FRET)
 
-Complete workflow for the analysis and processing of a FRET dataset containing short DNA molecules with a covalently attached donor and acceptor fluorophore. Benchmarked against freely available standardization data as published by [Hellenkamp *et al.*](https://www.nature.com/articles/s41592-018-0085-0).
+Complete workflow for the analysis and processing of a FRET dataset containing short DNA molecules with a covalently attached donor and acceptor fluorophore. Benchmarked against openly available standardization data as published by [Hellenkamp *et al.*, 2018, Nat. Meth.](https://www.nature.com/articles/s41592-018-0085-0)
 
 ---
 ---
