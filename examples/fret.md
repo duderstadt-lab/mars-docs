@@ -6,7 +6,7 @@ permalink: /examples/FRET/index.html
 ---
 
 test:
-<sup>[1](www.nu.nl)</sup>
+<sup>[1](htpps://www.nu.nl)</sup>
 
 
 
@@ -152,9 +152,8 @@ The molecule integrator automatically names the intensity traces according to th
 | I<sub>demdex</sub>       | "1 Green" (corresponding to C=1, green excitation, green emission)       |
 
 
-<div style="text-align: center">
-Table 3: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
-</div>
+Table 2: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
+
 
 
 ##### The AO and DO Archives
@@ -270,7 +269,7 @@ $$\begin{equation}
 \gamma = \frac{b - 1}{a + b + 1}
 \end{equation}$$
 
-Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [script 7](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script7_beta_gamma_correction.groovy) and run on the archive to obtain these values. Note that these values are extremely sensitive to outliers and will have low significance when used on datasets with a low number of data points. Alternatively, an adjusted [script 7 (script7_fixed)](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script7_fixed.groovy) is available in the repository where both a=1 and b=1 thereby effectively omitting this correction step.
+Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Download [script 7](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script7_beta_gamma_correction.groovy) and run on the archive to obtain these values. Note that these values are extremely sensitive to outliers and will have low significance when used on datasets with a low number of data points. Alternatively, an adjusted [script 7](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script7_fixed.groovy) is available in the repository where both a=1 and b=1 thereby effectively omitting this correction step.
 
 
 $$\begin{equation}
@@ -298,7 +297,7 @@ _Note that the analysis of a single video from the dataset such as done in this 
 The analysis of the E and S value distributions in Python show that the population average is obtained at E= 0.22 and S= 0.50. This is close to the expected value of E= 0.15 +/- 0.02 and S= 0.50 when considering the low number of data points and high error margin arising from that.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='350'></div>
 
 <div style="text-align: center">
 This image was reproduced from Hellenkamp et al. <sup>9</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
@@ -315,7 +314,7 @@ The final plot of this analysis shows that the FRET populations are observed at 
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img23.png' width='450'></div>
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='350'></div>
 
 <div style="text-align: center">
 This image was reproduced from Hellenkamp et al. <sup>9</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
