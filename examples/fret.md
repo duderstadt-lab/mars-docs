@@ -324,7 +324,7 @@ This image was reproduced from Hellenkamp et al. <sup>[9](https://doi.org/10.103
 In conclusion, this example Mars pipeline showed that Mars is a software platform that is equipped to do a robust, transparent, traceable, and reliable data analysis for FRET experiments. This analysis outcome comparison to the benchmark study by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> shows that very similar FRET values are obtained and that therefore Mars is an excellent tool to be used to analyze these type of datasets.
 
 #### <a name="12"></a> Troubleshooting
-This section highlights some of the common errors or problems that may occur during following along with the example as well as possible solutions. Please reference the table below in case you encounter any problems during the analysis. If your question has not been answered in this section, please feel free to [reach out](https://duderstadtlab.org/contact/) to our lab.
+This section highlights some of the common errors or problems that may occur during following along with the example as well as possible solutions. Please reference the table below in case you encounter any problems during the analysis. If your question has not been answered in this section, please feel free to [reach out](https://forum.image.sc/tag/mars) to our lab by making a forum post.
 
 | Problem Description     | Solution     |
 | :------------- | :------------- |
