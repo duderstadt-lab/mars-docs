@@ -43,8 +43,8 @@ First, some raw corrections to the collected frame are carried out: in this case
 
 ---
 
-#### <a name="open"></a> Open the video & raw corrections
-**Download the video**
+#### <a name="open"></a> Open the video & raw image corrections
+**Download the video**  
 Download the example video from the [Github repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/TrackonDNA) and save the files into one folder. The video is comprised of individual TIFF files each representing a video frame. Note that this format cannot be opened in most conventional video players.
 
 **Open the video with SCIFIO**  
