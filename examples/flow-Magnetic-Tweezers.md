@@ -71,6 +71,8 @@ To analyze the generated dataset, the single molecule beads are tracked using th
 
 #### <a name="tracking"></a> Tracking of the single molecule data
 
+The scripts for analysing the dataset can be found in this [GitHub repository](https://github.com/duderstadt-lab/fmt-scripts). It will be indicated which script is used for which part of the analysis. Also a fully analysed archive is available together with the Jupyter notebook to create the more sophisticated plots [here]().
+
 ##### Importing the video in Fiji
 
 The file is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) to Fiji (the file can be accessed using this link: `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442)). For this example, a smaller video with only a segment of the total field of view from a gyrase experiment is provided. The white pixels in the field of view represent the magnetic beads and can either be single DNA-bead tethers, multiple DNA-bead tethers, or beads stuck on the surface. <br>
@@ -167,7 +169,7 @@ To investigate positive uncoiling and negative coiling rates a plot is made whic
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image012.png' width='600' />
 </p>
 
-You can also plot the burst position as a boxplot in order to condense the information. Furthermore, the rate of positive relaxation and negative introduction can be plotted as a histogram. This nicely displays the difference in the rate because the distribution shifts over for the negative introduction. The python script can be found [here](). 
+You can also plot the burst position as a boxplot in order to condense the information. Furthermore, the rate of positive relaxation and negative introduction can be plotted as a histogram. This nicely displays the difference in the rate because the distribution shifts over for the negative introduction. The python script can be found [here]().
 
 <p align='center'>
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/finalplots.png' width='900' />
