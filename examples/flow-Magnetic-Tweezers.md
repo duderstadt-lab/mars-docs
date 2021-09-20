@@ -86,6 +86,12 @@ The MARS plugin comes with a build in tracker. A simple example for using the tr
 
 
 <p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image002_p1.png' width='700' />
+</p>  
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/image002_p2.png' width='700' />
+</p>  
+<p align='center'>
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image003.png' width='700' />
 </p>  
 <p align='center'>
@@ -159,6 +165,12 @@ To investigate positive uncoiling and negative coiling rates a plot is made whic
 
 <p align='center'>
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image012.png' width='600' />
+</p>
+
+You can also plot the burst position as a boxplot in order to condense the information. Furthermore, the rate of positive relaxation and negative introduction can be plotted as a histogram. This nicely displays the difference in the rate because the distribution shifts over for the negative introduction. The python script can be found [here](). 
+
+<p align='center'>
+  <img align='center' src='{{site.baseurl}}/examples/img/fmt/finalplots.png' width='900' />
 </p>
 
 #### <a name="conc"></a> Conclusion
