@@ -101,7 +101,7 @@ The MARS plugin comes with a build in tracker. A simple example for using the tr
 </p>  
 ##### MARS GUI and archive
 
-Once the tracking is done, an archive is created. The 'Info' widget shows how many molecules are tracked: in this case there are 24542 tracked molecules (the number can vary depending on the tracking settings). All molecules here have unique IDs (UUID) for traceability and display the x and y tracking information by default. In the next step these molecules are classified using tags.
+Once the tracking is done, an archive is created. The 'Info' widget shows how many molecules are tracked: in this case there are 23377 tracked molecules (the number can vary depending on the tracking settings). All molecules here have unique IDs (UUID) for traceability and display the x and y tracking information by default. In the next step these molecules are classified using tags.
 
 
 <p align='center'>
@@ -119,7 +119,7 @@ The screenshot below shows an example trace. The evolution of x and y over time 
 
 ##### Adding regions for different activities to the archive
 
-In the experiment conducted, different flow settings and magnet rotations were applied at certain time points to probe for certain DNA behaviors. These time points are annotated in the archive using ‘regions’. In this example a [groovy script] (https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy))assigns these automatically. If you are interested in groovy scripting you can check out our tutorials [here](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/).
+In the experiment conducted, different flow settings and magnet rotations were applied at certain time points to probe for certain DNA behaviors. These time points are annotated in the archive using ‘regions’. In this example a [groovy script](https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy))assigns these automatically. It is the first one out of three groovy scripts used. If you are interested in groovy scripting you can check out our tutorials [here](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/).
 
 
 <p align='center'>
@@ -157,7 +157,7 @@ To classify the identified molecules in the archive parameters are calculated an
 
 ##### Final data
 
-Now the data is analyzed and sorted it can be plotted using external programs like Python or Matlab. To do so a [Groovy script]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy) is applied that generates a csv file containing parameters from the filtered set of molecules. This script specifically looks for specific tags and then tries to find the maximum inclination in the positive and negative coiling step.
+Now the data is analyzed and sorted with a final groovy script. The final data can be plotted using external programs like Python or Matlab. To do so a [Groovy script]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy) is applied that generates a csv file containing parameters from the filtered set of molecules. This script specifically looks for specific tags and then tries to find the maximum inclination in the positive and negative coiling step. Furthermore the beads are corrected for drift using the stuck beads as a reference. 
 
 
 ##### Plotting the dataset with Python
