@@ -157,7 +157,7 @@ To classify the identified molecules in the archive parameters are calculated an
 
 ##### Final data
 
-Now the data is analyzed and sorted with a final groovy script. The final data can be plotted using external programs like Python or Matlab. To do so a [Groovy script]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy) is applied that generates a csv file containing parameters from the filtered set of molecules. This script specifically looks for specific tags and then tries to find the maximum inclination in the positive and negative coiling step. Furthermore the beads are corrected for drift using the stuck beads as a reference. 
+Now the data is analyzed and sorted with a final groovy script. The final data can be plotted using external programs like Python or Matlab. To do so a [Groovy script]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step3_generate_csv.groovy) is applied that generates a csv file containing parameters from the filtered set of molecules. This script specifically looks for specific tags and then tries to find the maximum inclination in the positive and negative coiling step. Furthermore the beads are corrected for drift using the stuck beads as a reference.
 
 
 ##### Plotting the dataset with Python
@@ -169,7 +169,7 @@ To investigate positive uncoiling and negative coiling rates a plot is made whic
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image012.png' width='600' />
 </p>
 
-You can also plot the burst position as a boxplot in order to condense the information. Furthermore, the rate of positive relaxation and negative introduction can be plotted as a histogram. This nicely displays the difference in the rate because the distribution shifts over for the negative introduction. The python script can be found [here]().
+You can also plot the burst position as a boxplot in order to condense the information. Furthermore, the rate of positive relaxation and negative introduction can be plotted as a histogram. This nicely displays the difference in the rate because the distribution shifts over for the negative introduction. The jupyter notebook can be found [here](https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step4_Boxplot_Histogram.ipynb). 
 
 <p align='center'>
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/finalplots.png' width='900' />
