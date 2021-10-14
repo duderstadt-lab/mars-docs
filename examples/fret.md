@@ -52,7 +52,7 @@ Figure 2: General overview of the analysis process of the smFRET dataset consist
 
 
 **Dataset Characteristics**  
-The data as provided by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> was recorded with a TIRF microscope setup equipped with dualview collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
+The data as provided by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img21.png' width='750'></div>
@@ -126,7 +126,7 @@ To find the peaks in the left part of the split view in the red channel first se
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img5.png' width='250'></div>
 
 **2. Transform  the ROIs to the right part of the split view**  
-Next, transform the coordinates (ROIs) of the peaks that were just identified to match the right part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix (left to right) as calculated before (see table). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
+Next, transform the coordinates (ROIs) of the peaks that were just identified to match the right part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix (left to right) as calculated before (see table 1). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img6.png' width='450'></div>
@@ -204,6 +204,11 @@ In short, the script calculates the difference between the measured intensities 
 After the declaration of these parameters, the molecules that are part of the FRET archive are tagged. A tag ('Active') is added to the molecule in case bleaching is observed both in red and green. The tag 'Active_single' is used in case the trace shows single bleaching events only.
 
 ##### Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram
+
+
+
+
+
 The next step is to assign the measured fluorophore intensities to the corresponding intensity parameters (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>). To do so, download [script 3](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script3_apparent%20Ivalues.groovy) from the repository and run it in the Fiji script editor. This script determines the highest fluorophore intensity level as reported in the segments table and assigns this to the corresponding parameter name.
 
 To generate a crude and uncorrected 2D histogram of the FRET values obtained in the analysis these intensity  parameters are supplemented into the following two formulae calculating the uncorrected apparent E and S value for each molecule. To do so download [script 4](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Scripts/Script4_iESapp%20calculation.groovy) and run in the Fiji script editor. Note that for these calculations only the intensity values corresponding to molecules from the FRET archive, tagged with 'Active_single', are taken into consideration.
