@@ -81,7 +81,7 @@ The following are settings for tracking absent in the [PeakFinder](../PeakFinder
 
 #### Preview
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/peak_tracker_Preview.png' width='550'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/peak_tracker_Preview.png' width='750'/></div>
 
 * *Preview* - When checked all detected peaks are highlighted based on the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings.
 * *Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below. In the case of a circle, the inner radius specified in the Integrate tab determines the size.
