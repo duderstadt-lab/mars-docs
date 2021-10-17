@@ -5,15 +5,13 @@ permalink: /docs/image/PeakTracker/index.html
 ---
 This command is used to find, fit and track peaks in images. Typically these are polystyrene beads or single fluorescent dyes or groups of dyes attached to biomolecules. This command is nearly the same as the [PeakFinder](../PeakFinder) command but with the addition of tracking and fewer output options. So a lot of the input documentation is the same between the two commands.
 
-This command outputs a Single Molecule Archive in which individual molecule records have Tables with the X, Y and T positions. If verbose is checked, then all fit parameters are added to the Table. The Molecule Archive will also contain metadata information from the image that can be used to convert from T to time and do a number of other useful operations provided by the other commands in the Molecule Archive submenu.
+This command outputs a Single Molecule Archive in which individual molecule records have Tables with the X, Y and T positions. If verbose is checked, then all fit parameters are added to the Table. The Molecule Archive will also contain metadata information from the image that can be used to convert from T to time and do a number of other useful operations provided by the other commands in the Molecule submenu.
 
 The [How to Find Tracked Molecules in the Video]({{ site.baseurl }}/tutorials/workingwithmars/bdv) tutorial explains how to overlay tracking results on image. This allows for exploration of Molecule Archive records together with overlays on the original images. By running the movie forward frame by frame it is possible to see when tracking goes wrong and how to further optimise the tracking settings or if two tracks should be merged.
 
 The PeakTracker is well suited for common tracking requirements in single molecule experiments. If you find that the available options and image views do not fully meet your needs give TrackMate a try. TrackMate offers a wider range of peak finding and tracking options and track merging tools. After performing tracking with TrackMate export your results to Mars by follow the [How to convert TrackMate Results to Mars]({{ site.baseurl }}/tutorials/marsto/trackmate-to-mars) tutorial.
 
 *Note* - Currently the status bar only runs during the peak finding and fitting steps. But tracking can also take some time. So be patient and your archive will appear. You can always check the console to see if a problem has occurred under Window->Console. Here you will also find the time it took for each step of the process and all the settings. The setting will also be placed in the log of the metadata record created and placed into the Molecule Archive created.
-
-There are a lot of inputs, but don't panic, they are all pretty simple to understand and overlap with the [PeakFinder](../PeakFinder) options. Many inputs are included for completeness to give fine control but do not need to be changed in most cases.   
 
 #### Input
 
@@ -86,14 +84,14 @@ The following are settings for tracking absent in the [PeakFinder](../PeakFinder
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/peak_tracker_Preview.png' width='550'/></div>
 
 * *Preview* - When checked all detected peaks are highlighted based on the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings.
-* *Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
+* *Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below. In the case of a circle, the inner radius specified in the Integrate tab determines the size.
 * *count:* - Number of peaks detected in the current image.
 * *T* - Scrollbar to select the timepoint (T) to preview with live update using a zero-based index.
 * *Timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
 
 ### Result
 
-* *Molecule Archive* - A Single Molecule Archive with individual records for all tracked molecules as well as metadata information. If the command finishes and no Molecule Archives opens, check the console for an explanation. No Molecule Archive will open if no molecules meet all finding, fitting, and tracking criteria. This will be reported in the console.
+* *Molecule Archive* - A Single Molecule Archive with individual records for all tracked molecules as well as metadata information. If the command finishes and no Molecule Archives opens, check the console for an explanation (Window->Console). No Molecule Archive will open if no molecules meet all finding, fitting, and tracking criteria. This will be reported in the console.
 
 ### How to run this Command from a groovy script
 
