@@ -93,7 +93,7 @@ The following are settings for tracking absent in the [PeakFinder](../PeakFinder
 
 * *Molecule Archive* - A Single Molecule Archive with individual records for all tracked molecules as well as metadata information. If the command finishes and no Molecule Archives opens, check the console for an explanation (Window->Console). No Molecule Archive will open if no molecules meet all finding, fitting, and tracking criteria. This will be reported in the console.
 
-### How to run this Command from a groovy script
+### How to run this command from a groovy script
 
 ```groovy
 #@ Dataset dataset
@@ -111,16 +111,16 @@ PeakTrackerCommand peakTracker = new PeakTrackerCommand()
 peakTracker.setContext(ij.getContext())
 
 peakTracker.setDataset(dataset)
-peakTracker.setUseROI(false)
+//Options: "whole image" or "ROI from image" or "ROIs from manager"
+peakTracker.setRegion("whole image")
 peakTracker.setChannel(0)
 peakTracker.setUseDogFiler(true)
 peakTracker.setDogFilterRadius(1.8d)
 peakTracker.setThreshold(50)
 peakTracker.setMinimumDistance(5)
 peakTracker.setFindNegativePeaks(false)
-peakTracker.setFitRadius(4)
+peakTracker.setFitRadius(3)
 peakTracker.setMinimumRsquared(0)
-peakTracker.setVerboseOutput(false)
 peakTracker.setMaxDifferenceX(5)
 peakTracker.setMaxDifferenceY(5)
 peakTracker.setMaxDifferenceT(5)
@@ -131,10 +131,14 @@ peakTracker.setIntegrationOuterRadius(4)
 peakTracker.setMicroscope("Microscope")
 peakTracker.setPixelLength(1)
 peakTracker.setPixelUnits("pixel")
-peakTracker.setExcludedTimePointsList()
+peakTracker.setExcludedTimePointsList("10, 20-21")
+//Options: "unique from dataset" or "random"
+peakTracker.setMetadataUIDSource("random")
+peakTracker.setVerboseOutput(false)
+peakTracker.setThreads(8)
 
 //Run the Command
-peakTracker.run();
+peakTracker.run()
 
 //Retrieve output from the command
 archive = peakTracker.getArchive()
