@@ -13,7 +13,7 @@ This commands adds a column to the molecule tables to convert time points (T) to
 * *Time increment (s)* - Input value for the time increment if selected above.
 
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img2.png' width='450'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/img45.png' width='450'/></div>
 
 #### Output
 * *MoleculeArchive* - Modified MoleculeArchive that was provided as input, the column 'Time (s)' is added to each molecule table.

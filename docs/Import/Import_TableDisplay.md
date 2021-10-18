@@ -1,5 +1,5 @@
 ---
-layout: import
+layout: table 
 title: Import TableDisplay
 permalink: /docs/table/Import_TableDisplay/index.html
 ---

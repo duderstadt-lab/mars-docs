@@ -1,5 +1,5 @@
 ---
-layout: import
+layout: table
 title: Import IJ1 table
 permalink: /docs/table/Import_IJ1/index.html
 ---
