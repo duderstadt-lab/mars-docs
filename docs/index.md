@@ -32,6 +32,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
 
 **Util**  
+
 | :----------------------------- | :----------- |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
 | [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
@@ -49,6 +50,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [FMT Generate bps](./molecule/FMTbps) | |
 
 **Util**  
+
 | :----------------------------- | :----------- |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Corrector](./molecule/DriftCorrector) | Correct the molecule coordinates for sample drift during the measurement. |
@@ -64,6 +66,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Filter](./table/Filter) | Filter table rows. |
 
 **Import**  
+
 | :------------- | :------------- |
 | [Import IJ1 Table](./import/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
 | [Import TableDisplay](./import/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
@@ -77,6 +80,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 
 ### Transform ROIs
 
+| :----------------------------- | :----------- |
 | [Transform ROIs](./roi/TransformROIs) | Transform PointRois using an Affine2D transform. |
 
 
