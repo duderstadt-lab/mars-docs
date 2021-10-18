@@ -38,10 +38,7 @@ Now, open the "Peak Tracker" tool from **Mars** as shown and enter all settings 
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img10.png' width='450'/></div>
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img11.png' width='350'/></div> <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img12.png' width='350'/></div>
-
-
-Press OK to run the tracking plugin.
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img24.png' width='350'/><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img25.png' width='350'/><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img26.png' width='350'/><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img27.png' width='350'/><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img28.png' width='350'/><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img29.png' width='350'/><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img30.png' width='350'/></div>
 
 
 ### 3. Navigating through Mars Rover
