@@ -3,6 +3,9 @@ layout: image
 title: Molecule Integrator
 permalink: /docs/image/MoleculeIntegrator/index.html
 ---
+
+**Normal and dualview version**
+
 This command integrates the intensity of fluorescent peaks collected using TIRF. A list of peaks and their positions specified as UID numbers must be provided in the ROIManger as setup prior to running this command. This is generated using the [PeakFinder](../PeakFinder) and/or [Transform ROIs](https://duderstadt-lab.github.io/mars-docs/docs/roi/TransformROIs/). Also, the Image to integrate must be the active image. Using the specified settings, the integrated intensity of peaks will be corrected using the local background, specified using inner and outer radii. This will be performed for each frame and the final output is a Molecule Archive with fluorescence intensity as a function of frame (T).
 
 The molecule integrator is also designed to work well for data collected using a dual view. In this case, Short wavelength and Long wavelength information is specified in the ROI name in the ROIManger as UID_SHORT or UID_LONG. Then the integrated fluorescence of the different colors is placed in each molecule record, providing multiwavelength information about molecules. Sometimes this involves collecting with two lasers turned on, and other times you could be doing FRET with only a single laser on. In this case the FRET option should be checked.
@@ -15,13 +18,15 @@ If you have single color data, you can integrate only peaks at one wavelength by
 
 The dualview splits the signal by wavelength and one side will have the Long wavelengths and the other the short wavelengths. These are then split into regions. A standard dichroic would split around 630 nm so that red and above is on one half and the rest of the colors are on the other half. For example, red might be on the top half of the image and on the bottom could be 405, 488, 532, or possibly 561. Short and long will obviously mean different things depending on the dichroic and laser lines used.
 
-#### Inputs
+#### Input
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img8.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img35.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img38.png' width='350'/></div>
 
-* *Image* - The selected image will by analyzed using the peaks in the RoiManager. This is a required input but doesn't show up in the dialog, it is just the open image you have have selected at the time you run the command.
-* *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
-* *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrate and serve as the local background to correct the inner region.
+* *Image* - The selected image will by analyzed using the peaks in the RoiManager. The name of the image will be displayed in the dialog.
+* *Use integration boundary* -
+
+#### Boundaries
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img39.png' width='350'/></div>
 * *LONG x0* - Upper left corner x0 position of Long wavelength ROI.
 * *LONG y0* - Upper right corner y0 position of Long wavelength ROI.
 * *LONG width* - width of the Long wavelength ROI.
@@ -30,15 +35,29 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 * *SHORT y0* - Upper right corner y0 position of Short wavelength ROI.
 * *SHORT width* - width of the Short wavelength ROI.
 * *SHORT height* - height of the Short wavelength ROI.
-* *Microscope* - The microscope name added to the  metadata record.
+
+
+#### Integration
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img36.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img40.png' width='350'/></div>
+
+* *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
+* *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrate and serve as the local background to correct the inner region.
 * *FRET short wavelength name* - The name of the short wavelength color that will be used as the color header in the outputted MoleculeArchive.
 * *FRET long wavelength name* - The name of the long wavelength color that will be used as the color header in the outputted MoleculeArchive.
-* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
-* *Channels* - Autodetects which channels are present in the video (when supplied in the video metadata). Then allows for assignment of the correct function for each channel (f.e. None, Short, Long or FRET).
-
 
 
 #### Output
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img37.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img41.png' width='350'/></div>
+
+* *Microscope* - The microscope name added to the  metadata record.
+* *FRET short wavelength name* - Name for the short wavelength used.
+* *FRET long wavelength name* - Name for the long wavelength used.
+* *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
+* *Metadata UID* - Generate a metadata UID based on the metadata UID supplied in the image metadata or generate a new one randomly.
+
+
+
+#### Result
 
 * *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
 
