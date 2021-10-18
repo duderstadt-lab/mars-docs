@@ -9,14 +9,10 @@ _level: intermediate, duration: 5-10 min_
 This tutorial focuses on the calculation of the variance (var) in the traces obtained after running the "Peak Tracker" tool. To do so, a Molecule Archive .yama file with the data of the traces of interest is needed. To create such an archive, look at the tutorial [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). Alternatively, one can also use the tutorial file from the repository [Testvideo_archive.yama](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
 ### 1. Open the Molecule Archive (.yama)
-First, open the archive using the "Molecule" tool. The **Mars Rover** GUI should show up.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/Tvar/img1.png' width='450'/></div>
+First, open the archive using the "Molecule" tool (Fiji/Plugins/Mars/Molecule/OpenArchive). The **Mars Rover** GUI should show up.
 
 ### 2. Run the Variance Calculator
-Now go back to the main Fiji environment and select the "Variance Calculator" from the **Mars** plugins.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/Tvar/img2.png' width='450'/></div>
+Now go back to the main Fiji environment and select the "Variance Calculator" from the **Mars** plugins (Fiji/Plugins/Mars/Molecule/Util/Variance calculator).
 
 The following window will show up. Provide the settings as shown.
 

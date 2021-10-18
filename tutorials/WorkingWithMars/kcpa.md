@@ -32,10 +32,7 @@ The analysis will result in the position of kinetic change points and linear fit
 Open a MoleculeArchive of interest. In case of this tutorial use the archive 'tutorialvideo_archive.yama' generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, one can download this archive on the [git repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mar).
 
 
-Select the 'Change Point Finder' command in the plugin menu.  
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/kcpa/img1.png' width='350'/></div>
-
+Select the 'Change Point Finder' command in the plugin menu (Fiji/Plugins/Mars/KCP/Change Point Finder).  
 
 The window shown in the image will open.
 

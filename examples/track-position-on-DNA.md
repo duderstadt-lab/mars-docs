@@ -70,7 +70,13 @@ Now, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) com
 Now the raw data has been corrected, the location of the proteins is tracked using the [Peak Tracker](../../docs/image/PeakTracker). This generates a SingleMolecule Archive containing the x,y-coordinates of each spot with respect to time. First use the Rectangle tool in Fiji to select the region that should be processed. This should be the top half of the image that contains all the labeled protein signal. Once your selection is complete, run the [Peak Tracker](../../docs/image/PeakTracker) with the following settings:
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img3.png' width='450' /></div>
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img10.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img11.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img12.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img13.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img14.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img15.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img16.png' width='350' /></div>
 
 When the command is finished, a Single Molecule Archive should appear that contains all tracked molecules.
 
@@ -78,8 +84,11 @@ When the command is finished, a Single Molecule Archive should appear that conta
 Now the proteins have been tracked, we can use the [DNA finder](../../docs/image/DNA_finder) to locate all DNA molecules in channel 1. This can be accomplished using the following settings:
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img5.png' width='450' />
-</div>
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img17.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img18.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img19.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img20.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img21.png' width='350' /></div>
 
 The only output should be a list of line ROIs added to the RoiManager, each with a UID. It is very important that the frame is set to 159 since the DNA can only be seen in the last frames.
 
@@ -153,7 +162,9 @@ archive.logln(LogBuilder.endBlock())
 Now all coordinates have been corrected and artefacts have been removed, the DNA location data can be merged with the protein tracking information stored in the Single Molecule Archive. This is done using the [build DNA archive](../docs/molecule/BuildDNAarchive) command with the settings as shown below.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/buildDNAArchiveSettings.png' width='450' /></div>
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img22.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img23.png' width='350' />
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img24.png' width='350' /></div>
 
 The DNA molecule archive should appear containing DNA molecule records that contain tables with all tracked molecules that were found to be located on DNAs as well as their position on DNA and integrated intensity. Now you can see individual tracks of molecules on a specific DNA molecule. You can calculate the speed in bp/s and the exact position on the DNA from the data displayed in the table.
 Note that some DNA molecules were found to overlap with more than one moving protein. These are numbered polymerase1, polymerase2, etc.
