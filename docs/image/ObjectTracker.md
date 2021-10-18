@@ -28,34 +28,57 @@ As an example the Object Tracker settings can be applied on a standard Fiji samp
 <img  src='{{site.baseurl}}/docs/image/img/img14.png' width='350'/></div>
 
 
-#### Inputs
+#### Input
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img29.png' width='350'/></div>
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img12.png' width='550'/></div>
-
-* *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
-To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions on ROI tools can be found in this [video](https://www.youtube.com/watch?v=ZPS78T_-gUs&feature=youtu.be).
+* *Image* - The active image selected will be used by the DNA Finder. The name of this image will be displayed below the image stack in the dialog.
+* *Region* - Apply the tool to either the 'whole image', an 'ROI from image' or 'ROIs from manager'. To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions on ROI tools can be found in this [video](https://www.youtube.com/watch?v=ZPS78T_-gUs&feature=youtu.be).
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
+
+#### Find
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img30.png' width='350'/></div>
+
+* *Use median filter* - Enable a median filter.
+* *Median filter radius* - Set the radius of the applied median filter.
 * *Use local otsu* - Tick this to use the local otsu radius.
-* *Local otsu radius* - Specifies the surrounding radius in pixels that are used to calculate the local otsu threshold on which segmentation will be based. Selecting a too small region might result in the identification of noise as objects, a too large region might overlook objects.
-* *Minimum distance between object centers* - Specifies how much pixels need to be present between objects. Two objects closer to each other than this parameter will be merged into one object.
-* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
-* *Preview* - Shows a contour of the identified objects with the current settings.
-* *T* - Select the time point (T) to show peak finding results on in the video.
-* *Linear interpolation factor* - Set to >1 for smoother fit results using linear interpolation.
+* *Otsu radius* - Specifies the surrounding radius in pixels that are used to calculate the local otsu threshold on which segmentation will be based. Selecting a too small region might result in the identification of noise as objects, a too large region might overlook objects.
+* *Minimum object center separation* - Specifies how much pixels need to be present between objects. Two objects closer to each other than this parameter will be merged into one object.
 * *Use area filter* - Tick in case objects should be filtered to match a certain threshold for the object area.
 * *Minimum area* - Threshold value for the area filter. Allows the user to exclude objects identified that are too small to be relevant for the analysis.
-* *Max Difference X* - The threshold difference between the X position of two object locations below which they are still allowed to be linked.
-* *Max Difference Y* - The threshold difference between the Y position of two object locations below which they are still allowed to be linked.
-* *Max Difference T* - The number of frames (T) into the future to search for a possible link. This parameter is very important to ensure tracking is robust against single frames where peaks are not detected.
-* *Minimum track length* - All tracks with fewer than this number of slices will be rejected and removed from the Molecule Archive. Frequently single-molecule experiments have many short tracks resulting from molecules appearing for only a couple frames then going away. This removes all these events.
-* *Verbose output* - If checked all fit parameters are included in the output (baseline, height, x, y, sigma, R2). If unchecked only the position, slice, intensity columns will be included in the output. Verbose output can be used to optimise the R-squared minimum, or for calculations based on peak properties.
+
+#### Contour
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img31.png' width='350'/></div>
+
+* *Linear interpolation factor* - Set to >1 for smoother fit results using linear interpolation.
+
+#### Track
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img32.png' width='350'/></div>
+
+* *Max ∆X* - The threshold difference between the X position of two object locations below which they are still allowed to be linked.
+* *Max ∆Y* - The threshold difference between the Y position of two object locations below which they are still allowed to be linked.
+* *Max ∆T* - The number of frames (T) into the future to search for a possible link. This parameter is very important to ensure tracking is robust against single frames where peaks are not detected.
+* *Minimum length* - All tracks with fewer than this number of slices will be rejected and removed from the Molecule Archive. Frequently single-molecule experiments have many short tracks resulting from molecules appearing for only a couple frames then going away. This removes all these events.
+
+#### Output
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img33.png' width='350'/></div>
+
 * *Microscope* - The name of the microscope used for data collection. This name is included in the metadata record.
 * *Pixel length* - Length of a pixel in the microscope system used for data collection.
 * *Pixel units* - Units of the provided pixel length.
 * *Exclude* - List timepoints to exclude from the tracking process. This allows the user to exclude frames from the analysis without having to delete them from the dataset irreversibly.
+* *Verbose* - If checked all fit parameters are included in the output (baseline, height, x, y, sigma, R2). If unchecked only the position, slice, intensity columns will be included in the output. Verbose output can be used to optimise the R-squared minimum, or for calculations based on peak properties.
+* *Metadata UID* - Generate a metadata UID based on the metadata UID supplied in the image metadata or generate a new one randomly.
 * *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 
-### Output
+#### Preview
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img34.png' width='350'/></div>
+
+* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
+* *Preview* - Shows a contour of the identified objects with the current settings.
+* *T* - Select the time point (T) to show peak finding results on in the video.
+
+
+### Results
 
 * *Object Archive* - An Object Archive with individual records for all tracked molecules as well as metadata information.
 
