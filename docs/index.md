@@ -22,26 +22,38 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 
 ## <a name="commands"></a>Command Reference
 
+### Image
+
+| :----------------------------- | :----------- |
+| [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
+| [DNA finder](./image/DNA_finder) | Find and fit linear DNA molecules |
+| [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
+|[Object Tracker](./image/ObjectTracker)| Fit and track unspecified objects based on segmentation. |
+| [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
+
+**Util**
+| :----------------------------- | :----------- |
+| [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
+| [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
+| [Overlay Channels](./image/OverlayChannels) | Combine different colors into one image set. |
+
 ### Molecule
 
 | :----------------------------- | :----------- |
 | [Open archive](./molecule/ImportArchive) | Use this command to open an archive.|
 | [Open virtual store](./molecule/ImportArchive) | Use this command to open a virtually stored archive.|
-| [Build DNA archive](./molecule/BuildDNAarchive) | Builds a DNA Archive from a SingleMoleculeArchive and a list of DNA ROIs|
 | [Build archive from table](./molecule/BuildArchiveFromTable) | Generate a Molecule Archive using a table with a molecule index column. |
-| [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
-| [FMT Generate bps](./molecule/FMTbps) | |
-| [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
-| [Drift Corrector](./molecule/DriftCorrector) | Correct the molecule coordinates for sample drift during the measurement. |
-| [Variance Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
+| [Build DNA archive](./molecule/BuildDNAarchive) | Builds a DNA Archive from a SingleMoleculeArchive and a list of DNA ROIs|
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of Molecule Archives. |
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
+| [FMT Generate bps](./molecule/FMTbps) | |
 
-### Import
-
-| :------------- | :------------- |
-| [Import IJ1 Table](./import/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
-| [Import TableDisplay](./import/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
+**Util**
+| :----------------------------- | :----------- |
+| [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
+| [Drift Corrector](./molecule/DriftCorrector) | Correct the molecule coordinates for sample drift during the measurement. |
+| [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
+| [Variance Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
 
 
 ### Table
@@ -51,18 +63,10 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Sort](./table/Sort) | Sort table rows by column values. |
 | [Filter](./table/Filter) | Filter table rows. |
 
-
-### Image
-
-| :----------------------------- | :----------- |
-| [DNA finder](./image/DNA_finder) | Find and fit linear DNA molecules |
-| [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
-|[Object Tracker](./image/ObjectTracker)| Fit and track unspecified objects based on segmentation. |
-| [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
-| [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
-| [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
-| [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
-| [Overlay Channels](./image/OverlayChannels) | Combine different colors into one image set. |
+**Import**
+| :------------- | :------------- |
+| [Import IJ1 Table](./import/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
+| [Import TableDisplay](./import/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
 
 ### Kinetic Change Point Analysis (KCP)
 
@@ -74,6 +78,8 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 ### Transform ROIs
 
 | [Transform ROIs](./roi/TransformROIs) | Transform PointRois using an Affine2D transform. |
+
+
 
 ## <a name="gui"></a>Mars Rover
 
