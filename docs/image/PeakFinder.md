@@ -7,38 +7,28 @@ This command is used to find high intensity spots or peaks in images. Typically 
 
 #### Inputs  
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img18.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img19.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img18.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img19.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img20.png' width='350'/></div>
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img20.png' width='350'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img21.png' width='350'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img22.png' width='350'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img23.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img21.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img22.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img23.png' width='350'/></div>
 
- * *Image* - The active image selected will be used by the Peak Finder. So this is a required input but doesn't show up in the dialog.
- * *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box.
- To select multiple ROIs to be analyzed use the ROI manager in Fiji. Instructions on ROI tools can be found in this [video](https://www.youtube.com/watch?v=ZPS78T_-gUs&feature=youtu.be).
+ * *Image* - The active image selected will be used by the Peak Finder. The name of this image or video is displayed underneath the stack in the 'Input' tab.
  * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
  * *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
- * *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
+
+
+ * *DoG filter* - Enable or disable the DoG filter modus.
+ * *DoG radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
 
  <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/DoGFilterRadiiExample.png' width='600'/></div>
 
- * *Detection threshold* - This is threshold in pixel value used for peak detection. Pixels with values above this threshold are considered peaks and pixels below this threshold are considered background. For everyday peak detection, the DoG filter should be used in which case this threshold using on the DoG filtered image. In this case, we have found that values between 40 and 60 provide [optimal detection](../DoGFilterProperties) for typical single-molecule observations. If the DoG Filter is turned off this threshold reflects raw pixel values in the input image.
- * *Minimum distance between peaks* - This is the minimum allowed distance between peaks. This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other pixels above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.
+ * *Threshold* - This is threshold in pixel value used for peak detection. Pixels with values above this threshold are considered peaks and pixels below this threshold are considered background. For everyday peak detection, the DoG filter should be used in which case this threshold using on the DoG filtered image. In this case, we have found that values between 40 and 60 provide [optimal detection](../DoGFilterProperties) for typical single-molecule observations. If the DoG Filter is turned off this threshold reflects raw pixel values in the input image.
+ * *Peak separation* - This is the minimum allowed distance between peaks. This means only the pixel with the highest intensity within this radius will be accepted as a peak, even if there are other pixels above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. See the image below for an example.
 
  <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/Minimum Distance.png' width='500'/></div>
 
- * *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
- * *Preview* - When checked ROIs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
- * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
- * *T* - Select the time point (T) to show peak finding results on in the video.
- * *Find Negative Peaks* - If checked peak with negative pixel values are detected. This can be used in gradient images, where a negative gradient results in a negative peak. This is useful for detecting the edges of long DNA molecules and other structures.
- * *Generate peak count table* - If checked a table will appear in which each row has the number of detected peaks for each slice. This is useful to look at bead loss as a function of time in the bead assays and bleaching for a given intensity in smTIRF data.
- * *Generate peak table* - If checked a table will be generated listing the positions of all detected peaks.
- * *Add to ROIManager* - If checked detected peaks will be added to the RoiManager. This is useful for further processing such as transforming peaks between dual view regions and integrating peaks with the Molecule Integrator.
- * *Molecule names in ROIManager* - Add the names of the molecules to the ROI manager. Only works in case the 'Add to ROIManager' box is also ticked.
- * *Process all frames* - If checked all frames in the video will be analyzed. If unchecked only the current frame is analyzed.
- * *Fit peaks* - If checked all peaks will be fit with 2D Gaussians to determine the sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. Fitting is done with the following 2D Gaussian equation:
+ * *Negative peaks* - If checked peak with negative pixel values are detected. This can be used in gradient images, where a negative gradient results in a negative peak. This is useful for detecting the edges of long DNA molecules and other structures.
+
+ * *Fit* - If checked all peaks will be fit with 2D Gaussians to determine the sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. Fitting is done with the following 2D Gaussian equation:
 
  <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/2D Gaussian.png' width='500'/></div>
 
@@ -51,8 +41,19 @@ Where x0 and y0 are the subpixel positions of a peak with a given height, baseli
  * *Integrate* - Integrate the peak intensities and add them to the peaks table as an intensity column. Adds up the total intensity of the inner region with the median background subtracted from each pixel. The median background is calculated from the background region.
  * *Inner radius* - The radius of the region to integrate around the center of the peak. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Typically 1 is a good value but this depends on the size of molecules on the camera sensor.
  * *Outer radius* - The radius of the region to use for calculating the local median background. This is subtracted from the inner region. Typically 3 is a good value. This radius should be ~2 pixels larger than the inner radius.
+
+ * *Generate peak count table* - If checked a table will appear in which each row has the number of detected peaks for each slice. This is useful to look at bead loss as a function of time in the bead assays and bleaching for a given intensity in smTIRF data.
+ * *Generate peak table* - If checked a table will be generated listing the positions of all detected peaks.
+ * *Add to ROIManager* - If checked detected peaks will be added to the RoiManager. This is useful for further processing such as transforming peaks between dual view regions and integrating peaks with the Molecule Integrator.
+ * *Process all frames* - If checked all frames in the video will be analyzed. If unchecked only the current frame is analyzed.
  * *Verbose output* - If checked all fit parameters are included in the output (baseline, height, x, y, sigma, R2). If unchecked only the position, slice, intensity columns will be included in the output. Verbose output can be used to optimise the R-squared minimum, or for calculations based on peak properties.
  * *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
+
+ * *Preview* - When checked ROIs will appear on all detected peaks given for the current setting. This is very useful for finding the correct settings that detect just enough peaks without too much background. This will live update as parameters are changed, such as the detection threshold. This is used before running the command to confirm you have the correct settings. This only detects peaks at the pixel level and doesn't do any fitting. The peak count is reported below. *Note* - the peak count reported is form the previous preview due to an UI update issue. Turning on and off the preview will ensure everything is up-to-date.
+ * *Preview Roi* - This sets the type of roi displayed in preview mode, either circle or point. If circle is chosen the radius of the circle will be the Fit Radius described below.
+ * *T* - Select the time point (T) to show peak finding results on in the video.
+ * *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
+
 
 #### Output
 
