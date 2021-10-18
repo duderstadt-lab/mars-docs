@@ -10,23 +10,25 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 
 #### Inputs
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img15.png' width='550'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img24.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img25.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img26.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img27.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img28.png' width='350'/></div>
 
-* *Image* - The active image selected will be used by the DNA Finder. This is a required input but doesn't show up in the dialog.
-* *use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can add a selection with the box tool, by making a rectangular ROI to the image. This Roi will activate this box and add the settings below it.
+* *Image* - The active image selected will be used by the DNA Finder. The name of this image will be displayed below the image stack in the dialog.
+* *Region* - Apply the tool to either the 'whole image', an 'ROI from image' or 'ROIs from manager'.
 * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
-* *Gaussian Filter Sigma* - The sigma used for gaussian smoothing. The DNA Finder uses the scijava OpService op derivativeGauss which filters the image with a combined gaussian smoothing and takes the derivative. Usually a sigma of 1 is usually sufficient. Higher sigma values might lead to too much smoothing and obscure important features.
+* *Gaussian Smoothing Sigma* - The sigma used for gaussian smoothing. The DNA Finder uses the scijava OpService op derivativeGauss which filters the image with a combined gaussian smoothing and takes the derivative. Usually a sigma of 1 is usually sufficient. Higher sigma values might lead to too much smoothing and obscure important features.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/derivativeSeriesSmall.png' width='800'/></div>
 
-* *Use DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
-* *DoG filter radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
+* *DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
+* *DoG radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/DoGFilterRadiiExample.png' width='600'/></div>
 
-* *Detection threshold* - This is threshold in pixel value used for peak detection. Pixels with values above this threshold are considered peaks and pixels below this threshold are considered background. For everyday peak detection, the DoG filter should be used in which case this threshold using on the DoG filtered image. In this case, we have found that values between 40 and 60 provide [optimal detection](../DoGFilterProperties) for typical single-molecule observations. If the DoG Filter is turned off this threshold reflects raw pixel values in the input image.
-* *Minimum distance between edges (in pixels)* - This is the minimum allowed distance between peaks (edges here), This means only the pixel with the highest (or lowest) intensity within this radius will be accepted as a peak, even if there are other peaks above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. If you see a lot of overlapping DNAs increasing this setting will help.
-* *Optimal DNA length (in pixels)* - The mean length in pixels of the DNA you want to find. This value is used when attempting to link positive peaks to their negative counterparts to find DNAs.  
+* *Threshold* - This is threshold in pixel value used for peak detection. Pixels with values above this threshold are considered peaks and pixels below this threshold are considered background. For everyday peak detection, the DoG filter should be used in which case this threshold using on the DoG filtered image. In this case, we have found that values between 40 and 60 provide [optimal detection](../DoGFilterProperties) for typical single-molecule observations. If the DoG Filter is turned off this threshold reflects raw pixel values in the input image.
+* *DNA separation (in pixels)* - This is the minimum allowed distance between peaks (edges here), This means only the pixel with the highest (or lowest) intensity within this radius will be accepted as a peak, even if there are other peaks above the threshold within this radius region. This is an important setting since most peaks have nearby pixels that are also above the detection threshold, but we only want to detect each peak once. If you see a lot of overlapping DNAs increasing this setting will help.
+* *DNA length (in pixels)* - The mean length in pixels of the DNA you want to find. This value is used when attempting to link positive peaks to their negative counterparts to find DNAs.  
 * *DNA end search y (in pixels)* - The y radius used during the DNA end search. Larger values will ensure DNAs of different lengths are found.
 * *DNA end search x (in pixels)* - The x radius used during the DNA end search. If the DNAs are vertically aligned this value should be kept low. As this value is increase cross linking between adjacent DNAs might occur.
 * *Filter by median intensity* - If checked DNAs will be removed if their median intensity is below the "Median DNA intensity lower bound" value.
@@ -41,12 +43,19 @@ This command is used to find vertically aligned DNA molecules in images. Typical
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MSDFilter2.png' width='500'/></div>
 
-* *Fit ends (subpixel localization)* - If checked the DNA ends will be fit with 2D Gaussians to determine their sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. See the [[Peak Finder]] for further information about fitting.
-* *Fit 2nd order* - Will perform the subpixel fitting on the second derivative image. If turned off the first derivative image is used. The second derivative image will result in more accurate length estimate but may be less stable.
-* *Fit Radius* - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.
-* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
-* *Preview* - Check this box to turn on preview mode. This will display an overlay of the DNAs that were located on the image. Sometime if you have a very large image this might be really slow, be patient. Otherwise, just make an ROI for preview testing, which will run faster. Once you have found the right settings you can cancel, remove the ROI, and run the command on the whole image with the correct settings.
+* *Fit ends* - If checked the DNA ends will be fit with 2D Gaussians to determine their sub pixel position. If left unchecked, all the remaining settings will be ignored and the peaks will be reported with their integer pixel positions. See the [[Peak Finder]] for further information about fitting.
+* *2nd order* - Will perform the subpixel fitting on the second derivative image. If turned off the first derivative image is used. The second derivative image will result in more accurate length estimate but may be less stable.
+* *Radius* - The radius of pixels used for fitting. 0 is one pixel, 1 is 9 pixels, 2 is 25 pixels. Usually 2 is a pretty good estimate depending on the peak size. There needs to be some pixels at the edges close to background for an ideal fit.
+* *Generate DNA count table* - If checked a table will appear in which each row has the number of detected peaks for each slice.
+* *Generate DNA table* - If checked a table will be generated listing the positions of all detected peaks. x1, y1 for the top edges and x2, y2 for the bottom edges. Also, the length calculated from the coordinates as well as the median intensity and mean squared deviation of the intensity.
+* *Add to RoiManager* - If checked, lines peaks will be added to the RoiManager. By default there will be UID names.
+* *Process all Frames* - If checked the command will run on all frames in the video. For tables the T for each DNA is given in a separate column. For the RoiManager the position is set based on the T.
 * *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
+* *Preview* - Check this box to turn on preview mode. This will display an overlay of the DNAs that were located on the image. Sometime if you have a very large image this might be really slow, be patient. Otherwise, just make an ROI for preview testing, which will run faster. Once you have found the right settings you can cancel, remove the ROI, and run the command on the whole image with the correct settings.
+* *Label* - Select between labeling the identified DNA molecules with the 'Median intensity' or 'Variance intensity' value.
+* *T* -  Select the frame to be displayed in the preview.
+* *Preview timeout(s)* - Maximum computing time allowed to calculate the preview of the settings. If the video is too large or the settings are way off the computing time could become rather significant causing a crash of the system. Setting this limit prevents that.
+
 
 #### Outputs
 
@@ -55,7 +64,6 @@ Several different kinds of output are possible depending on the settings used.
 * *Generate DNA count table* - If checked a table will appear in which each row has the number of detected peaks for each slice.
 * *Generate DNA table* - If checked a table will be generated listing the positions of all detected peaks. x1, y1 for the top edges and x2, y2 for the bottom edges. Also, the length calculated from the coordinates as well as the median intensity and mean squared deviation of the intensity.
 * *Add to RoiManager* - If checked, lines peaks will be added to the RoiManager. By default there will be UID names.
-* *Molecule Names in Manager* - If checked the lines in the RoiManager will be names molecule0, molecule1, etc...
 * *Process all Frames* - If checked the command will run on all frames in the video. For tables the T for each DNA is given in a separate column. For the RoiManager the position is set based on the T.
 
 ### How to run this Command from a groovy script

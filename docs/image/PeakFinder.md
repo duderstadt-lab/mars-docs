@@ -14,6 +14,7 @@ This command is used to find high intensity spots or peaks in images. Typically 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img22.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img23.png' width='350'/></div>
 
  * *Image* - The active image selected will be used by the Peak Finder. The name of this image or video is displayed underneath the stack in the 'Input' tab.
+ * *Region* - Apply the tool to either the 'whole image', an 'ROI from image' or 'ROIs from manager'.
  * *Channel* - Select which channel to analyze in case a video with multiple channels is provided as input.
  * *DoG filter* - If checked the image will be processed with a Difference of Gaussian (DoG) filter before peak finding. Using an appropriately chosen radius this filter enhances real peaks with signal spread among several pixels and suppresses salt and pepper noise as demonstrated in [this systematic study](../DoGFilterProperties). If unchecked the raw image will be used for peak finding.
  * *DoG radius* - The radius used for DoG filtering. The value chosen should reflect the size of the desired peaks. Decimal numbers are permitted.
