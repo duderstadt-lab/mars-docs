@@ -7,7 +7,12 @@ This command is used to find high intensity spots or peaks in images. Typically 
 
 #### Inputs  
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img1.png' width='550'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img18.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img19.png' width='350'/></div>
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img20.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img21.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img22.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img23.png' width='350'/></div>
 
  * *Image* - The active image selected will be used by the Peak Finder. So this is a required input but doesn't show up in the dialog.
  * *Use ROI* - If checked a subregion of the image will be used for processing. Otherwise, the entire image will be used. You can also add a selection with the box tool, so making a rectangular ROI to the image. This Roi will activate this box.
