@@ -121,7 +121,14 @@ All three archives are created following the same pipeline: peak identification,
 To find the peaks in the left part of the split view in the red channel first select this part of the screen with the box ROI tool and open the Peak Finder (Plugins>Mars>Image>Peak Finder). Apply the settings as shown below and check if the peaks are identified correctly by pressing the preview button. If the correct settings are applied the peaks should have an identification marker (circle or point) on them. Press ok to apply the settings and add the ROIs of the identified peaks to the ROI manager. The ROI manager will open and will display the peaks listed by their UUID in the manager.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img4.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img27.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img28.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img29.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img30.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img31.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img32.png' width='450'></div>
+
+
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img5.png' width='250'></div>
 
@@ -129,7 +136,12 @@ To find the peaks in the left part of the split view in the red channel first se
 Next, transform the coordinates (ROIs) of the peaks that were just identified to match the right part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix (left to right) as calculated before (see table 1). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img6.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img33.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img34.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img35.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img36.png' width='450'></div>
+
+
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img7.png' width='250'></div>
 
@@ -137,7 +149,10 @@ Next, transform the coordinates (ROIs) of the peaks that were just identified to
 Integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img8.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img37.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img38.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img39.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img40.png' width='450'></div>
 
 The molecule integrator automatically names the intensity traces according to the provided channel and wavelength color information. Please reference table 3 for an overview of the corresponding archive names to the intensity parameter names as used in the example.
 
@@ -165,10 +180,17 @@ Table 2: Overview of definitions of intensity values with their corresponding na
 Table 3: Overview of the three different archives that are created in this step of the analysis: the FRET archive, Acceptor Only (AO) archive and Donor Only (DO) archive. The first row of the table shows a representable molecule for the category, the second row explains what information needs to be extracted from this category of molecules, the third row the corresponding parameter names, and the final row describes the analysis procedure that needs to be followed in Mars.
 </div>
 
-Change the settings in the previously described tools (peak finder, transform ROIs & molecule integrator) according to the table to generate the AO and DO archives. For clarity, these settings are highlighted in the image below.
+Change the settings in the previously described tools (peak finder, transform ROIs & molecule integrator) according to the table to generate the AO and DO archives. In summary:
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img26.png' width='650'></div>
+**DO Archive**  
+- Peak finder: channel = 1
+- Transform ROIs: R->L Affine 2D Matrix, short to long, channel = 0, 'Remove colocalizing ROIs' = True.
+
+**AO Archive**  
+- Peak finder: channel = 0
+- Transform ROIs: L->R Affine 2D Matrix, long to short, channel = 1, 'Remove colocalizing ROIs' = True.
+
+
 
 **Tag and Merge the Archives**  
 To make the downstream processing procedure easier the next step is to tag the created archives accordingly and merge them to form one big archive. Use the tag function in the metadata tab to assign the tags 'FRET', 'AO' & 'DO' accordingly and save the archives in the same folder. Next select the merge archives tool (Plugins>Mars>Molecule>Merge Archive) and select the folder. When the command is finished a merged archive is created that can be found in the selected folder. Open the archive.
