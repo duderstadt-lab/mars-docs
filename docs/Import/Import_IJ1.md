@@ -1,7 +1,7 @@
 ---
 layout: import
 title: Import IJ1 table
-permalink: /docs/import/Import_IJ1/index.html
+permalink: /docs/table/Import_IJ1/index.html
 ---
 
 Command to import any ImageJ1 table (such as ResultsTable) to the MarsTable format. This allows for a smooth interaction between the Mars-related commands as well as table features (see also the [MarsTable tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/marstable/)). By default, the MarsTable also gives access to the plotter and the scriptable widgets.

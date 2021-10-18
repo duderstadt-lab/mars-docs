@@ -68,8 +68,8 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 **Import**  
 
 | :------------- | :------------- |
-| [Import IJ1 Table](./import/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
-| [Import TableDisplay](./import/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
+| [Import IJ1 Table](./table/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
+| [Import TableDisplay](./table/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
 
 ### Kinetic Change Point Analysis (KCP)
 
