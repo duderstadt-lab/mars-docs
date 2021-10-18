@@ -31,7 +31,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 |[Object Tracker](./image/ObjectTracker)| Fit and track unspecified objects based on segmentation. |
 | [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
 
-**Util**
+**Util**  
 | :----------------------------- | :----------- |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
 | [Gradient Calculator](./image/GradientCalculator) | Calculate the vertical gradient for images. |
@@ -48,7 +48,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
 | [FMT Generate bps](./molecule/FMTbps) | |
 
-**Util**
+**Util**  
 | :----------------------------- | :----------- |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Corrector](./molecule/DriftCorrector) | Correct the molecule coordinates for sample drift during the measurement. |
@@ -63,7 +63,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Sort](./table/Sort) | Sort table rows by column values. |
 | [Filter](./table/Filter) | Filter table rows. |
 
-**Import**
+**Import**  
 | :------------- | :------------- |
 | [Import IJ1 Table](./import/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
 | [Import TableDisplay](./import/Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
