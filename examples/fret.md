@@ -130,7 +130,7 @@ To find the peaks in the left part of the split view in the red channel first se
 
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img5.png' width='250'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img5.png' width='450'></div>
 
 **2. Transform  the ROIs to the right part of the split view**  
 Next, transform the coordinates (ROIs) of the peaks that were just identified to match the right part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix (left to right) as calculated before (see table 1). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
@@ -143,7 +143,7 @@ Next, transform the coordinates (ROIs) of the peaks that were just identified to
 
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img7.png' width='250'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/img7.png' width='450'></div>
 
 **3. Apply the molecule integrator to extract I vs. T traces**  
 Integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
