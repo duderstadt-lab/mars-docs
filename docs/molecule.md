@@ -11,7 +11,6 @@ permalink: /docs/molecule/index.html
 | [Build DNA archive](./BuildDNAarchive) | Builds a DNA Archive from a SingleMoleculeArchive and a list of DNA ROIs|
 | [Merge Archives](./MergeArchives) | Merges a set of Molecule Archives. |
 | [Merge Virtual Stores](./MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
-| [FMT Generate bps](./FMTbps) | |
 
 **Util**  
 

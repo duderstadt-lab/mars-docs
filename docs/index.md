@@ -47,7 +47,6 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Build DNA archive](./molecule/BuildDNAarchive) | Builds a DNA Archive from a SingleMoleculeArchive and a list of DNA ROIs|
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of Molecule Archives. |
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
-| [FMT Generate bps](./molecule/FMTbps) | |
 
 **Util**  
 

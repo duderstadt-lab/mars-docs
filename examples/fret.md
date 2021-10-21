@@ -209,7 +209,7 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 ---
 
 #### <a name="4"></a> Data Analysis and Corrections
-Please download the [script]() from the repository. This will automate all following steps and will generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
+Please download the [full analysis script](https://github.com/duderstadt-lab/mars-tutorials) from the repository. This will automate all following steps and will generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
 
 ##### Filter Traces to only have 1 Donor and/or Acceptor
 In the next step, the identified traces will be filtered for having only 1 donor and/or acceptor instead of multiple. This removes molecules from the analysis that have clumped together and prevents bias in the calculation of the FRET parameters caused by unjustified intensity values. To do so, a global region for the interval 2<T<500 is defined and bleaching steps are identified using the Change Point Finder command.
@@ -298,28 +298,28 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 ---
 
 #### <a name="9"></a> Plotting & Data Exploration in Python
-To explore the data save the generated archive and open the (Jupyter notebook)[]. Set up the connection to your local copy of Fiji as indicated and change the file path to the archive. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells a plot is obtained showing the fully corrected E and S values for all molecules that matched the selection criteria in this archive.
+To explore the data save the generated archive and open the [Jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials). Set up the connection to your local copy of Fiji as indicated and change the file path to the archive. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells a plot is obtained showing the fully corrected E and S values for all molecules that matched the selection criteria in this archive.
 _Note that the analysis of a single video from the dataset such as done in this example leads to a low number of data points. This affects the accuracy of the calculated correction factors and E and S values. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next paragraph._
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img13.png' width='450'></div>
 
-The analysis of the E and S value distributions in Python show that the population average is obtained at E= 0.22 and S= 0.50. This is close to the expected value of E= 0.15 +/- 0.02 and S= 0.50 when considering the low number of data points and high error margin arising from that.
+This analysis shows that an average population FRET value of E = 0.43 was obtained from this single dataset. Please note that this value is rather distorted because of the low number of data points and data available for correction. Also, since only one sample is taken into consideration the beta/gamma correction can distort the results. Therefore it is not a good estimate for the FRET efficiency of the sample. Please continue to the following section for a better estimate considering all available videos.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='350'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/1-lo_analyzed.png' width='350'></div>
 
 <div style="text-align: center">
-This image was reproduced from Hellenkamp et al. <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
+This image was reproduced from Hellenkamp et al. <sup>9</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
 </div>
 
 
 ---
 
 #### <a name="10"></a> Conclusion: Global Analysis Outcomes and Comparisons to Literature
-The described analysis can be repeated for all provided videos for both the 1-lo and 1-mid sample datasets to obtain the E and S values more reliably for both samples. The outcome of such an extensive analysis can be found in the [repository]() with all accompanying scripts and archives.
+The described analysis can be repeated for all provided videos for both the 1-lo and 1-mid sample datasets to obtain the E and S values more reliably for both samples. The outcome of such an extensive analysis can be found in the [repository](https://github.com/duderstadt-lab/mars-tutorials) with all accompanying scripts and archives. Please note that in order to analyze all data a specific procedure needs to be followed. Please read the read-me file in the repository with further instructions.
 
-The final plot of this analysis shows that the FRET populations are observed at S= 0.54 with E-values of E= 0.23 (1-lo) and E= 0.56 (1-mid). This is very close to the expected values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>
+The final plot of this analysis shows that the FRET populations are observed at S= 0.49 and S=0.55 with E-values of E= 0.18 (1-lo) and E= 0.56 (1-mid). This is very close to the expected values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> (shown with dashed lines in the plot).
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/full_data.png' width='450'></div>

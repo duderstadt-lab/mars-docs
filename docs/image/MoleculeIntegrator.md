@@ -23,7 +23,6 @@ The dualview splits the signal by wavelength and one side will have the Long wav
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img35.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img38.png' width='350'/></div>
 
 * *Image* - The selected image will by analyzed using the peaks in the RoiManager. The name of the image will be displayed in the dialog.
-* *Use integration boundary* -
 
 #### Boundaries
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img39.png' width='350'/></div>
