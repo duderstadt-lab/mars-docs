@@ -302,16 +302,9 @@ To explore the data save the generated archive and open the [Jupyter notebook](h
 _Note that the analysis of a single video from the dataset such as done in this example leads to a low number of data points. This affects the accuracy of the calculated correction factors and E and S values. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next paragraph._
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img13.png' width='450'></div>
-
-This analysis shows that an average population FRET value of E = 0.43 was obtained from this single dataset. Please note that this value is rather distorted because of the low number of data points and data available for correction. Also, since only one sample is taken into consideration the beta/gamma correction can distort the results. Therefore it is not a good estimate for the FRET efficiency of the sample. Please continue to the following section for a better estimate considering all available videos.
-
-<div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/1-lo_analyzed.png' width='350'></div>
 
-<div style="text-align: center">
-This image was reproduced from Hellenkamp et al. <sup>9</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
-</div>
+This analysis shows that an average population FRET value of E = 0.43 was obtained from this single dataset. Please note that this value is rather distorted because of the low number of data points and data available for correction. Also, since only one sample is taken into consideration the beta/gamma correction can distort the results. Therefore it is not a good estimate for the FRET efficiency of the sample. Please continue to the following section for a better estimate considering all available videos.
 
 
 ---
@@ -324,12 +317,6 @@ The final plot of this analysis shows that the FRET populations are observed at 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/full_data.png' width='450'></div>
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img25.png' width='350'></div>
-
-<div style="text-align: center">
-This image was reproduced from Hellenkamp et al. <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> with added annotations for comparison to the outcomes of the analysis presented in this example.
-</div>
 
 In conclusion, this example Mars pipeline showed that Mars is a software platform that is equipped to do a robust, transparent, traceable, and reliable data analysis for FRET experiments. This analysis outcome comparison to the benchmark study by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> shows that very similar FRET values are obtained and that therefore Mars is an excellent tool to be used to analyze these type of datasets.
 
