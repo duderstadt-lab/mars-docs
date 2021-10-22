@@ -6,23 +6,14 @@ permalink: /tutorials/workingwithmars/bdv/index.html
 
 _level: advanced, duration: 15 min_
 
-This tutorial explores the **Rover** option to show a tracked molecule in the original video. This enables the user to visually validate the observed behavior and to export small videos showing the movement of a single molecule. The video viewer is based on the [BigDataViewer](https://imagej.net/BigDataViewer#Description)<sup>1</sup> plugin and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5 or in the [N5](https://github.com/saalfeldlab/n5) format.
+This tutorial explores the **Rover** option to show a tracked molecule in the original video. This enables the user to visually validate the observed behavior and to export small videos showing the movement of a single molecule. The video viewer is based on the [BigDataViewer](https://imagej.net/BigDataViewer#Description)<sup>1</sup> plugin and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5 or in the [N5](https://github.com/saalfeldlab/n5) format. We prefer to use the N5 over the XML/HDF5 because of the superior qualities. We will explain both options but we advise you to use N5.
 
 The first part of this tutorial shows how to convert your video to either of these data formats, how to connect the video to the archive, and how to set up the parameters. These steps only have to be executed once per video per Archive and will then be saved for future use. The second part of the tutorial familiarizes the user with the viewer itself and with exporting options.
 
 ### Part one: Video conversion and coupling to the archive
 To start, download the ['TestVideo.tif'](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars) dataset from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
-#### 1. Converting the Video to XML/HDF5 or N5
-**XML/HDF5**  
-First open the video of interest in Fiji as a stack. Next select the BigDataViewer plugin and select the function "Export Current Image as XML/HDF5". This will open a dialogue in which the export path has to be set. Press ok and wait until the export process has finished. Find the exported video at the specified file path.
-
-<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img1.png' width='450'/></div>
-<div style="text-align: center">
-<img  src='{{site.baseurl}}/tutorials/img/bdv/img2.png' width='350'/>
-<img  src='{{site.baseurl}}/tutorials/img/bdv/img14.png' width='350'/></div>
-
-For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the [tutorial repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
+#### 1. Converting the Video to N5 or XML/HDF5
 
 **N5**  
 First open the video of interest in Fiji as a stack. Next select File>Save As>Export N5. This will open a dialogue window with the following settings:
@@ -40,15 +31,26 @@ First open the video of interest in Fiji as a stack. Next select File>Save As>Ex
 
 Press 'ok' and wait for the command to be finished. Find the exported dataset at the specified file path. More information on the [N5](https://github.com/saalfeldlab/n5) data format can be found [here](https://github.com/saalfeldlab/n5).
 
+**XML/HDF5**  
+First open the video of interest in Fiji as a stack. Next select the BigDataViewer plugin and select the function "Export Current Image as XML/HDF5". This will open a dialogue in which the export path has to be set. Press ok and wait until the export process has finished. Find the exported video at the specified file path.
+
+<div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img1.png' width='450'/></div>
+<div style="text-align: center">
+<img  src='{{site.baseurl}}/tutorials/img/bdv/img2.png' width='350'/>
+<img  src='{{site.baseurl}}/tutorials/img/bdv/img14.png' width='350'/></div>
+
+For further information and in-depth documentation about this software and file format please have a look in the [BigDataViewer documentation](https://imagej.net/BigDataViewer#Exporting_Datasets_for_the_BigDataViewer). The XML and H5 files for TestVideo.tif can also be found in the [tutorial repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
+
+
 
 #### 2. Coupling the file to the Molecule Archive
-The next step is to couple the generated HDF5 or N5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Sources' tab in the middle window and move to text input field. Select the file format by clicking the 'N5/HD5' button, provide a name and press the + button.
+The next step is to couple the generated N5 or HDF5 file to the corresponding  Archive. Open the Molecule Archive (Plugins>Molecule Archive Suite>Molecule>Open Archive) and go to the 'Metadata' tab. Move to the 'Bdv Sources' tab in the middle window and move to text input field. Select the file format by clicking the 'N5/HD5' button, provide a name and press the + button.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img22.png' width='450'/></div>
 
 Select the file:
-- XML/HDF5: select the 'video.xml' file in the browser (this file was generated in step 1 of this tutorial). Press ok.
 - N5: browse to the N5 root folder (name.n5) that you generated in step 1 of this tutorial. Select and press 'Choose'. Now press 'Detect datasets' to detect the n5 datasets present in this root folder. Select the right one and press ok. The dataset selection window should look similar to the one below.
+- XML/HDF5: select the 'video.xml' file in the browser (this file was generated in step 1 of this tutorial). Press ok.
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/bdv/img20.png' width='450'/></div>
 
 If done correctly, the video name should appear in the Bdv Sources list, and when clicked the parameter window shows up. When the file coupling was successful green ticks are placed near to 'path' and/or 'dataset' (only in the case of N5). Note that during this coupling step the path to the file is specified. When changing the location of the video on the computer, a new coupling to the new location of the file has to be set up. The window also allows the user to set parameters for an [Affine2D matrix](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/) if required and correct the video for [drift](https://duderstadt-lab.github.io/mars-docs/docs/molecule/DriftCorrector/).
