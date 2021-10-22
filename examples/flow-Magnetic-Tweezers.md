@@ -71,7 +71,7 @@ To analyze the generated dataset, the single molecule beads are tracked using th
 
 #### <a name="tracking"></a> Tracking of the single molecule data
 
-The scripts for analyzing the dataset can be found in this [GitHub repository](https://github.com/duderstadt-lab/fmt-scripts). It will be indicated which script is used for which part of the analysis. Also, a fully analyzed virtual archive is available [here](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FMT/VirtualArchive).
+The scripts for analyzing the dataset can be found in this [GitHub repository](https://github.com/duderstadt-lab/fmt-scripts). It will be indicated which script is used for which part of the analysis. The video original video is available but the peak tracking needs a lot of computational power and will run for a long time. You can check out the fully analyzed virtual archive [here](https://github.com/duderstadt-lab/fmt-tutorials).
 
 ##### Importing the video in Fiji
 
