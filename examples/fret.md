@@ -5,14 +5,14 @@ title: smFRET dataset analysis with Mars
 permalink: /examples/FRET/index.html
 ---
 
-In this example a typical Mars pipeline for the analysis of a smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208), [2](https://doi.org/10.1073/pnas.58.2.719), [3](https://doi.org/10.1073/pnas.93.13.6264)</sup> datasets is discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA, and DNA on a single-molecule level. Among numerous interesting and revealing studies, some examples of important processes that have been studied in this way are: the structural organization of bacterial RNA polymerase <sup>[4](https://doi.org/10.1016/s0092-8674(02)00667-0)</sup>, protein-protein complex formation in neurotransmission pathways <sup>[5](https://doi.org/10.1038/nsmb.1763)</sup>, dynamics of multi-domain proteins like Hsp90 in solution <sup>[6](https://doi.org/10.1038/nmeth.4081)</sup>, protein folding upon ligand interaction <sup>[7](https://doi.org/10.1016/J.SBI.2007.12.003)</sup>, and studies of the cAMP/PKA pathways <sup>[8](https://doi.org/10.1016/J.BBRC.2017.04.097)</sup>.
+In this example a typical Mars workflow for the analysis of smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208), [2](https://doi.org/10.1073/pnas.58.2.719), [3](https://doi.org/10.1073/pnas.93.13.6264)</sup> datasets is discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA, and DNA on a single-molecule level. Among numerous interesting and revealing studies, some examples of important processes that have been studied in this way are: the structural organization of bacterial RNA polymerase <sup>[4](https://doi.org/10.1016/s0092-8674(02)00667-0)</sup>, protein-protein complex formation in neurotransmission pathways <sup>[5](https://doi.org/10.1038/nsmb.1763)</sup>, dynamics of multi-domain proteins like Hsp90 in solution <sup>[6](https://doi.org/10.1038/nmeth.4081)</sup>, protein folding upon ligand interaction <sup>[7](https://doi.org/10.1016/J.SBI.2007.12.003)</sup>, and studies of the cAMP/PKA pathways <sup>[8](https://doi.org/10.1016/J.BBRC.2017.04.097)</sup>.
 
 Mars is very well equipped to be used to analyse the data gathered in such studies. It offers a highly effective, easy to use, well documented, and powerful open source alternative to home-built software currently used by some labs and focusses on reproducibility and transparency of the analysis process. To showcase its applicability to analyse smFRET datasets, in this example, the data of the benchmark study published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> is analysed and compared. We show the typical pathway one can follow to analyse the data and find the FRET values E and S from this dataset.
 
 
 #### <a name="reference"></a>Table of contents
 
-- [The FRET Sample Design and MARS Analysis Process](#design)
+- [The FRET Sample Design and Mars Analysis Process](#design)
 - [Data preparation](#1)
 - [Localization of Peaks and Intensity vs. T traces](#3)
 - [Data Analysis and Corrections](#4)
@@ -23,7 +23,7 @@ Mars is very well equipped to be used to analyse the data gathered in such studi
 
 ---
 
-#### <a name="design"></a> The FRET Sample Design and MARS Analysis Process
+#### <a name="design"></a> The FRET Sample Design and Mars Analysis Process
 
 **Sample Design**  
 In the experiment as designed by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> the distance between two fluorophores (a donor and an acceptor) on a DNA molecule is probed. Two different samples (figure 1: 1-lo and 1-mid) are measured with a different interfluorophore distance as indicated in the figure. Since the FRET efficiency (E) is inversely correlated to the distance between the fluorophores, a different E value is to be expected for both molecules. The fluorescence of both samples was measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in the publication by Hellenkamp *et al.*<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>
