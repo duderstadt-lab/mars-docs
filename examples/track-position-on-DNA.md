@@ -62,12 +62,15 @@ First, the beam profile image must be created. For this the last frame of channe
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img2.png' width='450' /></div>
 
-Now, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) command. Make sure the full example video and the beam profile image are open in Fiji. Set the Channel to 0 and the background image to the profile image you have just created. The electronic offset represents the intrinsic background noise from the camera used. You can leave this set to 0 for the purposes of this example. Run the command and you will see that the protein channel has been corrected for the beam profile. Note that sometimes this difference is difficult to spot by eye.
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img2_5.png' width='450' /></div>
+
+Now, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) command (Plugins>Mars>Image>Util). Make sure the full example video and the beam profile image are open in Fiji. Set the Channel to 0 and the background image to the profile image you have just created. The electronic offset represents the intrinsic background noise from the camera used. You can leave this set to 0 for the purposes of this example. Run the command and you will see that the protein channel has been corrected for the beam profile. Note that sometimes this difference is difficult to spot by eye.
 
 #### <a name="track"></a> Localization & Tracking
 
 **Track the protein dots to create a Single Molecule Archive**  
-Now the raw data has been corrected, the location of the proteins is tracked using the [Peak Tracker](../../docs/image/PeakTracker). This generates a SingleMolecule Archive containing the x,y-coordinates of each spot with respect to time. First use the Rectangle tool in Fiji to select the region that should be processed. This should be the top half of the image that contains all the labeled protein signal. Once your selection is complete, run the [Peak Tracker](../../docs/image/PeakTracker) with the following settings:
+Now the raw data has been corrected, the location of the proteins is tracked using the [Peak Tracker](../../docs/image/PeakTracker) (Plugins>Mars>Image>PeakTracker). This generates a SingleMolecule Archive containing the X,Y-coordinates of each spot with respect to time. First use the 'Rectangle' tool in Fiji to select the region that should be processed. This should be the top half of the image that contains all the labeled protein signal. Once your selection is complete, run the [Peak Tracker](../../docs/image/PeakTracker) with the following settings:
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img10.png' width='350' />
@@ -81,7 +84,7 @@ Now the raw data has been corrected, the location of the proteins is tracked usi
 When the command is finished, a Single Molecule Archive should appear that contains all tracked molecules.
 
 **Find and fit the DNA molecules**  
-Now the proteins have been tracked, we can use the [DNA finder](../../docs/image/DNA_finder) to locate all DNA molecules in channel 1. This can be accomplished using the following settings:
+Now the proteins have been tracked, we can use the [DNA finder](../../docs/image/DNA_finder) (Plugins>Mars>Image>DNA Finder) to locate all DNA molecules in channel 1. This can be accomplished using the following settings:
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img17.png' width='350' />
@@ -93,17 +96,17 @@ Now the proteins have been tracked, we can use the [DNA finder](../../docs/image
 The only output should be a list of line ROIs added to the RoiManager, each with a UID. It is very important that the frame is set to 159 since the DNA can only be seen in the last frames.
 
 #### <a name="drift"></a> Data correction
-**Drift correction of the x and y coordinates**  
-Now the coordinates of the proteins and DNA molecules are identified a correction for sample drift in the x and y direction has to be made. Such sample drift can arise for example by slight microscope stage movement over time and would create artefacts in data analysis if not corrected.
+**Drift correction of the X and Y coordinates**  
+Now the coordinates of the proteins and DNA molecules are identified a correction for sample drift in the X and Y direction has to be made. Such sample drift can arise for example by slight microscope stage movement over time and would create artefacts in data analysis if not corrected.
 
 To assess the amount of drift that occurred throughout the measurement fixed dots/stuck proteins on the surface are used. These molecules should remain at their fixed position throughout the measurement, so any deviation thereof needs to be corrected. To select for these molecules, the variance of movement is calculated for each dot. All dots with a high variance are mobile, all dots with a very low variance are most likely stuck on the surface and can then be tagged 'background'. These 'background' molecules will then be used for drift correction.
 
-First, calculate the variance for each dot using the [variance calculator](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/). Name the parameter 'y_var'. After running the command run the short script below to automatically tag all molecules with a low y_var as 'background'. Use the [script editor](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) to run the script and select 'Groovy' as the running language.
+First, calculate the variance in Y for each dot using the [variance calculator](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) (Plugins>Mars>Molecule>Util). Name the parameter 'Y_var'. After running the command run the short script below to automatically tag all molecules with a low Y_var as 'background'. Use the [script editor](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) to run the script and select 'Groovy' as the running language.
 
 ```groovy
 #@ MoleculeArchive archive
 
-archive.molecules().filter{ m -> m.getParameter("y_var") < 1}.forEach{ m -> m.addTag("background") }
+archive.molecules().filter{ m -> m.getParameter("Y_var") < 1}.forEach{ m -> m.addTag("background") }
 ```
 
 Now run the [drift corrector](https://duderstadt-lab.github.io/mars-docs/docs/molecule/DriftCorrector/) command and supply the settings as shown below.
@@ -111,7 +114,7 @@ Now run the [drift corrector](https://duderstadt-lab.github.io/mars-docs/docs/mo
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img4.png' width='450' /></div>
 
-Output columns should be x_drift_corr and y_drift_corr. The origin or zero should be the last frame because that is the frame (T) we used with the DNA finder and there was a few minutes between the protein collection and post staining of DNA.
+Output columns should be X_drift_corr and Y_drift_corr. The origin or zero should be the last frame because that is the frame (T) we used with the DNA finder and there was a few minutes between the protein collection and post staining of DNA.
 
 
 **Transform to overlay tracked proteins with the DNA channel**  
@@ -136,15 +139,15 @@ archive.getMoleculeUIDs().stream().forEach{ UID ->
 
 	for (int row=0; row <table.getRowCount() ; row++ ) {
 		double[] source = new double[2]
-		source[0] = table.getValue("x", row)
-		source[1] = table.getValue("y", row)
+		source[0] = table.getValue("X", row)
+		source[1] = table.getValue("Y", row)
 
 		double[] target = new double[2]
 
 		xfm.apply(source, target)
 
-		table.setValue("x", row, target[0])
-		table.setValue("y", row, target[1])
+		table.setValue("X", row, target[0])
+		table.setValue("Y", row, target[1])
 	}
 
 	archive.put(molecule)
@@ -159,7 +162,7 @@ archive.logln(LogBuilder.endBlock())
 ```
 
 #### <a name="BuildDNA"></a>Merge - Build a DNA Molecule Archive
-Now all coordinates have been corrected and artefacts have been removed, the DNA location data can be merged with the protein tracking information stored in the Single Molecule Archive. This is done using the [build DNA archive](../docs/molecule/BuildDNAarchive) command with the settings as shown below.
+Now all coordinates have been corrected and artefacts have been removed, the DNA location data can be merged with the protein tracking information stored in the Single Molecule Archive. This is done using the [build DNA archive](../docs/molecule/BuildDNAarchive) command (Plugins>Mars>Molecule>Build DNA Archive) with the settings as shown below.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img22.png' width='350' />
@@ -174,9 +177,12 @@ Note that some DNA molecules were found to overlap with more than one moving pro
 To have a glance at the identified molecules in the video the BigDataViewer tool in Rover is used. First, convert the video to N5 format (File>Save As>Export N5) and couple it to the archive. ([This tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/) explains this file conversion and coupling procedure in more detail) Also supply the Affine2D conversion matrix parameters in the BDV sources tab. These are the same as used previously in this example in the script.
 
 <div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img6_5.png' width='450' /></div>
+
+<div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img6.png' width='450' /></div>
 
-Now select a molecule of interest in the molecule tab and open the video viewer (Tools>Show Video). Select view number = 1. Open the settings tab by pressing the small << icon that appears when you hover the mouse over the left edge of the viewer window. Select the right source columns (as shown below) and select both the "circle" marker and the "follow" option. Move through the frames (T) by moving the slider on the bottom of the viewer to look at the tracked movement of the protein through the frames.
+Now select a molecule of interest in the molecule tab and open the video viewer (Tools>Show Video). Select view number = 1. Open the settings tab by pressing the small << icon that appears when you hover the mouse over the left edge of the viewer window. Select the right source columns (as shown below) and select both the "circle" marker and the "follow" option. Select  Move through the frames (T) by moving the slider on the bottom of the viewer to look at the tracked movement of the protein through the frames.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/tracking_gif.gif' width='450' /></div>
