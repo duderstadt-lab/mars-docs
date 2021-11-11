@@ -162,7 +162,7 @@ archive.logln(LogBuilder.endBlock())
 ```
 
 #### <a name="BuildDNA"></a>Merge - Build a DNA Molecule Archive
-Now all coordinates have been corrected and artefacts have been removed, the DNA location data can be merged with the protein tracking information stored in the Single Molecule Archive. This is done using the [build DNA archive](../docs/molecule/BuildDNAarchive) command (Plugins>Mars>Molecule>Build DNA Archive) with the settings as shown below.
+Now all coordinates have been corrected and artefacts have been removed, the DNA location data can be merged with the protein tracking information stored in the Single Molecule Archive. This is done using the [build DNA archive](https://duderstadt-lab.github.io/mars-docs/docs/molecule/BuildDNAarchive/) command (Plugins>Mars>Molecule>Build DNA Archive) with the settings as shown below.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img22.png' width='350' />
