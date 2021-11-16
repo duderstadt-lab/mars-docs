@@ -63,7 +63,7 @@ Figure 3: Overview of the different signals that are obtained from the analysis 
 
 **The Mars Workflow**  
 The previously introduced analysis steps can be implemented in Mars directly. Figure 4 shows the specific steps and tools that are used in the analysis. [Documentation](https://duderstadt-lab.github.io/mars-docs/docs/) is available for each Mars tool specifically.
-In short, first the video format is converted to contain channel information (excitation color, C=0, 1). Next, peaks are identified and correlated with the other half of the split view using the ROI transformation tool. The molecule integrator tool, subsequently, yields the peak intensity values vs. time for each peak and leads to the generation of three archives for the video: a FRET archive (peaks with both donor and acceptor emission), an acceptor only archive (AO, peaks with acceptor emission only), and a donor only archive (DO, peaks with donor emission only). These are tagged accordingly and merged into one archive. The kinetic change point (KCP) analysis and various data correction steps yield corrected intensity values to calculate E and S values of each molecule. A final plot with a Gaussian distribution fit to find the population average is then made using Python.
+In short, first the video format is converted to contain channel information (excitation color, C=0, 1). Next, peaks are identified and correlated with the other half of the split view using the ROI transformation tool. The molecule integrator tool, subsequently, yields the peak intensity values vs. time for each peak and leads to the generation of three archives for the video: a FRET archive (peaks with both donor and acceptor emission), an acceptor only archive (AO, peaks with acceptor emission only), and a donor only archive (DO, peaks with donor emission only). These are tagged accordingly and merged into one archive. A normalization is carried out to correlate the donor and acceptor emission signals related to their beam profiles. Next, the kinetic change point (KCP) analysis and various data correction steps yield corrected intensity values to calculate E and S values of each molecule. A final plot with a Gaussian distribution fit to find the population center is then made using Python.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img22.png' width='850'></div>
@@ -91,21 +91,21 @@ To calculate the Affine2D matrix open the file ['calib20140402_0.tif'](https://z
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img1.png' width='450'></div>
 
-Next, open the registration tool (Plugins>Registration>Descriptor-based registration (2d/3d)) and select 'left' as the first image, 'right' as the second. Press OK and supply the settings as shown below in the next dialoge. After pressing OK, adjust the sigma and threshold values accordingly such that the peaks in the image are identified and press done. Use the default Gaussian fit parameters in the next window and press OK. This should open both an image displaying the overlap as well as a log window that displays the actual Affine2D matrix. Save the values of this matrix into a text document. Close all windows (including the left/right images), re-open them and repeat this analysis selecting 'right' as the first image and 'left' as the second to find the conversion matrix in the other direction.
+Next, open the registration tool (Plugins>Registration>Descriptor-based registration (2d/3d)) and select 'left' as the first image, 'right' as the second. Press OK and supply the settings as shown below in the next dialoge. After pressing OK, adjust the sigma and threshold values accordingly such that the peaks in the image are identified and press done. Use the default Gaussian fit parameters in the next window and press OK. This should open both an image displaying the overlap as well as a log window that displays the actual Affine2D matrix. Save the values of this matrix into a text document.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img3.png' width='450'></div>
 
 The following values were found: (note that matrices calculated at a different T or with different settings can result in slightly different values)
 
-|                 | Left to Right matrix     | Right to Left matrix |
-| :-------------  | :------------- | : ------ |
-| m<sub>00</sub>             | 0.986          | 1.014 |
-| m<sub>01</sub>             | 0              | 0     |
-| m<sub>02</sub>             | 268.639        | -272.404|
-| m<sub>10</sub>             | 0              | 0.004 |
-| m<sub>11</sub>             | 0.993          | 1.007 |
-| m<sub>12</sub>             | 1.170          | -2.299|
+|                 | Left to Right matrix     |
+| :-------------  | :------------- |
+| m<sub>00</sub>             | 0.986          |
+| m<sub>01</sub>             | 0              |
+| m<sub>02</sub>             | 268.639        |
+| m<sub>10</sub>             | 0              |
+| m<sub>11</sub>             | 0.993          |
+| m<sub>12</sub>             | 1.170          |
 
 Table 1: Affine2D conversion matrix values
 
@@ -118,6 +118,7 @@ All three archives are created following the same workflow: peak identification,
 
 ##### The FRET Archive
 **1. Identify the red peaks in the red channel (C=0, left)**  
+First, for a better fit performance, do a z-projection of the first 10 frames yielding an average image (Fiji>image>stacks>Z project...). Use  this image to find the coordinates of the peaks.
 To find the peaks in the left part of the split view in the red channel first select this part of the screen with the box ROI tool and open the Peak Finder (Plugins>Mars>Image>Peak Finder). Apply the settings as shown below and check if the peaks are identified correctly by pressing the preview button. If the correct settings are applied the peaks should have an identification marker (circle or point) on them. Press ok to apply the settings and add the ROIs of the identified peaks to the ROI manager. The ROI manager will open and will display the peaks listed by their UID in the manager.
 
 <div style="text-align: center">
@@ -146,7 +147,7 @@ Next, transform the coordinates (ROIs) of the peaks that were just identified to
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img7.png' width='450'></div>
 
 **3. Apply the molecule integrator to extract I vs. T traces**  
-Integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
+Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img37.png' width='450'>
@@ -188,7 +189,7 @@ Change the settings in the previously described tools (peak finder, transform RO
 
 **AO Archive**  
 - Peak finder: channel = 0
-- Transform ROIs: L->R Affine 2D Matrix, long to short, channel = 1, 'Remove colocalizing ROIs' = True.
+- Transform ROIs: L->R Affine 2D Matrix (supply  the R->L matrix and activate the 'inverse' button in the dialog), long to short, channel = 1, 'Remove colocalizing ROIs' = True.
 
 
 **Tag and Merge the Archives**  
@@ -209,29 +210,43 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 ---
 
 #### <a name="4"></a> Data Analysis and Corrections
-Please download the [full analysis script](https://github.com/duderstadt-lab/mars-tutorials) from the repository. This will automate all following steps and will generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
+Please download the [data analysis scripts](https://github.com/duderstadt-lab/mars-tutorials) from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
 
-##### Filter Traces to only have 1 Donor and/or Acceptor
-In the next step, the identified traces will be filtered for having only 1 donor and/or acceptor instead of multiple. This removes molecules from the analysis that have clumped together and prevents bias in the calculation of the FRET parameters caused by unjustified intensity values. To do so, a global region for the interval 2<T<500 is defined and bleaching steps are identified using the Change Point Finder command.
+##### Add the metadata tags to all corresponding molecule records
+For easier record handling, first, run [migrateTagsFromMetadataToMolecules.groovy]() to make migrate all the assigned metadata tags (AO, DO, FRET) to the corresponding molecule records. This makes it easier to look at the data in a later stadium of the analysis.
 
-The filtering step itself is automated and will tag molecules as Active_single, AO_active, DO_active, and Outlier_signal. Untagged molecules as well as 'Outlier_signal' molecules will be excluded in further analysis steps.
-In short, the script calculates the difference between the measured intensities in the change point analysis and assigns a Boolean parameter to the molecule indicating if this difference is larger than zero (∆I > 0). Next, it evaluates whether a single bleaching step or multiple bleaching steps are observed and assigns this to the Boolean parameters 'Red_singlebleach', 'Green_dual_state', and 'Green_tri_state' respectively. These parameters account for single acceptor bleaching and for single donor bleaching before (Green_dual_state) and after the acceptor (Green_tri_state). Next, the script looks for outliers where the background signal ratio between the green and red signal is too large. In that case traces are tagged 'Outlier_signal' and will be excluded from further analysis.
-
-
-##### Calculate all Intensity Parameters and use these to create an uncorrected FRET Histogram
-The next step is to assign the measured fluorophore intensities to the corresponding intensity parameters (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>). The script converts the analyzed intensity values in each molecule data table to the corresponding I values at each T. Apart from that, uncorrected apparent E and S values are calculated for each molecule at each T before bleaching according to the following equations.
+##### Do a position-specific excitation correction accounting for beam profile differences
+For reliable calculations, it is of importance that calculations are not distorted by differences in the beam intensity across the field (beam profile differences) or by differences between donor and acceptor excitation. To account for this, the data is first normalized according to equation 1. In short, the profile-corrected intensity is obtained by multiplying the uncorrected intensity by a normalized ratio between the donor and acceptor of the signal at a certain position. This correction term is calculated using the two calibration images supplied by Hellenkamp et al and correlates the donor and acceptor signal to one another while at the same time correcting for the beam profile of the microscope set-up.
 
 $$\begin{equation}
-^iS_{app} = \frac{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret}}{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret} + I_{Aem|Aex}^{Fret}}
+_ {(profile)}^{i}I_{Aem|Dex} = ^{i}I_{Aem|Dex}* \frac{I_{D}(x',y')}{I_{A}(x,y)}
 \end{equation}$$
 
-$$\begin{equation}
-^iE_{app} = \frac{I_{Aem|Dex}^{Fret}}{I_{Aem|Dex}^{Fret} + I_{Dem|Dex}^{Fret}}
-\end{equation}$$
+To do so, open script [ProfileCorrection.groovy]() as well as the two calibration images rr_iMap and og_iMap that were supplied along with the video data from the Zenodo link. Also make sure to have the molecule archive created in the previous steps of this protocol opened. Then run the script. An additional column will be added to the data table for each molecule record where the corrected intensity I<sub>AexAem</sub> will be found named "0_Profile_Corrected".
+
+##### Identify the bleaching positions for donor and acceptor
+To identify the bleaching positions for both donor and acceptor in each trace, the single change point finder tool from Mars is applied. After running this tool, the positions of the bleaching events of both dyes will be added to the corresponding molecule record. This information can later on be used to filter molecule traces (make sure each trace has both 1 donor and 1 acceptor) and to do the FRET calculations obtaining E and S values for each molecule.
+
+Start by opening the [findBleachingPositions.groovy]() script from the repository. This script automates the command and makes sure bleaching positions are found for DO, AO and FRET molecules in the colors relevant. Run the script. This will add bleaching positions to the archive shown as markers with dotted lines in the plots.
+
+<<Figure>>
+
+##### Selecting the traces to be included in further analysis
+Before proceeding with the following part of automated analysis, it is required to inspect the traces manually and assign the tag 'Accepted' for all molecules fulfilling the requirements:
+- There is only 1 donor and only 1 acceptor bleaching step observed in the molecule trace
+- Both donor and receptor are present (in the case of FRET-tagged molecules)
+- No major deviations or changes in signal intensity are observed that could indicate an artefact
+- The fluorescent signal is significantly higher than the noise of the background
+- No switching events are observed in the trace
+
+Please go through all molecule plots in the archive and tag the molecules accordingly. For convenience, the automated tagging feature in the cog tab of the archive might be used.
+
 
 
 ##### Trace-wise Background Correction
-The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. Note that to calculate the correction value only traces from the FRET archive are taken into consideration. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively.
+The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively.
+
+To do these calculations on the archive, open the script [smFRET_workflow_1_profile_corrected.groovy]() and run in the script editor. All calculated values discussed will be added to the archive.
 
 ##### Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)
 In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>.
@@ -255,9 +270,10 @@ $$\begin{equation}
 ^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
 \end{equation}$$
 
-##### Correction for Excitation ($\beta$) and Detection factors ($\gamma$)
+This correction has been done in the previously run script.
 
-The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalizing effective fluorescence quantum yields and detection efficiencies of both donor and acceptor. To find both global correction factors a linear regression analysis is performed with the following formulae:
+##### Correction for Excitation ($\beta$) and Detection factors ($\gamma$)
+The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalizing effective fluorescence quantum yields and detection efficiencies of both donor and acceptor. To find both global correction factors a linear regression analysis is performed with the following formula. To do these calculations, the average E or S value respectively of each molecule is used to prevent unequal weighting of longer traces.
 
 
 $$\begin{equation}  
@@ -294,6 +310,8 @@ E = \frac{F_{A|D}}{F_{D|D} + F_{A|D}}
 S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 
 \end{equation}$$
+
+To do these calculations on the archive, open the script [smFRET_workflow_2.groovy]() and run in the script editior. All calculated values discussed will be added to the archive.
 
 ---
 
