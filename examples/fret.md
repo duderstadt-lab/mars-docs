@@ -185,11 +185,11 @@ Change the settings in the previously described tools (peak finder, transform RO
 
 **DO Archive**  
 - Peak finder: channel = 1
-- Transform ROIs: R->L Affine 2D Matrix, short to long, channel = 0, 'Remove colocalizing ROIs' = True.
+- Transform ROIs: R->L Affine 2D Matrix (supply  the L->R matrix and activate the 'inverse' button in the dialog), short to long, channel = 0, 'Remove colocalizing ROIs' = True.
 
 **AO Archive**  
 - Peak finder: channel = 0
-- Transform ROIs: L->R Affine 2D Matrix (supply  the R->L matrix and activate the 'inverse' button in the dialog), long to short, channel = 1, 'Remove colocalizing ROIs' = True.
+- Transform ROIs: L->R Affine 2D Matrix, long to short, channel = 1, 'Remove colocalizing ROIs' = True.
 
 
 **Tag and Merge the Archives**  
@@ -282,7 +282,7 @@ $$\begin{equation}
 \end{equation}$$
 
 $$\begin{equation}  
-\frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = a * ^{iii}E_{app}^{(FRET)} + b
+\frac{1}{^{iii}S_{app}^{(FRET)}} = 1 + \gamma* \beta + (1-\gamma)*\beta *^{iii}E_{app}^{(FRET)} = b * ^{iii}E_{app}^{(FRET)} + a
 
 \end{equation}$$
 
@@ -290,9 +290,9 @@ From this equation the dependencies of $\beta$ and $\gamma$ on a and b can be de
 
 
 $$\begin{equation}
-\beta = a + b + 1
+\beta = a + b - 1
        \quad\mathrm{and}\quad
-\gamma = \frac{b - 1}{a + b + 1}
+\gamma = \frac{a - 1}{a + b - 1}
 \end{equation}$$
 
 Once the values of $\beta$ and $\gamma$ have been calculated, the fully corrected E and S values can be calculated. To do so, first F<sub>D|D</sub> and F<sub>A|A</sub> are calculated, then added to the archive, followed by the calculation of E and S. Note that these values are extremely sensitive to outliers and will have low significance when used on datasets with a low number of data points.
