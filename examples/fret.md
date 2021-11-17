@@ -212,10 +212,10 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 #### <a name="4"></a> Data Analysis and Corrections
 Please download the [data analysis scripts](https://github.com/duderstadt-lab/mars-tutorials) from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
 
-##### Add the metadata tags to all corresponding molecule records
+**Add the metadata tags to all corresponding molecule records**
 For easier record handling, first, run [migrateTagsFromMetadataToMolecules.groovy]() to make migrate all the assigned metadata tags (AO, DO, FRET) to the corresponding molecule records. This makes it easier to look at the data in a later stadium of the analysis.
 
-##### Do a position-specific excitation correction accounting for beam profile differences
+**Do a position-specific excitation correction accounting for beam profile differences**
 For reliable calculations, it is of importance that calculations are not distorted by differences in the beam intensity across the field (beam profile differences) or by differences between donor and acceptor excitation. To account for this, the data is first normalized according to equation 1. In short, the profile-corrected intensity is obtained by multiplying the uncorrected intensity by a normalized ratio between the donor and acceptor of the signal at a certain position. This correction term is calculated using the two calibration images supplied by Hellenkamp et al and correlates the donor and acceptor signal to one another while at the same time correcting for the beam profile of the microscope set-up.
 
 $$\begin{equation}
@@ -224,14 +224,14 @@ _ {(profile)}^{i}I_{Aem|Dex} = ^{i}I_{Aem|Dex}* \frac{I_{D}(x',y')}{I_{A}(x,y)}
 
 To do so, open script [ProfileCorrection.groovy]() as well as the two calibration images rr_iMap and og_iMap that were supplied along with the video data from the Zenodo link. Also make sure to have the molecule archive created in the previous steps of this protocol opened. Then run the script. An additional column will be added to the data table for each molecule record where the corrected intensity I<sub>AexAem</sub> will be found named "0_Profile_Corrected".
 
-##### Identify the bleaching positions for donor and acceptor
+**Identify the bleaching positions for donor and acceptor**
 To identify the bleaching positions for both donor and acceptor in each trace, the single change point finder tool from Mars is applied. After running this tool, the positions of the bleaching events of both dyes will be added to the corresponding molecule record. This information can later on be used to filter molecule traces (make sure each trace has both 1 donor and 1 acceptor) and to do the FRET calculations obtaining E and S values for each molecule.
 
 Start by opening the [findBleachingPositions.groovy]() script from the repository. This script automates the command and makes sure bleaching positions are found for DO, AO and FRET molecules in the colors relevant. Run the script. This will add bleaching positions to the archive shown as markers with dotted lines in the plots.
 
 <<Figure>>
 
-##### Selecting the traces to be included in further analysis
+**Selecting the traces to be included in further analysis**
 Before proceeding with the following part of automated analysis, it is required to inspect the traces manually and assign the tag 'Accepted' for all molecules fulfilling the requirements:
 - There is only 1 donor and only 1 acceptor bleaching step observed in the molecule trace
 - Both donor and receptor are present (in the case of FRET-tagged molecules)
@@ -239,16 +239,16 @@ Before proceeding with the following part of automated analysis, it is required 
 - The fluorescent signal is significantly higher than the noise of the background
 - No switching events are observed in the trace
 
-Please go through all molecule plots in the archive and tag the molecules accordingly. For convenience, the automated tagging feature in the cog tab of the archive might be used.
+Please go through all molecule plots in the archive and tag the molecules accordingly. For convenience, the [automated tagging feature in the cog tab](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Settings/) of the archive might be used. Click on the link for more information on how to use this feature.
 
 
 
-##### Trace-wise Background Correction
+**Trace-wise Background Correction**
 The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively.
 
 To do these calculations on the archive, open the script [smFRET_workflow_1_profile_corrected.groovy]() and run in the script editor. All calculated values discussed will be added to the archive.
 
-##### Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)
+**Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**
 In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>.
 
 The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
@@ -272,7 +272,7 @@ $$\begin{equation}
 
 This correction has been done in the previously run script.
 
-##### Correction for Excitation ($\beta$) and Detection factors ($\gamma$)
+**Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**
 The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalizing effective fluorescence quantum yields and detection efficiencies of both donor and acceptor. To find both global correction factors a linear regression analysis is performed with the following formula. To do these calculations, the average E or S value respectively of each molecule is used to prevent unequal weighting of longer traces.
 
 
