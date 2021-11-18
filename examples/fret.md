@@ -330,13 +330,14 @@ This analysis shows that an average population FRET value of E = 0.28 was obtain
 #### <a name="10"></a> Conclusion: Global Analysis Outcomes and Comparisons to Literature
 The described analysis can be repeated for all provided videos for both the 1-lo and 1-mid sample datasets to obtain the E and S values more reliably for both samples. The outcome of such an extensive analysis can be found in the [repository](https://github.com/duderstadt-lab/mars-tutorials) with all accompanying scripts and archives. Please note that in order to analyze all data a specific procedure needs to be followed. Please read the read-me file in the repository with further instructions.
 
-The final plot of this analysis shows that the FRET populations are observed at S= 0.49 and S=0.55 with E-values of E= 0.18 (1-lo) and E= 0.56 (1-mid). This is very close to the expected values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> (shown with dashed lines in the plot).
+The final plot of this analysis shows that the FRET populations are observed at E= 0.18 (1-lo) and E= 0.56 (1-mid). This is in complete agreement with the values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> who reported E-values of E = 0.15 +/- 0.02 (1-lo) and E = 0.56 +/- 0.03 (1-mid) respectively.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/full_data.png' width='450'></div>
 
 
-In conclusion, this example Mars workflows showed that Mars is a software platform that is equipped to do a robust, transparent, traceable, and reliable data analysis for FRET experiments. This analysis outcome comparison to the benchmark study by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> shows that very similar FRET values are obtained and that therefore Mars is an excellent tool to be used to analyze these type of datasets.
+In conclusion, this example Mars workflows showed that Mars is a software platform that is equipped to do a robust, transparent, traceable, and reliable data analysis for FRET experiments. Since the results of the analysis are in complete agreement with those of Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> this proves Mars is well-equipped to be used in the analysis of these type of datasets.
+
 
 #### <a name="12"></a> Troubleshooting
 This section highlights some of the common errors or problems that may occur during following along with the example as well as possible solutions. Please reference the table below in case you encounter any problems during the analysis. If your question has not been answered in this section, please feel free to [reach out](https://forum.image.sc/tag/mars) to our lab by making a forum post.
