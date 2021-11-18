@@ -80,7 +80,7 @@ This example workflow highlights the flexibility of Mars to be adapted to the sp
 #### <a name="1"></a> Data preparation
 **Opening and Converting the Video**  
 First, [download](https://zenodo.org/record/1249497) the dataset from Hellenkamp *et al.*<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>. Scroll down on the linked page and download the files named: '1_lo_TIFF.zip', '1_med_TIFF.zip' & 'Calibration_Files_for_TIFFs.zip'.
-To prepare the video for easy analysis, turn SciFIO on in Fiji (Edit>Options>ImageJ2 tick the box) and open the first video (FSII1a_g30r84t200_0.tif) located in the '1_lo_TIFF.zip' folder. The original video does not contain specific channel information but simply displays the results of the different excitation colors in an alternating fashion. To convert the video to have channel information, run [script 1](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Archive%20generation%20scripts/Script1_convert%20video%20to%20dual%20channel.groovy). For information on how to run a script in Fiji please read [this tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/). If the script ran correctly, a new window should have opened showing a video with the channels represented in red and green.
+To prepare the video for easy analysis, turn SciFIO on in Fiji (Edit>Options>ImageJ2 tick the box) and open the first video (FSII1a_g30r84t200_0.tif) located in the '1_lo_TIFF.zip' folder. The original video does not contain specific channel information but simply displays the results of the different excitation colors in an alternating fashion. To convert the video to have channel information, run [script 1](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Follow%20along%20example/Script1_convert%20video%20to%20dual%20channel.groovy). For information on how to run a script in Fiji please read [this tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/). If the script ran correctly, a new window should have opened showing a video with the channels represented in red and green.
 
 
 **Calculation of the Affine2D Matrix**  
@@ -114,7 +114,7 @@ Table 1: Affine2D conversion matrix values
 #### <a name="3"></a> Localization of Peaks and Intensity vs. T traces
 To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while retaining information on to which population the identified molecule belongs, information that is required to do the correction factor calculations.
 
-All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 2 to repeat the archive creation also for the AO and DO archives. Alternatively, these archives can be downloaded from the [repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET/Full%20Analysis%20-%20lo%20follow%20along%20example/Archives).
+All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 2 to repeat the archive creation also for the AO and DO archives. Alternatively, these archives can be downloaded from the [repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET/Follow%20along%20example).
 
 ##### The FRET Archive
 **1. Identify the red peaks in the red channel (C=0, left)**  
@@ -210,10 +210,10 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 ---
 
 #### <a name="4"></a> Data Analysis and Corrections
-Please download the [data analysis scripts](https://github.com/duderstadt-lab/mars-tutorials) from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
+Please download the [data analysis scripts](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/FRET/Follow%20along%20example) from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
 
 **Add the metadata tags to all corresponding molecule records**
-For easier record handling, first, run [migrateTagsFromMetadataToMolecules.groovy]() to make migrate all the assigned metadata tags (AO, DO, FRET) to the corresponding molecule records. This makes it easier to look at the data in a later stadium of the analysis.
+For easier record handling, first, run [migrateTagsFromMetadataToMolecules.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Follow%20along%20example/migrateTagsFromMetadataToMolecules.groovy) to make migrate all the assigned metadata tags (AO, DO, FRET) to the corresponding molecule records. This makes it easier to look at the data in a later stadium of the analysis.
 
 **Do a position-specific excitation correction accounting for beam profile differences**
 For reliable calculations, it is of importance that calculations are not distorted by differences in the beam intensity across the field (beam profile differences) or by differences between donor and acceptor excitation. To account for this, the data is first normalized according to equation 1. In short, the profile-corrected intensity is obtained by multiplying the uncorrected intensity by a normalized ratio between the donor and acceptor of the signal at a certain position. This correction term is calculated using the two calibration images supplied by Hellenkamp et al and correlates the donor and acceptor signal to one another while at the same time correcting for the beam profile of the microscope set-up.
@@ -222,12 +222,12 @@ $$\begin{equation}
 _ {(profile)}^{i}I_{Aem|Dex} = ^{i}I_{Aem|Dex}* \frac{I_{D}(x',y')}{I_{A}(x,y)}
 \end{equation}$$
 
-To do so, open script [ProfileCorrection.groovy]() as well as the two calibration images rr_iMap and og_iMap that were supplied along with the video data from the Zenodo link. Also make sure to have the molecule archive created in the previous steps of this protocol opened. Then run the script. An additional column will be added to the data table for each molecule record where the corrected intensity I<sub>AexAem</sub> will be found named "0_Profile_Corrected".
+To do so, open script [ProfileCorrection.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Follow%20along%20example/ProfileCorrection.groovy) as well as the two calibration images rr_iMap and og_iMap that were supplied along with the video data from the Zenodo link. Also make sure to have the molecule archive created in the previous steps of this protocol opened. Then run the script. An additional column will be added to the data table for each molecule record where the corrected intensity I<sub>aexaem</sub> will be found named "0_Profile_Corrected".
 
 **Identify the bleaching positions for donor and acceptor**
 To identify the bleaching positions for both donor and acceptor in each trace, the single change point finder tool from Mars is applied. After running this tool, the positions of the bleaching events of both dyes will be added to the corresponding molecule record. This information can later on be used to filter molecule traces (make sure each trace has both 1 donor and 1 acceptor) and to do the FRET calculations obtaining E and S values for each molecule.
 
-Start by opening the [findBleachingPositions.groovy]() script from the repository. This script automates the command and makes sure bleaching positions are found for DO, AO and FRET molecules in the colors relevant. Run the script. This will add bleaching positions to the archive shown as markers with dotted lines in the plots.
+Start by opening the [findBleachingPositions.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Follow%20along%20example/findBleachingPositions.groovy) script from the repository. This script automates the command and makes sure bleaching positions are found for DO, AO and FRET molecules in the colors relevant. Run the script. This will add bleaching positions to the archive shown as markers with dotted lines in the plots.
 
 <<Figure>>
 
@@ -246,7 +246,7 @@ Please go through all molecule plots in the archive and tag the molecules accord
 **Trace-wise Background Correction**
 The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively.
 
-To do these calculations on the archive, open the script [smFRET_workflow_1_profile_corrected.groovy]() and run in the script editor. All calculated values discussed will be added to the archive.
+To do these calculations on the archive, open the script [smFRET_workflow_1_profile_corrected.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Follow%20along%20example/smFRET_workflow_1_profile_corrected.groovy) and run in the script editor. All calculated values discussed will be added to the archive.
 
 **Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**
 In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>.
@@ -311,18 +311,18 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 
 \end{equation}$$
 
-To do these calculations on the archive, open the script [smFRET_workflow_2.groovy]() and run in the script editior. All calculated values discussed will be added to the archive.
+To do these calculations on the archive, open the script [smFRET_workflow_2.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_pipelines/FRET/Follow%20along%20example/smFRET_workflow_2.groovy) and run in the script editior. All calculated values discussed will be added to the archive.
 
 ---
 
 #### <a name="9"></a> Plotting & Data Exploration in Python
-To explore the data save the generated archive and open the [Jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials). Set up the connection to your local copy of Fiji as indicated and change the file path to the archive. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells a plot is obtained showing the fully corrected E and S values for all molecules that matched the selection criteria in this archive.
-_Note that the analysis of a single video from the dataset such as done in this example leads to a low number of data points. This affects the accuracy of the calculated correction factors and E and S values. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next paragraph._
+To explore the data save the generated archive and open the [Jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials). Set up the connection to your local copy of Fiji as indicated and change the file path to the archive. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells a plot is obtained showing the fully corrected E and S values for all molecules that matched the selection criteria in this archive.  
+_Note that the analysis of a single video from the dataset such as done in this example leads to a low number of data points. This affects the accuracy of the calculated correction factors and E and S values. On top of that, a reliable beta/gamma correction is possible only when the data consists of 2 populations at the minimum. Therefore the reliability of the outcome of this example is compromised. The accuracy can be improved by analyzing all videos supplied in the repository corresponding to this dataset. The outcome of such an analysis is presented in the next paragraph._
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/1-lo_analyzed.png' width='350'></div>
 
-This analysis shows that an average population FRET value of E = 0.43 was obtained from this single dataset. Please note that this value is rather distorted because of the low number of data points and data available for correction. Also, since only one sample is taken into consideration the beta/gamma correction can distort the results. Therefore it is not a good estimate for the FRET efficiency of the sample. Please continue to the following section for a better estimate considering all available videos.
+This analysis shows that an average population FRET value of E = 0.28 was obtained from this single dataset. Please note that this value is rather distorted because of the low number of data points and data available for correction. Also, since only one sample is taken into consideration the beta/gamma correction is distorting the results. Therefore it is not a good estimate for the FRET efficiency of the sample. Please continue to the following section for a better estimate considering all available videos.
 
 
 ---
