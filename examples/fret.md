@@ -333,7 +333,7 @@ The described analysis can be repeated for all provided videos for both the 1-lo
 The final plot of this analysis shows that the FRET populations are observed at E= 0.18 (1-lo) and E= 0.56 (1-mid). This is in complete agreement with the values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> who reported E-values of E = 0.15 +/- 0.02 (1-lo) and E = 0.56 +/- 0.03 (1-mid) respectively.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/full_data.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/Final_with_fits.png' width='450'></div>
 
 
 In conclusion, this example Mars workflows showed that Mars is a software platform that is equipped to do a robust, transparent, traceable, and reliable data analysis for FRET experiments. Since the results of the analysis are in complete agreement with those of Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> this proves Mars is well-equipped to be used in the analysis of these type of datasets.
