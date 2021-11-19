@@ -330,7 +330,7 @@ This analysis shows that an average population FRET value of E = 0.28 was obtain
 #### <a name="10"></a> Conclusion: Global Analysis Outcomes and Comparisons to Literature
 The described analysis can be repeated for all provided videos for both the 1-lo and 1-mid sample datasets to obtain the E and S values more reliably for both samples. The outcome of such an extensive analysis can be found in the [repository](https://github.com/duderstadt-lab/mars-tutorials) with all accompanying scripts and archives. Please note that in order to analyze all data a specific procedure needs to be followed. Please read the read-me file in the repository with further instructions.
 
-The final plot of this analysis shows that the FRET populations are observed at E= 0.18 (1-lo) and E= 0.56 (1-mid). This is in complete agreement with the values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> who reported E-values of E = 0.15 +/- 0.02 (1-lo) and E = 0.56 +/- 0.03 (1-mid) respectively.
+The final plot of this analysis shows that the FRET populations are observed at E= 0.18 (1-lo) and E= 0.52 (1-mid). This is in agreement with the values as published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> who reported E-values of E = 0.15 +/- 0.02 (1-lo) and E = 0.56 +/- 0.03 (1-mid) respectively.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/Final_with_fits.png' width='450'></div>
