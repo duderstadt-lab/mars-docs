@@ -1,6 +1,6 @@
 ---
 layout: example
-title: Flow Magnetic Tweezers Pipeline
+title: Flow Magnetic Tweezers Workflow
 permalink: /examples/flow-Magnetic-Tweezers/index.html
 ---
 

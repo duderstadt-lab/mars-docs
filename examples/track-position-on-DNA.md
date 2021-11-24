@@ -45,7 +45,7 @@ First, some raw corrections to the collected frame are carried out: in this case
 
 #### <a name="open"></a> Open the video & raw image corrections
 **Download the video**  
-Download the example video from the [Github repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_pipelines/TrackonDNA) and save the files into one folder. The video is comprised of individual TIFF files each representing a video frame. Note that this format cannot be opened in most conventional video players.
+Download the example video from the [Github repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/TrackonDNA) and save the files into one folder. The video is comprised of individual TIFF files each representing a video frame. Note that this format cannot be opened in most conventional video players.
 
 **Open the video with SCIFIO**  
 To open the video first turn the SCIFIO option on in Fiji: Edit>Options>ImageJ2, check the 'Use SCIFIO when opening files' option. Then open the file: use File>Open... and select the metadata file in the folder that contains the images of the video. A video viewer window opens automatically.

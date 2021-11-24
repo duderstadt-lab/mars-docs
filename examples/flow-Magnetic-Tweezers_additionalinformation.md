@@ -1,10 +1,10 @@
 ---
 layout: example
-title: Flow Magnetic Tweezers Pipeline - Addtional Information
+title: Flow Magnetic Tweezers Workflow - Addtional Information
 permalink: /examples/Additional-Information/index.html
 ---
 
-#### Additional information 
+#### Additional information
 
 This page will explain in more detail how the features we are sorting by look like. To understand better how this sorting step works we will talk about it in more detail. So we bascially try to answer the question how does the program know that the molecule shown above is a singly-tethered, coilable and what force the molecule experiences? The threshold inputs which are used are shown here. They will be discussed in detail through rest of the page.
 
@@ -102,7 +102,7 @@ Bead fluctuations lateral to flow direction are used to numerically ascertain fo
 The <var>&delta;</var><var>y</var><sup>2</sup> is the the mean squared displacement of the bead excursions in the y direction. They are taken from the Force2p5 region.
 
 
-Other parameters such as 'temperature', 'persistanceLength', 'contourLength' are given in the pipeline as constants.
+Other parameters such as 'temperature', 'persistanceLength', 'contourLength' are given in the workflow as constants.
 
 The other two values for 'slidingForceWindow' and 'stdSlidingForce' are used to check if the bead, in the chosen, get transiently stuck. If the bead gets stuck, it registers as higher force. The sliding windows iteratively calculates mean and standard deviation of each window. If a particular window deviates more than threshold MSD, the bead is tagged as 'stuckForce'. This also makes sense as MSD of these fluctuations are supposed to be constant throughout the region. The screenshot in the bottom shows how the region which is used to calculate the force could look like. You can see the fluctuations.
 
