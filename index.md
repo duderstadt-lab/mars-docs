@@ -1,7 +1,7 @@
 ---
 layout: home
 menu: home
-title: Molecule Archive Suite
+title: Molecule archive suite
 ---
 
 {:.lead}
