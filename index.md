@@ -11,7 +11,7 @@ Mars provides a collection of ImageJ2 commands to find, fit, track and character
 
 Mars, a molecule archive suite for reproducible analysis and reporting of single molecule properties from bioimages
 Nadia M Huisjes, Thomas M Retzer, Matthias J Scherr, Rohit Agarwal, Barbara Safaric, Anita Minnen, Karl E Duderstadt
-bioRxiv 2021.11.26.470105; doi: https://doi.org/10.1101/2021.11.26.470105
+bioRxiv 2021.11.26.470105; doi: [https://doi.org/10.1101/2021.11.26.470105](https://doi.org/10.1101/2021.11.26.470105)
 
 To get started with Mars, take a look at the [tutorials](tutorials), [example gallery](examples), and [how to install guide](install), or read [about the project's goals](about). Comprehensive reference material can be found in the [documentation](docs) section.
 
