@@ -101,7 +101,7 @@ for UID in archive.getMoleculeUIDs():
 The notebook will display all the UUIDs.
 
 **Get single Molecule Entries from the Archive**  
-There are two ways of excessing the data entries themselves. One can use the index from the archive. For example: excessing the first entry one can use the index "0" (indexing in Python starts with 0).
+There are two ways of accessing the data entries themselves. One can use the index from the archive. For example: accessing the first entry one can use the index "0" (indexing in Python starts with 0).
 ```python
 #get the Table for the molecule at index 0 as a pandas dataframe
 tableByIndex = sc._table_to_pandas(archive.get(0).getTable())
@@ -126,7 +126,7 @@ Now it is possible to loop through the molecules and print their corresponding U
 for molecule in molecules:
     print(molecule.getUID())      
 ```
-Mapping makes it possible to excess the tags of the molecule. This for-loop will print all the molecules tagged with "reaction".
+Mapping makes it possible to access the tags of the molecule. This for-loop will print all the molecules tagged with "Active".
 
 ```python
 molecules = map(lambda UID: archive.get(UID), archive.getMoleculeUIDs())
@@ -137,7 +137,7 @@ for molecule in molecules:
 Side note: The map function has to be in the same cell if it is not transformed into a list(). Otherwise, the code will not work. If the map function is not saved as a list the data is in virtual storage. Otherwise the data is saved as a list() which can cause problems for big data sets. In the next section, the calculated variance values are stored in a list() that is way the line can be in a separate cell.
 
 **Getting Parameters from the Data**
-In this ***[tutorial for calculating variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/)*** of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to excess the parameters. The parameter was called "var" in the archive and has to be specified if this parameter has to be called with "getParameter()".
+In this ***[tutorial for calculating variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/)*** of the data along the y axis was calculated. The following line saves the variance values in a list which makes it possible to access the parameters. The parameter was called "var" in the archive and has to be specified if this parameter has to be called with "getParameter()".
 ```python
 VARs = list(map(lambda UID: archive.get(UID).getParameter('var'), archive.getMoleculeUIDs()))
 ```
