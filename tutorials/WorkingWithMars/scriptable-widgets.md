@@ -228,7 +228,7 @@ list1_y=[]
 for UID in archive.getMoleculeUIDs():
     if archive.get(UID).hasTag('Active'):
         list1_x.append(archive.get(UID).getTable().getColumnAsDoubles("T"))
-        list1_y.append(archive.get(UID).getTable().getColumnAsDoubles("y"))
+        list1_y.append(archive.get(UID).getTable().getColumnAsDoubles("Y"))
 
 # Since all variables have to be explicitly defined, always adjust this part based on the amount of tagged molecules.
 series1_xvalues = []
@@ -332,7 +332,7 @@ When dealing with larger datasets the code displayed above should be converted t
 ### 4. Bubble Chart - Plot the variance vs. Track Length
 **Introduction**
 
-To answer the question 'Are longer tracks associated with higher variances?' the variance of each molecule is plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the var values as yvalues of the series. As an extra feature the molecule UUIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UUID is shown.
+To answer the question 'Are longer tracks associated with higher variances?' the variance of each molecule is plotted against the track length using the 'Bubble Chart' widget. To do so, the track length is provided as xvalues in the script and the var values as yvalues of the series. As an extra feature the molecule UIDs are provided in the series1_label list in the last line of the code. This ensures that when moving the mouse to a datapoint in the plot the corresponding UID is shown.
 
 **How to**
 
