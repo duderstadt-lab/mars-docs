@@ -6,6 +6,8 @@ permalink: /tutorials/workingwithmars/bdv/index.html
 
 _level: advanced, duration: 15 min_
 
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/0Wowm2hkgJI" title="YouTube video player" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe></div> 
+
 This tutorial explores the **Rover** option to show a tracked molecule in the original video. This enables the user to visually validate the observed behavior and to export small videos showing the movement of a single molecule. The video viewer is based on the [BigDataViewer](https://imagej.net/BigDataViewer#Description)<sup>1</sup> plugin and as such requires converting the video of interest to the BigDataViewer file format XML/HDF5 or in the [N5](https://github.com/saalfeldlab/n5) format. We prefer to use the N5 over the XML/HDF5 because of the superior qualities. We will explain both options but we advise you to use N5.
 
 The first part of this tutorial shows how to convert your video to either of these data formats, how to connect the video to the archive, and how to set up the parameters. These steps only have to be executed once per video per Archive and will then be saved for future use. The second part of the tutorial familiarizes the user with the viewer itself and with exporting options.

@@ -6,6 +6,8 @@ permalink: /tutorials/workingwithmars/scriptable-widgets/index.html
 
 _level: advanced, duration: 15 min_
 
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/acsunUMouew" title="YouTube video player" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe></div> 
+
 This tutorial focusses on working with the scriptable widgets. It highlights the functions of the 'Category Chart', 'Histogram', 'XY Chart' and 'Bubble Chart' widgets based on example data generated in the [Let's make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) and [Let's calculate the variance](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/calculate-var/) tutorials. Please complete these tutorials first before continuing with this tutorial to understand the data set and use the main functions of **Mars**. Alternatively, download the 'TestVideo_archive_var.yama' Molecule Archive from the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Working%20with%20Mars).
 
 In the upcoming sections all four scriptable widgets are described with an example. These sections are not dependent on each other and can be completed independent of each other.

@@ -6,6 +6,8 @@ permalink: /tutorials/workingwithmars/kcpa/index.html
 
 _level: intermediate, duration: 10-15 min_
 
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/JspNRSGtJTU" title="YouTube video player" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe></div> 
+
 In this tutorial a kinetic change point analysis is executed. For in-depth information about the algorithms used as well as assumptions the analysis is based on please check the [documentation section](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/) as well as the paper by [_F.R. Hill et al_](https://doi.org/10.1063/1.5009387)<sup>1</sup>. This tutorial starts with a short introduction to kinetic change points and a discussion about assumptions and continues with a hands-on example using a Molecule Archive.
 
 

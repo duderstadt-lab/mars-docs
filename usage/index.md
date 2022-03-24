@@ -5,6 +5,8 @@ menu: Install
 permalink: /install/index.html
 ---
 
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/Ljzmbt1NG0w" title="YouTube video player" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe></div> 
+
 ### 1. Install Fiji on your computer and check the presence of javafx
 Mars consists of a collection of scijava commands and user interface that runs in [Fiji](https://imagej.net/Fiji). Therefore an updated version of Fiji is required to run Mars on your computer.
 
