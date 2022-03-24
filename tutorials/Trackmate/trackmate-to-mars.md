@@ -1,7 +1,7 @@
 ---
 layout: marsto
 title: How to convert TrackMate Results to Mars
-permalink: /tutorials/marsto/trackmate-to-mars/index.html
+permalink: /tutorials/trackmate/trackmate-to-mars/index.html
 ---
 
 _level: intermediate, duration: 10 min_

@@ -1,7 +1,7 @@
 ---
 layout: marsto
 title: Open a Molecule Archive in Python
-permalink: /tutorials/marsto/open-a-Molecule-Archive-in-Python/index.html
+permalink: /tutorials/python/open-a-Molecule-Archive-in-Python/index.html
 ---
 
 _level: intermediate, duration: 20 min (including one-time setup)_
