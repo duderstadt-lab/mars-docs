@@ -6,6 +6,8 @@ permalink: /tutorials/workingwithmars/create-a-Molecule-Archive/index.html
 
 _level: beginner, duration: 5-10 min_
 
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/0Wowm2hkgJI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 In this tutorial we will go through the basics of loading a video, finding
 and tracking peaks, navigating through **Mars Rover**, looking at the traces
 corresponding to the tracked peaks, tagging them and saving the result as a **Molecule Archive** (.yama) file. In the example video that is used the transcription movement of fluorescently labeled polymerase over DNA is investigated by means of TIRF microscopy. The DNA itself is not labeled and therefore is not visible in the video. This single-molecule dataset provides an excellent way to familiarise yourself with **Mars** and the most important plugins.
