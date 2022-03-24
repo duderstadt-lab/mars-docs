@@ -1,5 +1,5 @@
 ---
-layout: marsto
+layout: python
 title: Open a Molecule Archive in Python
 permalink: /tutorials/python/open-a-Molecule-Archive-in-Python/index.html
 ---

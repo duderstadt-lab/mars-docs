@@ -1,5 +1,5 @@
 ---
-layout: marsto
+layout: trackmate
 title: How to convert TrackMate Results to Mars
 permalink: /tutorials/trackmate/trackmate-to-mars/index.html
 ---
