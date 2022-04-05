@@ -72,6 +72,12 @@ Figure 2: Examples of a beam profile created from frame 988 of this dataset. A G
 
 Now, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) command (Plugins>Mars>Image>Util). Make sure the full example video and the beam profile image are open in Fiji. Set the Channel to 0 and the background image to the red profile image you have just created. Run the command and you will see that the protein channel has been corrected for the beam profile. Note that sometimes this difference is difficult to spot by eye. Repeat this step for channel 1 with the green background beam profile image.
 
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img_beam.png' width='450'></div>
+<div style="text-align: center">
+Figure 3: Dialog window of the Beam Profile Corrector tool.
+</div>
+
 **Affine2D matrix**   
 To correlate the coordinates in the top half of the split view with those of the bottom half of the split view, we use a transformation matrix (Affine2D matrix).
 For this dataset, the following matrix will be used:  
@@ -91,6 +97,55 @@ More information about the calculation of this matrix can be found in the [Affin
 
 ---
 #### <a name="3"></a> Localization of Peaks and Intensity vs. T traces
+To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while retaining information on to which population the identified molecule belongs, information that is required to do the correction factor calculations.
+
+All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 2 to repeat the archive creation also for the AO and DO archives.
+
+##### The FRET Archive
+**1. Identify the red peaks in the red channel (C=0, top)**  
+First, for a better fit performance, do a z-projection of the first 10 frames yielding an average image (Fiji>image>stacks>Z project...). Use  this image to find the coordinates of the peaks.
+To find the peaks in the top part of the split view in the red channel first select this part of the screen with the box ROI tool and open the Peak Finder (Plugins>Mars>Image>Peak Finder).
+
+
+Apply the settings as shown below and check if the peaks are identified correctly by pressing the preview button. If the correct settings are applied the peaks should have an identification marker (circle or point) on them. Press ok to apply the settings and add the ROIs of the identified peaks to the ROI manager. The ROI manager will open and will display the peaks listed by their UID in the manager.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img4.png' width='450'></div>
+<div style="text-align: center">
+Figure 4: Identified peaks in the z-stack made from the first 10 frames of the original video.
+</div>
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img5.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img6.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img7.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img8.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img9.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img10.png' width='450'></div>
+
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img11.png' width='450'></div>
+<div style="text-align: center">
+Figure 4: Output of the Peak Identifier tool: a list of ROIs in the Fiji ROI manager.
+</div>
+
+**2. Transform  the ROIs to the right part of the split view**  
+Next, transform the coordinates (ROIs) of the peaks that were just identified to match the bottom part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix as calculated before (see table 1). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img12.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img13.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img14.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img15.png' width='450'></div>
+
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img18.png' width='450'></div>
+<div style="text-align: center">
+Figure 4: Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _short and _long names.
+</div>
+
 
 
 ---
@@ -121,39 +176,9 @@ Figure 1:
 ---
 
 
-To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while retaining information on to which population the identified molecule belongs, information that is required to do the correction factor calculations.
-
-All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 2 to repeat the archive creation also for the AO and DO archives. Alternatively, these archives can be downloaded from the [repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/Follow%20along%20example).
-
-##### The FRET Archive
-**1. Identify the red peaks in the red channel (C=0, left)**  
-First, for a better fit performance, do a z-projection of the first 10 frames yielding an average image (Fiji>image>stacks>Z project...). Use  this image to find the coordinates of the peaks.
-To find the peaks in the left part of the split view in the red channel first select this part of the screen with the box ROI tool and open the Peak Finder (Plugins>Mars>Image>Peak Finder). Apply the settings as shown below and check if the peaks are identified correctly by pressing the preview button. If the correct settings are applied the peaks should have an identification marker (circle or point) on them. Press ok to apply the settings and add the ROIs of the identified peaks to the ROI manager. The ROI manager will open and will display the peaks listed by their UID in the manager.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img27.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img28.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img29.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img30.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img31.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img32.png' width='450'></div>
 
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img5.png' width='450'></div>
 
-**2. Transform  the ROIs to the right part of the split view**  
-Next, transform the coordinates (ROIs) of the peaks that were just identified to match the right part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix (left to right) as calculated before (see table 1). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img33.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img34.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img35.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img36.png' width='450'></div>
-
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img7.png' width='450'></div>
 
 **3. Apply the molecule integrator to extract I vs. T traces**  
 Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
