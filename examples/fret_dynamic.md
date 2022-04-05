@@ -5,21 +5,14 @@ title: smFRET dataset analysis of a dynamic sample with Mars
 permalink: /examples/FRET_dynamic/index.html
 ---
 
+In this example, a typical Mars workflow to analyse a dynamic TIRF smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208) dataset is presented. This example is based on holliday junction DNA functionalized with two fluorophores. Due to  Mg<sup>2+</sup>-induced switching events, the structure of these holliday junction switches between two states, both with a different FRET efficiency between both dyes.
+Analogously, the procedure highlighted in this example can be extended to other experiments where two states are visited. Examples of this include: enzyme binding events, conformational changes of protein or DNA, and interaction studies.
 
-
-
-
-
-
+Please also visit the [Mars workflow to analyze a static TIRF smFRET dataset](https://duderstadt-lab.github.io/mars-docs/examples/FRET/).
 
 ---
-In this example a typical Mars workflow for the analysis of smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208), [2](https://doi.org/10.1073/pnas.58.2.719), [3](https://doi.org/10.1073/pnas.93.13.6264)</sup> datasets is discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA, and DNA on a single-molecule level. Among numerous interesting and revealing studies, some examples of important processes that have been studied in this way are: the structural organization of bacterial RNA polymerase <sup>[4](https://doi.org/10.1016/s0092-8674(02)00667-0)</sup>, protein-protein complex formation in neurotransmission pathways <sup>[5](https://doi.org/10.1038/nsmb.1763)</sup>, dynamics of multi-domain proteins like Hsp90 in solution <sup>[6](https://doi.org/10.1038/nmeth.4081)</sup>, protein folding upon ligand interaction <sup>[7](https://doi.org/10.1016/J.SBI.2007.12.003)</sup>, and studies of the cAMP/PKA pathways <sup>[8](https://doi.org/10.1016/J.BBRC.2017.04.097)</sup>.
-
-Mars is very well equipped to be used to analyse the data gathered in such studies. It offers a highly effective, easy to use, well documented, and powerful open source alternative to home-built software currently used by some labs and focusses on reproducibility and transparency of the analysis process. To showcase its applicability to analyse smFRET datasets, in this example, the data of the benchmark study published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> is analysed and compared. We show the typical pathway one can follow to analyse the data and find the FRET values E and S from this dataset.
-
 
 #### <a name="reference"></a>Table of contents
-
 - [The FRET Sample Design and Mars Analysis Process](#design)
 - [Data preparation](#1)
 - [Localization of Peaks and Intensity vs. T traces](#3)
@@ -30,92 +23,102 @@ Mars is very well equipped to be used to analyse the data gathered in such studi
 - [Troubleshooting](#12)
 
 ---
-
 #### <a name="design"></a> The FRET Sample Design and Mars Analysis Process
-
 **Sample Design**  
-In the experiment as designed by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> the distance between two fluorophores (a donor and an acceptor) on a DNA molecule is probed. Two different samples (figure 1: 1-lo and 1-mid) are measured with a different interfluorophore distance as indicated in the figure. Since the FRET efficiency (E) is inversely correlated to the distance between the fluorophores, a different E value is to be expected for both molecules. The fluorescence of both samples was measured using both TIRF and confocal single-molecule fluorescence set-ups after which the FRET parameters E and S were determined. In this example, the 1-lo dataset recorded on a TIRF microscope set-up will be analysed. The raw dataset can be downloaded [here](https://zenodo.org/record/1249497#.YMccli0RrGI). More information on the data acquirement and sample specifics can be found in the publication by Hellenkamp *et al.*<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img14.png' width='450'></div>
-
-<div style="text-align: center">
-Figure 1: Representation of the two different molecules included in the study by Hellenkamp et al. The red sphere (left side DNA molecule) represents the acceptor fluorophore, in this case Atto647N, and the green sphere (right side DNA molecule) represents the donor fluorophore, in this case Atto550. In this example the analysis of the 1-lo dataset is discussed. In the final paragraph of this example results from the 1-mid dataset are discussed as well. <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>
-</div>
+**Dataset Characteristics**  
+The dataset provided was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the top half, and the green emission on the bottom half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 
 **The Analysis Procedure**  
+
+
+Please visit the [documentation](https://duderstadt-lab.github.io/mars-docs/docs/) pages for specific information about the used tools.
+
+
+
+---
+#### <a name="1"></a> Data preparation
+**Opening the Video**  
+First, [download]() the dataset from our tutorials repository. To follow along with this example, we will only analyze part of the data (position 0). Also download the other files in the folder. These will be used to do corrections.
+
+In Fiji, turn on SciFIO (Edit>Options>ImageJ2 tick the box). Then open the video by dragging it from your file explorer to the Fiji bar. The video should look similar to the screenshot in figure 4.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img1.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 4: Screenshot of the dataset. In the top half of the split view the red emission is shown, in the bottom half the green emission. Note that the excitation channel can be switched with the "c" scrollbar below the image. Currently, C=0 indicating that the red laser was used for excitation of this frame.
+</div>
+
+**Video Correction**  
+In most single-molecule microscopes, the excitation beam generates a gaussian profile across the image. This hinders tracking and fluorescence integration algorithms. Therefore this profile is corrected by dividing all frames by a beam profile image. To do so the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) tool is used.
+
+First, the beam profile image must be created. For this, frame 988 of channel 0 and channel 1 are used. To retrieve this image use Image>Duplicate... and select only frame 988. After completion, a single image should appear which is a copy of the respective frame. The image still contains many protein peaks that must be removed to build the representative image. This can be done by applying a gaussian blur with a radius of 40 (Process>Filters>Gaussian blur). The resulting images will look similar to the ones shown below. Alternatively, [download]() these beam profile images from our repository. Save the images in a way that it is clear which one is red, which one is green.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img2.png' width='450'></div>
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img3.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 2: Examples of a beam profile created from frame 988 of this dataset. A Gaussian blur with a radius of 40 was applied.
+</div>
+
+
+Now, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) command (Plugins>Mars>Image>Util). Make sure the full example video and the beam profile image are open in Fiji. Set the Channel to 0 and the background image to the red profile image you have just created. Run the command and you will see that the protein channel has been corrected for the beam profile. Note that sometimes this difference is difficult to spot by eye. Repeat this step for channel 1 with the green background beam profile image.
+
+**Affine2D matrix**  
+To correlate the coordinates in the top half of the split view with those of the bottom half of the split view, we use a transformation matrix (Affine2D matrix).
+For this dataset, the following matrix will be used:  
+|                 | Left to Right matrix     |
+| :-------------  | :------------- |
+| m<sub>00</sub>             | 1.00276          |
+| m<sub>01</sub>             | 0.000208              |
+| m<sub>02</sub>             | 1.71236       |
+| m<sub>10</sub>             | 0 .000267             |
+| m<sub>11</sub>             | 1.00312          |
+| m<sub>12</sub>             | 506.91025          |
+
+Table 1: Affine2D conversion matrix values
+
+More information about the calculation of this matrix can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
+
+
+
+---
+
+
+<sup>[1](https://doi.org/10.1038/nmeth.1208)
+
+
+---
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img14.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 1:
+</div>
+
+
+---
+
 The analysis of an smFRET dataset consists of a number of typical steps: (figure 2)
 - Data recording: recording of the fluorescent emission signal both upon acceptor excitation (figure 2, C=0) and donor excitation (C=1) over time.
 - Data analysis: starting by the extraction of intensity vs. time traces by means of peak integration followed by the application of several correction factors accounting for background differences, signal leakage, direct excitation effects and detection factors.
 - Data interpretation: calculation of the FRET efficiency (E) and stoichiometry (S) for each molecule followed by the identification of the ensemble average E and S values for the population.
 
-For more in-depth information on the analysis procedure and accompanying formulae justification the reader is kindly referred to the study published by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img20.png' width='650'></div>
-
-<div style="text-align: center">
-Figure 2: General overview of the analysis process of the smFRET dataset consisting of data recording and data analysis steps in Mars leading to the calculation of the FRET efficiency (E) and stoichiometry (S) values.
-</div>
 
 
-**Dataset Characteristics**  
-The data as provided by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img21.png' width='750'></div>
-
-<div style="text-align: center">
-Figure 3: Overview of the different signals that are obtained from the analysis dependent on channel number and location on the split view.
-</div>
 
 **The Mars Workflow**  
-The previously introduced analysis steps can be implemented in Mars directly. Figure 4 shows the specific steps and tools that are used in the analysis. [Documentation](https://duderstadt-lab.github.io/mars-docs/docs/) is available for each Mars tool specifically.
+The previously introduced analysis steps can be implemented in Mars directly. Figure 4 shows the specific steps and tools that are used in the analysis.  is available for each Mars tool specifically.
 In short, first the video format is converted to contain channel information (excitation color, C=0, 1). Next, peaks are identified and correlated with the other half of the split view using the ROI transformation tool. The molecule integrator tool, subsequently, yields the peak intensity values vs. time for each peak and leads to the generation of three archives for the video: a FRET archive (peaks with both donor and acceptor emission), an acceptor only archive (AO, peaks with acceptor emission only), and a donor only archive (DO, peaks with donor emission only). These are tagged accordingly and merged into one archive. A normalization is carried out to correlate the donor and acceptor emission signals related to their beam profiles. Next, the kinetic change point (KCP) analysis and various data correction steps yield corrected intensity values to calculate E and S values of each molecule. A final plot with a Gaussian distribution fit to find the population center is then made using Python.
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img22.png' width='850'></div>
-
-<div style="text-align: center">
-Figure 4: Schematic representation of the Mars workflow starting from the video as supplied from the database, ending with a fully analyzed S vs. E plot generated in Mars. All steps executed with Mars are shown on the orange background. In this analysis the final plot is made using Python. (AO: acceptor only, DO: donor only)
-</div>
-
-This example workflow highlights the flexibility of Mars to be adapted to the specific dataset catering to the needs for specific implementation steps and flexible archive merging.
 
 
 ---
-
-#### <a name="1"></a> Data preparation
-**Opening and Converting the Video**  
-First, [download](https://zenodo.org/record/1249497) the dataset from Hellenkamp *et al.*<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>. Scroll down on the linked page and download the files named: '1_lo_TIFF.zip', '1_med_TIFF.zip' & 'Calibration_Files_for_TIFFs.zip'.
-To prepare the video for easy analysis, turn SciFIO on in Fiji (Edit>Options>ImageJ2 tick the box) and open the first video (FSII1a_g30r84t200_0.tif) located in the '1_lo_TIFF.zip' folder. The original video does not contain specific channel information but simply displays the results of the different excitation colors in an alternating fashion. To convert the video to have channel information, run [script 1](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/Follow%20along%20example/Script1_convert%20video%20to%20dual%20channel.groovy). For information on how to run a script in Fiji please read [this tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/). If the script ran correctly, a new window should have opened showing a video with the channels represented in red and green.
-
-
-**Calculation of the Affine2D Matrix**  
-Next, to prepare for the data analysis, an Affine2D conversion matrix needs to be calculated. This matrix is used to correlate the peak position as found on one half of the split view to the corresponding position on the other half of the split view. More information about this calculation can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/). Either follow along in the next steps to calculate the matrix or use the result from the calculation as provided in the table below.
-
-To calculate the Affine2D matrix open the file ['calib20140402_0.tif'](https://zenodo.org/record/1249497) from the calibration folder 'Calibration_Files_for_TIFFs.zip'. This file shows a recording of a bead sample that fluoresces in multiple colors upon excitation with a wide variety of wavelengths. In this way, matching of the positions in both halves of the split view is possible. To do so, select a time point of choice and duplicate the frame twice (Image>Duplicate). This will create two images of the video at the same time point. Rename the images 'left' and 'right' and in each image black out the respective halve of the view by selecting that region with the square ROI tool and pressing delete. This will result in a set of images resembling the ones in the screenshot below.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img1.png' width='450'></div>
-
-Next, open the registration tool (Plugins>Registration>Descriptor-based registration (2d/3d)) and select 'left' as the first image, 'right' as the second. Press OK and supply the settings as shown below in the next dialoge. After pressing OK, adjust the sigma and threshold values accordingly such that the peaks in the image are identified and press done. Use the default Gaussian fit parameters in the next window and press OK. This should open both an image displaying the overlap as well as a log window that displays the actual Affine2D matrix. Save the values of this matrix into a text document.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img3.png' width='450'></div>
-
-The following values were found: (note that matrices calculated at a different T or with different settings can result in slightly different values)
-
-|                 | Left to Right matrix     |
-| :-------------  | :------------- |
-| m<sub>00</sub>             | 0.986          |
-| m<sub>01</sub>             | 0              |
-| m<sub>02</sub>             | 268.639        |
-| m<sub>10</sub>             | 0              |
-| m<sub>11</sub>             | 0.993          |
-| m<sub>12</sub>             | 1.170          |
-
-Table 1: Affine2D conversion matrix values
 
 ---
 
