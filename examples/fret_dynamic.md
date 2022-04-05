@@ -148,7 +148,7 @@ Figure 5: Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manag
 
 
 **3. Apply the molecule integrator to extract I vs. T traces**  
-Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
+Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Tag the archive as "FRET" and save.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img19.png' width='450'>
@@ -173,6 +173,27 @@ The molecule integrator automatically names the intensity traces according to th
 
 
 Table 2: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
+
+##### The AO Archive
+Follow the procedure exactly as written in the section 'The FRET Archive' with the only difference that in this case in the ROI Transform window the 'Remove colocalizing ROIs' should be set to true (see screenshot below). Tag the archive as "AO" and save.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img24.png' width='450'></div>
+
+##### The DO Archive
+Follow the procedure exactly as written in the section 'The FRET Archive' with the following changes:
+- Peak finder: select the lower half of the screen, and select channel 1 in the dialog.
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img26.png' width='450'></div>
+- Transform ROI: apply inverse transformation, set channel to 0, and choose "short to long" as the transformation direction. (see screenshots below)
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img27.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img28.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img29.png' width='450'></div>
+
+Tag the archive as "DO" and save.
+
+
 
 
 ---
@@ -207,32 +228,6 @@ Figure 1:
 
 
 
-
-
-
-
-##### The AO and DO Archives
-
-|                | FRET archive     | AO archive     | DO archive     |
-| :------------- | :------------- | :------------- | :------------- |
-| Molecule      | <img align='center' src='{{site.baseurl}}/examples/img/fret/img17.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img19.png' width='250'> | <img align='center' src='{{site.baseurl}}/examples/img/fret/img18.png' width='240'> |
-| What to measure | Intensity of fluorescence in red upon red excitation (I<sub>aemaex</sub>), Intensity of fluorescence in green upon green excitation (I<sub>demdex</sub>), Intensity of fluorescence in red upon green excitation (FRET, I<sub>aemdex</sub>)  | Intensity of fluorescence in red upon red excitation (I<sub>aemaex</sub>), Leaking fluorescence to the green channel upon green excitation (I<sub>demdex</sub>), Leaking fluorescence to the red channel when excited with green (I<sub>aemdex</sub>)  | Leaking fluorescence of red upon green excitation (I<sub>aemdex</sub>), Intensity of fluorescence in green upon green excitation (I<sub>demdex</sub>)  |
-| Parameter names  | I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>  | I<sub>aemaex</sub><sup>(AO)</sup>, I<sub>demdex</sub><sup>(AO)</sup> & I<sub>aemdex</sub><sup>(AO)</sup>  |  I<sub>aemaex</sub><sup>(DO)</sup>, I<sub>aemdex</sub><sup>(DO)</sup> & I<sub>demdex</sub><sup>(DO)</sup> |
-| Analysis procedure  | Find peaks in red, Transform ROIs (Affine: L->R) to colocalize (C=1) | Find peaks in red, Transform ROIs (Affine: L->R) to filter out colocalizing peaks (C=1)  | Find peaks in green, Transform ROIs (Affine: R->L) to filter out colocalizing peaks (C=0)  |
-
-<div style="text-align: center">
-Table 3: Overview of the three different archives that are created in this step of the analysis: the FRET archive, Acceptor Only (AO) archive and Donor Only (DO) archive. The first row of the table shows a representable molecule for the category, the second row explains what information needs to be extracted from this category of molecules, the third row the corresponding parameter names, and the final row describes the analysis procedure that needs to be followed in Mars.
-</div>
-
-Change the settings in the previously described tools (peak finder, transform ROIs & molecule integrator) according to the table to generate the AO and DO archives. In summary:
-
-**DO Archive**  
-- Peak finder: channel = 1
-- Transform ROIs: R->L Affine 2D Matrix (supply  the L->R matrix and activate the 'inverse' button in the dialog), short to long, channel = 0, 'Remove colocalizing ROIs' = True.
-
-**AO Archive**  
-- Peak finder: channel = 0
-- Transform ROIs: L->R Affine 2D Matrix, long to short, channel = 1, 'Remove colocalizing ROIs' = True.
 
 
 **Tag and Merge the Archives**  
