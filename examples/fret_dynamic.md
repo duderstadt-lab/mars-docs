@@ -178,18 +178,18 @@ Table 2: Overview of definitions of intensity values with their corresponding na
 Follow the procedure exactly as written in the section 'The FRET Archive' with the only difference that in this case in the ROI Transform window the 'Remove colocalizing ROIs' should be set to true (see screenshot below). Tag the archive as "AO" and save.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img24.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img24.png' width='350'></div>
 
 ##### The DO Archive
 Follow the procedure exactly as written in the section 'The FRET Archive' with the following changes:
 - Peak finder: select the lower half of the screen, and select channel 1 in the dialog.
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img26.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img26.png' width='350'></div>
 - Transform ROI: apply inverse transformation, set channel to 0, and choose "short to long" as the transformation direction. (see screenshots below)
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img27.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img28.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img29.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img27.png' width='350'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img28.png' width='350'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img29.png' width='350'></div>
 
 Tag the archive as "DO" and save.
 
