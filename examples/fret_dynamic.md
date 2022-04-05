@@ -208,9 +208,13 @@ To do a visual inspection of the identified traces open the plot window in the m
 In the screenshot below the red line represents I<sub>aemaex</sub>, the grey line I<sub>aemdex</sub> (FRET), and the blue line I<sub>demdex</sub>. These are the three intensity vs. time traces that are required to do further FRET calculations on.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img30.png' width='650'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img30.png' width='650'></div>
 
 
+#### <a name="4"></a> Data Analysis and Corrections
+Please download the [data analysis scripts]() from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below
+
+**Identify the state transitions in each trace**
 
 ---
 
@@ -237,44 +241,7 @@ Figure 1:
 
 ---
 
----
 
-
-
-
-
-
-
-
-
-
-**Plot the Traces to do a Visual Inspection**  
-To do a visual inspection of the identified traces open the plot window in the molecules tab and add three line plots representing the three measured intensities (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>), if applicable, for each molecule. To do so select the options as shown in the screenshot.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img24.png' width='450'></div>
-
-In the screenshot below the red line represents I<sub>aemaex</sub>, the grey line I<sub>aemdex</sub> (FRET), and the blue line I<sub>demdex</sub>. These are the three intensity vs. time traces that are required to do further FRET calculations on.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img9.png' width='650'></div>
-
----
-
-#### <a name="4"></a> Data Analysis and Corrections
-Please download the [data analysis scripts](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/Follow%20along%20example) from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below.
-
-**Add the metadata tags to all corresponding molecule records**
-For easier record handling, first, run [migrateTagsFromMetadataToMolecules.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/Follow%20along%20example/migrateTagsFromMetadataToMolecules.groovy) to make migrate all the assigned metadata tags (AO, DO, FRET) to the corresponding molecule records. This makes it easier to look at the data in a later stadium of the analysis.
-
-**Do a position-specific excitation correction accounting for beam profile differences**
-For reliable calculations, it is of importance that calculations are not distorted by differences in the beam intensity across the field (beam profile differences) or by differences between donor and acceptor excitation. To account for this, the data is first normalized according to equation 1. In short, the profile-corrected intensity is obtained by multiplying the uncorrected intensity by a normalized ratio between the donor and acceptor of the signal at a certain position. This correction term is calculated using the two calibration images supplied by Hellenkamp et al and correlates the donor and acceptor signal to one another while at the same time correcting for the beam profile of the microscope set-up.
-
-$$\begin{equation}
-_ {(profile)}^{i}I_{Aem|Dex} = ^{i}I_{Aem|Dex}* \frac{I_{D}(x',y')}{I_{A}(x,y)}
-\end{equation}$$
-
-To do so, open script [ProfileCorrection.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/Follow%20along%20example/ProfileCorrection.groovy) as well as the two calibration images rr_iMap and og_iMap that were supplied along with the video data from the Zenodo link. Also make sure to have the molecule archive created in the previous steps of this protocol opened. Then run the script. An additional column will be added to the data table for each molecule record where the corrected intensity I<sub>aexaem</sub> will be found named "0_Profile_Corrected".
 
 **Identify the bleaching positions for donor and acceptor**
 To identify the bleaching positions for both donor and acceptor in each trace, the single change point finder tool from Mars is applied. After running this tool, the positions of the bleaching events of both dyes will be added to the corresponding molecule record. This information can later on be used to filter molecule traces (make sure each trace has both 1 donor and 1 acceptor) and to do the FRET calculations obtaining E and S values for each molecule.
