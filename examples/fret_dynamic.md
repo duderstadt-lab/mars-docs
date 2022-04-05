@@ -99,7 +99,7 @@ More information about the calculation of this matrix can be found in the [Affin
 #### <a name="3"></a> Localization of Peaks and Intensity vs. T traces
 To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while retaining information on to which population the identified molecule belongs, information that is required to do the correction factor calculations.
 
-All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 2 to repeat the archive creation also for the AO and DO archives.
+All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 3 to repeat the archive creation also for the AO and DO archives.
 
 ##### The FRET Archive
 **1. Identify the red peaks in the red channel (C=0, top)**  
@@ -143,9 +143,36 @@ Next, transform the coordinates (ROIs) of the peaks that were just identified to
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img18.png' width='450'></div>
 <div style="text-align: center">
-Figure 4: Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _short and _long names.
+Figure 5: Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _short and _long names.
 </div>
 
+
+**3. Apply the molecule integrator to extract I vs. T traces**  
+Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img19.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img20.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img21.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img22.png' width='450'></div>
+
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img23.png' width='450'></div>
+<div style="text-align: center">
+Figure 6: Output of the Molecule Integration tool: an archive with the intensity information for each identified molecule.
+</div>
+
+The molecule integrator automatically names the intensity traces according to the provided channel and wavelength color information. Please reference table 3 for an overview of the corresponding archive names to the intensity parameter names as used in the example.
+
+| Intensity parameter     | Name in Mars     |
+| :------------- | :------------- |
+| I<sub>aemaex</sub>       | "0" (corresponding to C=0, red excitation, red emission)       |
+| I<sub>aemdex</sub>       | "1 Red" (corresponding to C=1, green excitation, red emission)       |
+| I<sub>demdex</sub>       | "1 Green" (corresponding to C=1, green excitation, green emission)       |
+
+
+Table 2: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
 
 
 ---
@@ -180,25 +207,7 @@ Figure 1:
 
 
 
-**3. Apply the molecule integrator to extract I vs. T traces**  
-Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). For channel 0 select to only integrate the peaks in red (long) and in channel 1 integrate the peaks in both colors (both). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Repeat the three steps above for both the AO and DO archive with the details as listed below in table 3.
 
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img37.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img38.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img39.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/img40.png' width='450'></div>
-
-The molecule integrator automatically names the intensity traces according to the provided channel and wavelength color information. Please reference table 3 for an overview of the corresponding archive names to the intensity parameter names as used in the example.
-
-| Intensity parameter     | Name in Mars     |
-| :------------- | :------------- |
-| I<sub>aemaex</sub>       | "0" (corresponding to C=0, red excitation, red emission)       |
-| I<sub>aemdex</sub>       | "1 Red" (corresponding to C=1, green excitation, red emission)       |
-| I<sub>demdex</sub>       | "1 Green" (corresponding to C=1, green excitation, green emission)       |
-
-
-Table 2: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
 
 
 
