@@ -72,16 +72,15 @@ kcpCalc.setContext(ij.getContext());
 
 //Set all the input parameters
 kcpCalc.setArchive(archive);
-kcpCalc.setXcolumn("T");
-kcpCalc.setYcolumn("y");
+kcpCalc.setXColumn("T");
+kcpCalc.setYColumn("y");
 kcpCalc.setConfidenceLevel(0.99);
 kcpCalc.setGlobalSigma(1.0);
 kcpCalc.setRegionSource("Molecules");
-kcpCalc.setCalculateBackgroundSigma(False);
-kcpCalc.setBackgroundRegion(None);
-kcpCalc.setAnalyzeRegion(False);
+kcpCalc.setCalculateBackgroundSigma(false);
+kcpCalc.setAnalyzeRegion(false);
 kcpCalc.setRegion(None);
-kcpCalc.setFitSteps(False);
+kcpCalc.setFitSteps(false);
 kcpCalc.setIncludeTags("Active");
 
 //Run the Command
