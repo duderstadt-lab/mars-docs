@@ -214,7 +214,21 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 #### <a name="4"></a> Data Analysis and Corrections
 Please download the [data analysis scripts]() from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below
 
-**Identify the state transitions in each trace**
+**Identify the bleaching points for both dyes**
+
+
+- also define T_bleach, fret region
+
+
+**Identify the state transitions in the FRET region of each trace**
+
+
+#### Data Corrections
+**Trace-wise background correction**
+
+**Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**
+
+**Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**
 
 ---
 
