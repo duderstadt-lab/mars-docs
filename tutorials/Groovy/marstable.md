@@ -1,16 +1,16 @@
 ---
-layout: scripting
+layout: groovy
 title: "MarsTables tutorial"
-permalink: /tutorials/scripting/marstable/index.html
+permalink: /tutorials/groovy/marstable/index.html
 ---
 
 _level: intermediate, duration: 10 min_
 
-This tutorial shows how to create and modify a **MarsTable** using the scripting feature in Fiji. MarsTables add the functionality of generating tables within the Fiji/ImageJ environment. For a general [introduction on Groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) or more [advanced scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/) the reader is referred to the scripting tutorials. A practical example of the use of a MarsTable is found in the Examples Gallery [short examples, nr2](https://duderstadt-lab.github.io/mars-docs/examples/).
+This tutorial shows how to create and modify a **MarsTable** using the scripting feature in Fiji. MarsTables add the functionality of generating tables within the Fiji/ImageJ environment. For a general [introduction on Groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/introduction-to-groovy-scripting/) or more [advanced scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/advanced-groovy-scripting/) the reader is referred to the scripting tutorials. A practical example of the use of a MarsTable is found in the Examples Gallery [short examples, nr2](https://duderstadt-lab.github.io/mars-docs/examples/).
 
 
 ### 1. How to create a MarsTable
-This example shows how to create a MarsTable filled with dummy values. Open the script editor as explained in the [introductory tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) and run the following script.
+This example shows how to create a MarsTable filled with dummy values. Open the script editor as explained in the [introductory tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/introduction-to-groovy-scripting/) and run the following script.
 
 ```Groovy
 #@output MarsTable table

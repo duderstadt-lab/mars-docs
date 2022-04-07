@@ -1,7 +1,7 @@
 ---
-layout: scripting
-title: Scripting
-permalink: /tutorials/scripting/index.html
+layout: groovy
+title: Groovy
+permalink: /tutorials/groovy/index.html
 ---
 
 The files accompanying the tutorials, such as an example dataset, can be found in the [git tutorials repository](https://github.com/duderstadt-lab/mars-tutorials).

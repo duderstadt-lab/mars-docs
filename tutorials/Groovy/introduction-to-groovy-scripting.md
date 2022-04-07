@@ -1,12 +1,12 @@
 ---
-layout: scripting
+layout: groovy
 title: "Introduction to Groovy Scripting Tutorial"
-permalink: /tutorials/scripting/introduction-to-groovy-scripting/index.html
+permalink: /tutorials/groovy/introduction-to-groovy-scripting/index.html
 ---
 
 _level: intermediate, duration: 20 min_
 
-This tutorial will introduce the basics of Mars scripting. Scripting gives the opportunity of (partly) automating data analysis. In this first tutorial the key aspects of scripting will be discussed: how to open the Fiji script editor, how to execute a script, access data from the Molecule Archive from within a script, examples for simple calculations, and coding in single lines: streams. The [advanced scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/) will go into more detail on less straight-forward Groovy scripting in **Mars**. For more information on the Groovy scripting language the reader is referred to the [Groovy documentation](https://groovy-lang.org/learn.html).
+This tutorial will introduce the basics of Mars scripting. Scripting gives the opportunity of (partly) automating data analysis. In this first tutorial the key aspects of scripting will be discussed: how to open the Fiji script editor, how to execute a script, access data from the Molecule Archive from within a script, examples for simple calculations, and coding in single lines: streams. The [advanced scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/advanced-groovy-scripting/) will go into more detail on less straight-forward Groovy scripting in **Mars**. For more information on the Groovy scripting language the reader is referred to the [Groovy documentation](https://groovy-lang.org/learn.html).
 
 These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Tutorial_files/Scripting/Groovy%20tutorial%20calculations%20in%20Python.ipynb).
 
@@ -280,7 +280,7 @@ archive.getMetadata(0).setParameter("dist_y_var",dist_var)
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/intro-groovy/img11.png' width='550'/></div>
 
-As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is further described in the [advanced groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/).
+As could be expected, the variance is rather high. As shown in section 5.1 the difference in the travelled distance on the y-axis is very different for tagged molecules compared to non-tagged molecules. Therefore, a next step could be to calculate the variance for tagged molecules only, as well as a variance for the non-tagged population. This is further described in the [advanced groovy scripting tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/advanced-groovy-scripting/).
 
 The archive generated in this tutorial can also be found in the [tutorial files repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting) on GitHub ('TestVideo_archive_disty_var.yama').
 

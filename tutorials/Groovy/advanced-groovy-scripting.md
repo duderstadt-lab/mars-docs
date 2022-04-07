@@ -1,21 +1,21 @@
 ---
-layout: scripting
+layout: groovy
 title: "Advanced Groovy Scripting Tutorial"
-permalink: /tutorials/scripting/advanced-groovy-scripting/index.html
+permalink: /tutorials/groovy/advanced-groovy-scripting/index.html
 ---
 
 _level: advanced, duration: 20 min_
 
-This advanced groovy scripting tutorial builds on the information discussed in the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial. For an explanation on how to run a script, script components, and some background information about main functions used during scripting the reader is referred to that tutorial.
+This advanced groovy scripting tutorial builds on the information discussed in the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/introduction-to-groovy-scripting/) tutorial. For an explanation on how to run a script, script components, and some background information about main functions used during scripting the reader is referred to that tutorial.
 
 To follow along with this tutorial open the 'TestVideo_archive.yama' archive in **Mars** that was created in the [Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) tutorial. Alternatively, download this archive from the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting).
 
 These calculations can also be done in a Jupyter notebook with Python. This notebook is provided in the [mars tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Tutorial_files/Scripting).
 
 ### 1. Filtering with 'has' functions - Calculate the dist_y_var with respect to tag category
-In the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial the distance travelled by each molecule in the y direction (dist_y) was calculated (section 5.1). Subsequently, the sample variance on the collection of obtained values was calculated (section 5.2). Since the data in the Molecule Archive consists of molecules showing no activity (not tagged) as well as active molecules (tagged 'Active') and thus large differences in the dist_y values are observed, also the calculated sample variance was very high. To get a better understanding of the variance on the dist_y parameter the variance should be calculated with respect to both categories instead yielding a variance for the tagged molecules (dist_y_active_var) as well as the untagged molecules (dist_y_unactive_var).  
+In the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/introduction-to-groovy-scripting/) tutorial the distance travelled by each molecule in the y direction (dist_y) was calculated (section 5.1). Subsequently, the sample variance on the collection of obtained values was calculated (section 5.2). Since the data in the Molecule Archive consists of molecules showing no activity (not tagged) as well as active molecules (tagged 'Active') and thus large differences in the dist_y values are observed, also the calculated sample variance was very high. To get a better understanding of the variance on the dist_y parameter the variance should be calculated with respect to both categories instead yielding a variance for the tagged molecules (dist_y_active_var) as well as the untagged molecules (dist_y_unactive_var).  
 
-To do so, the script discussed in section 5.2 of the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/) tutorial should be adjusted to hold a filtering step to discriminate between tagged and non-tagged molecules. For this purpose the 'hasTag()' function will be employed. In the script below in the first loop the 'dist_y' is calculated and assigned. This step can be skipped in case these values are already assigned after following the steps in the introductory tutorial.
+To do so, the script discussed in section 5.2 of the [introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/introduction-to-groovy-scripting/) tutorial should be adjusted to hold a filtering step to discriminate between tagged and non-tagged molecules. For this purpose the 'hasTag()' function will be employed. In the script below in the first loop the 'dist_y' is calculated and assigned. This step can be skipped in case these values are already assigned after following the steps in the introductory tutorial.
 
 ```Groovy
 #@ MoleculeArchive archive
@@ -184,7 +184,7 @@ archive.getMetadata(0).setParameter("disty_sigma_unactive",sigma_unactive)
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/advanced-groovy/img4.png' width='550'/></div>
 
-To plot the mean dist_y values and accompanying errors use the following script. In this example an XY Chart scriptable widget is used plotting the two categories as x=1 and x=2 in two different colors since this is the only chart type able to plot error bars. Note that even though this gives a good visual description of the dataset, the reader is referred to the [mars to python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial to make better looking plots using the seaborn and MatPlotLib libraries in Python instead. Note that for this script the language option has to be set to "Groovy".
+To plot the mean dist_y values and accompanying errors use the following script. In this example an XY Chart scriptable widget is used plotting the two categories as x=1 and x=2 in two different colors since this is the only chart type able to plot error bars. Note that even though this gives a good visual description of the dataset, the reader is referred to the [mars to python](https://duderstadt-lab.github.io/mars-docs/tutorials/python/open-a-Molecule-Archive-in-Python/) tutorial to make better looking plots using the seaborn and MatPlotLib libraries in Python instead. Note that for this script the language option has to be set to "Groovy".
 
 ```Groovy
 #@ MoleculeArchive archive
