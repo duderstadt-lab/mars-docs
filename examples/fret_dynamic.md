@@ -215,12 +215,26 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 Please download the [data analysis scripts]() from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below
 
 **Identify the bleaching points for both dyes**
+In order to correctly assess the FRET parameters, it is important to find out the bleaching time points of both dyes and to identify the first dye that bleached. Only the frames of the video up until that point are relevant for possible FRET. As shown in figure 7, this would respectively give us the positions of Bleach_Red and Bleach_Green as well as the region of interest "FRET_region".
 
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img31.png' width='450'></div>
 
-- also define T_bleach, fret region
+<div style="text-align: center">
+Figure 7: Representable molecule trace showing the raw intensities of Iaemaex (red line), Idemdex (blue line), and Iaemdex (gray line) with respect to the frame number (T). The positions "Bleach_Red" and "Bleach_Green" show the frame at which bleaching of the respective dye occurred. The yellow highlighted region "FRET_region" indicates which frames should be considered when assessing the molecule's FRET parameters.
+</div>
 
+To identify these bleaching positions, the script uses a [kinetic change point algorithm](https://duderstadt-lab.github.io/mars-docs/docs/kcp/SingleChangePointFinder/) that finds the single largest intensity transition within the respective intensity trace. This position is then labelled according to the assessed color. Subsequently, a script assesses the values of Bleach_Red and Bleach_Green of the molecule and finds the bleaching step that occurred first. A MarsRegion is then defined that runs from T=0 until the first bleaching event. Only in this region FRET can occur.
 
 **Identify the state transitions in the FRET region of each trace**
+To help visual inspection of the traces, another [kintetic change point algorithm](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/) is used to identify the different intensity levels that are visited by the Iaemdex (FRET) trace in the frames that are part of the FRET_region. The results of this analysis are shown in the plot by short horizontal lines indicating possible FRET states between which switching occurred during the experiment.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img32.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 8: Representable molecule trace showing the raw intensities of Iaemaex (red line), Idemdex (blue line), and Iaemdex (gray line) with respect to the frame number (T). The positions "Bleach_Red" and "Bleach_Green" show the frame at which bleaching of the respective dye occurred. The yellow highlighted region "FRET_region" indicates which frames should be considered when assessing the molecule's FRET parameters. In addition, the horizontal black lines on the gray trace, indicate intensity levels that were found in the FRET_region. These can be used to help identify FRET state switching.
+</div>
 
 
 #### Data Corrections
