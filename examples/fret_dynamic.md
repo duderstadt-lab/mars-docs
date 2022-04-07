@@ -218,7 +218,7 @@ Please download the [data analysis scripts]() from the repository. This will aut
 In order to correctly assess the FRET parameters, it is important to find out the bleaching time points of both dyes and to identify the first dye that bleached. Only the frames of the video up until that point are relevant for possible FRET. As shown in figure 7, this would respectively give us the positions of Bleach_Red and Bleach_Green as well as the region of interest "FRET_region".
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img31.png' width='450'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img33.png' width='450'></div>
 
 <div style="text-align: center">
 Figure 7: Representable molecule trace showing the raw intensities of Iaemaex (red line), Idemdex (blue line), and Iaemdex (gray line) with respect to the frame number (T). The positions "Bleach_Red" and "Bleach_Green" show the frame at which bleaching of the respective dye occurred. The yellow highlighted region "FRET_region" indicates which frames should be considered when assessing the molecule's FRET parameters.
@@ -238,9 +238,36 @@ Figure 8: Representable molecule trace showing the raw intensities of Iaemaex (r
 
 
 #### Data Corrections
-**Trace-wise background correction**
+**Trace-wise Background Correction**
+The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. The mean background intensities are stored as molecule parameters (532_Green_Background, 532_Red_Background, and 637_Red_Background).
 
 **Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**
+In the next step, two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>.
+
+The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
+
+
+$$\begin{equation}
+\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle   ^{ii}E_{app}^{(DO)} \rangle}
+    \quad\mathrm{and}\quad
+\delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}
+\end{equation}$$
+
+$$\begin{equation}
+F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}
+\end{equation}$$
+
+$$\begin{equation}  
+^{iii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}
+   \quad\mathrm{and}\quad   
+^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
+\end{equation}$$
+
+
+
+
+
+
 
 **Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**
 
@@ -271,12 +298,7 @@ Figure 1:
 
 
 
-**Identify the bleaching positions for donor and acceptor**
-To identify the bleaching positions for both donor and acceptor in each trace, the single change point finder tool from Mars is applied. After running this tool, the positions of the bleaching events of both dyes will be added to the corresponding molecule record. This information can later on be used to filter molecule traces (make sure each trace has both 1 donor and 1 acceptor) and to do the FRET calculations obtaining E and S values for each molecule.
 
-Start by opening the [findBleachingPositions.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/Follow%20along%20example/findBleachingPositions.groovy) script from the repository. This script automates the command and makes sure bleaching positions are found for DO, AO and FRET molecules in the colors relevant. Run the script. This will add bleaching positions to the archive shown as markers with dotted lines in the plots.
-
-<<Figure>>
 
 **Selecting the traces to be included in further analysis**
 Before proceeding with the following part of automated analysis, it is required to inspect the traces manually and assign the tag 'Accepted' for all molecules fulfilling the requirements:
@@ -290,34 +312,10 @@ Please go through all molecule plots in the archive and tag the molecules accord
 
 
 
-**Trace-wise Background Correction**
-The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively.
-
-To do these calculations on the archive, open the script [smFRET_workflow_1_profile_corrected.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/Follow%20along%20example/smFRET_workflow_1_profile_corrected.groovy) and run in the script editor. All calculated values discussed will be added to the archive.
-
-**Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**
-In this step two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>.
-
-The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
 
 
-$$\begin{equation}
-\alpha = \frac{\langle ^{ii}E_{app}^{(DO)} \rangle}{1 - \langle   ^{ii}E_{app}^{(DO)} \rangle}
-    \quad\mathrm{and}\quad
-\delta = \frac{\langle ^{ii}S_{app}^{(AO)} \rangle}{1 - \langle ^{ii}S_{app}^{(AO)} \rangle}
-\end{equation}$$
 
-$$\begin{equation}
-F_{A|D}=^{ii}I_{Aem|Dex} - \alpha ^{ii}I_{Dem|Dex} - \delta ^{ii}I_{Aem|Aex}
-\end{equation}$$
 
-$$\begin{equation}  
-^{iii}E_{app} = \frac{F_{A|D}}{F_{A|D} + ^{ii}I_{Dem|Dex}}
-   \quad\mathrm{and}\quad   
-^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
-\end{equation}$$
-
-This correction has been done in the previously run script.
 
 **Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**
 The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalizing effective fluorescence quantum yields and detection efficiencies of both donor and acceptor. To find both global correction factors a linear regression analysis is performed with the following formula. To do these calculations, the average E or S value respectively of each molecule is used to prevent unequal weighting of longer traces.
