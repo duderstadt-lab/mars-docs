@@ -214,7 +214,7 @@ In the screenshot below the red line represents I<sub>aemaex</sub>, the grey lin
 #### <a name="4"></a> Data Analysis and Corrections
 Please download the [data analysis scripts]() from the repository. This will automate all following steps and will eventually generate an archive containing the fully corrected E and S values for each relevant molecule. For a better understanding of the procedure, the parts of the script are discussed in detail below
 
-**Identify the bleaching points for both dyes**
+**Identify the bleaching points for both dyes**  
 In order to correctly assess the FRET parameters, it is important to find out the bleaching time points of both dyes and to identify the first dye that bleached. Only the frames of the video up until that point are relevant for possible FRET. As shown in figure 7, this would respectively give us the positions of Bleach_Red and Bleach_Green as well as the region of interest "FRET_region".
 
 <div style="text-align: center">
@@ -226,7 +226,7 @@ Figure 7: Representable molecule trace showing the raw intensities of Iaemaex (r
 
 To identify these bleaching positions, the script uses a [kinetic change point algorithm](https://duderstadt-lab.github.io/mars-docs/docs/kcp/SingleChangePointFinder/) that finds the single largest intensity transition within the respective intensity trace. This position is then labelled according to the assessed color. Subsequently, a script assesses the values of Bleach_Red and Bleach_Green of the molecule and finds the bleaching step that occurred first. A MarsRegion is then defined that runs from T=0 until the first bleaching event. Only in this region FRET can occur.
 
-**Identify the state transitions in the FRET region of each trace**
+**Identify the state transitions in the FRET region of each trace**  
 To help visual inspection of the traces, another [kintetic change point algorithm](https://duderstadt-lab.github.io/mars-docs/docs/kcp/ChangePointFinder/) is used to identify the different intensity levels that are visited by the Iaemdex (FRET) trace in the frames that are part of the FRET_region. The results of this analysis are shown in the plot by short horizontal lines indicating possible FRET states between which switching occurred during the experiment.
 
 <div style="text-align: center">
@@ -238,10 +238,10 @@ Figure 8: Representable molecule trace showing the raw intensities of Iaemaex (r
 
 
 #### Data Corrections
-**Trace-wise Background Correction**
+**Trace-wise Background Correction**  
 The first correction that is applied to the dataset is a background correction. In this trace-wise process the mean fluorophore intensity after fluorophore bleaching is considered to be the background signal and is subtracted from the calculated fluorophore intensity. This is done for each intensity measurement (I<sub>aemaex</sub>, I<sub>demdex</sub> & I<sub>aemdex</sub>) separately and in a trace-wise manner. The values of the corrected I parameters are stored in the archive as <sup>ii</sup>I<sub>aemaex</sub>, <sup>ii</sup>I<sub>demdex</sub> & <sup>ii</sup>I<sub>aemdex</sub> respectively. The mean background intensities are stored as molecule parameters (532_Green_Background, 532_Red_Background, and 637_Red_Background).
 
-**Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**
+**Correction for Leakage ($\alpha$) and Direct excitation ($\delta$)**  
 In the next step, two data corrections are carried out: a correction for leakage, the process of donor emission in the acceptor detection channel, and a correction for direct excitation, the process of acceptor emission by direct excitation of the acceptor at the donor wavelength. Both lead to signal intensity distortions when uncorrected and would influence the measured FRET parameters. Therefore they are corrected in this part of the analysis procedure. For more information about these correction parameters the reader is referred to literature<sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup>.
 
 The leakage ($\alpha$) and direct excitation ($\delta$) correction factors can be calculated using the formulae below. As indicated, these formulae require the calculated fluorescence intensities from the DO and AO populations respectively. Subsequently, they are implemented in the latter three formulae to find the corrected E and S values. The $\alpha$ and $\delta$ correction factors as well as the calculated F<sub>A|D</sub>, <sup>iii</sup>E<sub>app</sub><sup>(DO)</sup>, and <sup>iii</sup>S<sub>app</sub><sup>(AO)</sup> values will appear as parameters in the archive.
@@ -263,63 +263,9 @@ $$\begin{equation}
 ^{iii}S_{app} = \frac{F_{A|D} + ^{ii}I_{Dem|Dex}}{F_{A|D} + ^{ii}I_{Dem|Dex} + ^{ii}I_{Aem|Aex}}
 \end{equation}$$
 
-
-
-
-
-
-
-**Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**
-
----
-
-
-<sup>[1]</sup>(https://doi.org/10.1038/nmeth.1208)
-<sup>[2]</sup>(https://www.nature.com/articles/nchem.1463)
-
----
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img14.png' width='450'></div>
-
-<div style="text-align: center">
-Figure 1:
-</div>
-
-
----
-
-
-
-
-
-
----
-
-
-
-
-
-**Selecting the traces to be included in further analysis**
-Before proceeding with the following part of automated analysis, it is required to inspect the traces manually and assign the tag 'Accepted' for all molecules fulfilling the requirements:
-- There is only 1 donor and only 1 acceptor bleaching step observed in the molecule trace
-- Both donor and receptor are present (in the case of FRET-tagged molecules)
-- No major deviations or changes in signal intensity are observed that could indicate an artefact
-- The fluorescent signal is significantly higher than the noise of the background
-- No switching events are observed in the trace
-
-Please go through all molecule plots in the archive and tag the molecules accordingly. For convenience, the [automated tagging feature in the cog tab](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Settings/) of the archive might be used. Click on the link for more information on how to use this feature.
-
-
-
-
-
-
-
-
-**Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**
-The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalizing effective fluorescence quantum yields and detection efficiencies of both donor and acceptor. To find both global correction factors a linear regression analysis is performed with the following formula. To do these calculations, the average E or S value respectively of each molecule is used to prevent unequal weighting of longer traces.
-
+**Correction for Excitation ($\beta$) and Detection factors ($\gamma$)**  
+The last data correction step corrects for excitation ($\beta$), normalizing excitation intensities and cross-sections of both acceptor and donor, and detection factors ($\gamma$), normalizing effective fluorescence quantum yields and detection efficiencies of both donor and acceptor. To find both global correction factors a linear regression analysis is performed with the following formula.
+Note: Each value of iiiEapp and iiiSapp is included in the regression. This means that longer traces have a larger weight in the final fit since these traces contribute a larger number of data points to the dataset used to make a fit.
 
 $$\begin{equation}  
 
@@ -356,9 +302,53 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 
 \end{equation}$$
 
-To do these calculations on the archive, open the script [smFRET_workflow_2.groovy](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/Follow%20along%20example/smFRET_workflow_2.groovy) and run in the script editior. All calculated values discussed will be added to the archive.
+
 
 ---
+
+
+<sup>[1]</sup>(https://doi.org/10.1038/nmeth.1208)
+<sup>[2]</sup>(https://www.nature.com/articles/nchem.1463)
+
+---
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img14.png' width='450'></div>
+
+<div style="text-align: center">
+Figure 1:
+</div>
+
+
+---
+
+
+
+
+
+
+---
+
+---
+
+===
+Section finished till here
+
+---
+
+
+
+**Selecting the traces to be included in further analysis**
+Before proceeding with the following part of automated analysis, it is required to inspect the traces manually and assign the tag 'Accepted' for all molecules fulfilling the requirements:
+- There is only 1 donor and only 1 acceptor bleaching step observed in the molecule trace
+- Both donor and receptor are present (in the case of FRET-tagged molecules)
+- No major deviations or changes in signal intensity are observed that could indicate an artefact
+- The fluorescent signal is significantly higher than the noise of the background
+- No switching events are observed in the trace
+
+
+
+
 
 #### <a name="9"></a> Plotting & Data Exploration in Python
 To explore the data save the generated archive and open the [Jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials). Set up the connection to your local copy of Fiji as indicated and change the file path to the archive. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells a plot is obtained showing the fully corrected E and S values for all molecules that matched the selection criteria in this archive.  
