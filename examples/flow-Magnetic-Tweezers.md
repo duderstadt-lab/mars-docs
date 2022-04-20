@@ -75,7 +75,7 @@ The scripts for analyzing the dataset can be found in this [GitHub repository](h
 
 ##### Importing the video in Fiji
 
-The file is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) to Fiji (the file can be accessed using this link: `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442)). For this example, a smaller video with only a segment of the total field of view from a gyrase experiment is provided. The white pixels in the field of view represent the magnetic beads and can either be single DNA-bead tethers, multiple DNA-bead tethers, or beads stuck on the surface. <br>
+The file is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) to Fiji (the file can be accessed using this link: `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442)). A smaller video with only a segment of the total field of view from a gyrase experiment is provided [here](https://github.com/duderstadt-lab/fmt-tutorials/blob/master/TruncatedVideo/truncated_video.tif). The white pixels in the field of view represent the magnetic beads and can either be single DNA-bead tethers, multiple DNA-bead tethers, or beads stuck on the surface. <br>
 
 
 <p align='center'>
