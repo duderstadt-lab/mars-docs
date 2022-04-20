@@ -75,7 +75,7 @@ The scripts for analyzing the dataset can be found in this [GitHub repository](h
 
 ##### Importing the video in Fiji
 
-The file is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) to Fiji (the file can be accessed using this link: `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442)). A smaller video with only a segment of the total field of view from a gyrase experiment is provided [here](https://github.com/duderstadt-lab/fmt-tutorials/blob/master/TruncatedVideo/truncated_video.tif). The white pixels in the field of view represent the magnetic beads and can either be single DNA-bead tethers, multiple DNA-bead tethers, or beads stuck on the surface. <br>
+The file (TIF video) is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/) to Fiji (the file can be accessed using this link: `FMT_Example_Video.tif` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3786442.svg)](https://doi.org/10.5281/zenodo.3786442)). A smaller video with only a segment of the total field of view from a gyrase experiment is provided [here](https://github.com/duderstadt-lab/fmt-tutorials/blob/master/TruncatedVideo/truncated_video.tif). The white pixels in the field of view represent the magnetic beads and can either be single DNA-bead tethers, multiple DNA-bead tethers, or beads stuck on the surface. <br>
 
 
 <p align='center'>
@@ -84,7 +84,7 @@ The file is [imported](https://duderstadt-lab.github.io/mars-docs/tutorials/work
 
 ##### Opening tracker from Mars plugin
 
-The MARS plugin comes with a built-in tracker. A simple example for using the tracker is explained in detail in the tutorial section and can be found [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). The program uses 'Difference of Gaussian filter' ([DoG filter](../../docs/image/DogFilterProperties)) to find peak position with sub-pixel precision. Once peaks are found, the program tracks them through the stacks making a trajectory of the bead movement in xy-plane. In the screenshot below you can see the detection of single beads by the tracker (yellow crosses) and also the different parameters which can be set for the tracking which are stored in the archive (shown in the console). As mentioned before the provided video is quite big and needs a lot of computational power. Instead of tracking the originale video you can also use a truncated video file to test the tracking yourself which can be found [here](https://github.com/duderstadt-lab/fmt-tutorials/tree/master/TruncatedVideo). It will result in lesser molecules but you can experience the tracking. The fully tracked archive is available [here](https://github.com/duderstadt-lab/fmt-tutorials).
+The MARS plugin comes with a built-in tracker. A simple example for using the tracker is explained in detail in the tutorial section and can be found [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). The program uses 'Difference of Gaussian filter' ([DoG filter](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakTracker/)) to find peak position with sub-pixel precision. Once peaks are found, the algorithm connects the peaks between frames making a trajectory of the bead movement in the xy-plane. In the screenshot below you can see the detection of single beads by the tracker (yellow crosses) and also the different parameters which can be set for the tracking which are stored in the archive (shown in the console). As mentioned before the provided video is quite big and needs a lot of computational power. Instead of tracking the original video, you can also use a truncated video file to test the tracking yourself which can be found [here](https://github.com/duderstadt-lab/fmt-tutorials/tree/master/TruncatedVideo). It will result in lesser molecules but you can experience the tracking. The fully tracked archive is available [here](https://github.com/duderstadt-lab/fmt-tutorials).
 
 
 <p align='center'>
@@ -108,7 +108,7 @@ Once the tracking is done, an archive is created. The 'Info' widget shows how ma
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image005.png' width='700' />
 </p>  
 
-The screenshot below shows an example trace. The evolution of x and y over time is plotted. This trace shows the behavior which we are looking for.
+The screenshot below shows an example trace. The evolution of x and y over time is plotted. This trace shows the behavior which we are interested in.
 
 
 <p align='center'>
@@ -119,7 +119,7 @@ The screenshot below shows an example trace. The evolution of x and y over time 
 
 ##### Adding regions for different activities to the archive
 
-In the experiment conducted, different flow settings and magnet rotations were applied at certain time points to probe for certain DNA behaviors. These time points are annotated in the archive using ‘regions’. In this example a [groovy script](https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy))assigns these automatically. It is the first one out of three groovy scripts used. If you are interested in groovy scripting you can check out our tutorials [here](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/).
+In the experiment conducted, different flow settings and magnet rotations were applied at certain time points to probe for certain DNA behaviors. These time points are annotated in the archive using ‘regions’. In this example a [groovy script](https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step1_Add_Regions.groovy))assigns these automatically. It is the first one out of three groovy scripts used. If you are interested in groovy scripting you can check out our tutorials [here](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/).
 
 
 <p align='center'>
@@ -129,7 +129,7 @@ In the experiment conducted, different flow settings and magnet rotations were a
 #### <a name="classification"></a>Classification using groovy scripts
 
 ##### Selecting parameter boundaries and tags
-To classify the identified molecules in the archive parameters are calculated and compared to threshold values. In the case, a specific threshold value is met a tag will be assigned to the molecule. By selecting a set of tags molecules can be filtered easily without having to remove data from the dataset. More information on the parameters calculated in this example as well as the tagging strategy can be found [here](https://duderstadt-lab.github.io/mars-docs/examples/Additional-Information/index.html). [Script 2]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step2_FMT_Pipeline.groovy) was applied on the MoleculeArchive to do these calculations for each molecule automatically. After running the script these parameters and tags can be found in the archive.
+To classify the identified molecules in the archive, parameters are calculated and compared to threshold values. In this case, a specific threshold value has been met a tag will be assigned to the molecule. By selecting a set of tags, molecules can be filtered easily without having to remove data from the dataset. More information on the parameters and the tagging strategy can be found [here](https://duderstadt-lab.github.io/mars-docs/examples/Additional-Information/index.html). [Script 2]( https://github.com/duderstadt-lab/fmt-scripts/blob/master/Step2_FMT_Pipeline.groovy) was applied on the MoleculeArchive to do these calculations for each molecule automatically. After running the script, these parameters and tags are stored in the archive.
 
 <p align='center'>
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image009.png' width='700' />
@@ -176,7 +176,7 @@ You can also plot the burst position as a boxplot to condense the information. F
 </p>
 
 #### <a name="conc"></a> Conclusion
-This example illustrates how to go from a huge data set to a figure which can be used for a publication. Because MARS stores every information during the analysis process everyone can reproduce the steps. Furthermore, if one wants to revise the parameters or thresholds one can easily start over because no trace was deleted in the process.
+This example illustrates how to go from a huge data set to figures which can be used for a publication. Because MARS stores every information during the analysis process everyone can reproduce the steps. Furthermore, if one wants to revise the parameters or thresholds one can easily start over because no trace was deleted in the process.
 
 If this example caught your attention please check out our more step-by-step ['tutorials'](https://duderstadt-lab.github.io/mars-docs/tutorials/) and try to use your own dataset afterward. If you encounter a bug please contact us on the [forum](https://github.com/duderstadt-lab/mars-fx/issues).
 
