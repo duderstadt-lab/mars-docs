@@ -4,7 +4,8 @@ title: Common python functions and patterns
 permalink: /tutorials/python/common-python-functions/index.html
 ---
 
-Here you can find an ever growing list of useful python functions and scripting patterns. We will constantly update the page.
+Here you can find an ever growing list of useful python functions and scripting patterns. We will constantly update the page. All classes and individual methods can be found on [our Java docs](https://duderstadt-lab.github.io/mars-core/javadoc/).
+
 
 ##### Useful python packages
 
@@ -14,6 +15,7 @@ import imagej
 ij = imagej.init('/Applications/Fiji.app')
 
 # Python packages
+# Full access to Java in Python
 import jpype
 import jpype.imports
 
@@ -32,19 +34,29 @@ import seaborn as sns
 
 ```
 
-##### Access an archives
+##### Access the different types of archives
 
 
 ```python
 # Single Molecule Archive
 yamaFile = File('/Users/your_archive.yama')
-archive = SingleMoleculeArchive(yamaFile)
+
+# Single Molecule Archive
+SingleMoleculeArchive = SingleMoleculeArchive(yamaFile)
+
+# DNA Molecule Archive
+DnaMoleculeArchive = DnaMoleculeArchive(yamaFile)
+
+# Object Archive
+ObjectArchive = ObjectArchive(yamaFile)
 ```
 
 
 ##### Basic commands from Mars
 
 ```python
+# the different types of archives share commands
+
 # Number of molecules in Archive
 archive.getNumberOfMolecules()
 
@@ -77,7 +89,7 @@ for UID in archive.getMoleculeUIDs():
 
 
 
-##### Create a dataframe from Archive entries (scijava)
+##### Creation of a dataframe from Archive entries (scijava)
 
 ```python
 # Table for the molecule as a pandas dataframe using the index
@@ -91,13 +103,12 @@ tableByUID
 ##### Looping
 
 ```python
-
-# For loop to print out all UIDs in Archive
+# For-loop to print out all UIDs in Archive
 for UID in archive.getMoleculeUIDs():
     molecule = archive.get(UID)
     print(molecule.getUID())
 
-# For loop to calculate value with respect to category
+# For-loop to calculate value with respect to category
 dist_y_active = []
 dist_y_unactive = []
 
@@ -132,7 +143,7 @@ listname = list(map(lambda UID: archive.get(UID).getParameter('ParameterName'), 
 ##### Access values of a SegmentsTable
 
 ```python
-# Access values for further analysis
+# Access values of SegmentsTable for further analysis
 # e. g. from kinetic change point analysis
 A_values=[]
 A_sigma=[]
