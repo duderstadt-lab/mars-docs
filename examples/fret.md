@@ -52,7 +52,7 @@ Figure 2: General overview of the analysis process of the smFRET dataset consist
 
 
 **Dataset Characteristics**  
-The data as provided by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
+The data as provided by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41592-018-0085-0)</sup> was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practice, for this dataset, this means that red emission is collected and shown on the left half, and the green emission on the right half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/img21.png' width='750'></div>
@@ -60,6 +60,8 @@ The data as provided by Hellenkamp *et al.* <sup>[9](https://doi.org/10.1038/s41
 <div style="text-align: center">
 Figure 3: Overview of the different signals that are obtained from the analysis dependent on channel number and location on the split view.
 </div>
+
+Some microscopes are equipped with two cameras and collect FRET images simultaneously by splitting so that the donor signal goes to one camera and acceptor signal to the other. These types of dataset can also be used with this same mars workflow. We suggest combining the videos collected by the two cameras side-by-side into a single artificial dualview. This can be accomplished very easily in Fiji by having both videos open and using the combine command under Image>Stacks>Tools>Combine. This approach depends on the two camera collecting the same number of images at the same time. Once the two videos are combined into one this workflow can be followed exactly. This approach also ensures proper registration between the camera that might not be perfectly aligned with sub-pixel accuracy.
 
 **The Mars Workflow**  
 The previously introduced analysis steps can be implemented in Mars directly. Figure 4 shows the specific steps and tools that are used in the analysis. [Documentation](https://duderstadt-lab.github.io/mars-docs/docs/) is available for each Mars tool specifically.
