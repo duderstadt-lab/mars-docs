@@ -4,155 +4,32 @@ title: Molecule Integrator
 permalink: /docs/image/MoleculeIntegrator/index.html
 ---
 
-**Normal and dualview version**
+This command integrates the intensity of fluorescent peaks collected using TIRF. A list of peaks and their positions specified as UID numbers must be provided in the ROI Manager as setup prior to running this command. These are most easily generated using the [PeakFinder](../PeakFinder) with 'Add to RoiManager' in the output tab. Otherwise, point or circle ROIs can be manually added to the ROI Manager with unique name that will become the single molecule record UIDs. The active image will be the one integrated. The integration region for each peaks is defined by inner and outer radii inputs. The inner radius defines the region of pixels to integrate and the outer radius defines the region used to determine the local background for correcting the intensity. Integration is performed for all peaks and all timepoints. The final output is a Single Molecule Archive with fluorescence intensity as a function of time point (T).
 
-This command integrates the intensity of fluorescent peaks collected using TIRF. A list of peaks and their positions specified as UID numbers must be provided in the ROIManger as setup prior to running this command. This is generated using the [PeakFinder](../PeakFinder) and/or [Transform ROIs](https://duderstadt-lab.github.io/mars-docs/docs/roi/TransformROIs/). Also, the Image to integrate must be the active image. Using the specified settings, the integrated intensity of peaks will be corrected using the local background, specified using inner and outer radii. This will be performed for each frame and the final output is a Molecule Archive with fluorescence intensity as a function of frame (T).
-
-The molecule integrator is also designed to work well for data collected using a dual view. In this case, Short wavelength and Long wavelength information is specified in the ROI name in the ROIManger as UID_SHORT or UID_LONG. Then the integrated fluorescence of the different colors is placed in each molecule record, providing multiwavelength information about molecules. Sometimes this involves collecting with two lasers turned on, and other times you could be doing FRET with only a single laser on. In this case the FRET option should be checked.
-
-Finally, the Short and Long wavelength ROIs are provided, this defines the boundaries for integration beyond which a reflected mirror image is used to avoid edge effects and issues at the center of the dual view. Peaks outside these ROIs will not be integrated.
-
-If you have single color data, you can integrate only peaks at one wavelength by integrating only the Long or Short region using the checkboxes above each. For dualview data you need to check both. You could also use this to perform analysis on an image that was not collected with a dualview, but still provide either a long or short ROI that then covers the entire image.
-
-*What does Long and Short Wavelength actually mean?*                                                                                                      
-
-The dualview splits the signal by wavelength and one side will have the Long wavelengths and the other the short wavelengths. These are then split into regions. A standard dichroic would split around 630 nm so that red and above is on one half and the rest of the colors are on the other half. For example, red might be on the top half of the image and on the bottom could be 405, 488, 532, or possibly 561. Short and long will obviously mean different things depending on the dichroic and laser lines used.
+Use the [Molecule Integrator (multiview)](../MoleculeIntegratorMultiView) to integrate peaks from dual or multiview setups in which different emission wavelengths are separated onto different regions of the camera sensor. Using the [Molecule Integrator (multiview)](../MoleculeIntegratorMultiView) you can integrate multiple emission wavelengths and they are combined into single molecule records.
 
 #### Input
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorInputTab.png' width='350'/></div>
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img35.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img38.png' width='350'/></div>
-
-* *Image* - The selected image will by analyzed using the peaks in the RoiManager. The name of the image will be displayed in the dialog.
-
-#### Boundaries
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img39.png' width='350'/></div>
-* *LONG x0* - Upper left corner x0 position of Long wavelength ROI.
-* *LONG y0* - Upper right corner y0 position of Long wavelength ROI.
-* *LONG width* - width of the Long wavelength ROI.
-* *LONG height* - height of the Long wavelength ROI.
-* *SHORT x0* - Upper left corner x0 position of Short wavelength ROI.
-* *SHORT y0* - Upper right corner y0 position of Short wavelength ROI.
-* *SHORT width* - width of the Short wavelength ROI.
-* *SHORT height* - height of the Short wavelength ROI.
-
+* *Image* - The selected image will by analyzed using the peaks in the ROI Manager. The name of the image is displayed in the dialog.
 
 #### Integration
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img36.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img40.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorIntegrationTab.png' width='350'/></div>
 
 * *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
-* *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrate and serve as the local background to correct the inner region.
-* *FRET short wavelength name* - The name of the short wavelength color that will be used as the color header in the outputted MoleculeArchive.
-* *FRET long wavelength name* - The name of the long wavelength color that will be used as the color header in the outputted MoleculeArchive.
-
+* *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrated and serve as the local background to correct the inner region.
+* *Channel Integration options* - The options 'Integrate' and 'Do not integrate' are offered for all channels discovered in the input image. Channel names are used when provided. Otherwise, channel index starting from 0 is used.
 
 #### Output
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img37.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img41.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorOutputTab.png' width='350'/></div>
 
 * *Microscope* - The microscope name added to the  metadata record.
-* *FRET short wavelength name* - Name for the short wavelength used.
-* *FRET long wavelength name* - Name for the long wavelength used.
+* *Metadata UID* - Options to either generate a metadata UID based on the metadata UID supplied in the image metadata or a new one that is random.
 * *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
-* *Metadata UID* - Generate a metadata UID based on the metadata UID supplied in the image metadata or generate a new one randomly.
-
-
+* *Verbose* - This option includes extra table columns with more integration information. By default, the integrated peak signal corrected for median background and the median background pixel values are included in the tables of single molecule records generated. With the Verbose option checked, the table will also include the uncorrected integrated intensity and mean background pixel value.
 
 #### Result
 
 * *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img9.png' width='400'/></div>
-
-### How to run this Command from a groovy script
-
-```groovy
-#@ Dataset dataset
-#@ ImageJ ij
-#@OUTPUT MoleculeArchive(label="archive.yama") archive
-
-import de.mpg.biochem.mars.table.*
-import de.mpg.biochem.mars.molecule.*
-import de.mpg.biochem.mars.image.*
-import de.mpg.biochem.mars.util.*
-import de.mpg.biochem.mars.image.commands.*
-import java.util.HashMap
-import java.util.Map
-
-//Make an instance of the Command you want to run...
-final MoleculeIntegratorCommand moleculeIntegrator = new MoleculeIntegratorCommand()
-
-//Populates @Parameters Services using the current context
-//which we get from the ImageJ input.
-moleculeIntegrator.setContext(ij.getContext())
-
-moleculeIntegrator.setInnerRadius(2)
-moleculeIntegrator.setOuterRadius(7)
-moleculeIntegrator.setLONGx0(0)
-moleculeIntegrator.setLONGy0(0)
-moleculeIntegrator.setLONGWidth(50)
-moleculeIntegrator.setLONGHeight(25)
-moleculeIntegrator.setSHORTx0(0)
-moleculeIntegrator.setSHORTy0(25)
-moleculeIntegrator.setSHORTWidth(50)
-moleculeIntegrator.setSHORTHeight(25)
-moleculeIntegrator.setMicroscope("Microscope")
-
-//Below is an example of how to manually add the lists of peaks positions
-//that should be integrated for all time points
-//Alternatively, the lines below could be removed and Roi can be taken from
-//the RoiManager. In that case the positions are assume to be constant
-//for all time points.
-
-String mol1UID = MarsMath.getUUID58()
-String mol2UID = MarsMath.getUUID58()
-String mol3UID = MarsMath.getUUID58()
-
-Map<Integer, Map<String, Peak>> longIntegrationMap = new HashMap<>()
-for (int t = 0; t < 50; t++) {
-	Map<String, Peak> peaks = new HashMap<>()
-	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 10.0d))
-	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 8d))
-	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 16.7d))
-	longIntegrationMap.put(t, peaks)
-}
-moleculeIntegrator.addIntegrationMap("FRET Red", 0, moleculeIntegrator
-	.getLONGInterval(), longIntegrationMap)
-
-Map<Integer, Map<String, Peak>> longIntegrationMap2 = new HashMap<>()
-for (int t = 0; t < 50; t++) {
-	Map<String, Peak> peaks = new HashMap<>()
-	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 10.0d))
-	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 8d))
-	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 16.7d))
-	longIntegrationMap2.put(t, peaks)
-}
-moleculeIntegrator.addIntegrationMap("Red", 2, moleculeIntegrator
-	.getLONGInterval(), longIntegrationMap2)
-
-Map<Integer, Map<String, Peak>> shortIntegrationMap = new HashMap<>()
-for (int t = 0; t < 50; t++) {
-	Map<String, Peak> peaks = new HashMap<>();
-	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 35d))
-	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 33d))
-	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 41.7d))
-	shortIntegrationMap.put(t, peaks)
-}
-moleculeIntegrator.addIntegrationMap("FRET Green", 0, moleculeIntegrator
-	.getSHORTInterval(), shortIntegrationMap)
-
-Map<Integer, Map<String, Peak>> shortIntegrationMap2 = new HashMap<>()
-for (int t = 0; t < 50; t++) {
-	Map<String, Peak> peaks = new HashMap<>()
-	peaks.put(mol1UID, new Peak(mol1UID, 10.0d, 35d))
-	peaks.put(mol2UID, new Peak(mol2UID, 32.5d, 33d))
-	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 41.7d))
-	shortIntegrationMap2.put(t, peaks)
-}
-moleculeIntegrator.addIntegrationMap("Blue", 1, moleculeIntegrator
-	.getSHORTInterval(), shortIntegrationMap2)
-
-//Run the Command
-moleculeIntegrator.run()
-
-//Retrieve output from the command
-archive = moleculeIntegrator.getArchive()
-```
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorOutputArchive.png' width='400'/></div>
