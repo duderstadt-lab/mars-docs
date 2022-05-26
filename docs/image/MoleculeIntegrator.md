@@ -28,10 +28,10 @@ Use the [Molecule Integrator (multiview)](../MoleculeIntegratorMultiView) to int
 * *Thread count* - Determines how much computing power of your computer will be devoted to this calculation. A higher thread count decreases computing time.
 * *Verbose* - This option includes extra table columns with more integration information. By default, the integrated peak signal corrected for median background and the median background used for the correction are included in the table of single molecule records generated. With the Verbose option checked, the table will also include the uncorrected integrated intensity and mean background.
 
-The median background and mean background columns represent an estimate of the background signal within the inner radius region. First the median or mean pixel values in the outer region are calculated and then multiplied by the number of pixels in the inner region to represent an accurate estimate of the background signal in the inner region. 
+The median background and mean background columns represent an estimate of the background signal within the inner radius region. First the median or mean pixel values in the outer region are calculated and then multiplied by the number of pixels in the inner region to represent an accurate estimate of the background signal in the inner region.
 
 #### Result
 
 * *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorOutputArchive.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorOutputArchive.png' width='600'/></div>
