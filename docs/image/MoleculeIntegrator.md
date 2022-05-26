@@ -34,4 +34,4 @@ The median background and mean background columns represent an estimate of the b
 
 * *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorOutputArchive.png' width='600'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/moleculeIntegratorOutputArchive.png' width='800'/></div>
