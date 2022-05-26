@@ -10,8 +10,7 @@ permalink: /examples/index.html
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='350' />](track-position-on-DNA)
 
-Complete workflow for the tracking and processing of polymerase movement on a stretched DNA molecule. ([Scher, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178))
-
+Complete workflow for the tracking and processing of polymerase movement on a stretched DNA molecule. ([Scherr *et al.*, 2022, Cell Reports](https://doi.org/10.1016/j.celrep.2022.110531))
 
 ---
 ---
