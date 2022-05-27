@@ -6,6 +6,8 @@ permalink: /docs/image/MoleculeIntegrator/index.html
 
 This command integrates the intensity of fluorescent peaks in images. A list of point or circle ROIs must be provided in the ROI Manager as setup prior to running this command. These are most easily generated using the [PeakFinder](../PeakFinder) with 'Add to ROI Manager' checked in the output tab. Otherwise, they can be manually added to the ROI Manager with unique names that will become the single molecule record UIDs. The active image will be the one integrated. The integration region for each peaks is defined by inner and outer radii inputs. The inner radius defines the region of pixels to integrate and the outer radius defines the region used to determine the local background for correcting the intensity. Integration is performed for all peaks and all timepoints. The final output is a Single Molecule Archive with fluorescence intensity as a function of time point (T).
 
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MoleculeIntegratorOverview.png' width='800'/></div>
+
 Use the [Molecule Integrator (multiview)](../MoleculeIntegratorMultiView) to integrate peaks from dual or multiview setups in which different emission wavelengths are separated onto different regions of the camera sensor. Using the [Molecule Integrator (multiview)](../MoleculeIntegratorMultiView) you can integrate multiple emission wavelengths and they are combined into single molecule records.
 
 #### Input
