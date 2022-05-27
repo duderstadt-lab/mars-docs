@@ -58,7 +58,7 @@ The median background and mean background columns represent an estimate of the b
 
 * *MoleculeArchive* - A Single Molecule Archive in which each molecule record has the integrated fluorescence for all channels and regions specified. Additionally, the peak position is saved for each time point (T) and Time (s) information is added if discovered.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img9.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MultiViewIntegrationArchiveOutput.png' width='800'/></div>
 
 ### How to run this Command from a groovy script
 
