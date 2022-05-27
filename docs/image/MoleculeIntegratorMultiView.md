@@ -4,37 +4,48 @@ title: Molecule Integrator (multiview)
 permalink: /docs/image/MoleculeIntegratorMultiView/index.html
 ---
 
-This command integrates the intensity of fluorescent peaks in images collected with dual or multiview setups in which different emission wavelengths are separated onto different regions of a camera sensor. A list of point or circle ROIs must be provided in the ROI Manager as setup prior to running this command. The same peak in different regions of the multiview should have the same UID but with the addition of a suffix with the subregion name. This could be the color or the name of the labeled component (i.e. UID_red, UID_green or UID_DNA, UID_protein). The ROIs are generated using the [PeakFinder](../PeakFinder) and [Transform ROIs](https://duderstadt-lab.github.io/mars-docs/docs/roi/TransformROIs/) commands.
+This command integrates the intensity of fluorescent peaks in images collected with dual or multiview setups in which different emission wavelengths are separated onto different regions of a camera sensor. A list of point or circle ROIs must be provided in the ROI Manager as setup prior to running this command. The same peak in different regions of the multiview should have the same UID but with the addition of a suffix with the subregion name. This could be the color or the name of the labeled component (i.e. UID_Red, UID_Blue or UID_DNA, UID_protein). The ROIs are generated using the [PeakFinder](../PeakFinder) and [Transform ROIs](https://duderstadt-lab.github.io/mars-docs/docs/roi/TransformROIs/) commands. This command assumes the molecule positions marked with ROIs remain constant for all time points. Therefore, only one entry is required for each molecule for each region in the ROI manager without the need to specify a time point. The single ROI entry is then integrated for all time points (T).
 
-The integrated intensity of peaks will be corrected for local background. The integration and background regions are specified using inner and outer radii. The final output is a Molecule Archive containing single molecule records with the fluorescence intensity for each wavelength as a function of time point (T). This command can be used to analyze experiments where two or more lasers are turned on to image different components simultaneously, or FRET experiments with only a single laser on at a given time. The [FRET example](../../../examples/fret) provides a step-by-step guide using this command with sample data available.
+The integrated intensity of peaks will be corrected for local background. The integration and background regions are specified using inner and outer radii. The final output is a Molecule Archive containing single molecule records with the fluorescence intensity for each wavelength as a function of time point (T). This command can be used to analyze experiments where two or more lasers are turned on to image different components simultaneously, or FRET experiments with only a single laser on at a given time. The [FRET](../../examples/fret) and [dynamic FRET](../../examples/fret_dynamic) examples provide a step-by-step guide using this command with sample data available.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MultiViewIntegrationOverview.png' width='800'/></div>
 
+If you would like to integrate the fluorescence of molecules that are moving, you can use the [PeakTracker](../PeakTracker). However, fluorescence will only be integrated for time points where peaks were detected, so no background will be integrated after bleaching. Complete customization is possible in script by specifying integration maps with different positions for each time point for a given molecule.
+
 #### Input
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img35.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img38.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MultiViewIntegrationInputTab.png' width='350'/></div>
 
 * *Image* - The active image is analyzed with the peaks in the ROI Manager. The name of the image will be displayed in the dialog.
+* *ROI Manager* - A list of point or circle ROIs with unique names and suffixes for subregions in the ROI Manager that should be integrated.
 
 #### Boundaries
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img39.png' width='350'/></div>
-* *LONG x0* - Upper left corner x0 position of Long wavelength ROI.
-* *LONG y0* - Upper right corner y0 position of Long wavelength ROI.
-* *LONG width* - width of the Long wavelength ROI.
-* *LONG height* - height of the Long wavelength ROI.
-* *SHORT x0* - Upper left corner x0 position of Short wavelength ROI.
-* *SHORT y0* - Upper right corner y0 position of Short wavelength ROI.
-* *SHORT width* - width of the Short wavelength ROI.
-* *SHORT height* - height of the Short wavelength ROI.
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MultiViewIntegrationBoundariesTab.png' width='350'/></div>
 
+* *[Region1] x0* - Upper left corner x0 position of region1.
+* *[Region1] y0* - Upper right corner y0 position of region1.
+* *[Region1] width* - width of region1.
+* *[Region1] height* - height of region1.
+* *[Region2] x0* - Upper left corner x0 position of region2.
+* *[Region2] y0* - Upper right corner y0 position of region2.
+* *[Region2] width* - width of region2.
+* *[Region2] height* - height of region2.
+* *[Region3] ...*
 
+Each unique suffix found in ROI names in the ROI Manager specifies a region of the camera sensor. To ensure the intenisty and background integration radii do not include pixels from adjacent regions, the boundaries of all regions must be defined. When integration radii include pixels beyond the specified boundaries, the region will be mirrored to reduce edge artifacts due to large differences between the background levels in adjacent regions.
+
+For example, the dialog settings displayed are for a camera sensor with dimensions 1024 by 1024 where the Red region is on the top half and the Green region is on the bottom half of the sensor.
+
+#### Integration
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MultiViewIntegrationIntegrationTab.png' width='350'/></div>
 * *Inner Radius* - The radius of pixels around the peak to integrate. 0 means only one pixel, 1 means a radius of out beyond the center pixel and etc.
 * *Outer Radius* - The radius of pixels around the Inner Radius to use for background correction. If the Inner Radius is 1 and the Outer Radius is 5. Then the circular region between 1 and 5 will be integrated and serve as the local background to correct the inner region.
-* *Channel Integration options* - The options 'Integrate' and 'Do not integrate' are offered for all channels discovered in the input image. Channel names are used when provided. Otherwise, channel index starting from 0 is used.
+* *Channel Integration options* - The desired integration regions need to be specified for each channel. Possible options are 'Do not integrate', 'All', or any specific region of the camera sensor. Channel names are used when provided. Otherwise, channel index starting from 0 is used.
 
+As an example, the channel integration options are helpful for FRET experiments collected using ALEX ([FRET](../../examples/fret) and [dynamic FRET](../../examples/fret_dynamic)). These experiments have two channels for each time point. One channel is 532 for donor excitation and FRET. The second channel is 637 for direct acceptor excitation. We select All for the 532 channel to integrate donor and acceptor signal. For the 637 channel, we select only the Red region for integration since the donor is not excited by the 637 laser. When in doubt using All for every channel and in the worst case you will have some extra columns in your molecule record tables.
 
 #### Output
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img37.png' width='350'/><img  src='{{site.baseurl}}/docs/image/img/img41.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/MultiViewIntegrationOutputTab.png' width='350'/></div>
 
 * *Microscope* - The microscope name added to the  metadata record.
 * *Metadata UID* - Options to either generate a metadata UID based on the metadata UID supplied in the image metadata or a new one that is random.
@@ -45,7 +56,7 @@ The median background and mean background columns represent an estimate of the b
 
 #### Result
 
-* *MoleculeArchive* - A MoleculeArchive in which each molecule record has the integrated fluorescence using the color scheme specified or detected. Additionally, the peak position is saved for each frame.
+* *MoleculeArchive* - A Single Molecule Archive in which each molecule record has the integrated fluorescence for all channels and regions specified. Additionally, the peak position is saved for each time point (T) and Time (s) information is added if discovered.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/image/img/img9.png' width='400'/></div>
 
