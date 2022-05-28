@@ -62,6 +62,11 @@ The median background and mean background columns represent an estimate of the b
 
 ### How to run this Command from a groovy script
 
+This example script shows how to run the Molecule Integrator (multiview) command using integration maps. This script is written for analysis of the simulated dataset that is created using the second script below. Integration maps specify all Peaks that should be integrated for each time point with each Peak labeled with the corresponding molecule UID. This is done by mapping timepoints to maps of UIDs to peaks:
+```groovy
+Map<Integer, Map<String, Peak>> timepointToMapOfUIDToPeak = new HashMap<>()
+```
+
 ```groovy
 #@ Dataset dataset
 #@ ImageJ ij
@@ -75,30 +80,24 @@ import de.mpg.biochem.mars.image.commands.*
 import java.util.HashMap
 import java.util.Map
 
-//Make an instance of the Command you want to run...
-final MoleculeIntegratorCommand moleculeIntegrator = new MoleculeIntegratorCommand()
+//Make an instance of the Command you want to run
+final MoleculeIntegratorMultiViewCommand moleculeIntegrator = new MoleculeIntegratorMultiViewCommand()
 
 //Populates @Parameters Services using the current context
-//which we get from the ImageJ input.
 moleculeIntegrator.setContext(ij.getContext())
 
-moleculeIntegrator.setInnerRadius(2)
-moleculeIntegrator.setOuterRadius(7)
-moleculeIntegrator.setLONGx0(0)
-moleculeIntegrator.setLONGy0(0)
-moleculeIntegrator.setLONGWidth(50)
-moleculeIntegrator.setLONGHeight(25)
-moleculeIntegrator.setSHORTx0(0)
-moleculeIntegrator.setSHORTy0(25)
-moleculeIntegrator.setSHORTWidth(50)
-moleculeIntegrator.setSHORTHeight(25)
+moleculeIntegrator.setDataset(dataset)
+moleculeIntegrator.setInnerRadius(3)
+moleculeIntegrator.setOuterRadius(10)
+moleculeIntegrator.setRegionBoundaries("Top", 0, 0, 50, 25)
+moleculeIntegrator.setRegionBoundaries("Bottom", 0, 25, 50, 25)
 moleculeIntegrator.setMicroscope("Microscope")
+moleculeIntegrator.setThreads(8)
+moleculeIntegrator.setVerbose(true)
+moleculeIntegrator.setMetadataUIDSource("random")
 
-//Below is an example of how to manually add the lists of peaks positions
-//that should be integrated for all time points
-//Alternatively, the lines below could be removed and Roi can be taken from
-//the RoiManager. In that case the positions are assume to be constant
-//for all time points.
+//Below is an example of how to manually add the lists of peak positions
+//specified for each time point
 
 String mol1UID = MarsMath.getUUID58()
 String mol2UID = MarsMath.getUUID58()
@@ -112,8 +111,7 @@ for (int t = 0; t < 50; t++) {
 	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 16.7d))
 	longIntegrationMap.put(t, peaks)
 }
-moleculeIntegrator.addIntegrationMap("FRET Red", 0, moleculeIntegrator
-	.getLONGInterval(), longIntegrationMap)
+moleculeIntegrator.addIntegrationMap("FRET Red", 0, moleculeIntegrator.getInterval("Top"), longIntegrationMap)
 
 Map<Integer, Map<String, Peak>> longIntegrationMap2 = new HashMap<>()
 for (int t = 0; t < 50; t++) {
@@ -123,8 +121,7 @@ for (int t = 0; t < 50; t++) {
 	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 16.7d))
 	longIntegrationMap2.put(t, peaks)
 }
-moleculeIntegrator.addIntegrationMap("Red", 2, moleculeIntegrator
-	.getLONGInterval(), longIntegrationMap2)
+moleculeIntegrator.addIntegrationMap("Red", 2, moleculeIntegrator.getInterval("Top"), longIntegrationMap2)
 
 Map<Integer, Map<String, Peak>> shortIntegrationMap = new HashMap<>()
 for (int t = 0; t < 50; t++) {
@@ -134,8 +131,7 @@ for (int t = 0; t < 50; t++) {
 	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 41.7d))
 	shortIntegrationMap.put(t, peaks)
 }
-moleculeIntegrator.addIntegrationMap("FRET Green", 0, moleculeIntegrator
-	.getSHORTInterval(), shortIntegrationMap)
+moleculeIntegrator.addIntegrationMap("FRET Green", 0, moleculeIntegrator.getInterval("Bottom"), shortIntegrationMap)
 
 Map<Integer, Map<String, Peak>> shortIntegrationMap2 = new HashMap<>()
 for (int t = 0; t < 50; t++) {
@@ -145,12 +141,81 @@ for (int t = 0; t < 50; t++) {
 	peaks.put(mol3UID, new Peak(mol3UID, 43.7d, 41.7d))
 	shortIntegrationMap2.put(t, peaks)
 }
-moleculeIntegrator.addIntegrationMap("Blue", 1, moleculeIntegrator
-	.getSHORTInterval(), shortIntegrationMap2)
+moleculeIntegrator.addIntegrationMap("Blue", 1, moleculeIntegrator.getInterval("Bottom"), shortIntegrationMap2)
 
 //Run the Command
 moleculeIntegrator.run()
 
 //Retrieve output from the command
 archive = moleculeIntegrator.getArchive()
+```
+
+This script is used to generate a simulated dataset with several peaks in several channels, including corresponding peaks on the top and bottom of the images similar to that expected when using a dual-view setup.
+
+```groovy
+#@ DatasetService datasetService
+#@OUTPUT Dataset dataset
+
+import net.imagej.Dataset
+import net.imagej.DatasetService
+import net.imagej.axis.Axes
+import net.imagej.axis.AxisType
+import de.mpg.biochem.mars.util.Gaussian2D
+
+long[] dim = new long[4]
+dim[0] = 50
+dim[1] = 50
+dim[2] = 3
+dim[3] = 50
+
+AxisType[] axes = new AxisType[4]
+axes[0] = Axes.X
+axes[1] = Axes.Y
+axes[2] = Axes.CHANNEL
+axes[3] = Axes.TIME
+
+dataset = datasetService.create(dim, "Simulated Image", axes, 16,
+	false, false);
+
+for (int t = 0; t < dim[3]; t++)
+	for (int x = 0; x < dim[0]; x++)
+		for (int y = 0; y < dim[1]; y++) {
+			Gaussian2D peak1 = new Gaussian2D(0, Math.cos(Math.PI * t / 10) *
+				2000d + 2000d, 10.0d, 10.0d, 1.2d);
+			Gaussian2D peak2 = new Gaussian2D(0, Math.cos(Math.PI * t / 10) *
+				2000d + 2000d, 32.5d, 8d, 1.2d);
+			Gaussian2D peak3 = new Gaussian2D(0, Math.cos(Math.PI * t / 10) *
+				2000d + 2000d, 43.7d, 16.7d, 1.2d);
+			Gaussian2D peak4 = new Gaussian2D(0, Math.sin(Math.PI * t / 10) *
+				2000d + 2000d, 10.0d, 35d, 1.2d);
+			Gaussian2D peak5 = new Gaussian2D(0, Math.sin(Math.PI * t / 10) *
+				2000d + 2000d, 32.5d, 33d, 1.2d);
+			Gaussian2D peak6 = new Gaussian2D(0, Math.sin(Math.PI * t / 10) *
+				2000d + 2000d, 43.7d, 41.7d, 1.2d);
+
+			dataset.getImgPlus().randomAccess().setPositionAndGet(x, y, 0, t)
+				.setReal(peak1.getValue(x, y) + peak2.getValue(x, y) + peak3
+					.getValue(x, y) + peak4.getValue(x, y) + peak5.getValue(x, y) +
+					peak6.getValue(x, y));
+
+			Gaussian2D peak7 = new Gaussian2D(0, Math.sin(Math.PI * t / 5) *
+				500d + 2500d, 10.0d, 35d, 1.2d);
+			Gaussian2D peak8 = new Gaussian2D(0, Math.sin(Math.PI * t / 5) *
+				500d + 2500d, 32.5d, 33d, 1.2d);
+			Gaussian2D peak9 = new Gaussian2D(0, Math.sin(Math.PI * t / 5) *
+				500d + 2500d, 43.7d, 41.7d, 1.2d);
+			dataset.getImgPlus().randomAccess().setPositionAndGet(x, y, 1, t)
+				.setReal(peak7.getValue(x, y) + peak8.getValue(x, y) + peak9
+					.getValue(x, y));
+
+			Gaussian2D peak10 = new Gaussian2D(0, Math.sin(Math.PI * t / 5) *
+				500d + 2500d, 10.0d, 10.0d, 1.2d);
+			Gaussian2D peak11 = new Gaussian2D(0, Math.sin(Math.PI * t / 5) *
+				500d + 2500d, 32.5d, 8d, 1.2d);
+			Gaussian2D peak12 = new Gaussian2D(0, Math.sin(Math.PI * t / 5) *
+				500d + 2500d, 43.7d, 16.7d, 1.2d);
+			dataset.getImgPlus().randomAccess().setPositionAndGet(x, y, 2, t)
+				.setReal(peak10.getValue(x, y) + peak11.getValue(x, y) + peak12
+					.getValue(x, y));
+		}
 ```
