@@ -88,7 +88,7 @@ transformROIs.setColocalize(false)
 transformROIs.run()
 ```
 
-This script example is similar to the one above but with an added filter for peaks based on colocalization.
+This example script is similar to the one above but with an added filter for peaks based on colocalization.
 
 ```groovy
 #@ Dataset dataset
