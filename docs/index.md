@@ -28,8 +28,9 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Peak Finder](./image/PeakFinder) | Counting and subpixel localization of molecules. |
 | [DNA finder](./image/DNA_finder) | Find and fit linear DNA molecules |
 | [Peak Tracker](./image/PeakTracker) | Find, subpixel localize, and track molecules. |
-|[Object Tracker](./image/ObjectTracker)| Fit and track unspecified objects based on segmentation. |
+| [Object Tracker](./image/ObjectTracker)| Fit and track unspecified objects based on segmentation. |
 | [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
+| [Molecule Integrator (multiview)](./image/MoleculeIntegratorMultiView) | Integrate the fluorescence of molecules in a multiview setup. |
 
 **Util**  
 
