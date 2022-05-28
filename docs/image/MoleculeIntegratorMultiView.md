@@ -62,11 +62,7 @@ The median background and mean background columns represent an estimate of the b
 
 ### How to run this Command from a groovy script
 
-This example script shows how to run the Molecule Integrator (multiview) command using integration maps. This script is written for analysis of the simulated dataset that is created using the second script below. Integration maps specify all Peaks that should be integrated for each time point with each Peak labeled with the corresponding molecule UID. This is done by mapping timepoints to maps of UIDs to peaks:
-```groovy
-Map<Integer, Map<String, Peak>> timepointToMapOfUIDToPeak = new HashMap<>()
-```
-
+This example script shows how to run the Molecule Integrator (multiview) command using integration maps. This script is written for analysis of the simulated dataset that is created using the second script below. Integration maps specify all Peaks that should be integrated for each time point with each Peak labeled with the corresponding molecule UID. This is done by mapping timepoints to maps of UIDs to peaks `Map<Integer, Map<String, Peak>> timepointToMapOfUIDToPeak = new HashMap<>()`.
 ```groovy
 #@ Dataset dataset
 #@ ImageJ ij
