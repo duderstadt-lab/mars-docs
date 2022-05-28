@@ -54,13 +54,13 @@ The colocalize tab allows for filtering of ROIs in one channel based on the fluo
 
 ### How to run this Command from a groovy script
 
+Simple example script transforming ROIs for two regions. The Affine2D transformation coordinates were generated based on sample data using a 1024 by 1024 camera with a dualview splitting the emission to the top and bottom of the image. As seen in the example image at the top of this page. Can you generate the Affine2D transformation coordinates for your image using the [Descriptor-based registration plugin](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/).
+
 ```groovy
-#@ ImagePlus image
 #@ ImageJ ij
 #@ RoiManager roiManager
 
-import de.mpg.biochem.mars.table.*
-import de.mpg.biochem.mars.RoiTools.*
+import de.mpg.biochem.mars.roi.commands.*
 
 //Make an instance of the Command you want to run
 final TransformROIsCommand transformROIs = new TransformROIsCommand()
@@ -69,24 +69,18 @@ final TransformROIsCommand transformROIs = new TransformROIsCommand()
 //which we get from the ImageJ input
 transformROIs.setContext(ij.getContext())
 
-transformROIs.setROIManager(roiManager)
-transformROIs.setImage(image)
-transformROIs.setM00(0)
-transformROIs.setM01(0)
-transformROIs.setM02(0)
-transformROIs.setM10(0)
-transformROIs.setM11(0)
-transformROIs.setM12(0)
-transformROIs.setTransformationDirection("Long Wavelength to Short Wavelength")
+transformROIs.setRoiManager(roiManager)
+transformROIs.setM00(1.00276)
+transformROIs.setM01(0.000208)
+transformROIs.setM02(1.71236)
+transformROIs.setM10(0.000267)
+transformROIs.setM11(1.00312)
+transformROIs.setM12(506.91025)
+transformROIs.setTransformFromRegion("Red")
+transformROIs.setTransformToRegion("Green")
+
+//In this script we transform all ROIs without checking for colocalization
 transformROIs.setColocalize(false)
-transformROIs.setChannel(0)
-transformROIs.setT(0)
-transformROIs.setUseDogFilter(false)
-transformROIs.setDogFilterRadius(2)
-transformROIs.setTreshold(50)
-transformROIs.setFilterOriginalRois(false)
-transformROIs.setFilterColocalizingRois(true)
-transformROIs.setColocalizeSearchRadius(1)
 
 //Run the Command
 transformROIs.run()
