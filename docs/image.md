@@ -10,7 +10,7 @@ permalink: /docs/image/index.html
 | [Peak Tracker](./PeakTracker) | Find, subpixel localize, and track molecules. |
 |[Object Tracker](./ObjectTracker)| Fit and track unspecified objects based on segmentation. |
 | [Molecule Integrator](./MoleculeIntegrator) | Integrate the fluorescence of molecules. |
-| [Molecule Integrator (multiview)](./image/MoleculeIntegratorMultiView) | Integrate the fluorescence of molecules in a multiview setup. |
+| [Molecule Integrator (multiview)](./MoleculeIntegratorMultiView) | Integrate the fluorescence of molecules in a multiview setup. |
 
 **Util**  
 
