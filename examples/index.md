@@ -6,7 +6,7 @@ permalink: /examples/index.html
 
 *click the images to visit the corresponding example page*
 
-#### Tracking of a Protein on DNA
+#### Tracking synthesis by RNA Polymerase as it moves along DNA
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='350' />](track-position-on-DNA)
 
