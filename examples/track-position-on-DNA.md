@@ -81,7 +81,7 @@ Now the raw data has been corrected, the location of the proteins is tracked usi
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img15.png' width='350' />
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img16.png' width='350' /></div>
 
-When the command is finished, a Single Molecule Archive should appear that contains all tracked molecules.
+When the command is finished, a Single Molecule Archive should appear that contains all tracked molecules. It is saved as 'singleMoleculeArchive.yama'.
 
 **Find and fit the DNA molecules**  
 Now the proteins have been tracked, we can use the [DNA finder](../../docs/image/DNA_finder) (Plugins>Mars>Image>DNA Finder) to locate all DNA molecules in channel 1. This can be accomplished using the following settings:
@@ -109,7 +109,7 @@ First, calculate the variance in Y for each dot using the [variance calculator](
 archive.molecules().filter{ m -> m.getParameter("Y_var") < 1}.forEach{ m -> m.addTag("background") }
 ```
 
-Now run the [drift corrector](https://duderstadt-lab.github.io/mars-docs/docs/molecule/DriftCorrector/) command and supply the settings as shown below.
+Now run the [drift corrector](https://duderstadt-lab.github.io/mars-docs/docs/molecule/DriftCorrector/) command and supply the settings as shown below. We use the 'singleMoleculeArchive.yama' as an input to drift correct the tracks of the polymerases.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/dnaArchive/img4.png' width='450' /></div>
@@ -160,6 +160,7 @@ xfm.get(0,0) + ", " + xfm.get(0,1) + ", " + xfm.get(0,2) + ", " +
 xfm.get(1,0) + ", " + xfm.get(1,1) + ", " + xfm.get(1,2) + "]")
 archive.logln(LogBuilder.endBlock())
 ```
+The coordinates of the tracks of the polymerases are transformed from the red channel to the green channel where the DNA was detected. This is executed within the single-molecule archive.
 
 #### <a name="BuildDNA"></a>Merge - Build a DNA Molecule Archive
 Now all coordinates have been corrected and artefacts have been removed, the DNA location data can be merged with the protein tracking information stored in the Single Molecule Archive. This is done using the [build DNA archive](https://duderstadt-lab.github.io/mars-docs/docs/molecule/BuildDNAarchive/) command (Plugins>Mars>Molecule>Build DNA Archive) with the settings as shown below.
@@ -270,4 +271,4 @@ You have now successfully analyzed a full dataset containing stretched DNA molec
 #### <a name="refs"></a> References
 <sup>1</sup> McAllister W.T. (1997) Transcription by T7 RNA Polymerase. In: Eckstein F., Lilley D.M.J. (eds) Mechanisms of Transcription. Nucleic Acids and Molecular Biology, vol 11. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-642-60691-5_2   
 <sup>2</sup> Berg, Jeremy M., John L. Tymoczko, and Lubert Stryer. "Biochemistry." (2002)   
-<sup>3</sup> [Scherr, Wahab, Remus & Duderstadt, 2021, under consideration at Cell Press](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3775178)
+<sup>3</sup> [Scherr, Wahab, Remus & Duderstadt. (2022). Mobile origin-licensing factors confer resistance to conflicts with RNA polymerase. Cell Reports 38, 110531](https://doi.org/10.1016/j.celrep.2022.110531)
