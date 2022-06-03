@@ -29,7 +29,7 @@ Please also visit the [Mars workflow to analyze a static TIRF smFRET dataset](ht
 **Dataset Characteristics**  
 The dataset provided was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the top half, and the green emission on the bottom half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/dynamic_FRET_workflow_overview.png' width='800'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/dynamic_FRET_workflow_overview.png' width='1000'></div>
 
 **The Analysis Procedure**  
 1. Open the video, perform basic corrections on the raw video data.
