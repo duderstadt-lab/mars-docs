@@ -5,10 +5,11 @@ title: smFRET dataset analysis of a dynamic sample with Mars
 permalink: /examples/FRET_dynamic/index.html
 ---
 
-In this example, a typical Mars workflow to analyse a dynamic TIRF smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208)</sup> dataset is presented. This example is based on holliday junction DNA functionalized with two fluorophores <sup>[2](https://www.nature.com/articles/nchem.1463)</sup>. Due to  Mg<sup>2+</sup>-induced switching events, the structure of these holliday junction switches between two states, both with a different FRET efficiency between both dyes.
-Analogously, the procedure highlighted in this example can be extended to other experiments where two states are visited. Examples of this include: enzyme binding events, conformational changes of protein or DNA, and interaction studies.
+This example presents a Mars workflow for the analysis of dynamic smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208)</sup> datasets collected using TIRF microscopy. The sample data<sup>[2](https://doi.org/10.5281/zenodo.5911644)</sup> was collected using a surface-immobilized Holiday Junction functionalized with donor and acceptor fluorophores positioned on different DNA arms <sup>[3](https://www.nature.com/articles/nchem.1463)</sup>. Imaging was conducted under high Mg<sup>2+</sup> concentrations to induce conformational switching of the DNA arms resulting in high and low FRET states.
 
-Please also visit the [Mars workflow to analyze a static TIRF smFRET dataset](https://duderstadt-lab.github.io/mars-docs/examples/FRET/).
+(figure)
+
+Please also visit the related [Mars workflow to analyze a static smFRET dataset collected using TIRF microscopy](https://duderstadt-lab.github.io/mars-docs/examples/FRET/).
 
 ---
 
@@ -27,57 +28,45 @@ Please also visit the [Mars workflow to analyze a static TIRF smFRET dataset](ht
 **Sample Design**  
 
 **Dataset Characteristics**  
-The dataset provided was recorded with a TIRF microscope setup equipped with dual view collection. The detection area of the camera is split in half, each half displaying the signal after a different wavelength filter. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practise, for this dataset, this means that red emission is collected and shown on the top half, and the green emission on the bottom half of the window (figure 3). The excitation color alternates between red (C=0) and green (C=1) such that the different channels and split orientation give the peak intensities as denoted below each half by I<sub>emission|excitation</sub>. These intensities are integrated during analysis and after correction lead to the final E and S values.
+The dataset<sup>[2](https://doi.org/10.5281/zenodo.5911644)</sup> contains ten separate image sequences each representing a different field of view from the same sample. Imaging was conducted on a micro-mirror TIRF microscope with a dual view using [Micro-Manager 2.0](https://micro-manager.org/Version_2.0). The detection area of the camera is split in half, with each half displaying the signal from a different wavelength. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practice, for this dataset, this means that red emission is collected and shown on the top half, and the green emission on the bottom half of the image (figure 3). Furthermore, the dataset has two channels. One channel for red excitation (C=0) with a 637 nm laser and another for green excitation (C=1) with a 532 laser as denoted below by I<sub>emission|excitation</sub>. The intensities of peaks are integrated during analysis, used for corrections and the calculation of final E and S distributions.
+
+**The Analysis Procedure**  
+This example was developed in a modular fashion to illustrate how workflows can be built using Mars and to simplify the process of customization for processing other FRET datasets. The workflow has two major phases. In the first phase, displayed below on the left, the emission peaks from the molecules are located and fluorescence intensity is integrated to generate Molecule Archives for donor only (DO), acceptor only (AO), and FRET. These are merged into one Molecule Archive that is used in phase two, displayed on the right, where a sequence of [groovy scripts provided in the mars-tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts) are used to process the merged Molecule Archive. This includes identification of bleaching positions, scoring intensity traces, and calculating correction factors.
+
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/dynamic_FRET_workflow_overview.png' width='1000'></div>
 
-**The Analysis Procedure**  
-1. Open the video, perform basic corrections on the raw video data.
-2. Identify the peaks (molecule locations) in both colors.
-3. Correlate the peaks in the two colors to find which molecules have a red dye only (acceptor only, AO), green dye only (donor only, DO), or both dyes (FRET).
-4. Extract the intensity (I) vs. time (T) traces of all dyes on each molecules and store this information in a Molecule Archive.
-5. Normalize the intensity data and correct for photo-based effects.
-6. In the fully corrected I vs. T traces, identify the different states a molecule possesses, also identify when (on of) the dyes are bleached.
-7. Calculate the FRET efficiency (E) and stoichiometry (S) for each state of each molecule.
-8. Create plots of all E and S values, perform Gaussian fits and find the FRET states the molecule possesses in this experiment.
+****Phase 1: Locate molecules and integrate fluorescence****
+   * Open the video.
+   * Identify the peaks (molecule locations) in the top and bottom regions.
+   * Correlate the peaks in the top and bottom regions to find which molecules have a red dye only (acceptor only, AO), green dye only (donor only, DO), or both dyes (FRET).
+   * Extract the intensity (I) vs. time (T) traces of all molecules and store this information in a Molecule Archive.
+   * Tag the metadata record of each Molecule Archive with DO, AO, or FRET depending on the molecules selected and integrated.
+   * Merge all of three of the Molecule Archives (DO, AO, and FRET) in preparation for phase 2.
+
+****Phase 2: Corrections, E and S calculation, kinetic analysis****
+1. Run the 'add molecule tags' groovy script. This script adds the tags on the metadata records (DO, AO, and FRET) to the corresponding molecule records.
+2. Run the 'profile correction' groovy script. This script corrects for differences in the beam intensity across the field of view.
+3. Run the 'find bleaching positions' groovy script. This script adds the donor and acceptor bleaching positions (T) to the molecule records. Evaluate the intensity traces and add the Accepted tag to passing molecules.
+4. Run the 'alex corrections' groovy script. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
+5. Run the 'two state fit' groovy script. This script adds a segments table making the high and low E states based using the threshold provided.
+
+Final distributions and figures are then generated using the [dynamic FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/dynamic/dynamic_FRET_example.ipynb) provided in the mars-tutorials repository. This notebook takes the path to the final Molecule Archive generated from the scripts above as input.
 
 Please visit the [documentation](https://duderstadt-lab.github.io/mars-docs/docs/) pages for specific information about the used tools.
 
 ---
 #### <a name="1"></a> Data preparation
 **Opening the Video**  
-First, [download]() the dataset from our tutorials repository. To follow along with this example, we will only analyze part of the data (position 0). Also download the other files in the folder. These will be used to do corrections.
+First, [download](https://doi.org/10.5281/zenodo.5911644) the dataset from Zenodo. To follow along with this example, you will only need to download Pos0. The analysis procedure for the other fields will be the same.
 
-In Fiji, turn on SciFIO (Edit>Options>ImageJ2 tick the box). Then open the video by dragging it from your file explorer to the Fiji bar. The video should look similar to the screenshot in figure 4.
+Make sure you have [Fiji with Mars installed](https://duderstadt-lab.github.io/mars-docs/install/). Open Fiji and make sure SCIFIO is used by default to open videos (Edit>Options>ImageJ2 tick the use SCIFIO box). Mars comes with a SCIFIO reader for Micro-Manager 2.0 that ensures all metadata is recovered using the Mars image processing commands. Open the video by dragging it from your file explorer to the Fiji bar or using File>Open... and selecting any image in the sequence. The video should look similar to the screenshot in below. If you are trying this workflow with a different video, Mars accepts many other formats including videos opened using BioFormats. However, some metadata may not be recovered and this workflow would require some adaptation if a different collection strategy was used. If you run into trouble or have questions please make a post on the [Scientific Community Image Forum](https://forum.image.sc) with the mars tag.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img1.png' width='450'></div>
 
 <div style="text-align: center">
-Figure 4: Screenshot of the dataset. In the top half of the split view the red emission is shown, in the bottom half the green emission. Note that the excitation channel can be switched with the "c" scrollbar below the image. Currently, C=0 indicating that the red laser was used for excitation of this frame.
-</div>
-
-**Video Correction**   
-In most single-molecule microscopes, the excitation beam generates a gaussian profile across the image. This hinders tracking and fluorescence integration algorithms. Therefore this profile is corrected by dividing all frames by a beam profile image. To do so the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) tool is used.
-
-First, the beam profile image must be created. For this, frame 988 of channel 0 and channel 1 are used. To retrieve this image use Image>Duplicate... and select only frame 988. After completion, a single image should appear which is a copy of the respective frame. The image still contains many protein peaks that must be removed to build the representative image. This can be done by applying a gaussian blur with a radius of 40 (Process>Filters>Gaussian blur). The resulting images will look similar to the ones shown below. Alternatively, [download]() these beam profile images from our repository. Save the images in a way that it is clear which one is red, which one is green.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img2.png' width='250'></div>
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img3.png' width='250'></div>
-
-<div style="text-align: center">
-Figure 2: Examples of a beam profile created from frame 988 of this dataset. A Gaussian blur with a radius of 40 was applied.
-</div>
-
-
-Now, run the [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) command (Plugins>Mars>Image>Util). Make sure the full example video and the beam profile image are open in Fiji. Set the Channel to 0 and the background image to the red profile image you have just created. Run the command and you will see that the protein channel has been corrected for the beam profile. Note that sometimes this difference is difficult to spot by eye. Repeat this step for channel 1 with the green background beam profile image.
-
-<div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img_beam.png' width='450'></div>
-<div style="text-align: center">
-Figure 3: Dialog window of the Beam Profile Corrector tool.
+Screenshot of the dataset. In the top half of the split view the red emission is shown, in the bottom half the green emission. Note that the excitation channel can be switched with the "c" scrollbar below the image. Currently, C=0 indicating that the red laser was used for excitation of this frame.
 </div>
 
 **Affine2D matrix**   
