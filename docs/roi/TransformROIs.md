@@ -3,14 +3,14 @@ layout: roi
 title: Transform ROIs
 permalink: /docs/roi/TransformROIs/index.html
 ---
-This command is used to transform ROIs from one region of an image to another for processing images collected using a multiview setup where different wavelengths are separated onto different regions of a camera sensor. A list of point or circle ROIs created using the [Peak Finder](../image/PeakFinder) with output option 'Add to ROI Manager' must be provided in the ROI Manager as setup prior to running this command. The ROIs are transformed using the Affine2D transformation parameters provided in the dialog. These can be generated using the [Descriptor-based registration plugin](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/) with a sample containing beads that are fluorescent for all wavelengths. The Transform ROIs command duplicates the ROIs, transforms them, and updates all ROI names to include a region suffix. This command can be performed multiple times if the camera sensor has more than two regions to support triple and quadview setups. After running this command, the ROIs in the ROI Manager are the required input for the [Molecule Integrator (multiview)](../image/MoleculeIntegratorMultiView).
+This command is used to transform ROIs from one region of an image to another for processing images collected using a multiview setup where different wavelengths are separated onto different regions of a camera sensor. A list of point or circle ROIs created using the [Peak Finder](../image/PeakFinder) with output option 'Add to ROI Manager' must be provided in the ROI Manager as setup prior to running this command. The ROIs are transformed using the Affine2D transformation parameters provided in the dialog. These can be generated using the [Descriptor-based registration plugin](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/) with a sample containing beads that are fluorescent for all wavelengths as described in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/). The Transform ROIs command duplicates the ROIs, transforms them, and updates all ROI names to include a region suffix. This command can be performed multiple times if the camera sensor has more than two regions to support triple and quadview setups. After running this command, the ROIs in the ROI Manager are the required input for the [Molecule Integrator (multiview)](../image/MoleculeIntegratorMultiView).
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/TransformROIs.png' width='800'/></div>
 
 The colocalize tab allows for filtering of ROIs in one channel based on the fluorescent intensity in the other channel. This can be used, for example, to create a set of ROIs for molecules bound to DNA by detecting fluorescence in the DNA channel and filtering the original ROIs by this detected fluorescence.
 
 #### Input
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/img46.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/TransformROIs_Input_tab.png' width='350'/></div>
 
 * *Image* - The selected image will by analyzed using the peaks in the ROI Manger. The name of the image is displayed below the image stack in the dialog window.
 * *Affine2D Transformation Matrix* - The matrix values for the Affine2D transform generated using the Descriptor-based registration plugin.
@@ -23,7 +23,7 @@ The colocalize tab allows for filtering of ROIs in one channel based on the fluo
 * *Apply inverse transformation* - When checked the inverse transform will be applied to the ROIs.
 
 #### Colocalize
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/img47.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/TransformROIs_Colocalize_tab.png' width='350'/></div>
 
 * *Colocalize* - If checked the transformed peak positions will be checked for peaks and filtered to remove transformations to locations that do not have peaks in the second channel.
 * *Channel* - Select the channel that needs to be transformed in the case of a multi-channel video.
@@ -36,13 +36,13 @@ The colocalize tab allows for filtering of ROIs in one channel based on the fluo
 * *Remove colocalizing ROIs* - Remove ROIs in case the positions colocalize. This can be of use to filter out all peaks observed in both parts of the dualview resulting in a set of peaks that do not overlap and hence only have one of the two fluorophores. *Note:* This feature can only be enabled when 'Filter Original ROIs' is enabled.
 
 #### Output
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/TransformROIsOutputTab.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/TransformROIs_Output_tab.png' width='350'/></div>
 
 * *Transform from region* - The name of the region that ROIs are being transform from. If the ROIs in the ROI Manager do not have region suffixes, this region name will be added as a suffix to original ROI names. If the ROIs in the ROI Manager have region suffixes already, a choicebox is provided to select the region that should be transformed. In this way the command can be run several times in sequence to support triple and quadview setups.
 * *Transform to region* - The name of the region where ROIs are being transformed. This is added as a suffix to the transformed ROIs.
 
 #### Preview
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/img49.png' width='350'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/roi/img/TransformROIs_Preview_tab.png' width='350'/></div>
 
 * *Preview* - If checked the resulting transformed peaks will show up on the image based on the settings. *Note: The results of Filtering the original ROIs will not show up in preview but only in the final output.*  
 * *T* - Select the frame (T) in case of a multi-frame video.
