@@ -2,14 +2,13 @@
 layout: example
 mathjax: true
 title: smFRET dataset analysis of a dynamic sample with Mars
-permalink: /examples/FRET_dynamic/index.html
+permalink: /examples/Dynamic_FRET/index.html
 ---
 
-This example presents a Mars workflow for the analysis of dynamic smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208)</sup> datasets collected using TIRF microscopy. The sample data<sup>[2](https://doi.org/10.5281/zenodo.5911644)</sup> was collected using a surface-immobilized Holiday Junction functionalized with donor and acceptor fluorophores positioned on different DNA arms <sup>[3](https://www.nature.com/articles/nchem.1463)</sup>. Imaging was conducted under high Mg<sup>2+</sup> concentrations to induce conformational switching of the DNA arms resulting in high and low FRET states.
+This example presents a Mars workflow for the analysis of dynamic smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208)</sup> datasets collected using TIRF microscopy. The [sample data](https://doi.org/10.5281/zenodo.6659531) were collected using a surface-immobilized Holliday junction functionalized with donor and acceptor fluorophores positioned on different DNA arms <sup>[2](https://www.nature.com/articles/nchem.1463)</sup>. Imaging was conducted under high Mg<sup>2+</sup> concentrations to induce conformational switching of the DNA arms resulting in high and low FRET states.
 
-(figure)
-
-Please also visit the related [Mars workflow to analyze a static smFRET dataset collected using TIRF microscopy](https://duderstadt-lab.github.io/mars-docs/examples/FRET/).
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/index/dynamic_FRET_example.png' width='900' /></div>
 
 ---
 
@@ -28,37 +27,34 @@ Please also visit the related [Mars workflow to analyze a static smFRET dataset 
 **Sample Design**  
 
 **Dataset Characteristics**  
-The dataset<sup>[2](https://doi.org/10.5281/zenodo.5911644)</sup> contains ten separate image sequences each representing a different field of view from the same sample. Imaging was conducted on a micro-mirror TIRF microscope with a dual view using [Micro-Manager 2.0](https://micro-manager.org/Version_2.0). The detection area of the camera is split in half, with each half displaying the signal from a different wavelength. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practice, for this dataset, this means that red emission is collected and shown on the top half, and the green emission on the bottom half of the image (figure 3). Furthermore, the dataset has two channels. One channel for red excitation (C=0) with a 637 nm laser and another for green excitation (C=1) with a 532 laser as denoted below by I<sub>emission|excitation</sub>. The intensities of peaks are integrated during analysis, used for corrections and the calculation of final E and S distributions.
+The [dataset](https://doi.org/10.5281/zenodo.6659531) contains ten separate image sequences each representing a different field of view from the same sample. Imaging was conducted on a micro-mirror TIRF microscope with a dual view using [Micro-Manager 2.0](https://micro-manager.org/Version_2.0). The detection area of the camera is split in half, with each half displaying the signal from a different wavelength. In this way emission can be measured for two wavelengths at the same time and signal correlation is possible. In practice, for this dataset, this means that red emission is collected and shown on the top half, and the green emission on the bottom half of the image (figure 3). Furthermore, the dataset has two channels. One channel for red excitation (C=0) with a 637 nm laser and another for green excitation (C=1) with a 532 nm laser as denoted below by I<sub>emission|excitation</sub>. The intensities of peaks are integrated during analysis, used for corrections and the calculation of final E and S distributions.
 
 **The Analysis Procedure**  
-This example was developed in a modular fashion to illustrate how workflows can be built using Mars and to simplify the process of customization for processing other FRET datasets. The workflow has two major phases. In the first phase, displayed below on the left, the emission peaks from the molecules are located and fluorescence intensity is integrated to generate Molecule Archives for donor only (DO), acceptor only (AO), and FRET. These are merged into one Molecule Archive that is used in phase two, displayed on the right, where a sequence of [groovy scripts provided in the mars-tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts) are used to process the merged Molecule Archive. This includes identification of bleaching positions, scoring intensity traces, and calculating correction factors.
+This example was developed in a modular fashion to illustrate how workflows can be built using Mars and to simplify the process of customization for processing other FRET datasets. The workflow has two major phases. In the first phase, displayed below on the left, the emission peaks from the molecules are located and fluorescence intensity is integrated to generate Molecule Archives for donor only (DO), acceptor only (AO), and FRET populations. These are merged into one Molecule Archive that is used in phase two, displayed on the right, where a sequence of [groovy scripts provided in the mars-tutorials repository](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts) are used to process the merged Molecule Archive. This includes identification of bleaching positions, scoring intensity traces, and calculating correction factors.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/dynamic_FRET_workflow_overview.png' width='1000'></div>
 
-****Phase 1: Locate molecules and integrate fluorescence****
-   * Open the video.
+**Phase 1: Locate molecules and integrate fluorescence**
    * Identify the peaks (molecule locations) in the top and bottom regions.
-   * Correlate the peaks in the top and bottom regions to find which molecules have a red dye only (acceptor only, AO), green dye only (donor only, DO), or both dyes (FRET).
+   * Correlate the peaks in the top and bottom regions to find which molecules have only red emission (acceptor only, AO), only green emission (donor only, DO), or emission from both dyes (FRET).
    * Extract the intensity (I) vs. time (T) traces of all molecules and store this information in a Molecule Archive.
    * Tag the metadata record of each Molecule Archive with DO, AO, or FRET depending on the molecules selected and integrated.
-   * Merge all of three of the Molecule Archives (DO, AO, and FRET) in preparation for phase 2.
+   * Merge all three of the Molecule Archives (DO, AO, and FRET) in preparation for phase 2.
 
-****Phase 2: Corrections, E and S calculation, kinetic analysis****
-1. Run the 'add molecule tags' groovy script. This script adds the tags on the metadata records (DO, AO, and FRET) to the corresponding molecule records.
-2. Run the 'profile correction' groovy script. This script corrects for differences in the beam intensity across the field of view.
-3. Run the 'find bleaching positions' groovy script. This script adds the donor and acceptor bleaching positions (T) to the molecule records. Evaluate the intensity traces and add the Accepted tag to passing molecules.
-4. Run the 'alex corrections' groovy script. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
-5. Run the 'two state fit' groovy script. This script adds a segments table making the high and low E states based using the threshold provided.
+**Phase 2: Corrections, E and S calculation, kinetic analysis**
+1. Run the [add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script. This script adds the tags on the metadata records (DO, AO, and FRET) to the corresponding molecule records.
+2. Run the [profile correction](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_2_profile_correction.groovy) groovy script. This script corrects for differences in the beam intensity across the field of view.
+3. Run the [find bleaching positions](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_3_find_bleaching_positions.groovy) groovy script. This script adds the donor and acceptor bleaching positions (T) to the molecule records. Evaluate the intensity traces and add the Accepted tag to passing molecules.
+4. Run the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
+5. Run the [two state fit](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_5_two_state_dwell_times.groovy) groovy script. This script adds a segments table making the high and low E states based using the threshold provided.
 
-Final distributions and figures are then generated using the [dynamic FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/dynamic/dynamic_FRET_example.ipynb) provided in the mars-tutorials repository. This notebook takes the path to the final Molecule Archive generated from the scripts above as input.
-
-Please visit the [documentation](https://duderstadt-lab.github.io/mars-docs/docs/) pages for specific information about the used tools.
+Final distributions and figures are then generated using the [dynamic FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/dynamic/dynamic_FRET_example.ipynb) provided in the mars-tutorials repository. This notebook requires the file path to the final Molecule Archive generated from the scripts above as input.
 
 ---
 #### <a name="1"></a> Data preparation
 **Opening the Video**  
-First, [download](https://doi.org/10.5281/zenodo.5911644) the dataset from Zenodo. To follow along with this example, you will only need to download Pos0. The analysis procedure for the other fields will be the same.
+First, [download](https://doi.org/10.5281/zenodo.6659531) the dataset from Zenodo. To follow along with this example, you will only need to download Pos0 and the beam_profiles. The analysis procedure for the other fields of view is be the same.
 
 Make sure you have [Fiji with Mars installed](https://duderstadt-lab.github.io/mars-docs/install/). Open Fiji and make sure SCIFIO is used by default to open videos (Edit>Options>ImageJ2 tick the use SCIFIO box). Mars comes with a SCIFIO reader for Micro-Manager 2.0 that ensures all metadata is recovered using the Mars image processing commands. Open the video by dragging it from your file explorer to the Fiji bar or using File>Open... and selecting any image in the sequence. The video should look similar to the screenshot in below. If you are trying this workflow with a different video, Mars accepts many other formats including videos opened using BioFormats. However, some metadata may not be recovered and this workflow would require some adaptation if a different collection strategy was used. If you run into trouble or have questions please make a post on the [Scientific Community Image Forum](https://forum.image.sc) with the mars tag.
 
@@ -66,7 +62,7 @@ Make sure you have [Fiji with Mars installed](https://duderstadt-lab.github.io/m
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img1.png' width='450'></div>
 
 <div style="text-align: center">
-Screenshot of the dataset. In the top half of the split view the red emission is shown, in the bottom half the green emission. Note that the excitation channel can be switched with the "c" scrollbar below the image. Currently, C=0 indicating that the red laser was used for excitation of this frame.
+Screenshot of the dataset. In the top half of the split view the red emission is shown, in the bottom half the green emission. Note that the excitation channel can be switched with the "c" scrollbar below the image. Currently, C=0 indicating that the red laser was used for excitation of this frame. <em>Note: ImageJ channel index starts at 1 whereas Mars channel index starts at 0.</em>
 </div>
 
 **Affine2D matrix**   
@@ -82,28 +78,27 @@ For this dataset, the following matrix will be used:
 | m<sub>11</sub>             | 1.00312          |
 | m<sub>12</sub>             | 506.91025          |
 
-Table 1: Affine2D conversion matrix values
+Table 1: Affine2D conversion matrix values. Transforms from the top (acceptor emission) to the bottom (donor emission).
 
 More information about the calculation of this matrix can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
 
 ---
 #### <a name="3"></a> Localization of Peaks and Intensity vs. T traces
-To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while retaining information on to which population the identified molecule belongs, information that is required to do the correction factor calculations.
+To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while ensuring the metadata records for each of these archives is tagged appropriately so molecules are correctly tagged. These tags are used when calculating the correction factors.
 
-All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in an Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 3 to repeat the archive creation also for the AO and DO archives.
+All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in the Molecule Archive. Below, the workflow to create the FRET archive is shown accompanied by screenshots. Please reference table 3 to repeat the archive creation also for the AO and DO archives.
 
 ##### The FRET Archive
-**1. Identify the red peaks in the red channel (C=0, top)**  
+**Find the peaks in the red channel (C=0, top)**  
 First, for a better fit performance, do a z-projection of the first 10 frames yielding an average image (Fiji>image>stacks>Z project...). Use  this image to find the coordinates of the peaks.
 To find the peaks in the top part of the split view in the red channel first select this part of the screen with the box ROI tool and open the Peak Finder (Plugins>Mars>Image>Peak Finder).
-
 
 Apply the settings as shown below and check if the peaks are identified correctly by pressing the preview button. If the correct settings are applied the peaks should have an identification marker (circle or point) on them. Press ok to apply the settings and add the ROIs of the identified peaks to the ROI manager. The ROI manager will open and will display the peaks listed by their UID in the manager.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img4.png' width='450'></div>
 <div style="text-align: center">
-Figure 4: Identified peaks in the z-stack made from the first 10 frames of the original video.
+Identified peaks in the z-stack made from the first 10 frames of the original video.
 </div>
 
 <div style="text-align: center">
@@ -118,11 +113,15 @@ Figure 4: Identified peaks in the z-stack made from the first 10 frames of the o
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img11.png' width='450'></div>
 <div style="text-align: center">
-Figure 4: Output of the Peak Identifier tool: a list of ROIs in the Fiji ROI manager.
+Output of the Peak Identifier tool: a list of ROIs in the Fiji ROI manager.
 </div>
+<em>Note: We do not integrate the peaks using the [Peak Finder](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakFinder/) command because this would only provide a table with the currently selected peaks. Instead we will use the Molecule Integrator (multiview) in a later step, which produces a Molecule Archive that contains the integrated signals from all peak populations.</em>
 
-**2. Transform  the ROIs to the right part of the split view**  
-Next, transform the coordinates (ROIs) of the peaks that were just identified to match the bottom part of the split view. In this way, in the next analysis step, integration of the peak intensity is possible at both emission wavelengths at the same time. Transform the ROIs to the right part of the split view by using the Transform ROI tool (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix as calculated before (see table 1). Provide the split view dimensions as shown in the screenshot and apply the 'colocalize' filter to only include peaks that are found both in red and green. Press ok to find the transformed ROIs in the ROI manager as UUID_short and UUID_long entries.
+**Transform  the ROIs to the right part of the split view**  
+Next, transform the peak ROIs to the bottom region of the split view. In this way, in the next analysis step, integration of the peak intensities will be possible at both emission wavelengths at the same time. The transformation is done with the [Transform ROIs](https://duderstadt-lab.github.io/mars-docs/docs/roi/TransformROIs/) command (Plugins>Mars>ROI>Transform ROIs). Use the Affine2D matrix as calculated before (see table 1). To ensure we only consider molecules with donor and acceptor signal, we will switch to the FRET channel (C=1) and apply the 'colocalize' filter so only peaks that are found in both red and green regions remain. Press ok to add the transformed ROIs to the ROI manager. ROI names will have the format: UID_Red and UID_Green for emission from the same molecule in each region defined in the Output tab of the dialog.
+
+<div style="text-align: center">
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/TransformROIs_FRET_preview.png' width='450'></div>
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img12.png' width='450'>
@@ -134,12 +133,11 @@ Next, transform the coordinates (ROIs) of the peaks that were just identified to
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img18.png' width='450'></div>
 <div style="text-align: center">
-Figure 5: Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _short and _long names.
+Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _Red and _Green names.
 </div>
 
-
-**3. Apply the molecule integrator to extract I vs. T traces**  
-Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the molecule integrator tools developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Tag the archive as "FRET" and save.
+**Integrate molecules**  
+Now first switch back to the video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the [Molecule Integrator (multiview)]() command developed for dual view microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Press ok and the archive will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Tag the archive as "FRET" and save.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img19.png' width='450'>

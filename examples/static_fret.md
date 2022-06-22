@@ -2,7 +2,7 @@
 layout: example
 mathjax: true
 title: smFRET dataset analysis with Mars
-permalink: /examples/FRET/index.html
+permalink: /examples/Static_FRET/index.html
 ---
 
 In this example a typical Mars workflow for the analysis of smFRET (single-molecule Förster Resonance Energy Transfer)<sup>[1](https://doi.org/10.1038/nmeth.1208), [2](https://doi.org/10.1073/pnas.58.2.719), [3](https://doi.org/10.1073/pnas.93.13.6264)</sup> datasets is discussed. This popular single-molecule technique is used extensively by many labs to investigate the behavior of bio-macromolecules like proteins, RNA, and DNA on a single-molecule level. Among numerous interesting and revealing studies, some examples of important processes that have been studied in this way are: the structural organization of bacterial RNA polymerase <sup>[4](https://doi.org/10.1016/s0092-8674(02)00667-0)</sup>, protein-protein complex formation in neurotransmission pathways <sup>[5](https://doi.org/10.1038/nsmb.1763)</sup>, dynamics of multi-domain proteins like Hsp90 in solution <sup>[6](https://doi.org/10.1038/nmeth.4081)</sup>, protein folding upon ligand interaction <sup>[7](https://doi.org/10.1016/J.SBI.2007.12.003)</sup>, and studies of the cAMP/PKA pathways <sup>[8](https://doi.org/10.1016/J.BBRC.2017.04.097)</sup>.

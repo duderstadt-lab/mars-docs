@@ -10,16 +10,25 @@ permalink: /examples/index.html
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img2.png' width='350' />](track-position-on-DNA)
 
-Complete workflow for the tracking and processing of polymerase movement on a stretched DNA molecule. ([Scherr *et al.*, 2022, Cell Reports](https://doi.org/10.1016/j.celrep.2022.110531))
+Workflow for tracking and analyzing polymerase movement on DNA molecules. ([Scherr *et al.*, 2022, Cell Reports](https://doi.org/10.1016/j.celrep.2022.110531))
 
 ---
 ---
 
-#### FRET Analysis
+#### Static FRET
 
-[<img align='center' src='{{site.baseurl}}/examples/img/index/img3.png' width='450' />](FRET)
+[<img align='center' src='{{site.baseurl}}/examples/img/index/img3.png' width='450' />](Static_FRET)
 
-Complete workflow for the analysis and processing of a FRET dataset containing short DNA molecules with a covalently attached donor and acceptor fluorophore. Benchmarked against openly available standardization data as published by [Hellenkamp *et al.*, 2018, Nat. Meth.](https://www.nature.com/articles/s41592-018-0085-0)
+Workflow for processing static single-molecule FRET from short duplex DNA molecules with donor and acceptor fluorophores positioned at two fixed distances apart as described by [Hellenkamp *et al.*, 2018, Nat. Meth.](https://www.nature.com/articles/s41592-018-0085-0). To allow for benchmarking, publicly available [sample data](https://zenodo.org/record/1249497#.YMccli0RrGI) from Hellenkamp et al. were used and their ALEX analysis strategy was adapted into the Mars workflow.
+
+---
+---
+
+#### Dynamic FRET
+
+[<img align='center' src='{{site.baseurl}}/examples/img/index/dynamic_FRET_example.png' width='900' />](Dynamic_FRET)
+
+Workflow for processing dynamic single-molecule FRET from a Holliday junction functionalized with donor and acceptor fluorophores positioned on different DNA arms following the design of [Hyeon *et al.*, 2012, Nat. Chem](https://www.nature.com/articles/nchem.1463). New [sample data](https://doi.org/10.5281/zenodo.6659531) were collected for this Mars workflow using an Alternating Laser EXcitation (ALEX) strategy.
 
 ---
 ---
@@ -28,8 +37,7 @@ Complete workflow for the analysis and processing of a FRET dataset containing s
 
 [<img align='center' src='{{site.baseurl}}/examples/img/index/img1.png' width='250' />](flow-Magnetic-Tweezers)
 
-
-Complete workflow for tracking and processing the motion of magnetic beads tethered to individual DNA molecules under flow. ([Agarwal & Duderstadt, 2020, Nat. Comm.](https://www.nature.com/articles/s41467-020-18456-y))
+Workflow for tracking and processing the motion of paramagnetic beads attached to DNA molecules and manipulated by Flow Magnetic Tweezers. ([Agarwal & Duderstadt, 2020, Nat. Comm.](https://www.nature.com/articles/s41467-020-18456-y))
 
 ---
 ---
