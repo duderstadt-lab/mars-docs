@@ -8,7 +8,7 @@ permalink: /examples/Dynamic_FRET/index.html
 This example presents a Mars workflow for the analysis of dynamic smFRET (single-molecule Förster Resonance Energy Transfer) datasets collected using TIRF microscopy. The [sample data](https://doi.org/10.5281/zenodo.6659531) were collected using a surface-immobilized Holliday junction functionalized with donor and acceptor fluorophores positioned on different DNA arms.<sup>[1](https://doi.org/10.1038/nchem.1463)</sup> Imaging was conducted under high Mg<sup>2+</sup> concentrations to induce conformational switching of the DNA arms resulting in high and low FRET states.
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/index/dynamic_FRET_example.png' width='900' /></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/Overview_cartoon.png' width='900' /></div>
 
 ---
 
