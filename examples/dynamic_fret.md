@@ -252,7 +252,9 @@ The hot key combinations for molecule tagging can be set in the settings tab of 
 
 **4 alex corrections**
 
-Run the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script on the Molecule Archive with tagged Accepted molecules. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
+Once you have completed the analysis steps above, you are left with a Molecule Archive containing the results from the analysis of Pos0 from the Holliday junction dataset. To increase the number of observations, the workflow above should be repeated for additional positions (fields of view). We repeated the workflow for Pos1, Pos2, and Pos3. We then merged the Molecule Archives from all positions together for further analysis. Determination of accurate correction factors in this step depends on sufficient observations. The $\beta$ and $\gamma$ values in particular will not be accurate for partial datasets.
+
+Run the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script on the Molecule Archive with tagged Accepted molecules. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values and many other outputs described below. This script can be re-run multiple times if molecule tags are updated or additional data is merged in.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/alex_corrections_dialog.png' width='500'></div>
@@ -385,9 +387,9 @@ The segments can be viewed in the molecule plot tab by checking the segments box
 
 ---
 
-#### <a name="9"></a> Data Exploration in Python
+#### <a name="9"></a> Exploration in Python
 
-Once you have completed the analysis steps above, you are left with a Molecule Archive containing the results from the complete analysis of Pos0 from Holliday junction dataset. To increase the number of observations, the workflow above should be repeated for additional positions (fields of view). We repeated the workflow for Pos1, Pos2, and Pos3. We then merged the Molecule Archives from all positions together for further analysis. This final Molecule Archive is available in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository in the files [holliday_junction_merged.yama and accompanying holliday_junction_merged.yama.rover](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/dynamic).
+The final Molecule Archive from the steps above is available in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository in the files [holliday_junction_merged.yama and accompanying holliday_junction_merged.yama.rover](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/dynamic).
 
 Final distributions are generated using the [dynamic FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/dynamic/dynamic_FRET_example.ipynb) provided in the [mars-tutorials repository](https://github.com/duderstadt-lab/mars-tutorials). This notebook requires the file path to a local copy of [holliday_junction_merged.yama](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/dynamic) and Fiji as inputs. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells several charts are generated showing E and S values for each stage of corrections and the fully correction distributions together with the results of kinetic analysis.  
 
