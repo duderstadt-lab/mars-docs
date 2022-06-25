@@ -1,7 +1,7 @@
 ---
 layout: example
 mathjax: true
-title: smFRET dataset analysis with Mars
+title: Mars workflow example for static smFRET
 permalink: /examples/Static_FRET/index.html
 ---
 
