@@ -150,7 +150,7 @@ Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _R
 </div>
 
 **Integrate molecules**  
-Now switch to the full video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the [Molecule Integrator (multiview)](https://duderstadt-lab.github.io/mars-docs/docs/image/MoleculeIntegratorMultiView/) command developed for multiview microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Enter the setting below, press ok, and a Molecule Archive with the results will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Select the single metadata record in the Molecule Archive and add the FRET tag. This is required to ensure the population integrated is correctly annotated in the next steps. Save the Molecule Archive with the name FRET_Archive.yama into a folder for this project.
+Now switch to the full video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the [Molecule Integrator (multiview)](https://duderstadt-lab.github.io/mars-docs/docs/image/MoleculeIntegratorMultiView/) command developed for multiview microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Enter the setting below, press ok, and a Molecule Archive with the results will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Select the single metadata record in the Molecule Archive and add the FRET tag. This is required to ensure the population integrated is correctly annotated in the next steps. For this example, also add the 1-lo tag, this is used during the final analysis in the [static FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/static/static_FRET_example.ipynb). Save the Molecule Archive with the name FRET_Archive.yama into a folder for this project.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/static/Molecule_Integrator_Input.png' width='450'>
@@ -180,7 +180,7 @@ To create the acceptor only (AO) Archive, follow the same procedure as outlined 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/static/Transform_ROIs_AO_Colocalize.png' width='450'></div>
 
-Tag the single metadata record in the resulting Molecule Archive with AO and save it with the name AO_Archive.yama.
+Tag the single metadata record in the resulting Molecule Archive with AO and save it with the name AO_Archive.yama. For this example, also add the 1-lo tag, this is used during the final analysis in the [static FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/static/static_FRET_example.ipynb)
 
 ##### The DO Archive
 To create the donor only (DO) Archive, follow the procedure in the section 'The FRET Archive' with the following changes:
@@ -193,7 +193,7 @@ To create the donor only (DO) Archive, follow the procedure in the section 'The 
 <img align='center' src='{{site.baseurl}}/examples/img/fret/static/Transform_ROIs_DO_Colocalize.png' width='450'>
 <img align='center' src='{{site.baseurl}}/examples/img/fret/static/Transform_ROIs_DO_Output.png' width='450'></div>
 
-Tag the single metadata record in the resulting Molecule Archive with DO and save it with the name DO_Archive.yama.
+Tag the single metadata record in the resulting Molecule Archive with DO and save it with the name DO_Archive.yama. For this example, also add the 1-lo tag, this is used during the final analysis in the [static FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/static/static_FRET_example.ipynb)
 
 ##### Summary of FRET, AO and DO Archive integrations
 
@@ -216,7 +216,7 @@ The final step in _Phase I_ is to merge all the archives we created into one. Th
 ### Phase II
 **1 add molecule tags**
 
-Open the merged Molecule Archive created at the end of _Phase I_. This should contain three metadata records, one for each archive that was merged and they should have appropriate tags (FRET, AO, or DO). Run the [add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script on the merged Molecule Archive. This script adds the tags on the metadata records to the corresponding molecule records. This can be confirmed by examining the tags on the records in the molecules tab. The rest of the scripts in the workflow require molecule tags.
+Open the merged Molecule Archive created at the end of _Phase I_. This should contain three metadata records, one for each archive that was merged and they should have appropriate tags (FRET, AO or DO and all metadata records should have the 1-lo tag). Run the [add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script on the merged Molecule Archive. This script adds the tags on the metadata records to the corresponding molecule records. This can be confirmed by examining the tags on the records in the molecules tab. The rest of the scripts in the workflow require molecule tags.
 
 **2 profile correction**
 
@@ -270,7 +270,7 @@ The hot key combinations for molecule tagging can be set in the settings tab of 
 
 **4 alex corrections**
 
-Once you have completed the analysis steps above, you are left with a Molecule Archive containing the results from the FSII1a_g30r84t200_0.tif video. This will have only a limited number of data points, which affects the accuracy of the calculated correction factors and E and S values. Moreover, reliable beta and gamma corrections are only obtained when the data consists of multiple populations (1-lo and 1-mid). Therefore, to increase the number of observations, the workflow should be repeated for all the videos and the resulting Molecule Archives should be merged together for further analysis. This should include both 1-lo and 1-mid datasets providing the populations needed for accurate beta and gamma calculations.
+Once you have completed the analysis steps above, you are left with a Molecule Archive containing the results from the FSII1a_g30r84t200_0.tif video. This will have only a limited number of data points, which affects the accuracy of the calculated correction factors and E and S values. Moreover, reliable beta and gamma corrections are only obtained when the data consists of multiple populations (1-lo and 1-mid). Therefore, to increase the number of observations, the workflow should be repeated for all the videos and the resulting Molecule Archives should be merged together for further analysis. This should include both 1-lo and 1-mid datasets providing the populations needed for accurate beta and gamma calculations. Note that in the case of the 1-mid datasets, the 1-mid tag should be added to the metadata records instead of the 1-lo tag. This will ensure the populations can be separately analyzed in the final [static FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/static/static_FRET_example.ipynb).
 
 Run the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script on the merged Molecule Archive containing all 1-lo and 1-mid data with tagged Accepted molecules. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values. There are two options for the model used to calculate the gamma correction, which corrects for differences in excitation and detection factors between donor and acceptor. The 'static molecules' model should be used for this dataset. The 'static molecules' model assumes the FRET state of each molecule reflects a fixed constant distance, which is true for the Hellenkamp dataset. The archive used should contain merged results from the analysis of both 1-lo and 1-mid videos. The 'static molecule' model will use the mean E and S values from each Accepted molecule to fit the gamma correction factor. This script can be re-run multiple times if molecule tags are updated or additional data is merged in to update the corrections and final E and S values.
 
