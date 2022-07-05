@@ -43,18 +43,18 @@ This example was developed in a modular fashion to illustrate how workflows can 
    * Merge all three of the Molecule Archives (DO, AO, and FRET) in preparation for _Phase II_.
 
 **_Phase II_: Corrections, E and S calculation, kinetic analysis**
-1. Run the [add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script. This script adds the tags on the metadata records (DO, AO, and FRET) to the corresponding molecule records.
-2. Run the [profile correction](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_2_profile_correction.groovy) groovy script. This script corrects for differences in the beam intensity across the field of view.
-3. Run the [find bleaching positions](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_3_find_bleaching_positions.groovy) groovy script. This script adds the donor and acceptor bleaching positions (T) to the molecule records. Evaluate the intensity traces and add the Accepted tag to passing molecules.
-4. Run the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
-5. Run the [two state fit](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_5_two_state_dwell_times.groovy) groovy script. This script adds a segments table making the high and low E states based using the threshold provided.
+   * Run the [FRET workflow 1 add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script. This script adds the tags on the metadata records (DO, AO, and FRET) to the corresponding molecule records.
+   * Run the [FRET workflow 2 profile correction](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_2_profile_correction.groovy) groovy script. This script corrects for differences in the beam intensity across the field of view.
+   * Run the [FRET workflow 3 find bleaching positions](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_3_find_bleaching_positions.groovy) groovy script. This script adds the donor and acceptor bleaching positions (T) to the molecule records. Evaluate the intensity traces and add the Accepted tag to passing molecules.
+   * Run the [FRET workflow 4 alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
+   * Run the [FRET workflow 5 two state fit](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_5_two_state_dwell_times.groovy) groovy script. This script adds a segments table making the high and low E states based using the threshold provided.
 
 Final distributions and figures are then generated using the [dynamic FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/dynamic/dynamic_FRET_example.ipynb) provided in the mars-tutorials repository. This notebook requires the file path to the final Molecule Archive generated from the scripts above as input.
 
 ---
 #### <a name="1"></a> Data preparation
 **Opening the Video**  
-First, [download](https://doi.org/10.5281/zenodo.6659531) the dataset from Zenodo. To follow along with this example, you will only need to download Pos0 and the beam_profiles. The analysis procedure for the other fields of view is be the same.
+First, [download](https://doi.org/10.5281/zenodo.6659531) the dataset from Zenodo. To follow along with this example, you will only need Pos0 and the beam_profiles. The analysis procedure for the other fields of view is be the same.
 
 Make sure you have [Fiji with Mars installed](https://duderstadt-lab.github.io/mars-docs/install/). Open Fiji and make sure SCIFIO is used by default to open videos (Edit>Options>ImageJ2 tick the use SCIFIO box). Mars comes with a SCIFIO reader for Micro-Manager 2.0 that ensures all metadata is recovered using the Mars image processing commands. Open the video by dragging it from your file explorer to the Fiji bar or using File>Open... and selecting any image in the sequence. The video should look similar to the screenshot in below. If you are trying this workflow with a different video, Mars accepts many other formats including videos opened using BioFormats. However, some metadata may not be recovered and this workflow would require some adaptation if a different collection strategy was used. If you run into trouble or have questions please make a post on the [Scientific Community Image Forum](https://forum.image.sc) with the mars tag.
 
@@ -371,6 +371,8 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 | iiiSapp | Stoichiometry after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) | - | - | 4 alex corrections |
 | FDD | Donor emission after correcting for background, excitation ($\beta$) and detection ($\gamma$) factors | 532 | Green | 4 alex corrections |
 | FAA | Acceptor emission after correcting for background, excitation ($\beta$) and detection ($\gamma$) factors | 532 | Green | 4 alex corrections |
+| SUM_Dex | Sum of acceptor and donor emission during FRET (FAD + FDD). Expected to be stable in FRET region. | - | - | 4 alex corrections |
+| SUM_signal | Sum of all dye emissions (FAA + FAD + FDD). Expected to be stable in FRET region. | - | - | 4 alex corrections |
 | E | Fully corrected FRET efficiency (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 | S | Fully corrected stoichiometry (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 

@@ -385,6 +385,8 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 | iiiSapp | Stoichiometry after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) | - | - | 4 alex corrections |
 | FDD | Donor emission after correcting for background, excitation ($\beta$) and detection ($\gamma$) factors | 1 | Green | 4 alex corrections |
 | FAA | Acceptor emission after correcting for background, excitation ($\beta$) and detection ($\gamma$) factors | 1 | Green | 4 alex corrections |
+| SUM_Dex | Sum of acceptor and donor emission during FRET (FAD + FDD). Expected to be stable in FRET region. | - | - | 4 alex corrections |
+| SUM_signal | Sum of all dye emissions (FAA + FAD + FDD). Expected to be stable in FRET region. | - | - | 4 alex corrections |
 | E | Fully corrected FRET efficiency (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 | S | Fully corrected stoichiometry (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 
