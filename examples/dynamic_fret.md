@@ -15,12 +15,11 @@ This example presents a Mars workflow for the analysis of dynamic smFRET (single
 #### <a name="reference"></a>Table of contents
 - [The FRET Sample Design and Mars Analysis Process](#design)
 - [Data preparation](#1)
-- [Localization of Peaks and Intensity vs. T traces](#3)
-- [Data Analysis and Corrections](#4)
-- [Plotting & Data Exploration in Python](#9)
-- [Conclusion: Global Analysis Outcomes and Comparisons to Literature](#10)
-- [References](#11)
-- [Troubleshooting](#12)
+- [Phase I: Locate molecules and integrate fluorescence](#2)
+- [Phase II: Corrections, E calculation, kinetic analysis](#3)
+- [Exploration in Python](#4)
+- [Troubleshooting](#5)
+- [References](#6)
 
 ---
 #### <a name="design"></a> The FRET Sample Design and Mars Analysis Process
@@ -83,8 +82,8 @@ Table 1: Affine2D conversion matrix values. Transforms from the top (acceptor em
 More information about the calculation of this matrix can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
 
 ---
-### Phase I
-#### <a name="3"></a> Find and integrate molecules
+### <a name="2"></a> Phase I: Locate molecules and integrate fluorescence
+#### Find and integrate molecules
 To calculate all FRET parameters and correction factors three different populations in the sample are of interest: the acceptor only (AO) population, the donor only (DO) population and the FRET population. To facilitate easy data analysis an archive is created for each of these populations separately. These are then later on merged together while ensuring the metadata records for each of these archives is tagged appropriately so molecules are correctly tagged. These tags are used when calculating the correction factors.
 
 All three archives are created following the same workflow: peak identification, ROI transformation to the other halve of the split view, ROI filtering and finally molecule integration to obtain intensity vs. T traces in the Molecule Archive. Below, the workflow to create the FRET archive is shown with screenshots. The procedure is repeated with a few differences described for the creation of the AO and DO Molecule Archives.
@@ -191,7 +190,7 @@ The final step in _Phase I_ is to merge all the archives we created into one. Th
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img31.png' width='250'></div>
 
 ---
-### Phase II
+### <a name="3"></a> Phase II: Corrections, E calculation, kinetic analysis
 **1 add molecule tags**
 
 Open the merged Molecule Archive created at the end of _Phase I_. This should contain three metadata records, one for each archive that was merged and they should have appropriate tags (FRET, AO, or DO). Run the [add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script on the merged Molecule Archive. This script adds the tags on the metadata records to the corresponding molecule records. This can be confirmed by examining the tags on the records in the molecules tab. The rest of the scripts in the workflow require molecule tags.
@@ -397,7 +396,7 @@ The segments can be viewed in the molecule plot tab by checking the segments box
 
 ---
 
-#### <a name="9"></a> Exploration in Python
+#### <a name="4"></a> Exploration in Python
 
 The final Molecule Archive from the steps above is available in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository in the files [holliday_junction_merged.yama and accompanying holliday_junction_merged.yama.rover](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/dynamic).
 
@@ -407,7 +406,7 @@ Final distributions are generated using the [dynamic FRET example jupyter notebo
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/Final_ES_chart.png' width='500'>
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/Final_dwell_time_charts.png' width='300'></div>
 
-#### <a name="12"></a> Troubleshooting
+#### <a name="5"></a> Troubleshooting
 This section highlights some of the common errors or problems that may occur during following along with the example as well as possible solutions. Please reference the table below in case you encounter any problems during the analysis. If your question has not been answered in this section, please feel free to [reach out](https://forum.image.sc/tag/mars) to our lab by making a forum post.
 
 | Problem Description     | Solution     |
@@ -420,6 +419,6 @@ This section highlights some of the common errors or problems that may occur dur
 | No output is generated after running a Mars tool       | Either the input settings were selected in such a way that no output is expected, or the tool encountered an error. Solution: (1) verify the settings of the tool. (2) Check for red printed errors in the Fiji Console window (Window>Console). Either resolve the error by selecting different settings in the Mars tool dialog window or run the tool again.    |
 | No changes are made to the Archive after running one of the scripts       | It might be that the script encountered an error and did not run till completion. Solution: open the 'Console' window (Window>Console) in Fiji and see if any red errors are raised. If so, resolve the error and run the script again.       |
 
-#### <a name="11"></a> References
+#### <a name="6"></a> References
 
 (1) 	Hyeon C, Lee J, Yoon J, Hohng S, Thirumalai D. Hidden complexity in the isomerization dynamics of Holliday junctions. Nat Chem. 2012 Nov;4(11):907-14. [https://doi.org/10.1038/nchem.1463](https://doi.org/10.1038/nchem.1463).  
