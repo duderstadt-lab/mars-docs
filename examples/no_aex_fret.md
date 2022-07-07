@@ -14,12 +14,11 @@ Below are the changes required to the [dynamic workflow example](../Dynamic_FRET
 #### <a name="reference"></a>Table of contents
 - [The FRET Sample Design and Mars Analysis Process](#design)
 - [Data preparation](#1)
-- [Localization of Peaks and Intensity vs. T traces](#3)
-- [Data Analysis and Corrections](#4)
-- [Plotting & Data Exploration in Python](#9)
-- [Conclusion: Global Analysis Outcomes and Comparisons to Literature](#10)
-- [References](#11)
-- [Troubleshooting](#12)
+- [Phase I: Locate molecules and integrate fluorescence](#2)
+- [Phase II: Corrections, E calculation, kinetic analysis](#3)
+- [Exploration in Python](#4)
+- [Troubleshooting](#5)
+- [References](#6)
 
 ---
 #### <a name="design"></a> The FRET Sample Design and Mars Analysis Process
@@ -43,7 +42,7 @@ This example was developed in a modular fashion to illustrate how workflows can 
    * Correlate the peaks in the top and bottom regions to find which molecules have only green emission (donor only, DO), or emission from both dyes (FRET).
    * Extract the intensity (I) vs. time (T) traces of all molecules and store this information in a Molecule Archive.
    * Tag the metadata record of each Molecule Archive with DO or FRET depending on the molecules selected and integrated.
-   * Merge all three of the Molecule Archives (DO and FRET) in preparation for _Phase II_.
+   * Merge the Molecule Archives (DO and FRET) in preparation for _Phase II_.
 
 **_Phase II_: Corrections, E calculation, kinetic analysis**
    * Run the [FRET workflow 1 add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script. This script adds the tags on the metadata records (DO and FRET) to the corresponding molecule records.
@@ -85,8 +84,8 @@ Table 1: Affine2D conversion matrix values. Transforms from the top (acceptor em
 More information about the calculation of this matrix can be found in the [Affine2D tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)
 
 ---
-### Phase I
-#### <a name="3"></a> Beam profile correction
+### <a name="2"></a> Phase I: Locate molecules and integrate fluorescence
+#### Beam profile correction
 To correct the raw image for the non-uniform gaussian excitation profile the Mars [Beam Profile Corrector](../../docs/image/BeamProfileCorrector) command is used. A z-projection (Fiji>image>stacks>Z project...) of the average intensity for 10 or more time points at the end of the video can be used to create the beam profile image. Typically, all molecules are bleached at the end of the video and only the beam profile remains. In this case, time points 900 to 910 were used and a median filter (Process>Filters>Median...) with a radius of 5 was applied to remove the signal from any remaining molecules. Do this separately for the individual Z projected images of each channel. If the Z Projection contains both channels, run Image>Duplicate... on each to get the individual images.
 
 <div style="text-align: center">
@@ -208,7 +207,7 @@ The final step in _Phase I_ is to merge all the archives we created into one. Th
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img31.png' width='350'></div>
 
 ---
-### Phase II
+### <a name="3"></a> Phase II: Corrections, E calculation, kinetic analysis
 **1 add molecule tags**
 
 Open the merged Molecule Archive created at the end of _Phase I_. This should contain three metadata records, one for each archive that was merged and they should have appropriate tags (FRET or DO). Run the [add molecule tags](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_1_add_molecule_tags.groovy) groovy script on the merged Molecule Archive. This script adds the tags on the metadata records to the corresponding molecule records. This can be confirmed by examining the tags on the records in the molecules tab. The rest of the scripts in the workflow require molecule tags.
@@ -240,7 +239,7 @@ As seen below, this adds the positions Bleach_Red and Bleach_Green to molecule r
 Representable molecule trace showing the raw intensities of Idemdex (blue line), and Iaemdex (gray line) with respect to the time point (T). The positions "Bleach_Red" and "Bleach_Green" show the frame at which bleaching of the respective dye occurred. The yellow highlighted region "FRET" indicates which time points should be considered when assessing the molecule's FRET parameters.
 </div>
 
-*Comments: In this example, the donor and acceptor bleach positions are both detected using the 532 (FRET) channel and their respective regions. This is in contrast to the [dynamic workflow example](../Dynamic_FRET) where direct acceptor excitation (637_Red) is used to detect the acceptor bleach position. This may lead to more errors in bleach detection depending on the dataset.*
+*Comments: In this example, the donor and acceptor bleach positions are both detected using the 532 (FRET) channel and their respective regions. This is in contrast to the [dynamic workflow example](../Dynamic_FRET) where emission from direct acceptor excitation (637_Red) is used to detect the acceptor bleach position. This may lead to more errors in bleach detection depending on the dataset. Therefore, detection using the emission from direct acceptor excitation (637_Red) is preferred. When the acceptor bleach position is detected using the 532 (FRET) channel the position marked is actually the end of FRET. This will only correspond to the true acceptor bleach position for molecule where the donor bleaches last. For molecules where the donor bleaches before the acceptor, the acceptor bleach position marked will only represent the end of FRET position using this approach.*
 
 **Plot the traces and add the Accepted tag to passing molecules**  
 Open the plot sub-tab in the molecules tab and add the line plots representing the three measured intensities (I<sub>demdex</sub> & I<sub>aemdex</sub>) for each molecule. To do so select the options as shown in the screenshot. The grey line represents I<sub>aemdex</sub> (FRET) and the blue line represents I<sub>demdex</sub> (DO). These are the two intensity vs. time traces that are required for further FRET calculations.
@@ -256,7 +255,7 @@ Only molecules marked with the Accepted tag will be used for further analysis. T
 - Donor and acceptor signals are anti-correlated in the FRET region
 - There is sufficient FRET life time prior to the first dye bleach event
 
-The selection of suitable DO molecules is important to ensure accurate determination of the alpha correction factor representing leakage of donor emission into the acceptor emission region. Longer lifetimes, high signal-to-noise, and low background are particularly important. The results of our classification can be directly examined in the [holliday_junction_merged_no_aex_corrections.yama and accompanying holliday_junction_merged_no_aex_corrections.yama.rover file](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/no_acceptor_excitation) final archive for this example that is available from the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository.
+The selection of suitable DO molecules is important to ensure accurate determination of the alpha correction factor representing leakage of donor emission into the acceptor emission region. Longer lifetimes, high signal-to-noise, and low background are particularly important. The results of our classification can be directly examined in the [holliday_junction_merged_corrections_without_aex.yama and accompanying holliday_junction_merged_corrections_without_aex.yama.rover file](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/no_acceptor_excitation) final archive for this example that is available from the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository.
 
 The hot key combinations for molecule tagging can be set in the settings tab of the Molecule Archive. This speeds up the process of tagging significantly. Finally, a validation notebook provided in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository offers a report with several measures for the quality of the final set Accepted molecules.
 
@@ -264,7 +263,7 @@ The hot key combinations for molecule tagging can be set in the settings tab of 
 
 Once you have completed the analysis steps above, you are left with a Molecule Archive containing the results from the analysis of Pos0 from the Holliday junction dataset. To increase the number of observations, the workflow above should be repeated for additional positions (fields of view). We repeated the workflow for Pos1, Pos2, and Pos3. We then merged the Molecule Archives from all positions together for further analysis. Determination of accurate correction factors in this step depends on sufficient observations.
 
-Run the [corrections without aex](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script on the Molecule Archive with tagged Accepted molecules. This script calculates correction factors to generate corrected I vs. T traces as well as the FRET efficiency (E) distribution and many other outputs described below. This script can be re-run multiple times if molecule tags are updated or additional data is merged in.
+Run the [corrections without aex](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_6_corrections_without_aex.groovy) groovy script on the Molecule Archive with tagged Accepted molecules. This script calculates correction factors to generate corrected I vs. T traces as well as the FRET efficiency (E) distribution and many other outputs described below. This script can be re-run multiple times if molecule tags are updated or additional data is merged in.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/corrections_without_aex_dialog.png' width='500'></div>
@@ -356,7 +355,7 @@ The dwell time information is added to each molecule record as a segments table 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/FRET_workflow_5_segments_table.png' width='850'></div>
 
-The segments can be viewed in the molecule plot tab by checking the segments box in the plot options panel. The segments will only be displayed if the X and Y columns match those used to generate the segments table. The mean lifetime of each state is determined by fitting the distribution of dwell times for each state with exponential decay function. This is done in Python in the [jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/dynamic/dynamic_FRET_example.ipynb) accompanying this example.
+The segments can be viewed in the molecule plot tab by checking the segments box in the plot options panel. The segments will only be displayed if the X and Y columns match those used to generate the segments table. The mean lifetime of each state is determined by fitting the distribution of dwell times for each state with exponential decay function. This is done in Python in the [jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/no_acceptor_excitation/no_acceptor_excitation_FRET_example.ipynb) accompanying this example.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/FRET_workflow_5_segments_plotted.png' width='850'></div>
@@ -365,17 +364,16 @@ The segments can be viewed in the molecule plot tab by checking the segments box
 
 ---
 
-#### <a name="9"></a> Exploration in Python
+#### <a name="4"></a> Exploration in Python
 
-The final Molecule Archive from the steps above is available in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository in the files [holliday_junction_merged_no_aex_corrections.yama and accompanying holliday_junction_merged_no_aex_corrections.yama.rover file](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/no_acceptor_excitation).
+The final Molecule Archive from the steps above is available in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials/) repository in the files [holliday_junction_merged_corrections_without_aex.yama and accompanying holliday_junction_merged_corrections_without_aex.yama.rover file](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/no_acceptor_excitation).
 
-Final distributions are generated using the [no acceptor excitation FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/no_acceptor_excitation/no_acceptor_excitation_FRET_example.ipynb) provided in the [mars-tutorials repository](https://github.com/duderstadt-lab/mars-tutorials). This notebook requires the file path to a local copy of [holliday_junction_merged_no_aex_corrections.yama](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/no_acceptor_excitation) and Fiji as inputs. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells several charts are generated showing efficiency (E) distribution together with the results of kinetic analysis.  
+Final distributions are generated using the [no acceptor excitation FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/no_acceptor_excitation/no_acceptor_excitation_FRET_example.ipynb) provided in the [mars-tutorials repository](https://github.com/duderstadt-lab/mars-tutorials). This notebook requires the file path to a local copy of [holliday_junction_merged_corrections_without_aex.yama](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/no_acceptor_excitation) and Fiji as inputs. Please note that running the notebook requires the set-up of a new python environment. Directions to do so can be found in this [tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/). After running all cells several charts are generated showing efficiency (E) distribution together with the results of kinetic analysis.  
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Final_E_chart.png' width='500'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Final_dwell_time_charts.png' width='300'></div>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Final_E_and_kinetics_charts.png' width='800'></div>
 
-#### <a name="12"></a> Troubleshooting
+#### <a name="5"></a> Troubleshooting
 This section highlights some of the common errors or problems that may occur during following along with the example as well as possible solutions. Please reference the table below in case you encounter any problems during the analysis. If your question has not been answered in this section, please feel free to [reach out](https://forum.image.sc/tag/mars) to our lab by making a forum post.
 
 | Problem Description     | Solution     |
@@ -388,6 +386,6 @@ This section highlights some of the common errors or problems that may occur dur
 | No output is generated after running a Mars tool       | Either the input settings were selected in such a way that no output is expected, or the tool encountered an error. Solution: (1) verify the settings of the tool. (2) Check for red printed errors in the Fiji Console window (Window>Console). Either resolve the error by selecting different settings in the Mars tool dialog window or run the tool again.    |
 | No changes are made to the Archive after running one of the scripts       | It might be that the script encountered an error and did not run till completion. Solution: open the 'Console' window (Window>Console) in Fiji and see if any red errors are raised. If so, resolve the error and run the script again.       |
 
-#### <a name="11"></a> References
+#### <a name="6"></a> References
 
 (1) 	Hyeon C, Lee J, Yoon J, Hohng S, Thirumalai D. Hidden complexity in the isomerization dynamics of Holliday junctions. Nat Chem. 2012 Nov;4(11):907-14. [https://doi.org/10.1038/nchem.1463](https://doi.org/10.1038/nchem.1463).  
