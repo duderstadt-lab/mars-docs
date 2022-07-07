@@ -30,6 +30,8 @@ Workflow for processing static single-molecule FRET from short duplex DNA molecu
 
 Workflow for processing dynamic single-molecule FRET from a Holliday junction functionalized with donor and acceptor fluorophores positioned on different DNA arms following the design of [Hyeon *et al.*, 2012, Nat. Chem](https://www.nature.com/articles/nchem.1463). New [sample data](https://doi.org/10.5281/zenodo.6659531) were collected for this Mars workflow using an Alternating Laser EXcitation (ALEX) strategy.
 
+There are two example workflows using the Holliday junction [sample data](https://doi.org/10.5281/zenodo.6659531). In the [first dynamic FRET example workflow](Dynamic_FRET), both the direct acceptor excitation (637, C=0) and FRET (532, C=1) information is used to generate fully corrected E and S distributions closely following the analysis protocol from [Hellenkamp *et al.*, 2018, Nat. Meth.](https://www.nature.com/articles/s41592-018-0085-0). In the [second dynamic FRET example workflow](No_aex_FRET), only the FRET (532, C=1) information is used to generate a corrected E distribution following the analysis protocol from [McCann _et al._](https://doi.org/10.1016/j.bpj.2010.04.063). The direct acceptor excitation information is integrated in the first steps of the [second dynamic FRET example workflow](No_aex_FRET) for visual inspection purposes only. Therefore, the [second dynamic FRET example workflow](No_aex_FRET) illustrates how to analyze FRET datasets containing no direct acceptor excitation information.
+
 ---
 ---
 
