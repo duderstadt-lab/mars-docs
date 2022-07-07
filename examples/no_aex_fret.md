@@ -128,7 +128,7 @@ Identified peaks in the z-stack made from the first 10 frames of the original vi
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Peak_Finder_Input.png' width='450'>
-<img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Peak_Finder_Find.png' width='450'>
+<img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Peak_Finder_find.png' width='450'>
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img7.png' width='450'>
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img8.png' width='450'>
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/img9.png' width='450'>
