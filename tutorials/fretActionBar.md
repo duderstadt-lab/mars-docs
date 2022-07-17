@@ -1,7 +1,7 @@
 ---
 layout: groovy
 title: "FRET Power Tools ActionBar"
-permalink: /tutorials/groovy/fretActionBar/index.html
+permalink: /tutorials/fretActionBar/index.html
 ---
 
 The Fiji [ActionBar plugin](https://figshare.com/articles/dataset/Custom_toolbars_and_mini_applications_with_Action_Bar/3397603) offers many options to build custom button collections for easy access to commands and scripts. These can be used to speed up Mars workflows. In this tutorial, we will install a custom ActionBar for the [example FRET workflows](../../../examples/) to illustrate how custom ActionBar button panels can help to streamline Mars workflows and reduce mistakes.
