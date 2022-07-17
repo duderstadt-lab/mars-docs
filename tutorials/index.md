@@ -38,10 +38,13 @@ The files accompanying the tutorials, such as an example dataset, can be found i
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of Molecule Archive records.
 * [MarsTable tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/marstable/)  
   _Skill level: Intermediate._ Learn how to use scripts to build and edit a fully customizable MarsTable.
-* [FRET Power Tools ActionBar](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/fretActionBar/)  
-  Learn how to use the awesome Fiji ActionBar plugin to add all FRET example workflows scripts to a custom button tool menu for faster image processing.
 
 
 #### Affine2D Transformation
 * [How to calculate Affine2D transformation coordinates](https://duderstadt-lab.github.io/mars-docs/tutorials/affine2D/HowToCalculateAffine2D/)  
   _Skill level: Intermediate._ Learn how to calculate an Affine2D transformation matrix using the Descriptor-based registration plugin that comes standard with Fiji. Use this transformation to align multiple videos concerning the same field of view.
+
+
+#### FRET Power Tools ActionBar
+  * [FRET Power Tools ActionBar](https://duderstadt-lab.github.io/mars-docs/tutorials/fretActionBar/)  
+    Learn how to use the awesome Fiji ActionBar plugin to add all FRET example workflow scripts to a custom button window for faster processing.
