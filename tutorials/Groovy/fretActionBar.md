@@ -4,7 +4,7 @@ title: "FRET Power Tools ActionBar"
 permalink: /tutorials/groovy/fretActionBar/index.html
 ---
 
-The Fiji [ActionBar plugin](https://figshare.com/articles/dataset/Custom_toolbars_and_mini_applications_with_Action_Bar/3397603) offers many options to build custom button collections for easy access to commands and scripts. These can be used to speed up Mars workflows. In this tutorial, we will install a custom ActionBar for the [example FRET workflows](../../examples/) to illustrate how custom ActionBar button panels can help to streamline Mars workflows and reduce mistakes.
+The Fiji [ActionBar plugin](https://figshare.com/articles/dataset/Custom_toolbars_and_mini_applications_with_Action_Bar/3397603) offers many options to build custom button collections for easy access to commands and scripts. These can be used to speed up Mars workflows. In this tutorial, we will install a custom ActionBar for the [example FRET workflows](../../../examples/) to illustrate how custom ActionBar button panels can help to streamline Mars workflows and reduce mistakes.
 
 ### 1. Install the ActionBar plugin
 The [ActionBar plugin](https://figshare.com/articles/dataset/Custom_toolbars_and_mini_applications_with_Action_Bar/3397603) plugin has to be installed to take advantage of custom button collections. Download the jar file found through the link and copy it into the jars folder of Fiji or activate the IBMP-CNRS Fiji update site. The ActionBar script we will install was [tested with version 2.15](https://forum.image.sc/t/actionbar-switches-look-and-feel-to-metal/67838).
@@ -23,4 +23,4 @@ To open the FRET Power Tools button window go under Plugins>ActionBar>FRET Power
 <img align='center' src='{{site.baseurl}}/tutorials/img/ActionBar_FRET_Power_Tools_Menu.png' width='450'>
 <img align='center' src='{{site.baseurl}}/tutorials/img/ActionBar_FRET_Power_Tools.png' width='350'></div>
 
-You will notice in addition to all the FRET scripts we installed, there are also several Mars commands added at the top that are frequently used in the [example FRET workflows](../../examples/). If you have trouble getting this tutorial to work get in touch by making a post on the [scientific image community forum](https://forum.image.sc/tag/mars) with the mars tag.
+You will notice in addition to all the FRET scripts we installed, there are also several Mars commands added at the top that are frequently used in the [example FRET workflows](../../../examples/). If you have trouble getting this tutorial to work get in touch by making a post on the [scientific image community forum](https://forum.image.sc/tag/mars) with the mars tag.
