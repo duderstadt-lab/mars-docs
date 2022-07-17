@@ -32,12 +32,14 @@ The files accompanying the tutorials, such as an example dataset, can be found i
 
 
 #### Scripting
-* [Introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/introduction-to-groovy-scripting/)  
+* [Introduction to groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/introduction-to-groovy-scripting/)  
   _Skill level: Intermediate._ Learn how to access and perform basic operations with Molecule Archives.
-* [Advanced groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/advanced-groovy-scripting/)  
+* [Advanced groovy scripting](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/advanced-groovy-scripting/)  
   _Skill level: Advanced._ Learn advanced approaches to filter, collect, and report characteristics of Molecule Archive records.
-* [MarsTable tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/scripting/marstable/)  
+* [MarsTable tutorial](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/marstable/)  
   _Skill level: Intermediate._ Learn how to use scripts to build and edit a fully customizable MarsTable.
+* [FRET Power Tools ActionBar](https://duderstadt-lab.github.io/mars-docs/tutorials/groovy/fretActionBar/)  
+  Learn how to use the awesome Fiji ActionBar plugin to add all FRET example workflows scripts to a custom button tool menu for faster image processing.
 
 
 #### Affine2D Transformation
