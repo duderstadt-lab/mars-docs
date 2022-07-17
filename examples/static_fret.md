@@ -65,6 +65,8 @@ This example was developed in a modular fashion to illustrate how workflows can 
 3. Run the [find bleaching positions](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_3_find_bleaching_positions.groovy) groovy script. This script adds the donor and acceptor bleaching positions (T) to the molecule records. Evaluate the intensity traces and add the Accepted tag to passing molecules.
 4. Run the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script. This script calculates all alex correction factors to generate the fully corrected I vs. T traces as well as the FRET efficiency (E) and stoichiometry (S) values.
 
+The template for a custom window containing buttons for all the commands and scripts used in the FRET workflows was made using the Fiji ActionBar plugin and is provided in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials.git) repository. Follow the steps in the [FRET Power Tools ActionBar tutorial]({{site.baseurl}}/tutorials/fretActionBar/) to setup this helpful button window in your local Fiji to simplify and speed up the workflow.
+
 Final distributions and figures are then generated using the [static FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/static/static_FRET_example.ipynb) provided in the mars-tutorials repository. This notebook requires the file path to the final Molecule Archive generated from the scripts above as input.
 
 ---

@@ -50,6 +50,8 @@ This example was developed in a modular fashion to illustrate how workflows can 
    * Run the [FRET workflow 6 corrections without aex](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_6_corrections_without_aex.groovy) groovy script. This script calculates all correction factors to generate the corrected I vs. T traces as well as the FRET efficiency (E) distribution.
    * Run the [FRET workflow 5 two state fit](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_5_two_state_dwell_times.groovy) groovy script. This script adds a segments table making the high and low E states based using the threshold provided.
 
+The template for a custom window containing buttons for all the commands and scripts used in the FRET workflows was made using the Fiji ActionBar plugin and is provided in the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials.git) repository. Follow the steps in the [FRET Power Tools ActionBar tutorial]({{site.baseurl}}/tutorials/fretActionBar/) to setup this helpful button window in your local Fiji to simplify and speed up the workflow.
+
 Final distributions and figures are generated using the [no acceptor excitation FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/no_acceptor_excitation/no_acceptor_excitation_FRET_example.ipynb) provided in the mars-tutorials repository. This notebook requires the file path to the final Molecule Archive generated from the scripts above as input.
 
 ---
