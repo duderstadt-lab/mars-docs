@@ -46,5 +46,5 @@ The files accompanying the tutorials, such as an example dataset, can be found i
 
 
 #### FRET Power Tools ActionBar
-  * [FRET Power Tools ActionBar](https://duderstadt-lab.github.io/mars-docs/tutorials/fretActionBar/)  
+  * [FRET Power Tools ActionBar]({{site.baseurl}}/tutorials/fretActionBar/)  
     Learn how to use the awesome Fiji ActionBar plugin to add all FRET example workflow scripts to a custom button window for faster processing.

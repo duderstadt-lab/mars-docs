@@ -1,5 +1,5 @@
 ---
-layout: groovy
+layout: actionBar
 title: "FRET Power Tools ActionBar"
 permalink: /tutorials/fretActionBar/index.html
 ---
