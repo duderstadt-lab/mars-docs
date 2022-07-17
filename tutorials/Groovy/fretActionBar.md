@@ -16,7 +16,7 @@ Next, create a FRET subfolder in the scripts folder of your local Fiji and copy 
 
 The easiest way to download all the required files and easily copy them to the correct folders in your local Fiji, is to first clone the [mars-tutorials](https://github.com/duderstadt-lab/mars-tutorials) repository to a local location using `git clone https://github.com/duderstadt-lab/mars-tutorials.git` command.
 
-### 2. Have fun using your new FRET Power Tools button window
+### 3. Have fun using your new FRET Power Tools button window
 To open the FRET Power Tools button window go under Plugins>ActionBar>FRET Power Tools. This should open the multicolor button window shown on the left below.
 
 <div style="text-align: center">
