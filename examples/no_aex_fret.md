@@ -164,7 +164,7 @@ Output of the Transform ROI tool: a list of ROIs in the Fiji ROI manager with _R
 </div>
 
 **Integrate molecules**  
-Now switch to the full video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the [Molecule Integrator (multiview)](https://duderstadt-lab.github.io/mars-docs/docs/image/MoleculeIntegratorMultiView/) command developed for multiview microscopy data (Plugins>Mars>Image>Molecule Integrator (dualview)). Press ok and a Molecule Archive with the results will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Select the single metadata record in the Molecule Archive and add the FRET tag. This is required to ensure the population integrated is correctly annotated in the next steps. Save the Molecule Archive with the name FRET_Archive.yama.
+Now switch to the full video (instead of the z projection) by clicking on its window. Then, integrate the peaks using the [Molecule Integrator (multiview)](https://duderstadt-lab.github.io/mars-docs/docs/image/MoleculeIntegratorMultiView/) command developed for multiview microscopy data (Plugins>Mars>Image>Molecule Integrator (multiview)). Press ok and a Molecule Archive with the results will open automatically upon completion of the calculation. Now the generation of the first archive, the FRET archive, is complete. Select the single metadata record in the Molecule Archive and add the FRET tag. This is required to ensure the population integrated is correctly annotated in the next steps. Save the Molecule Archive with the name FRET_Archive.yama.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/MoleculeIntegrator_multiview_Input_tab.png' width='450'>
@@ -193,7 +193,7 @@ To create the donor only (DO) Archive, follow the procedure in the section 'The 
 - **Peak Finder**: select the lower half of the screen, and select channel 1 in the dialog.
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/PeakFinder_DO_Input.png' width='350'></div>
-- **Transform ROIs**: apply the inverse transformation, set channel to 0, check 'Remove colocalizing ROIs' and update the region names in the Output tab to reflect a transformation from Green to Red (bottom to top, which is the inverse of what we used when creating the FRET archive).
+- **Transform ROIs**: apply the inverse transformation, set channel to 1, check 'Remove colocalizing ROIs' and update the region names in the Output tab to reflect a transformation from Green to Red (bottom to top, which is the inverse of what we used when creating the FRET archive).
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/TransformROIs_DO_Input.png' width='350'>
 <img align='center' src='{{site.baseurl}}/examples/img/fret/no_aex_dynamic/Transform_ROIs_DO_Colocalize.png' width='350'>
