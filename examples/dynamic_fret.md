@@ -92,7 +92,7 @@ All three archives are created following the same workflow: peak identification,
 
 ##### The FRET Archive
 **Find the peaks in the red channel (C=0, top)**  
-First, for a better fit performance, do a z-projection of the first 10 frames yielding an average image (Fiji>image>stacks>Z project...). Use  this image to find the coordinates of the peaks.
+First, for a better fit performance, do a z-projection of the first 10 frames (select average intensity) yielding an average image (Fiji>image>stacks>Z project...). Use  this image to find the coordinates of the peaks.
 To find the peaks in the top part of the split view in the red channel first select this part of the screen with the box ROI tool and open the Peak Finder (Plugins>Mars>Image>Peak Finder).
 
 Apply the settings as shown below and check if the peaks are identified correctly by pressing the preview button. If the correct settings are applied the peaks should have an identification marker (circle or point) on them. Press ok to apply the settings and add the ROIs of the identified peaks to the ROI manager. The ROI manager will open and will display the peaks listed by their UID in the manager.
