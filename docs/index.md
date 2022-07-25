@@ -4,21 +4,21 @@ title: Documentation
 permalink: /docs/index.html
 ---
 
-The **Mars** platform provides a collection of ImageJ2 commands for performing a wide variety of common image processing and secondary analysis tasks. This page provides documentation of the [ImageJ2 commands](https://duderstadt-lab.github.io/mars-core/javadoc/) and the graphical user interface for molecule classification.  
+The **Mars** platform provides a collection of Fiji/ImageJ2 commands for performing a wide variety of common image processing and analysis tasks. This page provides documentation of the [ImageJ2 commands](https://duderstadt-lab.github.io/mars-core/javadoc/) and the graphical user interface for molecule classification.  
 
-To start learning how to use Mars, we recommend first working through the introductory **[Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)** and exploring the [examples](../examples), then dig further into the documentation.
+To start learning how to use Mars, we recommend first working through the introductory **[Let's Make a Molecule Archive](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/)** and exploring the [examples](../examples), and videos on the [Mars YouTube channel](https://www.youtube.com/channel/UCkkYodMAeotj0aYxjw87pBQ), then dig further into the documentation.
 
-Script writers and java developers can get started using the **Mars** development tutorial. Complete javadoc for the mars-core API can be found [here](http://duderstadt-lab.github.io/mars-core/javadoc/). Mars naming conventions can be round [here](NamingConventions).
+Script writers and java developers can get started using the **Mars** development tutorial. Complete javadoc for the mars-core API can be found [here](http://duderstadt-lab.github.io/mars-core/javadoc/). Mars naming conventions can be found [here](NamingConventions).
 
-## <a name="commands"></a>Data Requirements - OME
+## <a name="commands"></a>Data Requirements
 
-### Open Microscopy Environment (OME)
+### Supported Image Formats
 
-Mars stores image metadata using an enhanced version of the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) format. This format provides a universal nomenclature for the storage of 6D images (X, Y, Z, C, T at multiple positions) collected in biological microscopy experiments. More information on the format and further requirements can be found in the [OME](./OME/) section.
+Mars stores image metadata using an enhanced version of the [Open Microscopy Environment (OME)](https://link.springer.com/article/10.1186/gb-2005-6-5-r47) format. This format provides a universal nomenclature for the storage of 6D images (X, Y, Z, C, T at multiple positions) collected in biological microscopy experiments. More information on the format and further requirements can be found in the [OME](./OME/) section. Mars image processing commands work best with images opened using [SCIFIO](https://scif.io/) that provides translators to OME format. SCIFIO can be activated in ImageJ or Fiji under Edit>Options>ImageJ2... Once activated, File>Open will use SCIFIO by default. An enhanced SCIFIO reader ([mars-scifio](https://github.com/duderstadt-lab/mars-scifio)) compatible with data collected using MicroManager 1.4 and 2.0 is available through the mars update site.
 
-Mars image processing algorithms work best with videos opened using [SCIFIO](https://scif.io/) that provides translators to OME format. SCIFIO can be activated in ImageJ or Fiji under Edit>Options>ImageJ2... Once activated, File>Open will use SCIFIO by default. An enhanced SCIFIO reader ([mars-scifio](https://github.com/duderstadt-lab/mars-scifio)) compatible with data collected using MicroManager 1.4 is available through the mars update site. Otherwise, only tiff format has been extensively tested, but SCIFIO supports a large number of other formats. We are eager to help make sure mars properly supports other formats through SCIFIO. Please get in touch by posting on the [ImageJ forum](https://forum.image.sc) if you encounter problems tag the post with mars and mention @karlduderstadt to make sure we are notified.
+Mars image processing commands will also work with ordinary videos opened in ImageJ using other methods, such as the BioFormats plugin. However, in this case, metadata is generated using best guesses and may be less accurate. The Mars image processing commands assume that different excitation wavelengths and filter combinations are stored in different channels. We appreciate that many labs in the single-molecule community develop their own custom microscopes and collection formats. If excitation wavelength or emission filters are changed between frames and not stored in different channels, these videos will need to be converted. In most cases, the built-in tools in Fiji can handle this conversion process. For example, if each excitation wavelength was collected as a separate video, these can all be opened and combined as different channels using the Image>Color>Merge Channels... command. If alternating frames are for different excitation wavelengths the Image>Stacks>Tools>Deinterleave can be used to split the sequence into two videos and the Merge Channels... command can then be used to recombine as two different channels. If the setup has two cameras for different emission wavelengths collected at the same time, the individual videos can be combined using the Image>Stacks>Tools>Combine command and the Molecule Integrator (multiview) command could be used for combined integration. These are just a couple examples of the many possibilities for conversion available using the Image>Stacks>Tools and Image>Color menus. Custom scripts might be required for more complex situations. As an example, we have written a [conversion script](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/scripts/static_FRET_reformat_video.groovy) for the videos in the [static FRET example workflow](../examples/Static_FRET/).
 
-Mars image processing algorithms will also work with ordinary videos opened in ImageJ. However, in this case, metadata is generated using best guesses and may be less accurate.
+We are eager to help make sure Mars supports other image formats that we have not yet encountered in our own work and happy to help write conversion scripts to make Mars more accessible. Please get in touch by making a post on the [ImageJ forum](https://forum.image.sc) with the mars tag and/or mention @karlduderstadt to make sure we are notified.
 
 ## <a name="commands"></a>Command Reference
 
@@ -32,7 +32,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
 | [Molecule Integrator (multiview)](./image/MoleculeIntegratorMultiView) | Integrate the fluorescence of molecules in a multiview setup. |
 
-**Util**  
+### Util  
 
 | :----------------------------- | :----------- |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
@@ -65,7 +65,7 @@ Mars image processing algorithms will also work with ordinary videos opened in I
 | [Sort](./table/Sort) | Sort table rows by column values. |
 | [Filter](./table/Filter) | Filter table rows. |
 
-**Import**  
+### Import  
 
 | :------------- | :------------- |
 | [Import IJ1 Table](./table/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
