@@ -177,7 +177,7 @@ The [Molecule Integrator (multiview)](https://duderstadt-lab.github.io/mars-docs
 Table 2: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
 
 ##### The AO Archive
-To create the acceptor only (AO) Archive, follow the same procedure as outlined in section 'The FRET Archive' with the only difference being that in this case colocalizing peaks should be filtered. This is done by checking the 'Remove colocalizing ROIs' in the Transform ROIs dialog under the Colocalize tab for channel 1.
+First, make sure to clear all entries from the ROI Manager using the Delete button with no ROI selected. This will ensure the new collection of AO ROIs are not added to the previous set of ROIs used for FRET. To create the acceptor only (AO) Archive, follow the same procedure as outlined in section 'The FRET Archive' with the only difference being that in this case colocalizing peaks should be filtered. This is done by checking the 'Remove colocalizing ROIs' in the Transform ROIs dialog under the Colocalize tab for channel 1.
 
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/static/Transform_ROIs_AO_Colocalize.png' width='450'></div>
@@ -185,7 +185,7 @@ To create the acceptor only (AO) Archive, follow the same procedure as outlined 
 Tag the single metadata record in the resulting Molecule Archive with AO and save it with the name AO_Archive.yama. For this example, also add the 1-lo tag, this is used during the final analysis in the [static FRET example jupyter notebook](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/static/static_FRET_example.ipynb)
 
 ##### The DO Archive
-To create the donor only (DO) Archive, follow the procedure in the section 'The FRET Archive' with the following changes:
+First, make sure to clear all entries from the ROI Manager using the Delete button with no ROI selected. This will ensure the new collection of DO ROIs are not added to the previous set of ROIs used for AO. To create the donor only (DO) Archive, follow the procedure in the section 'The FRET Archive' with the following changes:
 - **Peak Finder**: select the right half of the screen (Donor emission region), and with channel 1 selected in the dialog. These steps should be done on the Z Projection image for building the ROI sets. Then the Molecule Integrator (multiview) is used on the full two channel video with all time points.
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/static/Peak_Finder_DO_Input.png' width='450'></div>

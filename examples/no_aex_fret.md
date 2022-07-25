@@ -189,7 +189,7 @@ The [Molecule Integrator (multiview)](https://duderstadt-lab.github.io/mars-docs
 Table 2: Overview of definitions of intensity values with their corresponding names in the Molecule Archive.
 
 ##### The DO Archive
-To create the donor only (DO) Archive, follow the procedure in the section 'The FRET Archive' with the following changes:
+First, make sure to clear all entries from the ROI Manager using the Delete button with no ROI selected. This will ensure the new collection of DO ROIs are not added to the previous set of ROIs used for FRET. To create the donor only (DO) Archive, follow the procedure in the section 'The FRET Archive' with the following changes:
 - **Peak Finder**: select the lower half of the screen, and select channel 1 in the dialog.
 <div style="text-align: center">
 <img align='center' src='{{site.baseurl}}/examples/img/fret/dynamic/PeakFinder_DO_Input.png' width='350'></div>
