@@ -5,7 +5,7 @@ title: Mars workflow example for dynamic smFRET
 permalink: /examples/Dynamic_FRET/index.html
 ---
 
-<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/JsyznI8APlQ" title="YouTube video player" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe></div> 
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/JsyznI8APlQ" title="YouTube video player" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe></div>
 
 
 This example presents a Mars workflow for the analysis of dynamic smFRET (single-molecule Förster Resonance Energy Transfer) datasets collected using TIRF microscopy. The [sample data](https://doi.org/10.5281/zenodo.6659531) were collected using a surface-immobilized Holliday junction functionalized with donor and acceptor fluorophores positioned on different DNA arms.<sup>[1](https://doi.org/10.1038/nchem.1463)</sup> Imaging was conducted under high Mg<sup>2+</sup> concentrations to induce conformational switching of the DNA arms resulting in high and low FRET states.
@@ -379,6 +379,27 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 | SUM_signal | Sum of all dye emissions (FAA + FAD + FDD). Expected to be stable in FRET region. | - | - | 4 alex corrections |
 | E | Fully corrected FRET efficiency (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 | S | Fully corrected stoichiometry (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
+
+
+**Molecule parameters**
+
+The following molecule parameters provide mean values for calculated FRET properties and validation measures. They are added by the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script.
+
+| Molecule parameter | Description   |
+| :------------- | :------------- |
+| iiEapp | Mean FRET efficiency after correcting for background after photobleaching |
+| iiSapp | Mean Stoichiometry after correcting for background after photobleaching |
+| iiiEapp | Mean FRET efficiency after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) |
+| iiiSapp | Mean stoichiometry after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) |
+| E | Mean fully corrected FRET efficiency (background, $\alpha$, $\delta$, $\beta$, $\gamma$) |
+| S | Mean fully corrected stoichiometry (background, $\alpha$, $\delta$, $\beta$, $\gamma$) |
+| SUM_Dex_FRET_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission in the FRET region |
+| SUM_FDD_Recovery_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission in the recovery region after acceptor bleach |
+| S_Between_Bleaches | The mean value of S between dye bleach events |
+| E_Between_Bleaches | The mean value of E between dye bleach events |
+| SUM_signal_FRET_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission and acceptor emission on acceptor excitation in the FRET region |
+| FRET_Pearsons_Correlation | The Pearson correlation coefficient in the FRET region for donor and acceptor emission. |
+| FAA_Coefficient_of_Variation | The coefficient of variation for the acceptor emission on acceptor excitation. |
 
 **5 two state fit**
 

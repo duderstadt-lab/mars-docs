@@ -392,6 +392,26 @@ S = \frac{F_{A|D} + F_{D|D}}{F_{D|D} + F_{A|D} + F_{A|A}}
 | E | Fully corrected FRET efficiency (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 | S | Fully corrected stoichiometry (background, $\alpha$, $\delta$, $\beta$, $\gamma$) | - | - | 4 alex corrections |
 
+**Molecule parameters**
+
+The following molecule parameters provide mean values for calculated FRET properties and validation measures. They are added by the [alex corrections](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_4_alex_corrections.groovy) groovy script.
+
+| Molecule parameter | Description   |
+| :------------- | :------------- |
+| iiEapp | Mean FRET efficiency after correcting for background after photobleaching |
+| iiSapp | Mean Stoichiometry after correcting for background after photobleaching |
+| iiiEapp | Mean FRET efficiency after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) |
+| iiiSapp | Mean stoichiometry after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) |
+| E | Mean fully corrected FRET efficiency (background, $\alpha$, $\delta$, $\beta$, $\gamma$) |
+| S | Mean fully corrected stoichiometry (background, $\alpha$, $\delta$, $\beta$, $\gamma$) |
+| SUM_Dex_FRET_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission in the FRET region |
+| SUM_FDD_Recovery_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission in the recovery region after acceptor bleach |
+| S_Between_Bleaches | The mean value of S between dye bleach events |
+| E_Between_Bleaches | The mean value of E between dye bleach events |
+| SUM_signal_FRET_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission and acceptor emission on acceptor excitation in the FRET region |
+| FRET_Pearsons_Correlation | The Pearson correlation coefficient in the FRET region for donor and acceptor emission. |
+| FAA_Coefficient_of_Variation | The coefficient of variation for the acceptor emission on acceptor excitation. |
+
 ---
 
 #### <a name="9"></a> Exploration in Python and Comparisons to Literature

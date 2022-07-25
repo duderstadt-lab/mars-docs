@@ -345,6 +345,21 @@ E = \frac{F_{A|D}}{F_{A|D} + F_{D|D}}
 | SUM_Dex | Sum of acceptor and donor emission during FRET (FAD + FDD). Expected to be stable in FRET region. | - | - | 6 corrections without aex |
 | E | Fully corrected FRET efficiency (background, $\alpha$, $\gamma$) | - | - | 6 corrections without aex |
 
+
+**Molecule parameters**
+
+The following molecule parameters provide mean values for calculated FRET properties and validation measures. They are added by the [FRET workflow 6 corrections without aex](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_6_corrections_without_aex.groovy) groovy script.
+
+| Molecule parameter | Description   |
+| :------------- | :------------- |
+| iiEapp | Mean FRET efficiency after correcting for background after photobleaching |
+| iiiEapp | Mean FRET efficiency after correcting for background, leakage ($\alpha$), direct excitation ($\delta$) |
+| E | Mean fully corrected FRET efficiency (background, $\alpha$, $\gamma$) |
+| SUM_Dex_FRET_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission in the FRET region |
+| SUM_FDD_Recovery_Coefficient_of_Variation | The coefficient of variation for the sum of the donor and acceptor emission in the recovery region after acceptor bleach |
+| E_Between_Bleaches | The mean value of E between dye bleach events |
+| FRET_Pearsons_Correlation | The Pearson correlation coefficient in the FRET region for donor and acceptor emission. |
+
 **5 two state fit**
 
 Finally, run the [two state fit](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_5_two_state_dwell_times.groovy) groovy script to identify the dwells times for each state. This very simple script identifies regions with high and low FRET (E) based using the columns and threshold value provided in the dialog. This should be the fully corrected E values and the time in seconds.
