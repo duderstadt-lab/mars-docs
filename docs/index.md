@@ -32,7 +32,7 @@ We are eager to help make sure Mars supports other image formats that we have no
 | [Molecule Integrator](./image/MoleculeIntegrator) | Integrate the fluorescence of molecules. |
 | [Molecule Integrator (multiview)](./image/MoleculeIntegratorMultiView) | Integrate the fluorescence of molecules in a multiview setup. |
 
-### Util  
+### Image > Util
 
 | :----------------------------- | :----------- |
 | [Beam Profile Corrector](./image/BeamProfileCorrector) | Correct images for non-uniform beam profile. |
@@ -49,14 +49,13 @@ We are eager to help make sure Mars supports other image formats that we have no
 | [Merge Archives](./molecule/MergeArchives) | Merges a set of Molecule Archives. |
 | [Merge Virtual Stores](./molecule/MergeVirtualArchives) | Merges a set of virtual Molecule Archives. |
 
-**Util**  
+### Molecule > Util
 
 | :----------------------------- | :----------- |
 | [Add time](./molecule/AddTime) | Retrieve and add time information from metadata. |
 | [Drift Corrector](./molecule/DriftCorrector) | Correct the molecule coordinates for sample drift during the measurement. |
 | [Region Difference Calculator](./molecule/RegionDifferenceCalculator) | Add parameter for difference between two regions. |
 | [Variance Calculator](./molecule/varCalculator) | Add variance parameter for molecules. |
-
 
 ### Table
 
@@ -65,7 +64,7 @@ We are eager to help make sure Mars supports other image formats that we have no
 | [Sort](./table/Sort) | Sort table rows by column values. |
 | [Filter](./table/Filter) | Filter table rows. |
 
-### Import  
+### Table > Import
 
 | :------------- | :------------- |
 | [Import IJ1 Table](./table/Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
@@ -83,7 +82,11 @@ We are eager to help make sure Mars supports other image formats that we have no
 | :----------------------------- | :----------- |
 | [Transform ROIs](./roi/TransformROIs) | Transform PointRois using an Affine2D transform. |
 
+### Import
 
+| :----------------------------- | :----------- |
+| [LUMICKS h5](./import/lumicks) | Open Lumicks h5 optical tweezers datasets. |
+| [Single-molecule dataset (SMD)](./import/smd) | Open json Single-molecule dataset (SMD) datasets. |
 
 ## <a name="gui"></a>Mars Rover
 

@@ -9,13 +9,13 @@ Command to import any ImageJ1 table (such as ResultsTable) to the MarsTable form
 #### Inputs
 * *ImageJ1 table* - Table that should be converted. This needs to be an active table in the ImageJ1 format. In the example below a ResultsTable generated with the 'Measure' tool is used to show the conversion.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/Import/img/img2.png' width='400'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/Import/img/img1.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/IJ1_ResultsTable.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/importIJ1_ResultsTable.png' width='400'/></div>
 
 #### Outputs
 * *MarsTable* - The generated output is a MarsTable.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/Import/img/img3.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/ImportedIJ1_ResultsTable.png' width='400'/></div>
 
 ### How to run this Command from a groovy script
 

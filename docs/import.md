@@ -5,6 +5,6 @@ permalink: /docs/import/index.html
 ---
 
 
-| :------------- | :------------- |
-| [Import IJ1 Table](./Import_IJ1)       | Convert a table in the IJ1 format (f.e. ResultsTable) to a MarsTable       |
-| [Import TableDisplay](./Import_TableDisplay)       | Convert a table in the SciJava format (f.e. TableDisplay) to a Marstable       |
+| :----------------------------- | :----------- |
+| [LUMICKS h5](lumicks) | Open Lumicks h5 optical tweezers datasets. |
+| [Single-molecule dataset (SMD)](smd) | Open json Single-molecule dataset (SMD) datasets. |

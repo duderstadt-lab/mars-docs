@@ -1,5 +1,5 @@
 ---
-layout: table 
+layout: table
 title: Import TableDisplay
 permalink: /docs/table/Import_TableDisplay/index.html
 ---
@@ -9,13 +9,13 @@ Command to import any Scijava table (such as TableDisplay) to the MarsTable form
 #### Inputs
 * *SciJava Table* - Table that should be converted. This needs to be an active table in the SciJava format (TableDisplay).
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/Import/img/img4.png' width='400'/></div>
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/Import/img/img5.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/img4.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/img5.png' width='400'/></div>
 
 #### Outputs
 * *MarsTable* - The generated output is a MarsTable.
 
-<div style="text-align: center"><img  src='{{site.baseurl}}/docs/Import/img/img6.png' width='400'/></div>
+<div style="text-align: center"><img  src='{{site.baseurl}}/docs/table/img/img6.png' width='400'/></div>
 
 ### How to run this Command from a groovy script
 
