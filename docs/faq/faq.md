@@ -32,7 +32,7 @@ This error is caused by unrecognized syntax in the scripts or ActionBar layout f
 We recommend using `git clone https://github.com/duderstadt-lab/mars-tutorials.git` on your local machine to download the mars-tutorials repository. This method ensures all the files are downloaded in the correct format. Downloading the larger Molecule Archives will require installing git lfs. Otherwise, the mars-tutorials can be downloaded directly from the GitHub website in zip format to avoid this problem.
 
 #### <a name="report"></a>How do I report an issue or bug I got while using Mars?
-In this case, you can create an issue on one of the Mars GitHub [repositories](https://github.com/duderstadt-lab) or post your question on the [ImageJ forum](https://forum.image.sc/tag/mars) (do not forget to tag it with 'Mars' and @karlduderstadt). We are happy to help!
+In this case, you can create an issue on one of the Mars GitHub [repositories](https://github.com/duderstadt-lab) or post your question on the [ImageJ forum](https://forum.image.sc/tag/mars) (do not forget to tag it with 'mars' and/or @karlduderstadt). We are happy to help!
 
 <p align='center'>
   <img src='{{site.baseurl}}/docs/faq/img/trouble.png' style='width: 950px'>
