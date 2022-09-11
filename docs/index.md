@@ -19,8 +19,10 @@ Mars stores image metadata using an enhanced version of the [Open Microscopy Env
 Mars image processing commands will also work with ordinary videos opened in ImageJ using other methods, such as the BioFormats plugin. However, in this case, metadata is generated using best guesses and may be less accurate. The Mars image processing commands assume that different excitation wavelengths and filter combinations are stored in different channels. We appreciate that many labs in the single-molecule community develop their own custom microscopes and collection formats. If excitation wavelength or emission filters are changed between frames and not stored in different channels, these videos will need to be converted. In most cases, the built-in tools in Fiji can handle this conversion process. For example:
 
 * If each excitation wavelength was collected as a separate video, these can all be opened and combined as different channels using the Image>Color>Merge Channels... command.
+
 * If alternating frames were captured using different excitation wavelengths, the Image>Stacks>Tools>Deinterleave can be used to split the sequence into two videos and the Merge Channels... command can then be used to recombine as two different channels.
-* If the setup has two camera for different emission wavelengths collected at the same time, the individual videos can be combined into single larger images using the Image>Stacks>Tools>Combine command and the Molecule Integrator (multiview) command could be used for combined integration.
+
+* If the setup has two cameras for different emission wavelengths collected at the same time, the individual videos can be combined into single larger images using the Image>Stacks>Tools>Combine command and the Molecule Integrator (multiview) command could be used for combined integration.
 
 These are just a couple examples of the many possibilities for conversion available using the Image>Stacks>Tools and Image>Color menus. Custom scripts might be required for more complex situations. As an example, we have written a [conversion script](https://github.com/duderstadt-lab/mars-tutorials/blob/master/Example_workflows/FRET/scripts/static_FRET_reformat_video.groovy) for the videos in the [static FRET example workflow](../examples/Static_FRET/).
 
