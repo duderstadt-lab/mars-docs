@@ -47,7 +47,7 @@ import de.mpg.biochem.mars.table.*
 import org.scijava.table.*
 
 
-//Initialize a new empty MARSResultsTable
+//Initialize a new empty MarsTable
 table = new MarsTable()
 DoubleColumn col1 = new DoubleColumn("column1")
 DoubleColumn col2 = new DoubleColumn("column2")

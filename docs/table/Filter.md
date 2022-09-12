@@ -34,7 +34,7 @@ Example for type "Filter Table" with "molecule" selected as the column.
 ### How to filter tables in a groovy script
 
 ```groovy
-#@ MARSResultsTable table
+#@ MarsTable table
 #@ ImageJ ij
 
 import de.mpg.biochem.mars.table.*
