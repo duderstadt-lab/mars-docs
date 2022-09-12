@@ -72,7 +72,7 @@ Screenshot of the dataset. In the top half of the split view the red emission is
 To correlate the coordinates in the top half of the split view with those of the bottom half of the split view, we use a transformation matrix (Affine2D matrix).
 For this dataset, the following matrix will be used:  
 
-|                 | Left to Right matrix     |
+|                 | Top to bottom matrix     |
 | :-------------  | :------------- |
 | m<sub>00</sub>             | 1.00276          |
 | m<sub>01</sub>             | 0.000208              |
