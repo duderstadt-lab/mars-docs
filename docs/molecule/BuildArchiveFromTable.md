@@ -4,11 +4,11 @@ title: Build archive from table
 permalink: /docs/molecule/BuildArchiveFromTable/index.html
 ---
 
-This command builds a Molecule Archive using a MarsTable. The [Table>Open Table command](../table/ImportTable) can open csv formatted tables or MarsTables (json or yamt format). This command, together with the [Open Table command](../table/ImportTable), provides the possibility of building a Molecule Archive using csv data imported from another platform.
+This command builds a Molecule Archive using a MarsTable. The [Table>Open Table command](../../table/ImportTable) can open csv formatted tables or MarsTables (json or yamt format). This command, together with the [Open Table command](../../table/ImportTable), provides the possibility of building a Molecule Archive using csv data imported from another platform.
 
 #### Inputs
 
-* _Table_ - MarsTable opened using the [Table>Open Table command](../table/ImportTable) that accepts csv, json, and yamt.
+* _Table_ - MarsTable opened using the [Table>Open Table command](../../table/ImportTable) that accepts csv, json, and yamt.
 * _Molecule id column_ - Table column with unique ids for sets of rows representing each molecule record. The id column could contain integer index values (like in the image below), double values, or id strings. Select "None" if the table only contains data for one molecule.
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/docs/molecule/img/Input_table.png' width='400'/></div>
