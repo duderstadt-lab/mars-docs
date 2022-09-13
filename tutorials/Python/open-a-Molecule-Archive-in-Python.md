@@ -8,6 +8,8 @@ _level: intermediate, duration: 20 min (including one-time setup)_
 
 In this tutorial you can find a set of instructions on how to work with Molecule Archives in Python by using Anaconda's Jupyter. To do so, one first needs to create a special 'Environment'. This environment only has to be build the first time. When inspecting Molecule Archives later on the environment can be selected and the user can proceed immediately to the 'Molecule Archives in Python' section of this tutorial.
 
+_Note: Python 3 can also be used directly within Fiji (Not Jython, actual Python 3 with conda libraries). The Dashboard and Fiji scripting engine can now support Python (PyImageJ), which we are currently beta testing. Python (PyImageJ) allows users to run normal Python 3 scripts (with seaborn, matplotlib, pandas, etc..) when Fiji is launch from a Conda Python environment. We have written a library that will launch Fiji in this way available on conda forage called [marspylib](https://github.com/duderstadt-lab/marspylib). Follow the direction in the readme to set this up. Then test it out using the Dashboard examples. It can also be used in the Fiji scripting editor. Make a comment on the forum if you have problems._
+
 ### Create the Environment
 First, an environment has to be created that makes it possible to use ImageJ together with Python. The environment is based on this **[repository](https://github.com/imagej/pyimagej)** on GitHub (it is basically a storage place). It contains all the necessary packages needed to build a bridge between java and python and also makes sure that the correct version of the package is used. The next steps will explain how to create the environment step by step.
 
