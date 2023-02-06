@@ -17,31 +17,22 @@ The next part will use basic commands from Git. To get familiar with **[Git](htt
 
 1. Install **[Anaconda](https://www.anaconda.com/distribution/)** (Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already installed on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.
 
-2. Open the terminal and paste the following line. This will automatically download the environment and it will be called conda pyimageMars:
+2. Open the terminal and paste the following line. This will create a conda environment called pyimagej that includes the seaborn and jupyter notebook packages:  
 ```terminal
-conda create -n pyimagejMars -c conda-forge pyimagej openjdk=8
+conda create -n pyimagej -c conda-forge pyimagej seaborn jupyter notebook openjdk=8
 ```
-3. The environment has everything you need to work with Mars and python. But for convenience we will add two packages for python. The first one helps to create better looking plots. It is called seaborn. For that activate the environment first with the following line:
+3. The environment has everything you need to work with Mars using Python 3. Activate the environment using the follow line:
 ```terminal
-conda activate pyimagejMars
+conda activate pyimagej
 ```
-4. Now copy and paste the next line. You will use conda to install the package. Follow the instructions in the terminal:
-```terminal
-conda install seaborn
-```
-5. Now we need to install jupyter notebook. Use the following line. Copy and paste it and again follow the instructions in the terminal:
-```terminal
-conda install jupyter notebook
-```
-6. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
+4. Launch a jupyter notebook using the command below in the terminal. The notebook will open in the browser.
 ```terminal
 jupyter notebook
 ```
 
-Now the environment is created and activated and everything is ready to start working with the data from the Molecule Archive.
+Now you can work with Mars Molecule Archives using jupyter notebooks.
 
 For the next section create a new notebook (New -> Python 3). The code below can be copied and pasted in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option/Alt + Enter" the cell will be executed and a new cell is created).
-
 
 ### Molecule Archives in Python
 To start working with a Molecule Archive in a Jupyter notebook first the Fiji/ImageJ and Python packages should be loaded.
@@ -51,7 +42,7 @@ Before starting one needs to load Fiji and all the necessary Python packages. To
 
 ```python
 import imagej
-# One needs to add the path to the Fiji application on the computer
+# Set to the Fiji application path on your computer
 ij = imagej.init('/Applications/Fiji.app')
 
 # Python packages
@@ -61,13 +52,14 @@ import scyjava as sc
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from java.io import File
+from scyjava import jimport
+File = jimport("java.io.File")
 from de.mpg.biochem.mars.molecule import SingleMoleculeArchive
 import seaborn as sns
 
 ```
 
-One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to check the location.
+Check that the path to the Fiji folder is correct for your system. The path above is typical for macos.
 
 **[Scijava](https://github.com/scijava/scyjava)** is needed to transform java class objects into python objects. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** and **[seaborn](https://seaborn.pydata.org)** are plotting libraries.  
 
