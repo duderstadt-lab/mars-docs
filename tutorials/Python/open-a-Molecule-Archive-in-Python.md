@@ -17,22 +17,23 @@ The next part will use basic commands from Git. To get familiar with **[Git](htt
 
 1. Install **[Anaconda](https://www.anaconda.com/distribution/)** (Python 3.7). Alternatively, one can also install **[Miniconda](https://conda.io/miniconda.html)**. If Anaconda/Miniconda is already installed on the computer the download is not needed. Anaconda/Miniconda is used to install a basic Python distribution.
 
-2. Open the terminal and paste the following line. This will create a conda environment called pyimagej that includes the seaborn and jupyter notebook packages:  
+2. Open the terminal and paste the following line. This will automatically download the environment and it will be called conda pyimageMars:
 ```terminal
-conda create -n pyimagej -c conda-forge pyimagej seaborn jupyter notebook openjdk=8
+conda create -n pyimagejMars -c conda-forge pyimagej seaborn jupyter notebook openjdk=8
 ```
-3. The environment has everything you need to work with Mars using Python 3. Activate the environment using the follow line:
+3. The environment has everything you need to work with Mars and python. Activate the environment with the following line:
 ```terminal
-conda activate pyimagej
+conda activate pyimagejMars
 ```
-4. Launch a jupyter notebook using the command below in the terminal. The notebook will open in the browser.
+4. Launch Jupyter notebook by typing Jupyter notebook in the terminal. Your browser will be used to display a interface for Jupyter notebook:
 ```terminal
 jupyter notebook
 ```
 
-Now you can work with Mars Molecule Archives using jupyter notebooks.
+Now the environment is created and activated and everything is ready to start working with the data from the Molecule Archive.
 
 For the next section create a new notebook (New -> Python 3). The code below can be copied and pasted in a cell and by using "Shift + Enter" the code inside will be executed (when pressing "Option/Alt + Enter" the cell will be executed and a new cell is created).
+
 
 ### Molecule Archives in Python
 To start working with a Molecule Archive in a Jupyter notebook first the Fiji/ImageJ and Python packages should be loaded.
@@ -41,25 +42,34 @@ To start working with a Molecule Archive in a Jupyter notebook first the Fiji/Im
 Before starting one needs to load Fiji and all the necessary Python packages. To run the commands it uses the local copy of Fiji that is stored on your computer. It should be equipped with Mars (**[instructions how to get Mars ready on a local computer](https://duderstadt-lab.github.io/mars-docs/usage/)**).
 
 ```python
-import imagej
-# Set to the Fiji application path on your computer
-ij = imagej.init('/Applications/Fiji.app')
 
-# Python packages
+file_path_fiji = '/Applications/Fiji.app' # Specify the path to your local copy of Fiji
+# Import packages
+import imagej
 import jpype
 import jpype.imports
+
+# Set the path to the local Fiji application if it does not exist yet
+try:
+    ij
+except NameError:
+    ij = imagej.init(file_path_fiji)
+
+# Import the other packages
 import scyjava as sc
+import seaborn as sns
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+
+import math
 from scyjava import jimport
 File = jimport("java.io.File")
 from de.mpg.biochem.mars.molecule import SingleMoleculeArchive
-import seaborn as sns
 
 ```
 
-Check that the path to the Fiji folder is correct for your system. The path above is typical for macos.
+One has to specify the path where the Fiji application is located. If it is located in the application folder the path in the code is fine. Otherwise one has to check the location.
 
 **[Scijava](https://github.com/scijava/scyjava)** is needed to transform java class objects into python objects. **[Numpy](https://numpy.org)** is essential for scientific computing. **[Pandas](https://pandas.pydata.org)** is a great tool to manipulate and analysis data sets. **[matplotlib.pyplot](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html)** and **[seaborn](https://seaborn.pydata.org)** are plotting libraries.  
 
@@ -98,14 +108,14 @@ The notebook will display all the UUIDs.
 There are two ways of accessing the data entries themselves. One can use the index from the archive. For example: accessing the first entry one can use the index "0" (indexing in Python starts with 0).
 ```python
 #get the Table for the molecule at index 0 as a pandas dataframe
-tableByIndex = sc._table_to_pandas(archive.get(0).getTable())
+tableByIndex = sc.to_python(archive.get(0).getTable())
 tableByIndex
 ```
 One can also use the UUIDs to access certain molecules. Just copy and paste on of them into the following line of code.
 
 ```python
 #get the Table for molecule UID as a pandas dataframe
-tableByUID = sc._table_to_pandas(archive.get('2AEygnwajcvHUBYGGUHcNa').getTable())
+tableByUID = sc.to_python(archive.get('2AEygnwajcvHUBYGGUHcNa').getTable())
 tableByUID
 ```
 The build-in function "_table_to_pandas(data)" from **"sc"** (imported from scijava at the top) makes it possible load the table as a pandas data frame. Pandas makes it possible to handle big data sets. The counterpart of the function is "_pandas_to_table(data)" which does the opposite (which is not needed for the rest of the tutorial). The function to get the data table is called "getTable()".
