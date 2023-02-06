@@ -222,6 +222,9 @@ Next run the [profile correction](https://github.com/duderstadt-lab/mars-tutoria
 
 The beam profile correction images were generated using time points at the end of the sample data videos after all dyes bleached (in the range 900 to 1000). The Image>Stacks>Z Project... command was used to generate the mean intensity image from ~10 frames at the end of the video. This mean image was median filtered to remove any remaining features. Images were created for channel 0 (aex_profile) and channel 1 (dex_profile). For the script to work properly the maximum pixel value in the image must be in the region to be corrected. Therefore, the top region of the dex_profile images was deleted to remove remaining crosstalk in the acceptor region. Alternatively, profile images can be created using samples with high dye concentrations.
 
+> **Warning**
+> Make sure to generate the mean intensity image. If you calculate the sum, the max value might become larger than an integer. The script can only handle images with max values that are integers.
+
 **3 find bleaching positions**
 
 To correctly assess the FRET parameters, it is important to find out the bleaching time points of both dyes and to identify the first dye that bleached. Only the frames of the video up until that point are relevant for FRET. Find the bleaching positions using the [find bleaching positions](https://github.com/duderstadt-lab/mars-tutorials/tree/master/Example_workflows/FRET/scripts/FRET_workflow_3_find_bleaching_positions.groovy) groovy script.
