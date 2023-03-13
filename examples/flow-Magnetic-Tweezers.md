@@ -7,9 +7,9 @@ permalink: /examples/flow-Magnetic-Tweezers/index.html
 #### Quick summary
 
 Topoisomerases mediate DNA topology during different processes, like DNA replication and transcription, and are important to compact DNA. DNA gyrase from *E. coli* is an example of such a topoisomerase.
-In this example, the interaction between gyrase and DNA is studied using a flow magnetic tweezers set-up (a combination of magnetic tweezers and a flow stretching assay). The huge dataset is analyzed using MARS highlighting its ability to sort and store tracking information, parameters, and filtering tags in a highly reproducible manner.
+In this example, the interaction between gyrase and DNA is studied using a flow magnetic tweezers set-up (a combination of magnetic tweezers and a flow stretching assay). The huge dataset is analyzed using Mars highlighting its ability to sort and store tracking information, parameters, and filtering tags in a highly reproducible manner.
 
-The example gives an overview of how a real data set would be analyzed with MARS starting from tracking single molecules, sorting the traces by calculated features, over to producing a final publishable plot. Next to this, the scripting feature in Fiji is used to calculate parameters in an automated fashion.
+The example gives an overview of how a real data set would be analyzed with Mars starting from tracking single molecules, sorting the traces by calculated features, over to producing a final publishable plot. Next to this, the scripting feature in Fiji is used to calculate parameters in an automated fashion.
 
 
 #### <a name="reference"></a>Table of contents
@@ -18,7 +18,7 @@ The example gives an overview of how a real data set would be analyzed with MARS
   - [The flow magnetic tweezers set up](#FMT)
   - [Gyrase](#gyr)
   - [The assay](#assay)
-  - [The MARS workflow](#workflow)
+  - [The Mars workflow](#workflow)
 - [Tracking of the single molecule data](#tracking)
 - [Add regions for different activities to the archive](#add)
 - [Classification using groovy scripts](#classification)
@@ -61,13 +61,13 @@ The following figure illustrates the main experimental idea. DNA is positively s
   <div style='width: 950px; text-align: center;'>Gyrase reaction on Flow Magnetic Tweezers</div>
 
 
-##### <a name="workflow"></a>The MARS workflow
+##### <a name="workflow"></a>The Mars workflow
 
 <p align='center'>
   <img src='{{site.baseurl}}/examples/img/fmt/img1.png' style='width: 700px'>
 </p>
 
-To analyze the generated dataset, the single molecule beads are tracked using the build-in tracker from MARS ([Peak Tracker](../../docs/image/PeakTracker)). A 'MoleculeArchive' is created containing all the tracking information of every single molecule. This archive is the center of the analysis and will keep track of all calculated parameters, tags, and applied filters overtime to ensure reproducibility. Parameters are calculated using scripts (e.g. groovy based) for different time points of the trace to be used later on to classify molecules with tags. A selection of molecules with certain tags can then be used for further analysis. Tables can be exported with specific information which can then be used in combination with other plotting tools (e.g. python) to create great data representation or with other software to analyze the data further. Keep in mind that this workflow is a result of extensive work.
+To analyze the generated dataset, the single molecule beads are tracked using the build-in tracker from Mars ([Peak Tracker](../../docs/image/PeakTracker)). A 'MoleculeArchive' is created containing all the tracking information of every single molecule. This archive is the center of the analysis and will keep track of all calculated parameters, tags, and applied filters overtime to ensure reproducibility. Parameters are calculated using scripts (e.g. groovy based) for different time points of the trace to be used later on to classify molecules with tags. A selection of molecules with certain tags can then be used for further analysis. Tables can be exported with specific information which can then be used in combination with other plotting tools (e.g. python) to create great data representation or with other software to analyze the data further. Keep in mind that this workflow is a result of extensive work.
 
 #### <a name="tracking"></a> Tracking of the single molecule data
 
@@ -84,7 +84,7 @@ The file (TIF video) is [imported](https://duderstadt-lab.github.io/mars-docs/tu
 
 ##### Opening tracker from Mars plugin
 
-The MARS plugin comes with a built-in tracker. A simple example for using the tracker is explained in detail in the tutorial section and can be found [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). The program uses 'Difference of Gaussian filter' ([DoG filter](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakTracker/)) to find peak position with sub-pixel precision. Once peaks are found, the algorithm connects the peaks between frames making a trajectory of the bead movement in the xy-plane. In the screenshot below you can see the detection of single beads by the tracker (yellow crosses) and also the different parameters which can be set for the tracking which are stored in the archive (shown in the console). As mentioned before the provided video is quite big and needs a lot of computational power. Instead of tracking the original video, you can also use a truncated video file to test the tracking yourself which can be found [here](https://github.com/duderstadt-lab/fmt-tutorials/tree/master/TruncatedVideo). It will result in lesser molecules but you can experience the tracking. The fully tracked archive is available [here](https://github.com/duderstadt-lab/fmt-tutorials).
+The Mars plugin comes with a built-in tracker. A simple example for using the tracker is explained in detail in the tutorial section and can be found [here](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/create-a-Molecule-Archive/). The program uses 'Difference of Gaussian filter' ([DoG filter](https://duderstadt-lab.github.io/mars-docs/docs/image/PeakTracker/)) to find peak position with sub-pixel precision. Once peaks are found, the algorithm connects the peaks between frames making a trajectory of the bead movement in the xy-plane. In the screenshot below you can see the detection of single beads by the tracker (yellow crosses) and also the different parameters which can be set for the tracking which are stored in the archive (shown in the console). As mentioned before the provided video is quite big and needs a lot of computational power. Instead of tracking the original video, you can also use a truncated video file to test the tracking yourself which can be found [here](https://github.com/duderstadt-lab/fmt-tutorials/tree/master/TruncatedVideo). It will result in lesser molecules but you can experience the tracking. The fully tracked archive is available [here](https://github.com/duderstadt-lab/fmt-tutorials).
 
 
 <p align='center'>
@@ -99,7 +99,7 @@ The MARS plugin comes with a built-in tracker. A simple example for using the tr
 <p align='center'>
   <img align='center' src='{{site.baseurl}}/examples/img/fmt/image004.png' width='700' />
 </p>  
-##### MARS GUI and archive
+##### Mars GUI and archive
 
 Once the tracking is done, an archive is created. The 'Info' widget shows how many molecules are tracked: in this case, there are 23377 tracked molecules (the number can vary depending on the tracking settings). All molecules here have unique IDs (UUID) for traceability and display the x and y tracking information by default. In the next step, these molecules are classified using tags.
 
@@ -176,7 +176,7 @@ You can also plot the burst position as a boxplot to condense the information. F
 </p>
 
 #### <a name="conc"></a> Conclusion
-This example illustrates how to go from a huge data set to figures which can be used for a publication. Because MARS stores every information during the analysis process everyone can reproduce the steps. Furthermore, if one wants to revise the parameters or thresholds one can easily start over because no trace was deleted in the process.
+This example illustrates how to go from a huge data set to figures which can be used for a publication. Because Mars stores every information during the analysis process everyone can reproduce the steps. Furthermore, if one wants to revise the parameters or thresholds one can easily start over because no trace was deleted in the process.
 
 If this example caught your attention please check out our more step-by-step ['tutorials'](https://duderstadt-lab.github.io/mars-docs/tutorials/) and try to use your own dataset afterward. If you encounter a bug please contact us on the [forum](https://github.com/duderstadt-lab/mars-fx/issues).
 
