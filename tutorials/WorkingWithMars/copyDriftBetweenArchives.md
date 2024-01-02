@@ -78,7 +78,7 @@ series1_values = archive.molecules().mapToDouble{ mol -> mol.getParameter("Y_Var
 ```
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/tutorials/img/Variance_Archive_Widget_Distributions.png' width='650'></div>
+<img align='center' src='{{site.baseurl}}/tutorials/img/Variance_Archive_Widget_Distributions.png' width='850'></div>
 
 The xmin, xmax, and bins will need to be adjusted depending on the dataset to reveal the distributions. Using visual inspection identify the populations with the lowest variance that correspond to immobile molecules. Use the cutoff values determined in the following script to tag only the immobile molecules. This script should be pasted and run in the Fiji script editor with the language set to Groovy.
 
