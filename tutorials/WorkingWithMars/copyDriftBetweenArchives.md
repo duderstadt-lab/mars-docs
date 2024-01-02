@@ -12,7 +12,7 @@ Open your image in Fiji and make sure the channel and time dimensions are correc
 Robust calculation of drift is only possible using many position estimates for at each time point. Therefore, make sure the settings used generate molecule tracks with positions for as many time points as possible. Partial tracks are also used during analysis.
 
 ### 2. Calculate variance and tag immobile molecules
-Next, use the [Variance Calculator](../../tutorials/workingwithmars/calculate-var/) for both the X and Y columns separately adding parameters 'X_Variance' and 'Y_Variance', respectively to all molecule records. Variance distributions can be evaluated using the bar graph widget using the following scripts. These scripts can be copied and pasted into the script panel of the groovy widgets to replace the default script.
+Next, use the [Variance Calculator](../calculate-var/) for both the X and Y columns separately adding parameters 'X_Variance' and 'Y_Variance', respectively to all molecule records. Variance distributions can be evaluated using the bar graph widget using the following scripts. These scripts can be copied and pasted into the script panel of the groovy widgets to replace the default script.
 
 For X_Variance:
 ```groovy
@@ -78,7 +78,7 @@ series1_values = archive.molecules().mapToDouble{ mol -> mol.getParameter("Y_Var
 ```
 
 <div style="text-align: center">
-<img align='center' src='{{site.baseurl}}/tutorials/img/Variance_Archive_Widget_Distributions.png' width='450'>
+<img align='center' src='{{site.baseurl}}/tutorials/img/Variance_Archive_Widget_Distributions.png' width='650'></div>
 
 The xmin, xmax, and bins will need to be adjusted depending on the dataset to reveal the distributions. Using visual inspection identify the populations with the lowest variance that correspond to immobile molecules. Use the cutoff values determined in the following script to tag only the immobile molecules. This script should be pasted and run in the Fiji script editor with the language set to Groovy.
 
