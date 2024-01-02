@@ -1,7 +1,7 @@
 ---
-layout: copyDriftBetweenArchives
+layout: workingwithmars
 title: "How to copy drift from one archive to another"
-permalink: /tutorials/copyDriftBetweenArchives/index.html
+permalink: /tutorials/workingwithmars/copyDriftBetweenArchives/index.html
 ---
 
 The [Drift Corrector](../../docs/molecule/DriftCorrector/) can be used to calculate background drift over the measurement time using a Single Molecule Archive with all immobile molecules tagged as illustrated in the [RNA polymerase tracking example](../../examples/track-position-on-DNA/). This tutorial will review the steps required to use the [Drift Corrector](../../docs/molecule/DriftCorrector/) and how to copy the calculated drift to another archive. This allows for the development of drift correction workflows involving other archive types, such as DnaMoleculeArchives, with the molecule tracking done using the tracking options in the BigDataViewer window opened in the Mars Rover.

@@ -17,3 +17,5 @@ The files accompanying the tutorials, such as an example dataset, can be found i
   _Skill level: Intermediate._  Learn how to do a kinetic changepoint analysis.
 * [How to Find Tracked Molecules in the Video](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/bdv/)  
   _Skill level: Advanced._  Learn how to visualise an Molecule Archive entry in the original video. This enables the user to look back at the molecule in the original video.
+* [How to Copy Drift Between Archives](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/copyDriftBetweenArchives/)  
+  _Skill level: Advanced._  Learn how to create an archive with drift information and copy that information to other archives. This shows how to correct for drift when manually tracking molecules using the BDV in the mars rover.
