@@ -61,7 +61,7 @@ import java.util.stream.Collectors
 //Set global outputs
 xlabel = "Variance"
 ylabel = "Frequency"
-title = "X Variance Histogram"
+title = "Y Variance Histogram"
 bins = 100
 xmin = 0.0
 xmax = 30.0
