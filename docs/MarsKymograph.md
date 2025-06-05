@@ -18,7 +18,238 @@ permalink: /docs/MarsKymograph/index.html
 | [Transverse Flow Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/TransverseFlowArchiveMoleculeRegionBuilder/) | Extract region from Transverse Flow Archive |
 | [Image Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ImageFormatter/) | Format Montage |
 
-Sample script that can be used in a fenced code block in the **Mars Rover** comments tab with the keyword groovy-image-widget. Below is a comprehensive script that demonstrates all available options for the Mars Kymograph & Montage Builder. Options that are commented out represent alternatives or additional configurations that can be enabled as needed.
+Sample scripts that can be used in a fenced code block in the **Mars Rover** Comments tab with the keyword `groovy-image-widget`. Fenced code block are sections of markdown text with code that have three prime symbols before and after them. Right after the first three dashes without a space the language can be added. Normally this will simply display the code with the correct highlighting in the output view on the right. However, some special keywords have been added that allow execution of the code. In particular, `groovy-image-widget`, `groovy-images-widget`, and `groovy-html-widget` have been added that provide the Context and archive as inputs and expect a string output an html encoded image. The image is then saved in the Comments tab of the archive and displayed on the right. This can be one image or an array of images for the first two widgets. The third widget expects a string of html and will be displayed. This allows for formatting of parameters from the archive in html.
+
+### Dna Archive Kymograph
+
+This script illustrates the usage of the `groovy-image-widget` keyword for fenced code blocks for Dna Archive Kymographs. 
+
+```groovy
+#@ Context scijavaContext
+#@ MoleculeArchive archive
+#@OUTPUT String imgsrc
+
+def UID = "UID"
+
+import de.mpg.biochem.mars.kymograph.DnaArchiveKymographBuilder
+import de.mpg.biochem.mars.kymograph.ImageFormatter
+
+def omeImage = archive.getMetadata(archive.get(UID).getMetadataUID()).getImage(0)
+def startTime = omeImage.getPlane(0,0,0).getDeltaTinSeconds();
+def endTime = omeImage.getPlane(0,0,omeImage.getSizeT() - 1).getDeltaTinSeconds();
+
+DnaArchiveKymographBuilder kymoBuilder = new DnaArchiveKymographBuilder(scijavaContext, archive)
+def kymograph = kymoBuilder.setMolecule(UID)
+.setProjectionWidth(10)
+.build()
+
+ImageFormatter formatter = new ImageFormatter(scijavaContext, kymograph)
+formatter.setDisplayRangeMin(1, 10000)
+.setRescale(5)
+.setTitle(UID)
+.setXAxisLabel("Time (min)")
+.setXAxisRange(startTime/60, endTime/60)
+.setYAxisLabel("kb")
+.setYAxisRange(0, 27)
+.setDisplayRangeMax(1, 18000)
+.setLUT(1, "Grays")
+.setLUT(2, "Magenta")
+.setYStepSize(10)
+//.setXStepSize(25)
+.showChannelStack(25)
+.build()
+
+imgsrc = formatter.getHtmlEncodedImage()
+```
+
+#### Dna Archive Montage
+
+This script illustrates the usage of the `groovy-image-widget` keyword for fenced code blocks for Dna Archive Montages. 
+
+```groovy
+#@ Context scijavaContext
+#@ MoleculeArchive archive
+#@OUTPUT String imgsrc
+
+def UID = "UID"
+
+import de.mpg.biochem.mars.kymograph.DnaArchiveMoleculeRegionBuilder
+import de.mpg.biochem.mars.kymograph.MontageBuilder
+import de.mpg.biochem.mars.kymograph.ImageFormatter
+
+// Step 1: Extract the molecule region from the archive
+def regionBuilder = new DnaArchiveMoleculeRegionBuilder(scijavaContext, archive)
+def imgPlus = regionBuilder.setMolecule(UID)
+        .setBorderWidth(2)           // 10 pixel border around DNA
+        .setBorderHeight(0)          // 10 pixel border around DNA
+        .build()
+
+// Step 2: Create a montage from the extracted region
+def montageBuilder = new MontageBuilder(scijavaContext)
+def montage = montageBuilder.setSource(imgPlus)
+        .setMinT(20)                   // Start from first time point
+        .setMaxT(49)                  // Use first 50 frames
+        .setSpacing(0)                // 0 pixel spacing between frames
+        .skipFrames(0)                // Only include every 5th frame
+        .build()
+
+// Step 3: Format the montage for display
+def formatter = new ImageFormatter(scijavaContext, montage)
+formatter
+        .setRescale(3)
+        .setDarkTheme(true)
+        .build()
+
+// Return the HTML-encoded image
+imgsrc = formatter.getHtmlEncodedImage()
+```
+
+#### Transverse Flow Archive
+
+This script illustrates the usage of the `groovy-image-widget` keyword for fenced code blocks for Transverse Flow Archive Montages. 
+
+```groovy
+#@ Context scijavaContext
+#@ MoleculeArchive archive
+#@OUTPUT String imgsrc
+
+def UID = "UID"
+
+import de.mpg.biochem.mars.kymograph.TransverseFlowArchiveMoleculeRegionBuilder
+import de.mpg.biochem.mars.kymograph.MontageBuilder
+import de.mpg.biochem.mars.kymograph.ImageFormatter
+
+def omeImage = archive.getMetadata(archive.get(UID).getMetadataUID()).getImage(0)
+def startTime = omeImage.getPlane(0,0,0).getDeltaTinSeconds()
+def endTime = omeImage.getPlane(0,0,omeImage.getSizeT() - 1).getDeltaTinSeconds()
+
+// Step 1: Extract the molecule region from the archive
+def regionBuilder = new TransverseFlowArchiveMoleculeRegionBuilder(scijavaContext, archive)
+def imgPlus = regionBuilder.setMolecule(UID)
+        .setBorderWidth(2)           // 10 pixel border around DNA
+        .setBorderHeight(2)          // 10 pixel border around DNA
+        .build()
+
+// Step 2: Create a montage from the extracted region
+def montageBuilder = new MontageBuilder(scijavaContext)
+def montage = montageBuilder.setSource(imgPlus)
+        .setMinT(0)                   // Start from first time point
+        .setMaxT(16)                  // Use first 50 frames
+        .setSpacing(0)                // 5 pixel spacing between frames
+        //.setHorizontalLayout(true)    // Arrange frames horizontally
+        //.setColumns(5)                // 5 columns (for grid layout)
+        .tophatFilter(2, 2)        //Only apply tophat to channel 2
+        .skipFrames(2)                // Only include every 5th frame
+        .setVerticalReflection(true) // No vertical reflection
+        .setHorizontalReflection(true)
+        .build()
+
+// Step 3: Format the montage for display
+def formatter = new ImageFormatter(scijavaContext, montage)
+formatter
+        .setRescale(3)
+        .setTitle("Transverse Flow Molecule ${UID}")
+        .setXAxisLabel("Time (s)")
+        .setXAxisRange(startTime, endTime)
+        .setYAxisLabel("kb")
+        .setYAxisRange(0, 21)
+        //.setDisplayRangeMin(1, 0)
+        //.setDisplayRangeMax(1, 500)
+        .setDisplayRangeMin(2, 2000)
+        .setDisplayRangeMax(2, 10000)
+        .setLUT(2, "Magenta")
+        .setLUT(1, "Green")
+        //.onlyShowChannel(2)
+        //.leftVerticalOrientation()
+        .setYStepSize(10)
+        .setXStepSize(100)
+        .showChannelStack(25)
+        .setDarkTheme(true)
+        .build()
+
+System.out.println(UID + "ch1 min " + formatter.getFinalDisplayRangeMin(1))
+System.out.println(UID + "ch1 max " + formatter.getFinalDisplayRangeMax(1))
+
+// Return the HTML-encoded image
+imgsrc = formatter.getHtmlEncodedImage()
+```
+
+#### Dna Archive Region Array of Images
+
+This script illustrates the usage of the `groovy-images-widget` keyword for the fenced code block returning an array of montage images displaying all LUTs currently installed in Fiji. 
+
+```groovy
+#@ Context scijavaContext
+#@ MoleculeArchive archive
+#@OUTPUT String[] imgsrcs
+
+def UID = "UID"
+
+import de.mpg.biochem.mars.kymograph.DnaArchiveMoleculeRegionBuilder
+import de.mpg.biochem.mars.kymograph.MontageBuilder
+import de.mpg.biochem.mars.kymograph.ImageFormatter
+import ij.IJ
+
+def omeImage = archive.getMetadata(archive.get(UID).getMetadataUID()).getImage(0)
+def startTime = omeImage.getPlane(0,0,0).getDeltaTinSeconds()
+def endTime = omeImage.getPlane(0,0,omeImage.getSizeT() - 1).getDeltaTinSeconds()
+
+// Step 1: Extract the molecule region from the archive
+def regionBuilder = new DnaArchiveMoleculeRegionBuilder(scijavaContext, archive)
+def imgPlus = regionBuilder.setMolecule(UID)
+        .setBorderWidth(5)           // 10 pixel border around DNA
+        .setBorderHeight(10)          // 10 pixel border around DNA
+        .build()
+
+def luts = IJ.getLuts()
+
+def stringList = []
+for (def lut : luts) {
+    // Step 2: Create a montage from the extracted region
+    def montageBuilder = new MontageBuilder(scijavaContext)
+    def montage = montageBuilder.setSource(imgPlus)
+            .setMinT(0)                     // Start from first time point
+            .setMaxT(49)                    // Use first 50 frames
+            .setSpacing(0)                  // 5 pixel spacing between frames
+            //.setHorizontalLayout(true)    // Arrange frames horizontally
+            //.setColumns(5)                // 5 columns (for grid layout)
+            .skipFrames(3)                  // Only include every 5th frame
+            //.tophatFilter(radius)
+            .setVerticalReflection(false)   // No vertical reflection
+            .build()
+
+    // Step 3: Format the montage for display
+    def formatter = new ImageFormatter(scijavaContext, montage)
+    formatter
+            .setRescale(3)
+            .setTitle("DNA Molecule ${UID} with lut " + lut)
+            .setXAxisLabel("Time (s)")
+            .setXAxisRange(startTime, endTime)
+            .setYAxisLabel("kb")
+            .setYAxisRange(0, 21)
+            //.setDisplayRangeMin(3, 600)
+            //.setDisplayRangeMax(3, 6000)
+            //.setLUT(1, "Magenta")
+            //.setLUT(2, "Blue")
+            .setLUT(2, lut)
+            //.onlyShowChannel(2)
+            //.setLUT(3, "batlow")
+            .onlyShowChannel(2)
+            .setYStepSize(10)
+            .setXStepSize(100)
+            //.showChannelStack(25)
+            .setDarkTheme(true)
+            .build()
+
+    stringList.add(formatter.getHtmlEncodedImage())
+}
+
+imgsrcs = stringList as String[]
+```
+
+#### Comprehensive script
+
+Below is a more comprehensive script that demonstrates all available options for the Mars Kymograph & Montage Builder. Options that are commented out represent alternatives or additional configurations that can be enabled as needed. This script works with the `groovy-images-widget` keyword for fenced code blocks in the Comments tab of the **Mars Rover**. 
 
 ```groovy
 #@ Context scijavaContext
