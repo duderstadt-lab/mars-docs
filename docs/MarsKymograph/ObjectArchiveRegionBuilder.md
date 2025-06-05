@@ -1,6 +1,8 @@
-# ObjectArchiveRegionBuilder
-
-## Overview
+---
+layout: marskymograph
+title: Object Archive Region
+permalink: /docs/MarsKymograph/ObjectArchiveRegionBuilder/index.html
+---
 
 The `ObjectArchiveRegionBuilder` class extracts regions from objects stored in an `ObjectArchive`. It provides a way to extract a bounded region around a Martian object by analyzing all peak shapes across time points for further processing or visualization.
 

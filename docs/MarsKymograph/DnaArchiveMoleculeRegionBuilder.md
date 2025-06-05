@@ -1,6 +1,8 @@
-# DnaArchiveMoleculeRegionBuilder
-
-## Overview
+---
+layout: marskymograph
+title: Dna Archive Region
+permalink: /docs/MarsKymograph/DnaArchiveMoleculeRegionBuilder/index.html
+---
 
 The `DnaArchiveMoleculeRegionBuilder` class extracts regions from DNA molecules stored in a `DnaMoleculeArchive`. It provides a flexible way to extract a bounded region around a DNA molecule for further processing or visualization.
 

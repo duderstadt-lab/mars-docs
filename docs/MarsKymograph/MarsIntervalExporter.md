@@ -1,7 +1,8 @@
-# MarsIntervalExporter
-
-## Overview
-
+---
+layout: marskymograph
+title: Mars Interval Exporter
+permalink: /docs/MarsKymograph/MarsIntervalExporter/index.html
+---
 The `MarsIntervalExporter` class is a powerful utility for extracting specific regions from N5-based image datasets stored in Mars molecule archives. It provides efficient access to arbitrary intervals from large-scale imaging data, handling multi-channel, multi-timepoint datasets with proper coordinate transformations and drift correction.
 
 ## Generic Type Parameter

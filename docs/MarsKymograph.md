@@ -15,44 +15,10 @@ permalink: /docs/MarsKymograph/index.html
 | [Montage](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/MontageBuilder/) | Montage builder |
 | [Object Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ObjectArchiveRegionBuilder/) | Extract region from Object Archive |
 | [Object Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ObjectShapeFormatter/) | Format Object Montage |
+| [Transverse Flow Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/TransverseFlowArchiveMoleculeRegionBuilder/) | Extract region from Object Archive |
 | [Image Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ImageFormatter/) | Format Montage |
 
-Comprehensive sample script that can be used in a fenced code block in the **Mars Rover** comments tab with the keyword groovy-image-widget.
-
-// Option 2: Extract region around an object (if using ObjectArchive)
-/*
-def objectArchive = archive // Assuming archive is an ObjectArchive
-def objectRegionBuilder = new ObjectArchiveRegionBuilder(scijavaContext, objectArchive)
-def imgPlus = objectRegionBuilder
-    .setObject(UID)                  // Set object by UID
-    //.setObject(objectArchive.get(UID)) // Alternative: set object directly
-    .setBorderWidth(10)              // Set horizontal border around object (pixels)
-    .setBorderHeight(10)             // Set vertical border around object (pixels)
-    .build()
-*/
-
-// Option 3: Extract region around a transverse flow molecule (if using TransverseFlowArchive)
-/*
-def transverseFlowArchive = archive // Assuming archive is a TransverseFlowArchive
-def transverseFlowRegionBuilder = new TransverseFlowArchiveMoleculeRegionBuilder(scijavaContext, transverseFlowArchive)
-def imgPlus = transverseFlowRegionBuilder
-    .setMolecule(UID)                // Set molecule by UID
-    //.setMolecule(transverseFlowArchive.get(UID)) // Alternative: set molecule directly
-    .setBorderWidth(10)              // Set horizontal border around molecule (pixels)
-    .setBorderHeight(10)             // Set vertical border around molecule (pixels)
-    .build()
-*/
-
-// Option 3: Extract region around a transverse flow molecule (if using TransverseFlowArchive)
-/*
-def transverseFlowArchive = archive // Assuming archive is a TransverseFlowArchive
-def transverseFlowRegionBuilder = new TransverseFlowArchiveMoleculeRegionBuilder(scijavaContext, transverseFlowArchive)
-def imgPlus = transverseFlowRegionBuilder
-    .setMolecule(UID)                // Set molecule by UID
-    //.setMolecule(transverseFlowArchive.get(UID)) // Alternative: set molecule directly
-    .setBorderWidth(10)              // Set horizontal border# Comprehensive Mars Kymograph & Montage Script
-
-Below is a comprehensive script that demonstrates all available options for the Mars Kymograph & Montage Builder. Options that are commented out represent alternatives or additional configurations that can be enabled as needed.
+Sample script that can be used in a fenced code block in the **Mars Rover** comments tab with the keyword groovy-image-widget. Below is a comprehensive script that demonstrates all available options for the Mars Kymograph & Montage Builder. Options that are commented out represent alternatives or additional configurations that can be enabled as needed.
 
 ```groovy
 #@ Context scijavaContext
@@ -323,6 +289,32 @@ imgsrc = formatter.getHtmlEncodedImage()
 // Alternative: save to file
 // formatter.saveAsPNG("/path/to/output.png")
 // formatter.saveAsSVG("/path/to/output.svg")
+```
+
+Other region extraction possibilities.
+
+Option 2: Extract region around an object (if using ObjectArchive)
+```groovy
+def objectArchive = archive // Assuming archive is an ObjectArchive
+def objectRegionBuilder = new ObjectArchiveRegionBuilder(scijavaContext, objectArchive)
+def imgPlus = objectRegionBuilder
+    .setObject(UID)                  // Set object by UID
+    //.setObject(objectArchive.get(UID)) // Alternative: set object directly
+    .setBorderWidth(10)              // Set horizontal border around object (pixels)
+    .setBorderHeight(10)             // Set vertical border around object (pixels)
+    .build()
+```
+
+Option 3: Extract region around a transverse flow molecule (if using TransverseFlowArchive)
+```groovy
+def transverseFlowArchive = archive // Assuming archive is a TransverseFlowArchive
+def transverseFlowRegionBuilder = new TransverseFlowArchiveMoleculeRegionBuilder(scijavaContext, transverseFlowArchive)
+def imgPlus = transverseFlowRegionBuilder
+    .setMolecule(UID)                // Set molecule by UID
+    //.setMolecule(transverseFlowArchive.get(UID)) // Alternative: set molecule directly
+    .setBorderWidth(10)              // Set horizontal border around molecule (pixels)
+    .setBorderHeight(10)             // Set vertical border around molecule (pixels)
+    .build()
 ```
 
 ## Key Points About This Script

@@ -1,7 +1,8 @@
-# ImageFormatter
-
-## Overview
-
+---
+layout: marskymograph
+title: Image Formatter
+permalink: /docs/MarsKymograph/ImageFormatter/index.html
+---
 The `ImageFormatter` class formats images (such as kymographs or montages) with axes, labels, and visual styling for presentation. It provides extensive control over appearance, including layout, axis configuration, color management, and various export options.
 
 ## Constructor

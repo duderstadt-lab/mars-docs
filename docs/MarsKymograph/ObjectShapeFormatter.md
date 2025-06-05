@@ -1,6 +1,8 @@
-# ObjectShapeFormatter
-
-## Overview
+---
+layout: marskymograph
+title: Object Formatter
+permalink: /docs/MarsKymograph/ObjectShapeFormatter/index.html
+---
 
 The `ObjectShapeFormatter` class creates visualizations of object shapes over time from a `MartianObject`. It provides extensive control over the appearance and layout of shape montages, including orientation options, styling, and export capabilities.
 

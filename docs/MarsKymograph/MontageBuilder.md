@@ -1,6 +1,8 @@
-# MontageBuilder
-
-## Overview
+---
+layout: marskymograph
+title: Montage Builder
+permalink: /docs/MarsKymograph/MontageBuilder/index.html
+---
 
 The `MontageBuilder` class creates montages from time series images. It arranges frames from a time series (with optional channel information) into a grid or linear layout, with flexible options for frame selection, arrangement, and preprocessing.
 
