@@ -1,6 +1,8 @@
-# DnaArchiveKymographBuilder
-
-## Overview
+---
+layout: marskymograph
+title: Dna Archive Kymograph
+permalink: /docs/MarsKymograph/DnaArchiveKymographBuilder/index.html
+---
 
 The `DnaArchiveKymographBuilder` class creates kymographs directly from DNA molecules stored in a `DnaMoleculeArchive`. It provides a streamlined approach to generate kymographs by automatically extracting the DNA region, applying optional filtering and frame reduction, and projecting along the DNA trajectory. This builder combines region extraction, image processing, and kymograph generation into a single, convenient interface.
 
