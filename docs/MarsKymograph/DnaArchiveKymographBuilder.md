@@ -115,23 +115,6 @@ Dataset kymograph = kymographBuilder
     .build();
 ```
 
-### Time-lapse Analysis Workflow
-
-```java
-// Process multiple DNA molecules
-for (String uid : dnaMoleculeArchive.getMoleculeUIDs()) {
-    Dataset kymograph = kymographBuilder
-        .setMolecule(uid)
-        .setProjectionWidth(3)
-        .averageFrames(5)               // Average every 5 frames for noise reduction
-        .tophatFilter(2)                // Remove background
-        .build();
-    
-    // Save or analyze the kymograph
-    IJ.save(kymograph.getImgPlus(), "/path/to/kymographs/" + uid + "_kymograph.tif");
-}
-```
-
 ## Implementation Details
 
 ### Automatic Region Extraction

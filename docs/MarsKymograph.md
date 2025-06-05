@@ -15,7 +15,7 @@ permalink: /docs/MarsKymograph/index.html
 | [Montage](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/MontageBuilder/) | Montage builder |
 | [Object Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ObjectArchiveRegionBuilder/) | Extract region from Object Archive |
 | [Object Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ObjectShapeFormatter/) | Format Object Montage |
-| [Transverse Flow Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/TransverseFlowArchiveMoleculeRegionBuilder/) | Extract region from Object Archive |
+| [Transverse Flow Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/TransverseFlowArchiveMoleculeRegionBuilder/) | Extract region from Transverse Flow Archive |
 | [Image Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ImageFormatter/) | Format Montage |
 
 Sample script that can be used in a fenced code block in the **Mars Rover** comments tab with the keyword groovy-image-widget. Below is a comprehensive script that demonstrates all available options for the Mars Kymograph & Montage Builder. Options that are commented out represent alternatives or additional configurations that can be enabled as needed.
