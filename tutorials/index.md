@@ -24,8 +24,10 @@ The files accompanying the tutorials, such as an example dataset, can be found i
   _Skill level: Advanced._  Learn how to create an archive with drift information and copy that information to other archives. This shows how to correct for drift when manually tracking molecules using the BDV in the mars rover.
 
 #### Python
-* [How to open a Molecule Archive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/python/open-a-Molecule-Archive-in-Python/)  
-  _Skill level: Intermediate._  Learn how to load and work with Molecule Archives in Jupyter notebooks running Python 3 and work with mars together with all the wonderful packages available in the python environment.
+* [Open and create a Molecule Archive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/python/open-a-Molecule-Archive-in-Python/)  
+  _Skill level: Beginner._  Learn how to open, explore, and create Molecule Archives directly in Python — no Fiji or Java required — and work with mars together with all the wonderful packages available in the python environment.
+* [Common python functions and patterns](https://duderstadt-lab.github.io/mars-docs/tutorials/python/common-python-functions/)  
+  _Skill level: Intermediate._  An evergrowing list of functions and coding patterns for working with Molecule Archives in Python, including tags, parameters, large `.yama.store` archives, and archives stored on S3.
 
 
 #### TrackMate

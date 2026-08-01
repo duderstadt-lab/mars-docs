@@ -91,7 +91,7 @@ After going through the entire dataset, go back to the desktop page of **Mars Ro
 
 ### 6. Saving the MoleculeArchive
 
-The archive can be saved as a .yama file by selecting the save option. Now the data can be further analysed and plotted using Python. If you are interested in that, please continue with the [tutorial on Molecule Archive data handling in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/)
+The archive can be saved as a .yama file by selecting the save option. Now the data can be further analysed and plotted using Python. If you are interested in that, please continue with the [tutorial on Molecule Archive data handling in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/python/open-a-Molecule-Archive-in-Python/)
 
 <div style="text-align: center"><img  src='{{site.baseurl}}/tutorials/img/TCreateMoleculeArchive/img21.png' width='200'/></div>
 

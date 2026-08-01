@@ -35,4 +35,4 @@ When exploring the molecules two different populations are found: the population
 Now save the archive again to retain the calculated values.
 
 
-To further analyse the variance values f.e. by means of plotting, have a look at the [How to open a Molecule Archive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) and the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorials.
+To further analyse the variance values f.e. by means of plotting, have a look at the [How to open a Molecule Archive in python](https://duderstadt-lab.github.io/mars-docs/tutorials/python/open-a-Molecule-Archive-in-Python/) and the [How to use Scriptable Widgets](https://duderstadt-lab.github.io/mars-docs/tutorials/workingwithmars/scriptable-widgets/) tutorials.

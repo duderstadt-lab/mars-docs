@@ -20,7 +20,7 @@ Please note that the fifth scriptable widget 'Beaker' is not addressed in this t
 ### 1. Category Chart - Plot the Mean Variance Value vs. Tag
 **Introduction**
 
-To gain insight in the relationship between the variance (var) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean variance value of both groups as a bar plot.  This gives a first glance at the relation between variance and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a Molecule Archive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/marsto/open-a-Molecule-Archive-in-Python/) tutorial.
+To gain insight in the relationship between the variance (var) and the assigned group (tag: 'Active' or no tag) a category chart is used. It plots the mean variance value of both groups as a bar plot.  This gives a first glance at the relation between variance and tag category. Note that for a more thorough analysis of this relationship the reader is referred to the [Open a Molecule Archive in Python](https://duderstadt-lab.github.io/mars-docs/tutorials/python/open-a-Molecule-Archive-in-Python/) tutorial.
 
 To make the plot, the script first has to make two categories: 'Active'-tagged molecules and molecules without a tag. Next, the var values of all molecules in their respective groups are collected in a list followed by the calculation of the mean of that list. These mean values are provided as the yvalues, the categories as the xvalues.
 
