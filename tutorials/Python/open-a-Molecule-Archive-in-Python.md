@@ -176,4 +176,5 @@ with tags, parameters, regions and positions, segment tables, large
 If you're coming from Groovy/Java scripting in Fiji and looking for the
 Python equivalent of a method you already know, marspylib's
 [README](https://github.com/duderstadt-lab/marspylib#coming-from-javagroovyfiji-method-name-mapping)
-has a full method-name mapping table.
+has a full method-name mapping table, and the full API reference is at
+[marspylib.readthedocs.io](https://marspylib.readthedocs.io/).

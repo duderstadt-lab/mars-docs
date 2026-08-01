@@ -16,7 +16,9 @@ first. We will constantly update this page.
 Every method used below, and its Java/Groovy equivalent if you're coming
 from Fiji scripting, is listed in marspylib's
 [README method-mapping table](https://github.com/duderstadt-lab/marspylib#coming-from-javagroovyfiji-method-name-mapping).
-For the underlying Java data model itself, see the
+The full API reference, with every class, method, and field, is at
+[marspylib.readthedocs.io](https://marspylib.readthedocs.io/). For the
+underlying Java data model itself, see the
 [Java docs](https://duderstadt-lab.github.io/mars-core/javadoc/).
 
 
