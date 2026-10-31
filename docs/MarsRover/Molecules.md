@@ -21,6 +21,7 @@ The Molecules tab has three main sections:
 | :------------- | :------------- |
 | Table      | Molecule specific position information (x, y, intensity, slice).      |
 | Plot | Plotting widget for easy in-GUI analysis of the data. |
+| Kymograph | [Kymographs and montages](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Kymograph/) of the selected molecule. |
 | Scriptable widgets      | [Scriptable widgets](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/ScriptableWidgets/) to visualise data per molecule.       |
 
 

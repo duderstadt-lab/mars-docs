@@ -4,7 +4,7 @@ title: Mars Kymograph
 permalink: /docs/MarsKymograph/index.html
 ---
 
-**Mars** includes tools for creating kymographs and montages with an array of options for layouts, filters, labels and color schemes. These tools can be used in the [Comments](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Comments/) tab of the **Mars Rover** with special fenced code blocks. Alternatively, these tools can be used in the Fiji scripting editor independently from other **Mars**  components to create PNG or SVG output images. Here method reference and sample documentation is provided for the available tools. 
+**Mars** includes tools for creating kymographs and montages with an array of options for layouts, filters, labels and color schemes. These tools can be used in the [Kymograph](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Kymograph/) tab of the **Mars Rover**, or in the [Comments](https://duderstadt-lab.github.io/mars-docs/docs/MarsRover/Comments/) tab with special fenced code blocks. Alternatively, these tools can be used in the Fiji scripting editor independently from other **Mars**  components to create PNG or SVG output images. Here method reference and sample documentation is provided for the available tools. 
 
 **Mars Kymograph**
 
@@ -15,6 +15,7 @@ permalink: /docs/MarsKymograph/index.html
 | [Montage](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/MontageBuilder/) | Montage builder |
 | [Object Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ObjectArchiveRegionBuilder/) | Extract region from Object Archive |
 | [Object Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ObjectShapeFormatter/) | Format Object Montage |
+| [Single Molecule Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/SingleMoleculeArchiveRegionBuilder/) | Extract region around a spot from a Single Molecule Archive |
 | [Transverse Flow Archive Region](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/TransverseFlowArchiveMoleculeRegionBuilder/) | Extract region from Transverse Flow Archive |
 | [Image Formatter](https://duderstadt-lab.github.io/mars-docs/docs/MarsKymograph/ImageFormatter/) | Format Montage |
 
