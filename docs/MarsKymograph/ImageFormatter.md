@@ -43,6 +43,7 @@ Creates a new formatter for the specified dataset.
 | `setDisplayRangeMax(int c, double max)` | Set the maximum display value for a channel.<br>**Parameters:** `c` - The channel index (1-based), `max` - The maximum value<br>**Returns:** This formatter for method chaining |
 | `setLUT(int c, String lut)` | Set the lookup table (color palette) for a channel.<br>**Parameters:** `c` - The channel index (1-based), `lut` - The name of the LUT (e.g., "Blue", "Magenta", "Green", etc.)<br>**Returns:** This formatter for method chaining |
 | `setRescale(int rescaleFactor)` | Set the rescale factor for the image.<br>**Parameters:** `rescaleFactor` - The rescale factor (e.g., 2 for 2x size)<br>**Returns:** This formatter for method chaining |
+| `setScale(double scale)` | Scale the fonts, line widths, ticks, tick spacing, margins and channel stack spacing. Set it to the total enlargement of the image (for example interpolation times rescale) so the axes look the same at any resolution. Defaults to 1.<br>**Parameters:** `scale` - The scale factor for the decorations<br>**Returns:** This formatter for method chaining |
 
 ### Axis Configuration
 
