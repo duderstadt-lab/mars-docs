@@ -23,7 +23,7 @@ Settings are edited in the sections on the left. Each section maps onto one of t
 | Time points  | The time point range and frame reduction: skip, average or sum groups of frames.       |
 | Processing       | Median, Gaussian or top-hat filter, interpolation and reflection. For montages the filter can be applied to one channel only.       |
 | Layout       | Montages only. Spacing between frames, horizontal or vertical layout and the number of columns (0 for a single row or column).       |
-| Channels       | Show or hide each channel, choose the LUT and the display range. With Auto the display range is calculated and the values used are shown after generating, so they can be adjusted.       |
+| Channels       | Show or hide each channel, choose the LUT (type to filter the list) and the display range. With Auto the display range is calculated and the values used are shown after generating, so they can be adjusted.       |
 | Axes       | Axis labels, ranges, step sizes, precision and orientation. The x range can be calculated from the time of each frame in seconds, minutes or frames. The automatic y range is in pixels.       |
 | Style       | Rescale factor, dark theme, stacked channels and font sizes.       |
 
@@ -31,7 +31,7 @@ Settings are edited in the sections on the left. Each section maps onto one of t
 
 Press **Generate** to create the figure for the selected molecule. While it is being generated a progress indicator is shown over the figure and Generate turns into Cancel. Only one figure is generated at a time and the archive is not locked. If the selection changes or Generate is pressed again, the figure being generated is discarded.
 
-The figure is stored in the molecule record together with the settings used, so it is shown again when the molecule is selected and is saved with the archive. Deleting a molecule also deletes its figure. When a molecule with a figure is selected, its settings are loaded. Turn on **Keep settings** to keep the current settings while looking through many molecules.
+The figure is stored in the molecule record together with the settings used, so it is shown again when the molecule is selected and is saved with the archive. Deleting a molecule also deletes its figure. When a molecule with a figure is selected, its settings are loaded. Turn on **Keep settings when switching molecules** to keep the current settings while looking through many molecules.
 
 Turn on **Auto-generate on select** to generate a figure whenever a molecule without one is selected.
 
