@@ -21,8 +21,8 @@ Settings are edited in the sections on the left. Each section maps onto one of t
 | Figure       | Kymograph or montage (DNA archives only) and the title. An empty title uses the molecule UID.       |
 | Source       | Projection width for kymographs. Border width and height around the DNA or transverse flow molecule for montages. For spots, the radius of the square region and the table columns (mean position) or parameters used for the spot center.       |
 | Time points  | The time point range and frame reduction: skip, average or sum groups of frames.       |
-| Processing       | Median, Gaussian or top-hat filter, interpolation and reflection. For montages the filter can be applied to one channel only.       |
-| Layout       | Orientation of the figure: horizontal, or rotated 90 degrees to the left or right. For montages, also how the time points are arranged (a single row, a single column or a grid with a set number of columns) and the spacing between them.       |
+| Processing       | Median, Gaussian or top-hat filter and interpolation. For montages the filter can be applied to one channel only.       |
+| Layout       | Orientation of the figure: horizontal, or rotated 90 degrees to the left or right, and vertical reflection (horizontal reflection for montages too). For montages, also how the time points are arranged (a single row, a single column or a grid with a set number of columns) and the spacing between them.       |
 | Channels       | Show or hide each channel, choose the LUT (type to filter the list) and the display range. With Auto the display range is calculated and the values used are shown after generating, so they can be adjusted.       |
 | Axes       | Axis labels, ranges, step sizes and precision. The x range can be calculated from the time of each frame in seconds, minutes or frames. The automatic y range is in pixels.       |
 | Style       | Rescale factor, dark theme, stacked channels and font sizes.       |
