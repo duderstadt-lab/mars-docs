@@ -23,7 +23,7 @@ Settings are edited in the sections on the left. Each section maps onto one of t
 | Time points  | The time point range and frame reduction: skip, average or sum groups of frames.       |
 | Processing       | Median, Gaussian or top-hat filter and interpolation. For montages the filter can be applied to one channel only.       |
 | Layout       | Orientation of the figure: horizontal, or rotated 90 degrees to the left or right, and vertical reflection (horizontal reflection for montages too). For montages, also how the time points are arranged (a single row, a single column or a grid with a set number of columns) and the spacing between them.       |
-| Channels       | Show or hide each channel, choose the LUT (type to filter the list) and the display range. With Auto the display range is calculated and the values used are shown after generating, so they can be adjusted.       |
+| Channels       | Show or hide each channel, choose the LUT (type to filter the list) and the display range. With Auto the display range is calculated (Enhance Contrast with 0.35% saturated pixels) and shown after generating. Turn Auto off to adjust it with the slider or the Min and Max fields, which start from the last automatic range. The slider spans the lowest to the highest pixel value in the last figure, shown at its ends, or the 16-bit range before a figure has been generated. **Full** sets the range to the lowest and highest pixel value. Once a figure has been generated, it updates while the slider is dragged, and is stored when the slider is released or Enter is pressed in a field.       |
 | Axes       | Axis labels, ranges, step sizes and precision. The x range can be calculated from the time of each frame in seconds, minutes or T. The automatic y range runs from 0 to the height of the region in image pixels; turn it off to enter your own range, for example in kb.       |
 | Style       | Resolution (output pixels per image pixel), dark theme, stacked channels, font sizes, axis line width and tick length and width. Sizes are in pixels at resolution 1. Resolution and, for montages, interpolation increase the resolution of the figure without changing the size of the axes and text relative to the image.       |
 
@@ -32,6 +32,8 @@ Settings are edited in the sections on the left. Each section maps onto one of t
 Press **Generate** to create the figure for the selected molecule. While it is being generated a progress indicator is shown over the figure and Generate turns into Cancel. Only one figure is generated at a time and the archive is not locked. If the selection changes or Generate is pressed again, the figure being generated is discarded.
 
 The figure is stored in the molecule record together with the settings used, so it is shown again when the molecule is selected and is saved with the archive. Deleting a molecule also deletes its figure. When a molecule with a figure is selected, its settings are loaded. Turn on **Keep settings when switching molecules** to keep the current settings while looking through many molecules.
+
+The image read from the source is kept for the last few figures generated. When only settings that don't change it are adjusted (channels, axes and style), the figure is formatted again from that image, which is much faster than reading the source.
 
 Turn on **Auto-generate on select** to generate a figure whenever a molecule without one is selected.
 
